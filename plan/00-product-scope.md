@@ -1,5 +1,12 @@
 # 00 — Scope and feature inventory
 
+## Round 3 approved delivery boundaries
+
+**Initial scope:** two separately runnable editable four-stroke I4 gasoline vehicle examples (carburetor/mechanical ignition/no ECU **selected by factory default**, and EFI/ECU), with starter/manual clutch/road load. UI 3D target **30 FPS** and Canvas 2D target **60 FPS**, **on defined reference hardware and workload**, not fixed physics/audio cadence or an unverified all-platform claim.
+
+Audio Studio must support **expert-editable separately versioned source calibration trims** (distinct from user mix) and four **procedural listener positions**: cabin, engine bay, roadside and exhaust. Real measured recordings can be **user-imported or bundled only with verified redistribution rights**, for numerical/spectral calibration/validation **never playback**. Browser uses **IndexedDB autosave** with optional ZIP workspace snapshots; offline Windows/Linux high-fidelity work has CLI **and local graphical monitoring**, not a mandatory server. Routine code review belongs to a **dedicated AI integration agent with owner escalation**; actual GitHub review/merge rights need independent verification. See [Round 3](decisions/USER-APPROVED-ROUND-03.md), [remaining unknowns](decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+
 ## Experience
 Interactive playable vehicle sound laboratory with switchable 3D car/engine, lightweight 2D per-cylinder-bank cutaway and telemetry-only rendering, start/stop/ignition, throttle, brake, clutch, gear selection, steering and configurable engine/drivetrain. Real-time RPM, torque, firing markers, sound components and state diagnostics. Save/load/share versioned presets (URL encoding for small profiles; local file import/export for larger ones).
 
