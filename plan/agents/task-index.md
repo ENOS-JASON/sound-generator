@@ -1,10 +1,10 @@
 # Agent task index — one handoff per roadmap checkbox
 
-**Rule:** give one agent exactly one `AG-` card, not a milestone. Broad roadmap checkboxes split into child cards are done only when **all** child tasks have passed tests and AI-integrator/CI review. Every card has prerequisites, essential references, bounded files and acceptance evidence. See [README](README.md), [30](../30-agent-handoff-contracts-and-decisions.md), [31](../31-integration-gates-and-support-matrix.md).
+**Rule:** assign one agent exactly one AG task card, never an entire milestone. A roadmap checkbox with child cards completes only once every child has actual CI/tests, versioned evidence and authorized integrator review. See [agent instructions](README.md), [shared contracts](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md).
 
-**Status: planning work orders only.** Owner approvals: [Round 1](../decisions/USER-APPROVED-ROUND-01.md), [Round 2](../decisions/USER-APPROVED-ROUND-02.md), [Round 3](../decisions/USER-APPROVED-ROUND-03.md). Major architectural choices still require owner consent; actual reviewer/GUI/licensing capability must be validated before claiming implementation.
+**Status: planning work orders.** Owner choices: [Round 1](../decisions/USER-APPROVED-ROUND-01.md), [Round 2](../decisions/USER-APPROVED-ROUND-02.md), [Round 3](../decisions/USER-APPROVED-ROUND-03.md), [O3 implementation approvals](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md). Physical solver owner awaits owner approval after benchmark; CUDA GTX1080 support awaits actual CUDA12 `sm_61` hardware tests; AI routine merge is conditionally approved but not yet deployed/configured.
 
-Mapped **110** roadmap items to **170** independently assignable cards.
+Mapped **112** roadmap items to **172** independently assignable agent cards.
 
 ## M0 — M0-foundation.md
 
@@ -27,8 +27,8 @@ Mapped **110** roadmap items to **170** independently assignable cards.
 | `M0-15` | [AG-M0-15](M0-foundation.md#ag-m0-15) | Define `FastComponentModel` / `ApproximationRegistry` contracts: generic analytic baseline, optional trained coefficient/lookup slot, version/unit/validity/fallback, component IDs and reference projection; training must be possible later without rewriting M1 solver. |
 | `M0-16` | [AG-M0-16](M0-foundation.md#ag-m0-16) | Define reference experiments and `ReferenceComputeBackend` with **Windows/Linux support**, optional CPU/GPU, provenance/precision and research-export format contracts; maintain browser ZIP as exchange base. |
 | `M0-17` | [AG-M0-17](M0-foundation.md#ag-m0-17) | Implement **desktop Chromium/Firefox/Safari** capability detection, audio gesture/unlock/error UI and lower-cost Canvas 2D fallback when 3D unsupported. |
-| `M0-18` | [AG-M0-18](M0-foundation.md#ag-m0-18) | Define **versioned IndexedDB browser autosave** with migrations/quota/recovery, preserve last valid EFI user choice, and keep optional ZIP snapshots through the existing recorder. |
-| `M0-19` | [AG-M0-19](M0-foundation.md#ag-m0-19) | Prototype/configure a dedicated **AI technical integration agent** for routine PR review with CI evidence, least-privilege GitHub permissions and escalation of major ADRs/issues to the project owner; do not assume bot or merge rights exist. |
+| `M0-18` | [AG-M0-18](M0-foundation.md#ag-m0-18) | Define **versioned IndexedDB autosave** for config, mixer, expert trims, widgets, scenarios and **bounded recent debug data**, plus **configurable bounded history**, quota recovery, last-valid EFI preference and optional portable ZIP snapshots. |
+| `M0-19` | [AG-M0-19](M0-foundation.md#ag-m0-19) | Implement AI PR review plus **conditional autonomous merging of routine cards only after actual authorized branch/CI/security checks**, with mandatory owner escalation of major ADRs and public/shared TS contract or ownership changes; bot credentials/permissions must first be tested. |
 
 ## M1 — M1-fast-engine.md
 
@@ -45,7 +45,7 @@ Mapped **110** roadmap items to **170** independently assignable cards.
 | `M1-09` | [AG-M1-09a](M1-fast-engine.md#ag-m1-09a), [AG-M1-09b](M1-fast-engine.md#ag-m1-09b) | Add air/fuel/spark and combustion torque, catch criteria, OFF/CRANKING/FIRING/RUNNING/FAILED_START transitions. |
 | `M1-10` | [AG-M1-10a](M1-fast-engine.md#ag-m1-10a), [AG-M1-10b](M1-fast-engine.md#ag-m1-10b) | Implement selectable mechanical idle adjustment or ECU idle regulation, kill-switch shutdown, no-fuel failure, low-battery failure and load-induced stall. |
 | `M1-11` | [AG-M1-11](M1-fast-engine.md#ag-m1-11) | Build start/idle/stall/manual-clutch/road-load headless fixtures **for both carbureted/no-ECU and EFI/ECU I4 variants**, including valid/invalid controller commands and energy tests. |
-| `M1-12` | [AG-M1-12](M1-fast-engine.md#ag-m1-12) | Ship **two complete, physically valid editable I4 vehicle presets** (carburetor/mechanical/no ECU and EFI/ECU), first-run carb selected by default unless a valid autosaved user choice exists; test both with starter, manual gearbox and road load. |
+| `M1-12` | [AG-M1-12](M1-fast-engine.md#ag-m1-12) | **Propose physically justified SI parameters to owner for approval** for two editable carb/no-ECU and EFI/ECU I4 vehicle examples; after approval, ship both with starter/manual/road load and factory carb first-run default. |
 
 ## M2 — M2-audio.md
 
@@ -56,8 +56,8 @@ Mapped **110** roadmap items to **170** independently assignable cards.
 | `M2-03` | [AG-M2-03a](M2-audio.md#ag-m2-03a), [AG-M2-03b](M2-audio.md#ag-m2-03b) | Build plenum/airbox/intake, exhaust/body resonances, filter smoothing, calibrated full-reference source generation, independent stem/bus/master gains, meters, mute/solo and safe output headroom. |
 | `M2-04` | [AG-M2-04](M2-audio.md#ag-m2-04) | Validate **both approved slow-motion audio modes** alongside sound-physics synchronization, worklet deadline/latency, waveform/FFT capture, mode-switch diagnostics and event alignment. |
 | `M2-05` | [AG-M2-05](M2-audio.md#ag-m2-05) | Implement pitch-preserving slow-motion time-stretch DSP alongside physical pitch-lowered playback, with measured worklet CPU/latency, no silent fallback and deterministic mode switching (UI toggle in `AG-M3-07`). |
-| `M2-06` | [AG-M2-06](M2-audio.md#ag-m2-06) | Add **expert-editable, separately versioned per-source calibration trims** independent of user mixer faders and master gain, with reset/revision, headroom and physics invariants. |
-| `M2-07` | [AG-M2-07](M2-audio.md#ag-m2-07) | Implement procedural audio **cabin, engine-bay, roadside and exhaust listening perspectives** with source-aware transfer/attenuation and no changes to engine physics. |
+| `M2-06` | [AG-M2-06](M2-audio.md#ag-m2-06) | Add **expert-editable per-source gain trims only**, with calibrated operating conditions, revisions and undo; preserve separate everyday mixer/master, headroom and physics, without an unapproved expert EQ/spectral/DSP editor. |
+| `M2-07` | [AG-M2-07](M2-audio.md#ag-m2-07) | Implement procedural **cabin, engine-bay, roadside and exhaust** listener transfer **independent of 2D/3D camera movement**, with source-aware filters/attenuation and unchanged physics. |
 
 ## M3 — M3-builder-and-views.md
 
@@ -71,9 +71,9 @@ Mapped **110** roadmap items to **170** independently assignable cards.
 | `M3-06` | [AG-M3-06](M3-builder-and-views.md#ag-m3-06) | Implement **M3-C training setup step**: supported Quick/Balanced/Detailed/Research tiers, per-component zone and timestep controls, preflight cost/capability and Worker/CLI job selection (UI editor may precede actual M6 solvers). |
 | `M3-07` | [AG-M3-07](M3-builder-and-views.md#ag-m3-07) | Add start/stop, throttle, ignition, load and preset editor UI with SI conversions and the **physical/pitch-preserved slow-motion audio mode switch**; applying engine configuration requires a validated reset/safe boundary. |
 | `M3-08` | [AG-M3-08a](M3-builder-and-views.md#ag-m3-08a), [AG-M3-08b](M3-builder-and-views.md#ag-m3-08b), [AG-M3-08c](M3-builder-and-views.md#ag-m3-08c) | Add RPM/crank and wheel torque/hp/kW plus component loss meter, read-only event timeline, mixer channel/bus/master editor and 2D/3D/telemetry switch; no renderer may drive physics. |
-| `M3-09` | [AG-M3-09](M3-builder-and-views.md#ag-m3-09) | Add Svelte Audio Studio **expert calibration trim editor** and revision/undo with persistent calibration profile separate from ordinary source/bus/master mixer. |
-| `M3-10` | [AG-M3-10](M3-builder-and-views.md#ag-m3-10) | Add **four-position listening selector** (cabin/engine bay/roadside/exhaust) on Drive/Audio Studio, independent of 3D camera/physics and persistent across pages. |
-| `M3-11` | [AG-M3-11](M3-builder-and-views.md#ag-m3-11) | Integrate **IndexedDB autosave/recovery** for builder, selected controller/preset, mixer, expert calibration, scenarios and widgets, plus optional portable ZIP snapshot import/export. |
+| `M3-09` | [AG-M3-09](M3-builder-and-views.md#ag-m3-09) | Add Audio Studio **Advanced/Expert toggle without authentication**, editing source gain trims, reference conditions, revisions/undo, separately from ordinary mixer; no extra user-editable EQ/source DSP. |
+| `M3-10` | [AG-M3-10](M3-builder-and-views.md#ag-m3-10) | Add **four-position listening selector**, **fully independent of the 2D/3D camera**, persistent across pages; no follow-camera option without a later owner decision. |
+| `M3-11` | [AG-M3-11](M3-builder-and-views.md#ag-m3-11) | Integrate **IndexedDB autosave** for configs, mixer, calibration, scenarios, widgets and **bounded recent debug data**, **configurable bounded historical snapshots**, recovery and optional ZIP workspace import/export. |
 
 ## M4A — M4A-controls-and-electrical.md
 
@@ -159,7 +159,8 @@ Mapped **110** roadmap items to **170** independently assignable cards.
 | `M6D-04` | [AG-M6D-04](M6D-reference-execution-and-views.md#ag-m6d-04) | Implement repeated validation/seed runs and paired **one-component/parameter and preset-of-components** variations under identical time/event-gated scenarios, capturing full actual component/part topology, state, versions and source audio provenance. |
 | `M6D-05` | [AG-M6D-05](M6D-reference-execution-and-views.md#ag-m6d-05) | Export full component/multizone/fidelity/solver/OS/backend provenance and measured-reference comparison/confidence, reimportable into browser **ZIP** and optional offline **Parquet/HDF5** research output without discarding units/hashes. |
 | `M6D-06` | [AG-M6D-06a](M6D-reference-execution-and-views.md#ag-m6d-06a), [AG-M6D-06b](M6D-reference-execution-and-views.md#ag-m6d-06b) | Create per-zone diagnostic trace viewer, coarse/fine **mesh/time-step convergence reports**, reproducible dataset manifests and optional licensed measured-reference comparisons. |
-| `M6D-07` | [AG-M6D-07](M6D-reference-execution-and-views.md#ag-m6d-07) | Implement Windows/Linux **local graphical high-fidelity job monitor** driving existing offline CLI through a versioned local job-control adapter; show resources, progress, logs, cancel and checkpoint/resume. No remote queue implied. |
+| `M6D-07` | [AG-M6D-07](M6D-reference-execution-and-views.md#ag-m6d-07) | Implement Windows/Linux CLI-launched **loopback-only local web dashboard**, with local job-control API, progress/log/resource/stop/checkpoint, safe localhost origin/security checks; no public remote service. |
+| `M6D-08` | [AG-M6D-08](M6D-reference-execution-and-views.md#ag-m6d-08) | Build a Windows/Linux offline **CPU + NVIDIA CUDA** backend with a separately supported **GTX1080 Pascal `sm_61` / CUDA 12.x** compile/runtime path, cross-platform numerical parity, explicit CPU fallback, device/driver/resource diagnostics and no CUDA13-only dependency for the legacy-compatible route. |
 
 ## M7 — M7-surrogate-fitting.md
 
@@ -176,16 +177,17 @@ Mapped **110** roadmap items to **170** independently assignable cards.
 | `M7-09` | [AG-M7-09](M7-surrogate-fitting.md#ag-m7-09) | Export versioned coefficient profiles with validity bounds, provenance and hashes; activate via validated scheduled command and PROFILE_ACTIVATED event. |
 | `M7-10` | [AG-M7-10](M7-surrogate-fitting.md#ag-m7-10) | Load and atomically swap validated profiles; add stable baseline fallback. |
 | `M7-11` | [AG-M7-11](M7-surrogate-fitting.md#ag-m7-11) | Reject candidates with worse transition behavior, instability or audio CPU overruns. |
-| `M7-12` | [AG-M7-12](M7-surrogate-fitting.md#ag-m7-12) | Build user-imported and **verified-license bundled measurement reference catalog** with provenance/quality and analysis-only audio features; exclude recordings lacking redistribution rights and never use them for playback. |
+| `M7-12` | [AG-M7-12](M7-surrogate-fitting.md#ag-m7-12) | **Research legally distributable measurement candidates and submit license evidence for owner approval before bundling**; support user imports/analysis-only audio and exclude unverifiable sources. |
 
 ## M8 — M8-release-and-performance.md
 
 | Roadmap step | Assigned agent card(s) | Current roadmap requirement |
 |---|---|---|
-| `M8-01` | [AG-M8-01](M8-release-and-performance.md#ag-m8-01) | Test **desktop Chromium/Firefox/Safari** browsers, 44.1/48kHz audio, suspend/device changes, hash navigation and 2D fallback; additionally smoke offline CLI on Windows/Linux. |
-| `M8-02` | [AG-M8-02](M8-release-and-performance.md#ag-m8-02) | CPU/memory profiling, graphics LOD, DSP quality tiers and benchmark dashboard. |
+| `M8-01` | [AG-M8-01](M8-release-and-performance.md#ag-m8-01) | Test **latest two stable major desktop versions where available** of Chromium/Chrome, Firefox and Safari, 44.1/48kHz audio, suspend/devices, hash navigation and 2D fallback, plus Windows/Linux CLI. |
+| `M8-02` | [AG-M8-02](M8-release-and-performance.md#ag-m8-02) | **Propose a representative mid-range FPS benchmark desktop to the owner**, then measure 30 FPS 3D/60 FPS 2D on approved machine; compare separately with the owner's i9/GTX1080 compatibility target and profile CPU/memory. |
 | `M8-03` | [AG-M8-03](M8-release-and-performance.md#ag-m8-03) | Preset import/export, reproducible demo and clear licensing/privacy attribution. |
-| `M8-04` | [AG-M8-04](M8-release-and-performance.md#ag-m8-04) | Release-test deployed GitHub Pages **hash routes** on desktop Chromium/Firefox/Safari, verify ZIP import/2D fallback and CLI Windows/Linux artifacts, ensure CI plus **technical-integrator** PR review and project-owner major ADR approval. |
+| `M8-04` | [AG-M8-04](M8-release-and-performance.md#ag-m8-04) | Release-test hash Pages on last two stable Chrome/Firefox/Safari majors where available, ZIP/IndexedDB/browser compatibility, Windows/Linux and i9/GTX1080 baseline, enforce **AI routine merge after authorized checks** with mandatory owner escalation for shared API changes and major ADRs. |
+| `M8-05` | [AG-M8-05](M8-release-and-performance.md#ag-m8-05) | Verify compatibility on the owner's **10th-gen Intel Core i9 + NVIDIA GTX1080** desktop (browser audio/2D/3D plus CPU/CUDA12 `sm_61` where available), separately from **agent-proposed owner-approved mid-range desktop** 30 FPS 3D / 60 FPS 2D reference benchmark. |
 
 ## M9P — M9-plus-future-providers.md
 
@@ -198,11 +200,11 @@ Mapped **110** roadmap items to **170** independently assignable cards.
 
 ## Cross-card references
 
-- [Agent onboarding and task procedure](README.md)
-- [Agent review prompt](AGENT_PROMPT.md)
+- [Agent start and handoff](README.md)
+- [Dedicated AI integrator reviewer prompt](AI_INTEGRATOR_PROMPT.md)
 - [Audit register](../29-plan-audit-and-gap-register.md)
-- [Shared contracts and owner-approved decision procedure](../30-agent-handoff-contracts-and-decisions.md)
-- [Integration acceptance gates](../31-integration-gates-and-support-matrix.md)
-- [Remaining validation gaps after Round 3](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md)
+- [Core contracts/owner-ADR process](../30-agent-handoff-contracts-and-decisions.md)
+- [Evidence gates/support matrix](../31-integration-gates-and-support-matrix.md)
+- [Remaining O3 verification tasks](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md)
 
-**If an index row's card heading cannot be found in the linked phase file, stop and report an inconsistent work order, not an implicit authorization to invent code.**
+**A missing card heading or a missing acceptance fixture is a blocker, not authorization to infer behavior from a roadmap summary.**
