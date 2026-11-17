@@ -52,7 +52,7 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 | [AI integration reviewer instructions](agents/AI_INTEGRATOR_PROMPT.md) | Conditional AI routine merge after verified rules, owner escalation of public TS APIs/major ADRs; live GitHub permissions unverified |
 | [Round 1–3 approved requirements](decisions/USER-APPROVED-ROUND-03.md) | Earlier owner choices and links |
 | [O3 approved implementation/hardware decisions](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) | All 15 approvals and the required i9/GTX1080 Pascal compatibility path |
-| [Owner's actual development hardware](decisions/OWNER-DEVELOPMENT-HARDWARE.md) | Windows 11, Intel i9-10900KF, 32 GB RAM, NVIDIA GTX 1080; driver number and CUDA toolkit unverified |
+| [Owner's actual development hardware](decisions/OWNER-DEVELOPMENT-HARDWARE.md) | Windows 11, i9-10900KF, 32 GB RAM, GTX1080 8 GiB, driver **582.78**; `nvidia-smi` CUDA API 13.0, `nvcc` not found on PATH; toolkit installation unknown, owner willing to install if needed |
 | [Outstanding verification register](decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md) | Unverified toolchains, licenses, performance, AI merge permissions and narrower future choices |
 | [Remaining technical validation gaps](decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md) | Specific unresolved/technically unverified decisions, accountable cards and proof needed |
 
