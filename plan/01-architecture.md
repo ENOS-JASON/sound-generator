@@ -21,6 +21,12 @@ Offline high-fidelity reference solver --> scenario dataset --> optimizer --> va
 
 Enforce typed command/event envelopes, IDs, simulation ticks/sample frames, causation/correlation IDs, sequence gap detection, bounded queues, critical-event preservation and telemetry coalescing. The engine event log drives replay and scenario gates. See **[11 — Shared Event Bus and Messaging](11-event-bus-and-messaging.md)** for authoritative contract, topology and acceptance tests.
 
+## Composable technology and load architecture
+
+The project uses **strict TypeScript interfaces, composition and independently replaceable component classes**, with pure numerical calculation kernels; this is the proposed foundation, with concrete UI framework selection still open. Presets compose engine family/cylinder bank geometry, control strategy (mechanical/no ECU or ECU), intake and compressor graph, electrical/starter, auxiliaries, transmission/transfer/differential/wheels and audio models. Every component declares physical ports and units; coupled rotational/energy calculations account for loads all the way from contact patch and accessories back to crankshaft, without arbitrary global RPM or HP tables. New historical/modern families register through a capability registry and advertise fidelity. See [14](14-modular-typescript-platform.md), [15](15-engine-families-and-presets.md), [16](16-intake-induction-and-exhaust.md), [17](17-transmissions-drivetrains-and-wheels.md), [18](18-electrical-control-generations-and-tunes.md) and [20](20-torque-power-load-and-energy.md).
+
+The UI selects between 3D, **2D canvas cutaway with one horizontal row per bank**, and telemetry-only mode. Only the active renderer updates. Audio has per-physical-source calibrated stems, category buses and independently adjustable master mix; neither mixers nor renderers change physics. See [12](12-audio-gain-staging-and-mixer.md) and [13](13-2d-engine-cutaway.md).
+
 ## Ownership and timing
 - **Audio clock is canonical for audible events**; derive piston firing and exhaust pulses from cumulative crank angle, not requestAnimationFrame RPM snapshots. Establish timestamp synchronization of control commands to audio sample frames.
 - Real-time engine dynamics advance at a fixed integrator timestep with bounded catch-up; audio synthesis uses phase-accurate interpolation between state snapshots. Decide whether the fast solver runs entirely inside AudioWorklet or uses a lock-free SharedArrayBuffer ring buffer (requires cross-origin isolation); default to Worklet-owned minimal solver to avoid isolation requirements on GitHub Pages.
@@ -35,11 +41,16 @@ src/
   app/                 # shell, state management and UI
   core/                # units, deterministic math, integrators, seeded PRNG
   events/              # typed command/event maps, deterministic bus, recorder, transport adapters
-  engine/              # starter, cylinders, crank, ECU, combustion, maps
-  drivetrain/          # clutch, gears, wheels, vehicle forces
+  engines/             # engine family providers, bank geometry, crank and cylinder models
+  controls/            # mechanical, carb/distributor, ECU/TCU and control strategies
+  intake/              # filters, throttles, runners, compressors, charge coolers
+  exhaust/             # headers, turbines, afterfire, thermal, aftertreatment
+  electrical/          # battery, starter, alternator and accessories
+  driveline/            # clutches, converter, gearboxes, transfer, diffs, wheels
+  physics-ports/        # coupled rotational/air/electrical/thermal graph and energy ledger
   dsp/                 # procedural source, filters, resonators, mixing
   audio/               # worklet/host, command/event transport
-  visualization/       # Three.js scene and motion mapping
+  visualization/       # Three.js, Canvas2D bank cutaway, telemetry projection
   scenarios/           # schema, scheduler, predicates, assertions
   profiles/            # versioned preset, validation, import/export
   training/            # offline reference, search, validation
