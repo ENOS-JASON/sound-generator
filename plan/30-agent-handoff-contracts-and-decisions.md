@@ -129,6 +129,19 @@ These are **logical ownership boundaries**, not a command to create every direct
 
 Every coding agent opens one narrowly scoped PR per AG card with actually run tests, fixtures and a completion report. The project owner selected a **dedicated AI technical integrator** and has **conditionally approved it merging routine PRs** (O3-02 B) after expressly authorized CI, branch protections, provenance/security checks and a successful reviewer validation. It must **escalate major ADRs and every change to shared public TypeScript contracts, component API or module ownership**, plus security/license/credential concerns, before merging. **The AI reviewer is not installed/authenticated and its actual GitHub review/merge permissions/rules are unverified**: do not use privileged merge capability until a reviewed least-privilege configuration and test demonstrate it. No self-review, CI-only merge, bypass or bot-issued owner approval. See [O3 owner approvals](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [verification](decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
+## 5B. Authoritative Markdown task tracking — approved operational rule
+
+The milestone overview [08 — roadmap](08-implementation-roadmap.md) has **112** parent checkbox items; [task-index](agents/task-index.md) maps those to **172** AG work-order cards. Each AG card's preserved `### AG-...` heading is followed by **one clickable `- [ ] **AG-... COMPLETE**` checkbox**, and the card's former acceptance sentence is now a **set of individually trackable requirements/tests**. The index remains link-only and must not introduce duplicated status.
+
+**Responsibility and order:**
+
+1. The implementing agent records positive/negative runnable tests, command/results and evidence. It **may check individual acceptance items once proven**, but cannot check the `AG-... COMPLETE` box or any roadmap parent before real independent integration review and a merged PR.
+2. The technical integrator checks that every child acceptance box and critical G0–G8 gate relevant to the task is satisfied; only verified routine AI merge may proceed. Owner approval remains mandatory for major ADRs and frozen public/shared API/ownership changes. CI alone, an open PR, a passing interface mock or the presence of code **is not completion**.
+3. **After the actual merge**, in a separate tracking-only audited update, mark **that AG card's `COMPLETE` checkbox last** and cite the merged PR/commit SHA. Do not claim merge or check complete ahead of the authenticated host action. If AI merging has not been installed/verified, an authorized owner/human merge route must be used; the checklist still stays unchecked until evidence exists.
+4. **Promote the parent roadmap checkbox only when every linked child AG card in the index is COMPLETE on `main`.** Check `- [x]` in [08](08-implementation-roadmap.md) and cite the completed AG IDs and gate evidence. One missing/blocked child keeps the parent `- [ ]`. The index and AG headings/anchors must not be changed just to mark progress.
+5. Regressed/invalidated tests reopen affected acceptance boxes, AG completion and any dependent checked parent; record why and the follow-up PR/commit.
+6. **Documentation-edit commits alone do not prove that any AG task is finished.** All 172 AG completion boxes and all 112 roadmap parents are initially unchecked.
+
 ## 6. Required completion report from each agent
 
 ```text
