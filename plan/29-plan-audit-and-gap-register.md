@@ -1,6 +1,6 @@
 # 29 — Cross-document audit: gaps, ambiguities and required resolutions
 
-**Audit scope:** `plan/README.md`, numbered `00–28`, and all checkboxes in [08 — Roadmap](08-implementation-roadmap.md). **Audience:** one implementation agent per task, working with minimal prior chat context. **Status:** audit and engineering directives; no app code implemented.
+**Audit scope (historical baseline):** `plan/README.md`, numbered `00–28`, and all checkboxes in [08 — Roadmap](08-implementation-roadmap.md). **Audience:** one implementation agent per task, working with minimal prior chat context. **Status:** historical audit and engineering directives; no app code implemented. Newer [O3 approvals](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) take precedence over older *proposed* selections, and [remaining verification](decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md) is tracked separately.
 
 > **Precedence:** explicit accepted decision records / contracts in [30](30-agent-handoff-contracts-and-decisions.md) supersede illustrative snippets or old terminology. Source scope docs describe requirements; [agents/README](agents/README.md) and agent task cards define implementable slices. **A task whose input contract is not available is BLOCKED, not permission to invent a private interface.**
 
