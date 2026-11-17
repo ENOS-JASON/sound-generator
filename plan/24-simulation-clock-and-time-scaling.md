@@ -39,11 +39,11 @@ Define time scale `s = d(simulationTime)/d(realPlaybackTime)`, where `s=1` is no
 
 ## Mode selection and implementation gates
 
-- Use a stable versioned `slowMotionAudioMode = 'physical' | 'pitch-preserved'` setting in the core/time/audio configuration and command trace; its UI switch belongs on Drive/Audio Studio global controls.
+- Use a stable versioned `slowMotionAudioMode = 'physical' | 'pitch-preserved'` setting in the core/time/audio configuration and command trace, with **initial default `physical`**; its UI switch belongs on Drive/Audio Studio global controls.
 - The **same deterministic simulation ticks and domain-event sequence** must be produced under either mode. The audio mode changes sound rendering only, not RPM, combustion, torque, cylinder geometry, coolant, drivetrain or other physical state.
 - First audibly complete release (M2/M3) must ship both modes. `AG-M2-05` owns pitch-preserving DSP; `AG-M2-04` validates both; `AG-M3-07` exposes switch. M0 establishes synthetic-mode contract and clock telemetry.
 - Explicitly measure latency, CPU, pitch error, transient quality and mode-switch discontinuities in representative 44.1/48 kHz browser tests. On unavailable/deadline failure, display the limitation and **do not silently claim pitch preservation**.
-- Default mode and exact UI interaction are **pending owner approval**; do not equate the previously suggested physical-default behavior with an accepted decision.
+- The **new-session default `slowMotionAudioMode='physical'`** is owner-approved ([Round 2](decisions/USER-APPROVED-ROUND-02.md)); both modes remain selectable. Whether to persist a previously selected mode across sessions and the exact UI are open.
 
 ## 2D/3D/telemetry synchronization
 
