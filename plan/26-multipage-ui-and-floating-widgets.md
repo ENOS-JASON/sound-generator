@@ -1,5 +1,14 @@
 # 26 — Multi-page UI and movable diagnostics widgets
 
+## Round 3 browser workspace and controls
+
+- **Factory/default:** first launch with no saved valid workspace selects **carburetor/mechanical/no-ECU I4**. The Builder/Presets page also provides a **complete editable EFI/ECU I4**. On reload a valid IndexedDB workspace selected EFI remains EFI; factory defaults never silently override it.
+- **Persistence:** asynchronous versioned **IndexedDB autosave** for editable presets/drafts, scenario state, mix + expert calibration references, listener selection and widget layout; browser quota/corrupt-state recovery and explicit optional **ZIP snapshots**. No promise that browser autosave retains massive high-accuracy arrays.
+- **Audio Studio:** an expert-only versioned **calibration trim editor** separate from normal per-source/bus/master faders, with safe validation/undo; plus a four-position **cabin, engine-bay, roadside, exhaust** listener selector that changes sound transfer only.
+- **Presentation targets:** **3D 30 FPS, Canvas 2D 60 FPS on a declared reference desktop setup**. A physically correct engine/audio timeline continues regardless of GPU frames; support low-cost 2D and telemetry fallback.
+- **Local research:** the Windows/Linux CLI has a separate **local graphical monitor** for lengthy studies; it is not a required web API endpoint or a permanent remote queue on GitHub Pages. See [Round 3](decisions/USER-APPROVED-ROUND-03.md).
+
+
 ## Round 2 — Binding UI behaviors
 
 - The initial I4 Builder offers **two mutually exclusive, runnable control paths**: carburetor + mechanical distributor and *no ECU*, or EFI + ECU. Selecting a mode updates steps/fields/validation and sources, without exposing the absent controller's settings. Invalid imported presets are rejected by the same validator.
