@@ -1,5 +1,12 @@
 # 28 — Fast generic simulator first; shared surrogate math calibrated from high-fidelity runs
 
+## Round 3 licensed reference-measurement catalog
+
+The calibration pipeline must accept **user-imported owned/licensed** physical/audio measurements **and bundled measurement datasets only when redistribution/attribution rights have been independently proven** for distribution through the repo/site. Record provenance, model and test conditions, time units, uncertainty/confidence, reference IDs and measured vs simulation status. If no verified bundle exists, ship no real recorded audio assets and accurately report that reference coverage is unavailable. **Real-world recordings are strictly analysis/calibration/held-out validation data and never generated or diagnostic playback sources**.
+
+Two editable I4 baseline vehicles (mechanical carb factory-default and EFI alternative) and expert audio calibration revisions must be represented distinctly in fitted/surrogate manifests. Neither calibration trim nor cabin/engine-bay/roadside/exhaust listener sound transfer can create power, change cylinder state or quietly substitute a recorded sample for procedural DSP. See [Round 3](decisions/USER-APPROVED-ROUND-03.md) and `AG-M7-12`.
+
+
 ## Round 2 — Training acceptance and reference provenance
 
 Fast generic physics and procedural audio remain fully usable before training. Training data from both carbureted/mechanical/no-ECU and EFI/ECU I4 setups must be compared on the same physical-port units, retaining **distinct controller identity and the correct availability of sensors, fuel and ignition behaviors**. A trained map for one controller must not silently override or create a nonexistent controller on another.
