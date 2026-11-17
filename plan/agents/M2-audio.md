@@ -106,6 +106,8 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 
 ### AG-M2-06
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-06 A:** expert UI can edit **per-source gain trims only**, with calibration reference conditions, individually versioned trim profiles, undo/reset and safe headroom. Do **not** introduce user-editable source EQ, spectral-response shaping or arbitrary DSP calibration in this task. Normal source/bus/master mix separate. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Roadmap source:** Implement separately versioned, expert-editable physical audio calibration trims, not conflated with ordinary source/bus/master mixer levels.
 
 **Precise deliverable:** Introduce `SourceCalibrationProfile` with sourceId, profileId/schemaVersion, reference operating condition and units, calibrated gain/trim in dB with safety ranges, provenance and revision/undo/reset. Allow expert-safe edit and activation at an audio block boundary, preserving causal sound and click-free transitions; expose a typed calibration service to M3 Audio Studio, keep user faders and master separate and unmodified. Expert mode is a UI affordance, not an inferred login/security system.
@@ -119,6 +121,8 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 **Acceptance / evidence:** Calibrated reference source plus expert trim changes recorded/sonic stem gain without modifying engine torque, source event order or user fader values; invalid/clipping trim rejected or bounded, profile version roundtrip/undo/restore, 44.1/48k mode switch no glitch. No real-world recorded sound source. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
 
 ### AG-M2-07
+
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-07 A:** all four procedural listening perspectives **independent of 2D/3D visual camera**. Do not add follow-camera linkage or allow visual camera motion to recalculate audio perspective without another owner decision. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
 **Roadmap source:** Provide four procedural-audio listening perspectives—cabin, engine bay, roadside, exhaust—with independent source-aware transfer models.
 
