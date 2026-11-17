@@ -17,6 +17,18 @@
 
 Require automatic registration of new technology combinations and report **passed/failed/unimplemented/unsupported** separately. Use pairwise active-configuration coverage plus high-order risks rather than an impossible full Cartesian product. Include examples from [19](19-scenario-coverage-and-presets.md): stock vs pop-and-bang tune, healthy/aged battery vs worn starter, no ECU vs ECU, filtered plenum vs ITB/turbo/supercharger combinations, manual/automatic/DCT/CVT gearbox, 2WD/AWD/selectable 4H/4L, diff locks and crank/wheel dyno power. All test suites must assert physically coupled consequences, not just that an event exists.
 
+## Adjustable-fidelity and guided-configurator acceptance
+
+- **Valid-field filtering:** for each supported engine/control/induction/transmission/drive choice, the wizard shows only relevant editable fields and constrained selections; omitted/inactive fields cannot bypass the same validators via raw JSON imports. Test an inline-four, V12/flat engine, no-ECU carburetor, ECU map tune, NA/turbo/twincharge, manual/automatic/CVT and FWD/AWD/4L transfer combinations.
+- **Engine geometry:** check `displacement_m3 = pi/4 * bore_m^2 * stroke_m * cylinderCount` for uniform cylinders, sum individual volumes for unequal, mm/in conversions, rod length/crank constraints, compression volume and derived updates after upstream edits. Unsupported geometries must produce actionable error and prevent a runnable preset.
+- **Wizard lifecycle:** step dependencies, conditional skips, Back/Next, warnings vs errors, draft save/resume, invalidation preview and undo, component switch preserving compatible fields, import/export roundtrips and version migrations. Changing view or mixer settings does not alter engine simulation until validated apply.
+- **Reference fidelity:** Quick/Balanced/Detailed/Research must activate actual supported solver/discretization; user can independently vary cylinder gas zones, wall liner axial/radial layers, piston/head layers, and intake/exhaust gas/wall cells. Invalid mesh/budget settings fail preflight with clear reasons.
+- **Zone physical checks:** pressure/temperature/mass/species/energy boundedness, intake/exhaust valve mass flow, local gas-wall heat transfer, liner/head/piston metal conduction, wave propagation and afterfire locality must satisfy tolerance and repeatability for their declared solver tier.
+- **Numerical convergence:** compare 0D/two-zone/multi-zone models with refined zone counts and time steps; report convergence, CFL violations, failures and uncertainty rather than assuming a finer mesh is always correct. Never train on corrupted/unstable traces.
+- **Runtime separation:** multi-zone training uses Worker or offline CLI with measured resource limits; 3D/2D and real-time audio do not slow or change when reference detail changes. Compact trained profiles contain no reference mesh loops in the AudioWorklet.
+
+See [21](21-adjustable-fidelity-multizone-reference-simulation.md) and [22](22-guided-vehicle-configurator.md).
+
 ## Scenario/feature matrix
 | Scenario | State/event gate | Physics assertion | Audio assertion |
 |---|---|---|---|
