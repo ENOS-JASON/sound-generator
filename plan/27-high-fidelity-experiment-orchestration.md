@@ -1,5 +1,14 @@
 # 27 — High-fidelity experiments, multirun studies and multicore orchestration
 
+## O3 owner hardware, compute and local-dashboard commitments
+
+The owner requires compatibility with a **10th-generation Intel Core i9 + NVIDIA GeForce GTX1080**. The GPU is Pascal compute capability **6.1 (`sm_61`)**; NVIDIA removed Pascal compilation support in CUDA 13, so **a versioned CUDA 12.x `sm_61` GPU backend build is mandatory alongside multicore CPU fallback**. Keep modern CUDA targets optional and separate. Detect driver/toolkit/compute capability, VRAM and required precision, emit truthful backend status/CPU fallback and test Windows/Linux. Never force an RTX/Tensor Core/CUDA13-only dependency for required operation. Numerical conservation and physical accuracy remain primary; CPU may handle high-precision models that Pascal cannot run.
+
+**Owner-approved GUI** is a **local browser dashboard launched by the offline CLI**, bound only to loopback (e.g. `127.0.0.1`, optional `::1`), with origin/CSRF/local job-action safety and no externally reachable service/remote queue or server on GitHub Pages. Versioned job status, progression by crank/time, logs, pause/cancel/checkpoint/resume survive correct recovery.
+
+**Research format sequence:** ZIP schema/streaming first; investigate study-derived Parquet/HDF5 needs and obtain owner review of a scientific format choice only after measured use cases. Primary **physics owner benchmark** uses the owner's i9/GTX1080 desktop, whereas 30FPS/60FPS browser rendering uses separately proposed mid-range hardware. All untested drivers/solvers/GUI controls are labeled **NOT VERIFIED**, not successful. [O3 owner decisions](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md), [NVIDIA CUDA13 release notes](https://docs.nvidia.com/cuda/archive/13.0.0/cuda-toolkit-release-notes/).
+
+
 ## Round 3 Windows/Linux local graphical monitoring
 
 **Approved:** keep the headless CLI as a reproducible computation entry point, and add a **separate local graphical monitoring application** on Windows and Linux. Its only authority is through a versioned local job-control interface over study IDs, commands and events: start/inspect/pause/cancel/checkpoint/resume, simulation/crank-time progress, worker CPU/GPU/RAM/VRAM/disk, logs and numerical failures. It does **not** require a remote queue, public backend, localhost endpoint on GitHub Pages or any change to the AudioWorklet.
