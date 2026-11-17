@@ -74,6 +74,8 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 
 ### AG-M5-07a
 
+**Approved Round 2 requirement:** Define independent success/failure chains for **both approved first-I4 variants**: carburetor/mechanical distributor/**no ECU** and EFI/**ECU**, with low battery, worn starter, ignition, idle, limiter capability and invalid mode-specific controller requests. No false event pass for absent ECU. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](../19-scenario-coverage-and-presets.md)).
 
 **Bounded deliverable:** Warm/cold start, weak battery vs worn starter, no-ECU/ECU, limiter, stall and afterfire scenarios.
@@ -123,6 +125,8 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Acceptance evidence:** A forbidden component combo fails preflight; bad energy balance fails while planned matrix cases remain reported. Commit runnable positive + negative case, report data hashes, and a completion handoff.
 
 ### AG-M5-09
+
+**Approved Round 2 requirement:** Validate first-I4 controller selection and imports for mechanical vs EFI/ECU, rejecting mismatched injection and electronic-only fields. UI and archive import must share the validator, including the ZIP-based capture codec where tests use a run recording. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original step:** Add wizard + JSON import parity tests (no ECU vs ECU, transmission type, turbo/NA, 4WD/2WD, V/flat cylinder-bank constraints), geometry/displacement property checks, and safe schema migration/undo tests.
 
