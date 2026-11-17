@@ -12,9 +12,11 @@ Implement ONLY this work order. Start by reading:
   plan/agents/task-index.md (find the assigned AG ID and its phase file)
   plan/30-agent-handoff-contracts-and-decisions.md
   plan/31-integration-gates-and-support-matrix.md
+  plan/decisions/USER-APPROVED-ROUND-01.md
+  plan/decisions/USER-APPROVED-ROUND-02.md
   The "Required references" explicitly listed on your AG card.
 
-Project owner approved major-decision oversight, Svelte + Vite, both slow-motion audio modes and the first I4/manual/load baseline. See plan/decisions/USER-APPROVED-ROUND-01.md. Benchmark Worklet versus Worker physics and ask the owner to approve the final architecture; never silently select a winner.
+Project owner approved major-decision oversight, Svelte + Vite, both slow-motion audio modes and the first I4/manual/load baseline (Round 1), then approved **Svelte+Vite hash URLs, both carb/no-ECU and EFI/ECU first-I4 modes, physical slow-motion as initial default, reference recordings for calibration/validation ONLY (never playback), numerical+available measurement confidence, browser ZIP/optional research Parquet/HDF5, offline Windows+Linux, desktop Chromium/Firefox/Safari, and CI + technical-integrator review of routine PRs** (Round 2). Read plan/decisions/USER-APPROVED-ROUND-01.md and plan/decisions/USER-APPROVED-ROUND-02.md. Round 3 questions are OPEN, not authority. Benchmark Worklet versus Worker physics and ask owner approval of final solver placement.
 
 Do not interpret a milestone as an implementation task, and do not independently select an
 architecture already owned by a contract/ADR agent. Verify that prerequisite task IDs,
@@ -30,7 +32,10 @@ public files except through an accepted contract change request.
 Implement the card's bounded deliverable, a positive and negative automated test,
 and any required fixture, sample trace, audio evidence or screenshot. Run actual tests.
 Do not claim a feature is implemented solely because its interface exists. Do not
-mark other cards or whole milestones complete.
+mark other cards or whole milestones complete. One work order = one focused branch/PR;
+CI and a designated technical integrator must review routine changes before merge;
+major architecture ADR changes go back to the project owner for approval.
+Do not automatically merge just because CI passes.
 
 Return:
   task ID and complete/partial/blocked status
@@ -42,7 +47,7 @@ Return:
   fixtures/screenshots/traces produced
   physical/audio/event invariants checked
   limitations and follow-up AG IDs
-  PR/commit reference
+  PR/commit reference and CI + technical-integrator review disposition
 
 If a requirement conflicts with another document, cite both paths and propose a
 versioned ADR change rather than guessing. Follow plan/29-plan-audit-and-gap-register.md
