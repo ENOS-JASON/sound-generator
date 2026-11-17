@@ -4,6 +4,19 @@
 
 **Agent execution rule:** each checkbox below links to the **one or more distinct agent cards** required to complete it. Hand one card to one agent, with [handoff instructions](agents/README.md), [normative contracts and unresolved ADRs](30-agent-handoff-contracts-and-decisions.md) and the card's specific references. A checkbox split into children is done **only when all child cards pass**. See [task index](agents/task-index.md), [audit](29-plan-audit-and-gap-register.md) and [integration gates](31-integration-gates-and-support-matrix.md). Do not assign a whole milestone as a single task.
 
+## Completion tracking — primary dashboard
+
+**This file is the single project-level progress dashboard:** its **112** `- [ ]` roadmap steps are parent checkboxes, linked to **172** individually tracked AG work orders through [task-index](agents/task-index.md). **The phase AG files are the authoritative source for each individual agent's criteria, tests and completion status.** Do not add duplicate status checkboxes to the index or scope/specification files.
+
+1. **Do not check a parent roadmap item just because code exists, a PR was opened, or one of several child cards finished.** Find **every AG ID** linked in that line. All those cards' `**AG-... COMPLETE**` boxes must be checked on `main` and supported by evidence.
+2. Each AG file has a clickable **`AG-... COMPLETE` checkbox directly below its unchanged `### AG-...` heading**, and a separate checkable **Acceptance checklist**. Check individual criteria **only after** their test/fixture/output actually passes and the evidence is linked in the PR/handoff report. `BLOCKED`, mock-only, pending owner ADR, skipped tests or unverified platform are **not done**.
+3. **The completion checkbox is checked last**, **only after every acceptance checkbox**, positive **and** negative fixture, actual CI results, relevant gate/ADR owner approval and an independently reviewed **merged PR with its commit SHA** exist. No CI-only auto-merge. The AI technical integrator has conditional authority for ordinary PRs only under the verified owner-approved policy; major ADRs and shared APIs/ownership changes still escalate.
+4. **Promotion to roadmap:** after the last required AG card's completion is checked on `main`, the technical integrator makes a **tracking-only update** checking the corresponding parent `- [x]` here, referring to the completed child AG IDs, merged PR/commit SHAs and applicable G0–G8 evidence. For a one-child parent this rule still applies. Review parent updates against [task-index](agents/task-index.md) and [gates](31-integration-gates-and-support-matrix.md).
+5. **Never check unrelated parents or any future milestone automatically.** If upstream work regresses, a contract changes or evidence is invalidated, reopen affected AG acceptance/completion boxes first and reopen their parent roadmap checkbox in the same audited follow-up.
+6. **Tracking-only commits are not feature implementations** and must not claim that an untested or unmerged feature is complete. A working implementation is demonstrated by actual test evidence, not these plan documents. All tracking boxes start unchecked until verified work is produced.
+
+**Quick status check:** search this file for `- [x]` (completed parents) and `- [ ]` (remaining parents), then open its linked AG card to inspect granular evidence. GitHub renders the per-card Markdown checkboxes as clickable task-list items. A `### AG-...` heading stays unchanged so index links remain stable.
+
 ## Non-negotiable build-order gate
 
 **M0 additionally requires versioned browser IndexedDB autosave, bounded configurable history/recent diagnostics, a dedicated AI-integrator review/**conditional routine merge** policy with owner escalation of major ADRs and shared TS contract/ownership changes, plus ZIP snapshot compatibility. Bot/merge rights remain UNVERIFIED until safely configured.**
