@@ -1,8 +1,14 @@
 # Architecture decision register — M0 freeze required
 
-**Owner-approved architecture directions are recorded in [Round 1](USER-APPROVED-ROUND-01.md), [Round 2](USER-APPROVED-ROUND-02.md), and [Round 3](USER-APPROVED-ROUND-03.md).** All **25** owner selections are binding; benchmark-dependent implementation, validation and unspecified subdecisions remain open. No further major architecture choice may be made without explicit owner approval. **No technical choice below is accepted merely because it appears in a proposal.** The decision owner publishes a reviewed `ADR-###-slug.md` here with explicit `Status: Accepted` before downstream agents are allowed to rely on it.
+**Owner-approved architecture directions are recorded in [Round 1](USER-APPROVED-ROUND-01.md), [Round 2](USER-APPROVED-ROUND-02.md), [Round 3](USER-APPROVED-ROUND-03.md), and [the 15 O3 implementation choices](USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md).** All **40** owner selections are binding; benchmark-dependent implementation, validation and unspecified subdecisions remain open. No further major architecture choice may be made without explicit owner approval. **No technical choice below is accepted merely because it appears in a proposal.** The decision owner publishes a reviewed `ADR-###-slug.md` here with explicit `Status: Accepted` before downstream agents are allowed to rely on it.
 
 See [agent contracts and working proposals](../30-agent-handoff-contracts-and-decisions.md#3-architecture-decisions-to-freeze-before-parallel-implementation), [plan audit](../29-plan-audit-and-gap-register.md) and [G0-A integration gate](../31-integration-gates-and-support-matrix.md).
+
+## O3 implementation choices approved; remaining verification
+
+**O3: 15/15 approved.** [Binding O3 record](USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) confirms primary i9/GTX1080 solver benchmark, conditional AI **routine-PR merging after authorized checks**, bounded IndexedDB recent debug/history, owner-approved proposals for generic I4 and mid-range reference desktop, expert **gain-only** calibration, audio listener **independent of visual camera**, licensed-data research before inclusion, **CLI-launched loopback-only job dashboard**, **CUDA plus CPU with GTX1080 Pascal `sm_61`/CUDA12.x compatibility**, ZIP-first exports, last two stable browser majors, Expert toggle with no login and owner escalation of shared TS contracts/ownership changes. [Historical O3 questionnaire](OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md) is CLOSED as to owner choices. Current [post-approval verification blockers](OPEN-VERIFICATION-AFTER-O3-APPROVAL.md) remain open.
+
+**Additional mandatory device:** 10th-gen Intel i9 + NVIDIA GTX 1080 must be supported. NVIDIA notes Pascal `sm_61` cannot be compiled with CUDA 13; retain a CUDA12.x GPU build path and a CPU fallback. Driver/toolkit compatibility and actual performance are **NOT YET VERIFIED**. See [NVIDIA official GPU list](https://developer.nvidia.com/cuda/gpus/legacy) and [CUDA 13 release notes](https://docs.nvidia.com/cuda/archive/13.0.0/cuda-toolkit-release-notes/).
 
 ## Round 3 approved status and remaining open technical choices
 
@@ -10,7 +16,7 @@ See [agent contracts and working proposals](../30-agent-handoff-contracts-and-de
 
 **Round 2: 9/9 approved.** [Decision record](USER-APPROVED-ROUND-02.md), [historical questions](OPEN-QUESTIONS-ROUND-02.md). **Round 1: 7/7 approved.** [Decision record](USER-APPROVED-ROUND-01.md).
 
-**Technical choices still open:** [Post-Round-3 gap/decision register](OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md). Specific hardware benchmarks, model/preset physical parameters, expert trim bounds, license proof for bundled files, desktop monitoring technology, IndexedDB quota/recovery policies, AI agent GitHub permissions/merge authority and the Worklet-vs-Worker solver benchmark require validation/owner approval at the appropriate boundary.
+**Technical verification still open:** [Post-O3 verification register](OPEN-VERIFICATION-AFTER-O3-APPROVAL.md). Specific physical solver placement after benchmarking, proposed preset parameters and reference hardware for owner approval, trim bounds, actual measurements/licenses, localhost security, IndexedDB thresholds, and the **authorized AI bot identity/GitHub permissions** need implementation or evidence. **AI routine merging is conditionally approved** as a policy; actual merge rights are not yet configured or validated.
 
 ## Round 1 status summary
 
@@ -27,17 +33,18 @@ See [agent contracts and working proposals](../30-agent-handoff-contracts-and-de
 | ADR-003 | Canonical VehicleDefinition v2 schema and legacy-v1 migration disposition | **`AG-M0-03` accountable**, `AG-M0-04` consulted |
 | ADR-004 | Event/command IDs and control-plane aliasing | `AG-M0-09` |
 | ADR-005 | **Both audio modes; default pitch-lowered physical slowdown** approved (UD-R1-07, UD-R2-03); DSP budget/persistence open | **`AG-M0-10` accountable**, `AG-M0-12` consulted |
-| ADR-006 | **Browser ZIP with JSON manifest/chunks** approved; optional **Parquet/HDF5 offline research** (UD-R2-06); internal chunk/codec open | `AG-M0-13` |
-| ADR-007 | **Offline Windows + Linux**, with optional native CPU/GPU/WASM/other backends (UD-R1-06, UD-R2-07); exact numerical stack open | `AG-M0-16` |
+| ADR-006 | **ZIP first** with JSON manifest/chunks; only select optional **Parquet/HDF5 after measured study needs** and owner review (O3-11 C); codec/container details open | `AG-M0-13` |
+| ADR-007 | **Windows + Linux**, **multicore CPU plus prioritized NVIDIA CUDA**, compatible **GTX1080 Pascal `sm_61` CUDA12.x** path and fallback (O3-10 B); exact solver backend/capability thresholds open | `AG-M0-16` and `AG-M6D-08` |
 | ADR-008 | Supported/approximate/planned/unsupported capability state | `AG-M0-04` |
 | ADR-009 | **Numerical and available real-measurement validation, explicit confidence status** (UD-R2-05); model-specific tolerances open | **`AG-M0-03` accountable** for schema, provider owner consulted for its thresholds |
 | ADR-010 | **Real recordings for calibration/validation only; imported and bundled catalog** (UD-R2-04, UD-R3-06). Bundled recordings permitted **only after redistribution/license evidence**, never playback. | `AG-M7-12` + `AG-M8-03` | 
-| ADR-011 | **IndexedDB workspace autosave** and safe recovery + optional ZIP snapshots (UD-R3-08); exact DB schema/quota/migrations open. | `AG-M0-18` + `AG-M3-11` |
-| ADR-012 | **Expert versioned calibration trims + four procedural listening positions** (UD-R3-04/05); exact calibration values/acoustic DSP algorithm open. | `AG-M2-06/07` + `AG-M3-09/10` |
-| ADR-013 | **Dedicated AI integration agent with owner escalation** (UD-R3-09), no verified bot/GitHub review/merge privileges yet. | `AG-M0-19` |
-| ADR-014 | **Windows/Linux CLI and local graphical study monitor** (UD-R3-07), toolkit/IPC/packaging open. | `AG-M6D-07` |
+| ADR-011 | **IndexedDB autosave** for config/mixer/calibration/widgets/scenarios/**bounded recent debug data**, with **configurable bounded snapshots**, quota/migration/recovery and optional ZIP (O3-03/13); exact thresholds remain open | `AG-M0-18` + `AG-M3-11` |
+| ADR-012 | **Expert gain trims only**, reference conditions/version/undo, **Advanced toggle without login**, four procedural listening positions **independent of render camera** (O3-06/07/14); exact calibration/transfer curves open | `AG-M2-06/07` + `AG-M3-09/10` |
+| ADR-013 | **Dedicated AI reviewer conditionally authorized to merge routine PRs after all explicitly authorized CI/branch/rule checks** (O3-02 B); **must escalate** major ADRs and shared TS contracts, APIs or ownership changes (O3-15 B). Actual bot identity/merge GitHub scope remains unverified | `AG-M0-19` |
+| ADR-014 | **Windows/Linux CLI launches loopback-only local web dashboard**, secure localhost job API, not a desktop bundle nor remote queue (O3-09 B); web toolkit/IPC security implementation open | `AG-M6D-07` |
+| ADR-015 | **Owner-required Intel i9 10th gen + GTX1080 Pascal `sm_61` compatibility**, CUDA12.x `sm_61` build and multicore CPU fallback; official CUDA 13 removes Pascal support. Actual driver/OS/precision hardware testing remains open | `AG-M6D-08`, validated by `AG-M8-05` |
 
-**Owner approval vs ADR acceptance:** the user approved Round 1–3 decisions are binding today. A formal ADR is only marked `Accepted` after its remaining technical details, fixtures/tests and owner approval where major. M0 must not assume a Worklet-owned solver, Vue, or an unapproved storage/compute stack. Svelte + Vite with hash routing and pitch-lowered slowdown default are selected; Svelte version/store, numerical thresholds and physics solver placement remain open.
+**Owner approval vs ADR acceptance:** the user approved 40 Round 1–3 + O3 choices are binding today. A formal ADR is only marked `Accepted` after its remaining technical details, fixtures/tests and owner approval where major. M0 must not assume a Worklet-owned solver, Vue, or an unapproved storage/compute stack. Svelte + Vite with hash routing and pitch-lowered slowdown default are selected; Svelte version/store, numerical thresholds and physics solver placement remain open.
 
 ## ADR file template
 
