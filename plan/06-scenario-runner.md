@@ -3,6 +3,10 @@
 ## Principle
 A scenario is a finite-state test program executed against **simulation time**, not UI animation timing. Actions can be continuous (throttle curves) or discrete (key/start/gear/clutch). Advance to the next step only when its declared gate succeeds; every gate has a finite timeout and failure action. A timestamp does not replace verification of state transitions.
 
+## Shared event bus integration
+
+The runner consumes the **authoritative ordered event stream** defined in [11 — Shared Event Bus](11-event-bus-and-messaging.md), not visual notifications or audio approximations. Each step captures the current event sequence as an entry watermark; an `event` gate normally matches only events with a greater sequence from the same `runId`. Condition gates query authoritative state snapshots at deterministic solver ticks, not throttled 3D telemetry. A sequence gap or critical event queue overflow invalidates the scenario rather than producing a false pass. UI and headless runners use the same gate evaluator and event contracts; commands are scheduled into the same input queue used for live play.
+
 ## Gate types
 - `elapsed`: simulation duration since step entered.
 - `atTime`: absolute scenario-time threshold.
