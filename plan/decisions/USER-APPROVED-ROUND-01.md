@@ -37,7 +37,7 @@ Benchmark with equivalent deterministic I4/starter/clutch/manual/load mock or fi
 
 ## Follow-up issues for Round 2
 
-Pending owner choices include: first I4 fuel/controller strategy, default slow-motion audio mode, audio reference/calibration priority, recording/export packaging and portability, performance/budget targets for offline native/GPU work, browser support, routing/storage strategy, and detailed agent/PR approval workflow. Collect decisions in a separate numbered owner record before freezing corresponding ADRs.
+**Historical status:** these were pending immediately after Round 1. [Approved Round 2](USER-APPROVED-ROUND-02.md) has now resolved both selectable I4 controller modes, physical-audio default, analysis-only reference recordings, browser ZIP/optional Parquet/HDF5, Windows/Linux, desktop browser matrix, hash URLs and routine PR review by technical integrator. Remaining narrower technical questions are tracked in [Round 3](OPEN-QUESTIONS-ROUND-03.md). Do not interpret this archived list as reversing those approvals.
 
 ## Source answer (verbatim choices)
 
