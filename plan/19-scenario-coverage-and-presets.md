@@ -27,6 +27,18 @@ A system with many engine families, induction combinations, transmission types a
 - Exercise an invalid config path (no ECU with ECU-only tune, EV with bore/stroke, 2WD with 4L transfer, turbo settings without turbo) and verify wizard/JSON/run preflight agree on rejection and support status.
 - All reference training jobs respect deterministic scenario time/event gates, finite timeout and failure reporting; a numerically unstable advanced solver is a **failed scenario**, never a success or a fitted label.
 
+## Playback scaling and structured variation studies
+
+A scenario is authored in **simulation-time**, irrespective of a viewer's 0.05/0.1/0.5/1x slow motion or a high-fidelity run taking hours for one cycle. The same authoritative step/event gates should pass at identical simulation states/seed; wall-clock watchdogs monitor progress without imposing arbitrary short end times. Include slowed engine crank, cylinder stroke, combustion, afterfire, stalling and gearbox events, and verify 2D/3D/audio alignment using imported captures.
+
+For each validated scenario sequence, the **Experiments** runner can execute:
+- a baseline replay with identical settings/seed to check determinism;
+- repeated baseline with multiple seeds to estimate variance and numerical confidence;
+- one changed physical component or parameter while holding other inputs fixed;
+- a named preset of components changing together (and controlled interactions);
+- grid/pairwise/mesh/time-step sweeps within current component validity bounds.
+Record a complete component instance/type/geometry/parameter/topology manifest, all relevant physical/audio source data, reference fidelity/zone settings and **exact changed-part diffs**. Compare engine torque, intake/exhaust flow, temperature/pressure, loss/energy, per-source audio spectra and event timings. Use [27](27-high-fidelity-experiment-orchestration.md) and [28](28-shared-realtime-surrogates-and-calibration.md).
+
 ## Must-have multi-step examples
 
 1. **Battery weak vs worn starter A/B:** same engine preset, separate health condition. Key-on -> crank until state/event or timeout -> attempt restart -> optional recharge/repair -> successful start; compare voltage under current, starter load/rotor speed and compression-pulse cadence. A failed starter must not masquerade as a weak battery.
