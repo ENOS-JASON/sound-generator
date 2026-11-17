@@ -66,6 +66,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M8-05
 
+**Owner-reported machine inventory (2026-11-17):** **Windows 11 / Intel Core i9-10900KF / 32 GB RAM / NVIDIA GTX 1080**. NVIDIA driver described as "latest supported"; exact installed driver and CUDA Toolkit **not verified**. Use the [owner hardware profile](../decisions/OWNER-DEVELOPMENT-HARDWARE.md) to collect actual driver/browser/build and measure on this machine. Do not merge its compatibility evidence with the separate proposed mid-range FPS reference machine.
+
 **Approved O3 implementation requirement (supersedes older provisional card language):** **Additional user hardware requirement:** i9 10th generation and **GTX1080 `sm_61`** are mandatory compatibility targets. CUDA12.x legacy path and CPU fallback must be tested; this device is **not automatically the agent-proposed mid-range 30/60 FPS reference**. Don't require NVIDIA RTX/Tensor Cores or CUDA13 for the necessary route. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
 **Roadmap source:** Run a dedicated support/compatibility matrix on the owner's 10th-generation Core i9 and GeForce GTX1080 desktop, distinct from the owner-approved future mid-range FPS benchmark configuration.
