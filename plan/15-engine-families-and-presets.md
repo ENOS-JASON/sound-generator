@@ -16,6 +16,12 @@ Support **configurable single-cylinder through twelve-cylinder** conventional pi
 
 Presets must not assume that odd numbered cylinders belong to one bank, that every V8 is cross-plane, or that bank angle uniquely determines firing order. Include example V8 cross-plane/flat-plane variants, even/odd-fire twins, 60°/90° V6 where parameterized, and representative inline and flat engines. Some configurations may be physically invalid: verify crankpins, firing offsets, bank placement and exhaust routing.
 
+## User-editable dimensions and guided selection
+
+For every piston engine preset, expose **bore and stroke**, rod length and compression/clearance as validated physical inputs in the guided configurator. Compute displacement per cylinder and total in cc/L from geometry; don't let a separate displacement field silently disagree. Firing order and bank layouts must reflect the geometry before the user can proceed; an inline bank differs from V/flat banks. In optional expert mode, per-cylinder geometry is offered only if the selected model supports unequal cylinders, and total displacement is the sum of each actual volume. See [22](22-guided-vehicle-configurator.md).
+
+A conventional cylinder's physical dimensions are independent from the **number of gas/thermal zones** chosen for advanced reference simulation. Multi-zone gas combustion and axial/radial wall heat transfer map to these dimensions without resizing them. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
+
 ## Per-cylinder and per-bank model
 
 - Cylinder id, physical bank id, bank position, bore/stroke/rod length, displacement, compression ratio, piston/rod inertias, crank phase and four-stroke phase, cam/valve timing, intake/exhaust port properties, combustion and ignition type.
