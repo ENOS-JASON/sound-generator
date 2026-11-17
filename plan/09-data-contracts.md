@@ -23,7 +23,51 @@ Use explicit JSON schema validation at every import and an internal strongly-typ
   "trainingProfile": null
 }
 ```
-The numbers are illustrative tuning values, not validated engineering measurements. Add per-cylinder crank-angle offsets, cam/valve configuration, detailed ECU, drivetrain, thermal, environment and acoustic parameters behind compatible subobjects. Define schema migration policy.
+The numbers are illustrative tuning values, not validated engineering measurements. The minimal v1 sketch above is **not sufficient for the expanded technology scope**; use the composable v2-style vehicle definition below as the architecture target. Add per-cylinder crank-angle offsets, cam/valve configuration, detailed ECU, drivetrain, thermal, environment and acoustic parameters behind compatible subobjects. Define schema migration policy.
+
+## Composable VehicleDefinition / ComponentManifest (proposed v2)
+
+A `VehicleDefinition` references **registered component instances and connected typed physical ports**, preserving configuration and fidelity per subsystem. An illustrative shape (not yet a finalized executable schema):
+
+```json
+{
+  "schemaVersion": 2,
+  "id": "example-manual-v8-4x4",
+  "engine": {
+    "family": "spark-four-stroke",
+    "banks": [
+      {"id": "bank-a", "angleDegrees": -45, "cylinders": [1,3,5,7]},
+      {"id": "bank-b", "angleDegrees": 45, "cylinders": [2,4,6,8]}
+    ],
+    "crankshaft": {"model": "cross-plane", "firingOrder": [1,8,4,3,6,5,7,2]}
+  },
+  "control": {"kind": "ecu", "tuneProfileId": "stock-demo"},
+  "electrical": {"batteryProfileId": "healthy-12v", "starterProfileId": "standard"},
+  "induction": {
+    "components": [{"id":"filter","kind":"filter"},{"id":"throttle","kind":"throttle"},{"id":"plenum","kind":"plenum"}],
+    "connections": [{"from":"filter.out","to":"throttle.in"},{"from":"throttle.out","to":"plenum.in"}]
+  },
+  "transmission": {"kind": "manual", "gearboxProfileId": "six-speed"},
+  "driveline": {"layout": "part-time-4wd", "transferCaseProfileId": "2h-4h-4l", "differentialIds": ["front-open","rear-open"]},
+  "audioMixProfileId": "factory-calibrated",
+  "modelSupport": {"status": "approximate"}
+}
+```
+
+**This example omits many required ports, ratios and physical parameters**; it is a structural guide, not a ready-to-run preset. Firing order and geometry must be validated against the exact crank/pin/bank topology rather than accepted from arbitrary array values. A real schema includes explicit `components[]` with unique IDs, capability manifests, `portConnections[]` with unit and direction checks, fuel/exhaust/thermal graphs, wheel/road settings, controller maps and per-component validation status. In a no-ECU preset, `control.kind = 'mechanical'` and incompatible ECU maps are absent or rejected. Do not encode 4x4 behavior from the label alone: transfer/diff/coupling topology determines actual torque flow.
+
+## Quantities, capability and performance records
+
+- `CylinderBank`: ID, bank geometry/orientation, ordered cylinder IDs, crank throw/phase, rods/pistons, valve/cam profiles, intake runner and collector connections. Support 1–12 piston cylinders and validated inline/V/flat arrangements.
+- `IntakeGraph`/`InductionComponent`: air, fuel, electrical/shaft and exhaust connections for airbox/ITB/turbo/supercharger/intercooler/wastegate/bypass with pressure/temperature/mass-flow and map version.
+- `ControlStrategy`: `mechanical`, `early-electronic`, `ecu`, `aftermarket`, `hybrid-supervisor` (when implemented); axes, map units, sensor, actuator and tune applicability.
+- `ElectricalHealth`: SoC, resistance, voltage/current, temperature/aging, starter brush/solenoid/gear condition and alternator/auxiliary load.
+- `TransmissionModel`/`DriveLayout`: clutch/converter/DCT/CVT/eCVT family, gear ratios/shift logic, transfer case 2H/4H/4L, per-diff properties, driven axles, wheel inertia and slip.
+- `ComponentManifest`: stable ID/type/schema version, implemented/approximate/planned status, supported configuration range, physical port kinds, model accuracy constraints and expected scenario tests.
+- `TorquePowerSnapshot`: time, engine RPM/angle, cylinder indicated torque, net brake crank torque, shaft/wheel/traction torque and power, accessory and compressor loads, transmission and tire losses, uncertainty and measurement mode; display mechanical hp/metric PS as explicit conversion options.
+- Separate `AudioSourceRegistry`/`MixProfile` and `EngineVisualProjection` reference these component IDs but cannot mutate their physical states.
+
+See [14](14-modular-typescript-platform.md), [15](15-engine-families-and-presets.md), [16](16-intake-induction-and-exhaust.md), [17](17-transmissions-drivetrains-and-wheels.md), [18](18-electrical-control-generations-and-tunes.md) and [20](20-torque-power-load-and-energy.md).
 
 ## EngineState and event
 `EngineState`: `simulationTimeSeconds`, `crankAngleRadians` (unwrapped), `angularVelocityRadPerSecond`, `state`, `batteryVolts`, `manifoldPressurePa`, `coolantTemperatureK`, `throttle`, `cylinderCombustion[]`, `wheelAngularSpeed[]`, `vehicleSpeedMps`, diagnostics. `EngineEvent`: `id` monotonic, `simulationTimeSeconds`, optional `sampleIndex`, `type`, `cause`, `cylinderIndex`, `payload`. Event types include KEY_ON, STARTER_ENGAGED, COMBUSTION, FIRST_FIRE, ENGINE_RUNNING, FAILED_START, LIMITER_ENTER, LIMITER_EXIT, FUEL_CUT_ENTER, FUEL_CUT_EXIT, AFTERFIRE, GEAR_CHANGED, SLIP_ENTER, SLIP_EXIT, ENGINE_STALLED and ENGINE_OFF.
@@ -40,6 +84,10 @@ Immutable run metadata: solver version, DSP version, schema version, seed, prese
 
 ## TrainedProfile
 `schemaVersion`, `id`, `compatibleSolverRange`, `trainingManifestHash`, `fitParameters`, `lookupTables`, `domainBounds`, `referenceSolverVersion`, `trainSetHash`, `holdoutSetHash`, `metricSummary`, `limitations`. Prefer inspectable coefficients. Validate bounds, finite numbers, table sizes and provenance before load. Fall back to deterministic baseline on incompatibility.
+
+## Physical connection and migration rules
+
+A component may be registered only if its schema, relevant typed ports, state ownership, bounded physical behavior, event mapping, source/stem availability and verification scenarios are known. Reject missing power/mass connections, impossible controller/engine combinations, nonsensical cylinder/valve order or contradictory coupled gear constraints. Preset imports must distinguish **configuration exists** from **model is implemented**; unknown component families cannot silently resolve to a generic gasoline engine. Existing v1 presets require a versioned, tested conversion into a simpler v2 topology with explicit defaults, not ad hoc field inference. All trained models include the graph manifest hash and are validated against component compatibility.
 
 ## Numeric, validation and portability rules
 - SI unit names in identifiers, dimensionless fractions in [0,1], cylinder order validated as a permutation; omit ambiguous `rpm` fields from internal state except telemetry views.
