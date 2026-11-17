@@ -68,13 +68,13 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Original roadmap task:** Add coupled crank, auxiliary and driveline rotational ports, free-rev/dyno/road-load adapters, SI torque/power measurements and energy-balance diagnostics.
 
-**Bounded deliverable:** Crank/auxiliary/clutch/road-load integration, positive/negative torque and crank vs wheel power instrumentation.
+**Bounded deliverable:** Crank and accessory integration **plus a minimal physically coupled manual clutch/neutral/gear ratio and vehicle/road-load path for the owner-approved I4 first complete model**. Include positive/negative torque, shaft-to-wheel power, loss and acceleration instrumentation. Advanced gearbox family models remain AG-M4C.
 
 **Required upstream evidence:** AG-M1-01, AG-M1-04, AG-M0-04. Missing prerequisites block live integration, not isolated fixture tests.
 
 **Owned modules/files:** `src/core/physics-ports/load, src/core/energy-ledger`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [17](../17-transmissions-drivetrains-and-wheels.md), [20](../20-torque-power-load-and-energy.md), [30](../30-agent-handoff-contracts-and-decisions.md).
-**Done when:** Load applied through locked gear slows engine; disengaged clutch does not; no duplicate output power at two axles. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Done when:** A validated I4 in neutral revs independently; engaging a basic manual gear/clutch under brake or hill reflects wheel load back to crank, can stall the engine, and tracks shaft/road energy without duplicating power. Do not mark a free-rev-only demo complete. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M1-07a
 
@@ -176,10 +176,10 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Original roadmap task:** Build headless first-start/stall scenarios and physical invariant tests.
 
-**Bounded deliverable:** Minimal headless start/stall scenario fixtures and invariant assertions (not M5 full scenario editor).
+**Bounded deliverable:** Minimal **I4 gasoline/start/clutch/manual gear/road-load** headless scenario fixtures and invariant assertions (not M5 full editor), with explicit first-complete-model acceptance.
 
 **Required upstream evidence:** AG-M1-09b, AG-M1-10b. Missing prerequisites block live integration, not isolated fixture tests.
 
 **Owned modules/files:** `src/testing/scenarios-minimal, tests/fixtures/golden/i4-start`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [06](../06-scenario-runner.md), [07](../07-testing-and-acceptance.md), [19](../19-scenario-coverage-and-presets.md).
-**Done when:** Warm start, no-fuel crank, low battery and clutch-load stall run as deterministic success/failure fixtures; include event time bounds. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Done when:** I4 warm start, no-fuel crank, low battery, neutral rev, clutch engagement under load, acceleration, brake/hill load and clutch-load stall run as deterministic positive/negative fixtures; include event time and energy bounds. Advanced manual/other gearboxes are separate M4 provider cards. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
