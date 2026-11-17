@@ -69,6 +69,10 @@ Source declarations come from the **registered physical component and its capabi
 
 Mix automation timestamps map from the core slowed simulation timeline to audio output sample frames, not animation frames; 0.1x and 1x must preserve causal engine event consistency. High-fidelity experiments provide component-tagged acoustic excitation and source descriptors, and [28](28-shared-realtime-surrogates-and-calibration.md) fits reusable compact source transfer maps without conflating physical changes with fader changes. Audio captures must disclose whether they reflect slow-motion playback and which mixer profile was active.
 
+## Required selectable slow-motion audio treatments
+
+The mixer and capture pipeline support **both** (1) slowed physical pitch/cadence and (2) pitch-preserving time-stretch on the slowed event timeline. Neither treatment changes component physics or source-specific calibration; process/meter/capture modes explicitly report latency, algorithm version, gain and event/sample alignment. `AG-M2-05` provides pitch-preserving DSP, `AG-M2-04` tests sound and CPU quality, `AG-M3-07` exposes the switch. A silent switch to physical mode under overload is prohibited; report unsupported/degraded mode. See [24](24-simulation-clock-and-time-scaling.md) and [approved Round 1](decisions/USER-APPROVED-ROUND-01.md).
+
 ## Mixer controls
 
 ### Individual source channel
