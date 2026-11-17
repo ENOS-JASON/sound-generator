@@ -2,9 +2,9 @@
 
 > Planning baseline. **Status: design only.** No engine, renderer, training implementation, or GitHub Pages deployment is included yet.
 
-**For implementation agents:** start with [Agent handoff instructions](agents/README.md), then select **one** assignment from the [100-roadmap-step / 160-agent-card index](agents/task-index.md). Use the [copy/paste assignment prompt](agents/AGENT_PROMPT.md) for handoffs. Read only the card, mandatory [contract/ADR rules](30-agent-handoff-contracts-and-decisions.md), [pending decision register](decisions/README.md) and references specifically listed there. The roadmap is an overview; individual cards determine scope and acceptance.
+**For implementation agents:** start with [Agent handoff instructions](agents/README.md), then select **one** assignment from the [110-roadmap-step / 170-agent-card index](agents/task-index.md). Use the [copy/paste assignment prompt](agents/AGENT_PROMPT.md) for handoffs. Read only the card, mandatory [contract/ADR rules](30-agent-handoff-contracts-and-decisions.md), [pending decision register](decisions/README.md) and references specifically listed there. The roadmap is an overview; individual cards determine scope and acceptance.
 
-**Approved direction:** [Round 1](decisions/USER-APPROVED-ROUND-01.md) and [Round 2](decisions/USER-APPROVED-ROUND-02.md) owner choices. **Still open:** [Round 3 questions](decisions/OPEN-QUESTIONS-ROUND-03.md). Major architecture requires owner approval. Worklet/Worker physics ownership still awaits benchmark. **Svelte+Vite hash routing**, first I4 **carburetor/no-ECU or EFI/ECU** with starter/manual/road load, **default pitch-lowered slow motion plus selectable pitch preservation**, procedural-only live sound with recordings for calibration/validation, ZIP/optional scientific exports, Windows/Linux offline computation and desktop Chromium/Firefox/Safari support are required. Optional native/GPU and future actual 3D CFD/chemistry remain supported by extensible contracts.
+**Approved directions:** [Round 1](decisions/USER-APPROVED-ROUND-01.md), [Round 2](decisions/USER-APPROVED-ROUND-02.md), [Round 3](decisions/USER-APPROVED-ROUND-03.md). **Still open:** [technical validation register](decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md). Svelte+Vite hash routing; first complete I4 with **two editable carb/no-ECU (factory default) and EFI/ECU** presets, manual gear/road load; two slow-motion audio modes; expert calibration revisions and **four listening perspectives**; default browser **IndexedDB autosave** with optional ZIP snapshots; **30 FPS 3D / 60 FPS 2D targets on reference desktop hardware**, not guaranteed/benchmarked yet; Windows/Linux offline CLI + **local graphical monitor**; imported and verified-license bundled analysis-only recordings; and **dedicated AI PR integrator with owner escalation** are required. The physics solver owner remains undecided until fair benchmark and explicit owner approval. No actual deployment/agent/asset rights are claimed.
 
 ## Goal
 
@@ -49,6 +49,8 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 | [30 — Agent handoff and decisions](30-agent-handoff-contracts-and-decisions.md) | Contract ownership, proposed ADRs, frozen-unit/event rules, task completion template |
 | [31 — Integration gates and support status](31-integration-gates-and-support-matrix.md) | Evidence-based G0–G8 acceptance gates and implemented/approximate/planned claims |
 | [Agent work orders](agents/README.md) | Each roadmap checklist item mapped to one or more self-contained tasks with prerequisites and tests |
+| [Round 1–3 approved requirements](decisions/USER-APPROVED-ROUND-03.md) | Most recent owner choices and pointers to earlier approvals |
+| [Remaining technical validation gaps](decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md) | Specific unresolved/technically unverified decisions, accountable cards and proof needed |
 
 ## Guiding principles
 
