@@ -20,6 +20,14 @@ Every physical mechanism that emits independently meaningful sound has a stable 
 
 The synthesizer uses physically authored engine events, phase information and state from the canonical bus contract in [11](11-event-bus-and-messaging.md). On-worklet per-cylinder excitation is local and sample accurate; the main thread never serves as an audio-rate relay. Every afterfire, misfire, limiter cut, shift transient or stall cue has a matching causal engine/ECU/drivetrain event or state, rather than being issued independently by the UI. Outbound telemetry is bounded and can be coalesced; the audible render cannot block waiting for other subscribers.
 
+## Live playback time scaling and diagnostic instrumentation
+
+The core [SimulationClock](24-simulation-clock-and-time-scaling.md) controls slow-motion/pause/step for the **entire** physical simulation and sound. An audible crank/combustion/afterfire event is mapped from authoritative simulated crank phase to AudioWorklet sample frames with continuous phase across changes (0.05x/0.1x/0.25x/0.5x/1x). Default slow motion stretches the physical playback and lowers cadence/pitch appropriately; optional pitch-preserving inspection is a distinct future DSP mode. An audio worklet may never depend on 2D/3D framerate and must be safe while step-paused and muted. Time scaling cannot change true RPM/torque values in simulated seconds.
+
+The [DiagnosticsHub and AudioCaptureService](25-core-diagnostics-recording-and-comparison.md) need **per-source and per-bus waveform, FFT/spectrum/spectrogram, peak/RMS and headroom/clipping traces**, event/cylinder causation IDs, sample-frame drift, worklet CPU/dropouts and bounded raw stem capture. Recording and graphing are optional low-priority paths, not blocking worklet processing. From M0 implement a synthetic signal into the meters and record/reimport/compare chain; add actual procedural stems in M2, including fast vs tuned vs reference comparisons. Preserve amplitude/timbre physics independently from user mixer faders; see [12](12-audio-gain-staging-and-mixer.md).
+
+A high-fidelity reference job may produce separate **source pressure-impulse and spectral descriptors** tagged by originating physical component. The generic DSP model is built first; M7 modifies its calibrated compact source transfer models and reusable equations/maps, never requires multi-zone data in the real-time worklet. See [28](28-shared-realtime-surrogates-and-calibration.md).
+
 ## DSP rules
 - AudioWorklet renders into current sample rate; use cumulative unwrapped crank phase and schedule impulses when firing angles cross the sample interval, including low-speed, zero-speed and rapid acceleration.
 - Preserve oscillator phase, envelopes and filter state through changing RPM; smoothing on physical controls, oversampling/anti-aliasing where justified.
