@@ -60,6 +60,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M7-05
 
+**Approved Round 3 acceptance:** Measurements consumed through `AG-M7-12` versioned catalog may be imported by user or **bundled only with verified redistribution license**. Analyze feature/temporal data; no playing reference recordings, no fake catalog. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Approved Round 2 requirement:** Feature extractor can consume the same schema from browser ZIP or optional Parquet/HDF5 offline; preserve component IDs, units, conditions and measurement/source provenance, never replace synthesized sound with real recordings. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap item:** Extract reference pressure/heat-release/port-flow/resonance features from multiple fidelity levels and fit compact physically constrained fast-model corrections; never require spatial gas/metal meshes at runtime.
@@ -81,6 +83,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Done when:** Invalid or unstable coefficient discarded; identical seed has equivalent optimum. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M7-07
+
+**Approved Round 3 acceptance:** Holdout confidence report distinguishes numerically converged simulation from **actually licensed measured reference**. If bundled license unavailable, catalog must state absent/unavailable rather than substitute unlabeled recording. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Holdout separates configurations and measures against real data when available; disclose lack of measurement rather than claim measured accuracy. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -127,6 +131,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Done when:** Mid-run switch obeys safe boundary; wrong graph hash falls back with diagnostics. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M7-11
+
+**Approved Round 3 acceptance:** G7 reviewer incorporates `AG-M7-12` catalog with **both import and license-verified bundled options**, rejects unlicensed playback assets and records actual measurement coverage/uncertainty. No fake source bundle. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Original roadmap item:** Reject candidates with worse transition behavior, instability or audio CPU overruns.
 
