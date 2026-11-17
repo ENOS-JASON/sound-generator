@@ -1,5 +1,14 @@
 # 12 — Audio gain staging, sources, and master mixing
 
+## Round 3 expert calibration and four procedural listener transfer modes
+
+**Approved:** a clearly gated **expert editor** can modify **separately versioned per-source calibration trims** using bounded decibel controls, documented nominal physical source conditions, revision/undo/reset and provenance. These values are **not ordinary user volume faders, bus/master gain, physical engine parameters or trainable crank torque coefficients**. The GUI should expose pre/post-calibration levels, user mix, final headroom and mode state without hidden normalization/clipping. Activation changes audio at a safe boundary and is reflected in captures/autosave and optional ZIP snapshots.
+
+The procedural synthesis/mixer offers listener/view transfer choices **cabin, engine-bay, roadside, exhaust** with source-aware attenuation/filter/pan and measured/approximate status; selecting a listener must **not** change the visual camera, RPM, events or physical component identity unless separate approved camera-link behavior is later defined. Do not interpret this as first-release full acoustic CFD.
+
+User-imported and **licensed-for-redistribution bundled real reference measurements** can influence calibration via **analyzed features only**. Unproven bundled assets are unavailable. No reference-recording playback, source stem, impulse sample or loop is allowed. See [Round 3](decisions/USER-APPROVED-ROUND-03.md) and new owners `AG-M2-06/07`, `AG-M3-09/10`.
+
+
 ## Round 2 — Calibration-only real-world reference input
 
 Generated and mixed engine/vehicle sound **must remain procedural**. Imported real-world recordings are licensed/reference-only measurement inputs to offline sound analysis, fitting and held-out validation; they are **not playable live or as a diagnostic recording**, and must not register as an `AudioSource`/stem, sample loop, wavetable sampled car clip or mixer bus. Synthesized audio captures can be exported for inspection. The first I4 supports distinct mechanical-carburetor/distributor and EFI/ECU-conditioned sources when applicable. The default slow-motion audio mode is **physical/pitch-lowered**; pitch-preserving processing stays selectable and separately metered. See [Round 2](decisions/USER-APPROVED-ROUND-02.md).
