@@ -1,6 +1,6 @@
 # 30 — Agent handoff contract, decision freeze and shared schemas
 
-**Applies to every future coding agent, without needing the conversation history.** Read this page, your assigned [task card](agents/task-index.md) and the card's **Required references**. You do **not** need to read every plan file. **Do not implement based on the historical examples in [09](09-data-contracts.md) or [23](23-quoted-project-direction-and-decisions.md) when they conflict with the accepted contract registry.**
+**Owner-approved direction:** [Round 1 decisions](decisions/USER-APPROVED-ROUND-01.md) is binding even before implementation ADRs/fixtures exist. **Every major architecture decision must be presented to the project owner for approval**, not finalized solely by a contract agent. Routine code details inside approved contracts remain agent-owned. **Applies to every future coding agent, without needing the conversation history.** Read this page, your assigned [task card](agents/task-index.md) and the card's **Required references**. You do **not** need to read every plan file. **Do not implement based on the historical examples in [09](09-data-contracts.md) or [23](23-quoted-project-direction-and-decisions.md) when they conflict with the accepted contract registry.**
 
 ## 1. Standard for an independently assignable task
 
@@ -19,7 +19,7 @@ A valid work order contains:
 
 ## 2. Contract authority and source precedence
 
-1. **Accepted ADR/contract snapshot in this file** (and corresponding committed `src/contracts/` schemas once created) is normative for code interfaces.
+1. **User-approved architecture choices** in [decisions/USER-APPROVED-ROUND-01.md](decisions/USER-APPROVED-ROUND-01.md), then **accepted ADR/contract snapshot in this file** (and corresponding committed `src/contracts/` schemas once created) is normative for code interfaces.
 2. Current [agent card](agents/task-index.md) determines the bounded deliverable and which earlier *accepted* contract versions it consumes.
 3. [31 — integration gates](31-integration-gates-and-support-matrix.md) sets what can be labeled shipped or complete.
 4. Topical documents [00–28](README.md) define behavioral/physical requirements and can be referenced for detail.
@@ -31,18 +31,18 @@ A valid work order contains:
 
 | Decision | Recommended starting resolution | Freeze owner / blocking point |
 |---|---|---|
-| **ADR-001 Physics/audio owner** | **One authoritative fast solver per run, recommended inside AudioWorklet** for phase-accurate live sound, with the identical numerical core callable synchronously by Node/headless adapter. Main/Worker receive immutable projections, not ownership; transport uses `MessagePort`, no mandatory SharedArrayBuffer. If profiling shows it unworkable, adopt a measured alternative via ADR with no dual owners. | **Accountable:** `AG-M0-10`; consult `AG-M0-09` for event transport; accepted before M1/M2 |
-| **ADR-002 UI framework/router** | **Proposed:** Svelte (one major version pinned) + Vite + hash-based routing under `/sound-generator/`, stateful route-independent simulation service. Vue is a viable alternative but must be chosen **once**. | `AG-M0-01`, before M0 UI tasks |
+| **ADR-001 Physics/audio owner** | **Open by owner decision UD-R1-02:** benchmark *equivalent* real-time physics running in AudioWorklet versus Worker, with measured timing/jitter, CPU, sample-rate load, transport, UI and headless compatibility; present comparative evidence for **explicit owner approval**. One authoritative owner after selection. Neither architecture is pre-approved or preferred merely by prior recommendations. | **Accountable:** `AG-M0-10`; consult `AG-M0-09` for events and `AG-M0-12` for audio; freeze only after benchmark and owner approval |
+| **ADR-002 UI framework/router** | **Owner-approved:** Svelte + Vite (UD-R1-03), strict TypeScript. **Unresolved:** Svelte major version, route approach on GitHub Pages, app state library and related conventions; propose choices to owner as major when architectural. Vue is not an active alternative without re-approval. | `AG-M0-01`, before M0 UI tasks |
 | **ADR-003 Data model/schema** | New presets use **canonical `VehicleDefinition` v2**, not illustrative legacy v1; versioned JSON Schema and typed parsers. Old v1 examples are input-migration examples only. | **Accountable:** `AG-M0-03`; consult `AG-M0-04`; accepted before model and wizard implementations |
 | **ADR-004 Event dictionary** | Typed `EventMap` + `CommandMap`; canonical `LIMITER_ENTER/EXIT`, `ENGINE_RUNNING`, `ENGINE_STALLED`, `ENGINE_OFF`, `AFTERFIRE`. Pause/resume/scale are **control/diagnostic** events (`RUN_PAUSED`, `RUN_RESUMED`, `CLOCK_SCALE_CHANGED`) and not combustion. Versioned import adapter maps legacy `REV_LIMIT_ENTER` and `CLOCK_PAUSED` only if needed. | `AG-M0-09`, before M1/M2/M5 |
-| **ADR-005 Time-scale acoustic mode** | `scale = d(sim time)/d(audio playback time)`; default physical slow motion stretches events and pitch/cadence, not engine RPM state. Pitch-preserving stretch is a future optional mode; never assume the two are equivalent. | **Accountable:** `AG-M0-10`; consult `AG-M0-12`; accepted before live audio |
+| **ADR-005 Time-scale acoustic mode** | **Owner-approved:** both physical pitch-lowered slowdown and pitch-preserved time stretch, **user-switchable** (UD-R1-07); physics RPM and events unchanged. Mode identity belongs in trace/DSP contracts. **Unresolved:** default mode, quality/CPU/latency and fallback thresholds; pitch preservation is required implementation, not an optional future idea. | **Accountable:** `AG-M0-10`; consult `AG-M0-12`; accepted before live audio |
 | **ADR-006 Trace bundle** | M0 exports a validated **portable bundle** with `manifest`, commands/events, typed sampled channels, checksums and optional audio; streaming extension adds binary research chunks without changing required manifest fields. Decide exact archive/container representation in `AG-M0-13` with a known-good fixture and migration tests. | `AG-M0-13` before all recorders/runners |
-| **ADR-007 UI/backend training boundary** | GitHub Pages only hosts browser app; large M6 jobs run in local/offline CLI, optional Worker only for bounded tasks. Browser imports results; no mandatory backend/cloud. | `AG-M0-16`, before M6 |
+| **ADR-007 UI/backend training boundary** | GitHub Pages only hosts browser app; large M6 jobs run offline, TypeScript orchestrates a **versioned native CPU/GPU/WASM/other numerical backend interface** selected on accuracy and performance (UD-R1-06). Browser imports results; no mandatory backend/cloud. Backend choice and precision/determinism require owner approval if major. | `AG-M0-16`, before M6 |
 | **ADR-008 Support/fidelity labels** | `implemented`, `approximate`, `planned`, `unsupported` declared per component/operating domain. A future technology may appear as disabled/info but may not run via a fake substitute. | `AG-M0-04`, before component registration |
 | **ADR-009 Quality/error budgets** | Define separate measured/per-model limits for physical residuals, event timing, reference convergence, audio artifacts, runtime CPU and data integrity. No invented universal tolerance; baseline golden fixtures must state platform/test domain. | **Accountable:** `AG-M0-03` for schema; consulted provider/gate reviewer supplies model-specific thresholds |
 | **ADR-010 Third-party assets/licensing** | Procedural audio default; recordings/3D/models are optional with explicit licenses, never embedded without permission. | Release/asset owner before import of nonoriginal assets |
 
-**Single-owner rule:** each ADR has exactly one accountable work-order agent; other agents may be consulted but cannot unilaterally publish an incompatible choice. **Status:** recommendations above are **proposed decisions**, not claims of user approval or implemented code. `AG-M0-01/03/04/09/10/13/16` must record acceptance/alternative with committed ADR fixtures before downstream cards depending on them start. Accepted decisions should be stored in `plan/decisions/ADR-NNN.md` and referenced by SHA/version. Agents may not branch into competing framework/schema decisions.
+**Single-owner rule:** each ADR has exactly one accountable work-order agent. **Status:** Round 1 owner choices are already approved in [UD-R1](decisions/USER-APPROVED-ROUND-01.md); remaining ADR details are proposed until independently approved and implemented with tests. Accountable agents cannot unilaterally accept a *major* architectural choice, even when a benchmark suggests a winner. Missing approval means **blocked for dependent implementation**, not permission to guess. `AG-M0-01/03/04/09/10/13/16` must record acceptance/alternative with committed ADR fixtures before downstream cards depending on them start. Accepted decisions should be stored in `plan/decisions/ADR-NNN.md` and referenced by SHA/version. Agents may not branch into competing framework/schema decisions.
 
 ## 4. Normative cross-component invariants to test
 
@@ -103,6 +103,10 @@ Known limitations, unimplemented cases, next dependent tasks: ...
 ```
 
 PR gate: `typecheck + unit tests + schema fixtures + scenario invariants + build` (subset appropriate to deliverable); browser/WAV/visual tasks also include Playwright/recordings and measured performance. A claim of “done” without actual evidence is `partial`. Do **not** modify other cards to make tests pass, do not mark mocks as real features and do not bypass missing contracts with private interfaces.
+
+## 6A. Required major-decision escalation
+
+An agent proposing a major architectural choice (solver ownership, threading/transport, UI router/state platform, canonical data or recording format, reference compute backend, audio algorithm with significant browser/CPU impact) must submit the ADR and a short owner decision request. Present alternatives, reproducible benchmark/tests when applicable, risk, affected agent cards and a recommended choice. **Wait for explicit owner approval**, then publish versioned interface fixtures and record acceptance. Internal refactors that do not change frozen contract semantics may be made without owner review. See [Round 1 approval and procedure](decisions/USER-APPROVED-ROUND-01.md).
 
 ## 7. Practical agent instructions
 
