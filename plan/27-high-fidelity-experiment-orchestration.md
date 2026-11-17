@@ -1,5 +1,12 @@
 # 27 — High-fidelity experiments, multirun studies and multicore orchestration
 
+## Round 2 — Supported platforms and research data interchange
+
+Offline research orchestration must run on **Windows and Linux** with versioned typed backend adapters that can use CPU, native compiled kernels, compatible GPUs or WASM **when available and validated**. Platform-specific GPU acceleration is **optional**, but neither OS may be silently unsupported; CI smoke and hardware-conditional tests must disclose coverage. Record OS, device, driver, precision, reproducibility tolerance and available-worker scheduling separately from physics settings, and never assume Node `worker_threads` alone parallelizes a GPU/CFD kernel.
+
+The baseline interchange format remains the validated **browser ZIP** recording/manifest; high-volume offline studies may export **optional Parquet/HDF5** datasets with compatible component ID, numeric units, clock, fidelity/mesh/solver and measurement-provenance references. Numerical convergence is mandatory where applicable, while real-world measured comparisons are included **when available**, with confidence/uncertainty labels instead of claims of exact physical truth. Reference audio recordings are measurement inputs for feature-based calibration, **never generated-playback sources**. See [Round 2](decisions/USER-APPROVED-ROUND-02.md).
+
+
 **Mandatory training/workflow capability.** Users must be able to run an expensive, configuration-aware reference simulation many times: for reproducibility, numerical confidence, baseline vs **one changed part**, or a defined **set of changed parts**. Run batches are not confined to browser real-time playback. See [23](23-quoted-project-direction-and-decisions.md), [21](21-adjustable-fidelity-multizone-reference-simulation.md) and [28](28-shared-realtime-surrogates-and-calibration.md).
 
 ## Performance philosophy and platforms
