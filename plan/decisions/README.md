@@ -1,14 +1,16 @@
 # Architecture decision register — M0 freeze required
 
-**Owner-approved architecture directions are recorded in [Round 1](USER-APPROVED-ROUND-01.md) and [Round 2](USER-APPROVED-ROUND-02.md).** All sixteen choices are binding; benchmark-dependent implementation and unspecified subdecisions remain open. No further major architecture choice may be made without explicit owner approval. **No technical choice below is accepted merely because it appears in a proposal.** The decision owner publishes a reviewed `ADR-###-slug.md` here with explicit `Status: Accepted` before downstream agents are allowed to rely on it.
+**Owner-approved architecture directions are recorded in [Round 1](USER-APPROVED-ROUND-01.md), [Round 2](USER-APPROVED-ROUND-02.md), and [Round 3](USER-APPROVED-ROUND-03.md).** All **25** owner selections are binding; benchmark-dependent implementation, validation and unspecified subdecisions remain open. No further major architecture choice may be made without explicit owner approval. **No technical choice below is accepted merely because it appears in a proposal.** The decision owner publishes a reviewed `ADR-###-slug.md` here with explicit `Status: Accepted` before downstream agents are allowed to rely on it.
 
 See [agent contracts and working proposals](../30-agent-handoff-contracts-and-decisions.md#3-architecture-decisions-to-freeze-before-parallel-implementation), [plan audit](../29-plan-audit-and-gap-register.md) and [G0-A integration gate](../31-integration-gates-and-support-matrix.md).
 
-## Round 2 status and Round 3 open questions
+## Round 3 approved status and remaining open technical choices
 
-**Round 2: 9/9 approved.** [Decision record](USER-APPROVED-ROUND-02.md) establishes both initial I4 controller modes, Svelte+Vite hash URLs, default pitch-lowered slow motion, reference recordings for analysis only, numerical + available measured validation with confidence reporting, ZIP/optional scientific exports, Windows+Linux training, desktop Chromium/Firefox/Safari and CI + technical integrator PR review. [Original Round 2 questionnaire (archived)](OPEN-QUESTIONS-ROUND-02.md).
+**Round 3: 9/9 approved.** [Decision record](USER-APPROVED-ROUND-03.md): initial **carb/mechanical I4** selection; **two editable I4 presets** (carb and EFI); **30 FPS 3D / 60 FPS 2D targets on reference hardware**; expert-editable separately versioned calibration trims; **cabin/engine-bay/roadside/exhaust listening**; imported plus verified-license bundled measurement references; Windows/Linux CLI **plus local graphical job monitor**; browser **IndexedDB autosave** and optional ZIP snapshots; and a **dedicated AI technical integration agent with escalation**. [Original Round 3 questionnaire, archived](OPEN-QUESTIONS-ROUND-03.md).
 
-**Round 3: open, not approved.** [Open questions (R3-Q1…)](OPEN-QUESTIONS-ROUND-03.md) will address remaining presets, performance budgets, gain/spatial calibration, recording provenance, offline job management, integrator identity and storage. No recommendation should be treated as approved.
+**Round 2: 9/9 approved.** [Decision record](USER-APPROVED-ROUND-02.md), [historical questions](OPEN-QUESTIONS-ROUND-02.md). **Round 1: 7/7 approved.** [Decision record](USER-APPROVED-ROUND-01.md).
+
+**Technical choices still open:** [Post-Round-3 gap/decision register](OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md). Specific hardware benchmarks, model/preset physical parameters, expert trim bounds, license proof for bundled files, desktop monitoring technology, IndexedDB quota/recovery policies, AI agent GitHub permissions/merge authority and the Worklet-vs-Worker solver benchmark require validation/owner approval at the appropriate boundary.
 
 ## Round 1 status summary
 
@@ -29,9 +31,9 @@ See [agent contracts and working proposals](../30-agent-handoff-contracts-and-de
 | ADR-007 | **Offline Windows + Linux**, with optional native CPU/GPU/WASM/other backends (UD-R1-06, UD-R2-07); exact numerical stack open | `AG-M0-16` |
 | ADR-008 | Supported/approximate/planned/unsupported capability state | `AG-M0-04` |
 | ADR-009 | **Numerical and available real-measurement validation, explicit confidence status** (UD-R2-05); model-specific tolerances open | **`AG-M0-03` accountable** for schema, provider owner consulted for its thresholds |
-| ADR-010 | **Real recordings for calibration/validation only; never live or diagnostic playback** (UD-R2-04); source licenses/provenance open | Release/asset owner before asset import |
+| ADR-010 | **Real recordings for calibration/validation only; imported and bundled catalog** (UD-R2-04, UD-R3-06). Bundled recordings permitted **only after redistribution/license evidence**, never playback. | Release/asset owner before asset import |
 
-**Owner approval vs ADR acceptance:** the user approved decisions are binding today. A formal ADR is only marked `Accepted` after its remaining technical details, fixtures/tests and owner approval where major. M0 must not assume a Worklet-owned solver, Vue, or an unapproved storage/compute stack. Svelte + Vite with hash routing and pitch-lowered slowdown default are selected; Svelte version/store, numerical thresholds and physics solver placement remain open.
+**Owner approval vs ADR acceptance:** the user approved Round 1–3 decisions are binding today. A formal ADR is only marked `Accepted` after its remaining technical details, fixtures/tests and owner approval where major. M0 must not assume a Worklet-owned solver, Vue, or an unapproved storage/compute stack. Svelte + Vite with hash routing and pitch-lowered slowdown default are selected; Svelte version/store, numerical thresholds and physics solver placement remain open.
 
 ## ADR file template
 
