@@ -78,6 +78,8 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 ### AG-M1-07a
 
+**Approved Round 3 acceptance:** Mechanical carburetor/distributor/no-ECU remains fully runnable and is **factory selected** in the first-launch baseline. Do not hide or reduce the EFI alternative. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Approved Round 2 requirement:** G1 **cannot pass without this working mechanical/no-ECU I4 option**: carburetor/throttle/choke, distributor advance and correct fuel/ignition/idle behavior; reject ECU maps and electronic-only commands. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Implement minimal mechanically controlled carburetor/distributor path **without ECU** plus separately selectable ECU reference controller; reject controls not supported by the active strategy.
@@ -183,6 +185,8 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 **Done when:** Friction slows stopped engine, fuel-off cannot fire; stalling emits one causal event before off. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M1-11
+
+**Approved Round 3 acceptance:** For G1, include **both `AG-M1-12` physically valid editable first-I4 presets**, and prove carb defaults on an empty new session while restored EFI selection remains EFI. Both carry manual gearbox/road load and independent invalid-controller fixtures. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** G1 golden scenarios **must cover both carbureted/mechanical/no-ECU and EFI/ECU I4** start, stable idle, failed start, basic manual clutch/road load, hill/braking stall, invalid controller commands, torque and energy conservation. Do not certify only one controller. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
