@@ -75,3 +75,17 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 **Owned modules/files:** `tests/audio/, tests/fixtures/golden/audio`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [03](../03-audio-synthesis.md), [07](../07-testing-and-acceptance.md), [24](../24-simulation-clock-and-time-scaling.md), [25](../25-core-diagnostics-recording-and-comparison.md).
 **Done when:** No NaNs/underruns in defined environment; A/B source FFT capture/import and 0.1x events align with physics in **both modes**, with measured pitch/latency/CPU/artifact limits and no silent fallback. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M2-05
+
+**Original roadmap task:** Implement the owner-approved **pitch-preserving slow-motion** audio treatment alongside physical pitch-lowered slow motion. A user-visible audio-mode switch is supplied by `AG-M3-07`; neither changes physical simulation tick/event/RPM/torque values.
+
+**Bounded deliverable:** Implement a versioned, stateful, CPU-bounded pitch-preserving time-stretch audio processor (or physically appropriate source-wise treatment) consuming the authoritative slowed event/audio timeline. It must integrate into existing source/mixer outputs and expose `physical | pitch-preserved` mode, algorithm, delay, resource and degradation telemetry. Compare plausible algorithms and obtain owner approval for a major DSP architecture choice; do not require a specific unapproved library.
+
+**Required upstream evidence:** `AG-M2-01` (clock transport), `AG-M2-02b` (phase-coherent audio) and `AG-M2-03b` (mixer); `AG-M0-10` approved time/ownership contracts. If the real source is not ready, build/test only against a committed synthetic pitched-tone/impulse fixture and report incomplete integration.
+
+**Owned modules/files:** `src/dsp/time-stretch/`, `src/audio/slow-motion-mode/`, local test fixtures. Changes to global clock, physical state, UI/router or generic source registry require their owning agent/ADR.
+
+**Required references:** [03](../03-audio-synthesis.md), [12](../12-audio-gain-staging-and-mixer.md), [24](../24-simulation-clock-and-time-scaling.md), [25](../25-core-diagnostics-recording-and-comparison.md), [owner approvals](../decisions/USER-APPROVED-ROUND-01.md) and [30](../30-agent-handoff-contracts-and-decisions.md).
+
+**Done when:** (a) at 0.1x/0.5x/1x pitch-preserving mode uses a distinct working audio treatment and its sound is slower while fundamental/spectral pitch is approximately maintained within an explicitly measured tolerance, (b) physical mode changes pitch as intended, (c) audio frames/event markers and engine tick/event hashes remain aligned in both modes, (d) mode switches have bounded clicks, CPU and added latency and report quality/deadline errors rather than falsely claiming preservation, (e) capture metadata stores selected mode/algorithm; run positive and negative sample-rate/browser tests and submit the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
