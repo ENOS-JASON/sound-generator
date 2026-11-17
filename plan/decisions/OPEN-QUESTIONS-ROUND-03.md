@@ -1,6 +1,6 @@
-# Pending owner questions — Round 3
+# Round 3 questionnaire — answered (historical reference)
 
-**Status: OPEN — none approved.** This questionnaire follows the nine [approved Round 2 decisions](USER-APPROVED-ROUND-02.md) and seven [Round 1 approvals](USER-APPROVED-ROUND-01.md). Do not implement the **recommended option** as a decision until the owner explicitly selects A/B/C. Use the exact IDs `R3-Q1` through `R3-Q9`. Partial responses are valid; unanswered items stay open.
+**Status: CLOSED — 9/9 choices approved by the project owner on 2026-11-17.** See [binding Round 3 decisions](USER-APPROVED-ROUND-03.md) for selected choices, actual scope and remaining finer details. This page preserves historical options and *nonbinding recommendations* only. Previously open questions on this page have been answered; do not re-ask them or treat a recommended option as the approved choice.
 
 | ID | Owner decision still missing | A | B | C | Recommended only | Affected contracts/agents |
 |---|---|---|---|---|---|---|
@@ -30,4 +30,4 @@
 
 Audio pitch-preservation algorithm/latency quality budget; exact M0 CaptureBundle ZIP/Parquet/HDF5 libraries; minimum Safari version and native/GPU backend/driver requirements; numerical convergence thresholds per fidelity; choice of first CFD/chemistry platform; microphone transfer calibration and physical-acoustic measurements; high-accuracy runs' multi-day checkpoints/remote data security.
 
-Once the project owner responds, create **`USER-APPROVED-ROUND-03.md`**, update affected task cards and ADRs, mark this questionnaire as historical rather than open, and leave any unanswered or narrower subchoices unresolved.
+**Completed:** the [approved Round 3 record](USER-APPROVED-ROUND-03.md) supersedes this questionnaire. Remaining technical ambiguities are tracked separately in [Round 3 gap register](OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
