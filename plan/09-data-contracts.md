@@ -1,5 +1,18 @@
 # 09 — Versioned data contracts
 
+## O3-approved contract constraints (interfaces to freeze in M0, not implemented code)
+
+- `HardwareCapabilities` / `ReferenceBackendManifest` describe CPU model/threads, GPU name/compute capability, driver/toolkit, Windows/Linux, numerical precision, CUDA kernel target and **CPU fallback reason**. **Required GTX1080 Pascal `sm_61` / CUDA12.x build path** is independently versioned from any modern CUDA13 build; do not require compute capability `>=7.5` for mandatory provider compatibility.
+- `BenchmarkManifest` distinguishes **primary owner i9-10th-gen/GTX1080 development/compatibility machine** versus the **proposed mid-range FPS reference desktop awaiting owner approval**. Include actual browser/OS versions, scene, resolution/DPR, test window, frame-time percentiles, audio clock misses and sim determinism.
+- `WorkspaceState` autosaves configurations, mixer, expert gain-calibration source revision, widgets, scenario drafts and **bounded recent diagnostic summaries** with **configurable bounded snapshot history** (count/age/bytes), transaction/previous-good references and secure ZIP import/export. Never claim unbounded audio/research autosave.
+- `SourceCalibrationProfile` expert editable values are **gain trims (dB) only**, calibrated conditions, version/undo; no freeform EQ/spectral/DSP editing or credential-backed expert role. `ListeningPerspective` remains independent of `VisualCamera` and of solver state.
+- `LocalStudyControl` is CLI-launched **loopback-only HTTP** with typed job IDs/commands, progress/logs, origin/CSRF and process-safe permission checks, not remote/public. `ResearchExportAdapter` exposes ZIP now and Parquet/HDF5 capability fields only after an evidence-based format decision.
+- `AiIntegratorPolicy` stores verified reviewer identity/least privileges, owner-approved rule version, actual check/job/PR SHA, **conditional routine merge** eligibility, merge action/report commit and owner escalation for shared public TypeScript contracts/APIs/ownership changes. No audit field should claim merge succeeded without host action.
+- `ReferenceMeasurementProvenance` distinguishes user-owned imports from **candidate bundled references** with actual redistribution/attribution license evidence and owner approval *before bundling*. Real recordings cannot become audio sources.
+
+**Status:** proposed TypeScript/JSON contracts only until implemented/frozen/tested by owning agents. [O3 owner decisions](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md); [verification IDs](decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
+
 ## Round 3 versioned interfaces (design targets, not implemented API)
 
 - `InitialVehicleExamples` declares two **valid editable I4** vehicle/controller graphs; `factoryDefaultVehicleId` points to the mechanical carburetor/no-ECU preset **only when no valid saved user choice exists**. Explicitly distinguish `factoryDefault` from `currentWorkspaceSelectedVehicleId`.
