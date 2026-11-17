@@ -1,5 +1,15 @@
 # 07 — Test strategy and acceptance criteria
 
+## M0 foundational observability gate — required before M1
+
+These tests must run on a **deterministic synthetic physics model and synthetic AudioWorklet source** before real engine work begins:
+- [ ] Time scaling at 0.05x/0.1x/0.5x/1x, pause/resume, tick/crank-angle/event stepping and mapping of sim tick <-> audio frames work without lost/duplicate causal events.
+- [ ] Expandable/hideable physics/audio/clock/event debug menus, sampled live waveform/FFT/stem meters and physics/energy/value graphs show correct units/timestamps without driving the solver.
+- [ ] A recording exports commands, component manifest, events, channels, seeds, versions, clock/scaling and optional audio; reimport validates, displays the same channel data, replays identical mock logic and calculates comparable differences.
+- [ ] Multi-page Dashboard/Drive/Diagnostics/Settings works on GitHub Pages; a movable/hideable widget persists across routes without reconstructing engine/audio clock.
+- [ ] Bounded memory, backpressure and no heavy work in AudioWorklet callback; closed widgets don't keep expensive FFT/readback running.
+**M0 must block M1/M2 if any core observability gate fails.** See [24](24-simulation-clock-and-time-scaling.md), [25](25-core-diagnostics-recording-and-comparison.md), [26](26-multipage-ui-and-floating-widgets.md).
+
 ## Test pyramid
 - Unit: units, integrator, firing order / 720-degree phase, maps, starter torque, ECU hysteresis, bounded DSP filters, seed reproducibility, schema migrations.
 - Property/invariant: finite samples, plausible RPM/torque bounds, no engine energy generation without an input, no phantom cylinder ignition, positive or bounded state variables, no zero-time cycling.
@@ -48,6 +58,17 @@ See [21](21-adjustable-fidelity-multizone-reference-simulation.md) and [22](22-g
 ## Numeric torque and horsepower validation
 
 Test `P_W = T_Nm * omega_radPerSecond`, signed motoring/braking power, crank vs shaft vs driven-wheel reporting, friction/auxiliary/induction losses, battery electrical loads and drivetrain efficiencies. Verify steady-state dyno points and controlled acceleration separately. A 200 N·m at 3000 RPM shaft should yield ~62.83 kW (~84.25 mechanical hp). See [20](20-torque-power-load-and-energy.md). If not measured/calibrated against an external reference, label simulated torque/HP as model estimates.
+
+## High-fidelity experiments and shared-surrogate acceptance
+
+- [ ] A Research run may spend **hours per simulated cylinder cycle** without false wall-clock scenario failure; display progress, checkpoint/resume and resource telemetry. User can configure multicore workers up to all usable logical cores, honoring an explicit memory/disk budget.
+- [ ] Reference output records a complete unique component/configuration/graph manifest, zone/fidelity/solver versions, scenario/seed, physical ports and per-source audio data. Re-import reconstructs exact baseline and parts; no hidden defaults.
+- [ ] Repeated baseline runs characterize noise/numerical convergence. One-part and part-preset changes produce an exact realized component diff and per-component physical/audio A/B metrics on equivalent inputs.
+- [ ] Baseline fast equations are usable with no training. Fast/reference share geometry, common port units/signs, input/event and state projection contracts; fitting a trained artifact updates coefficients/maps but not state ownership or causal event logic.
+- [ ] One fitting/lookup family can serve multiple compatible components with validated units/domains and separate coefficients; incompatible physically different components cannot accidentally reuse data.
+- [ ] Holdout data from different scenarios/engine/induction/driveline configs improves physical and sonic metrics without violating energy/torque event invariants, degrading audio sample deadlines or producing out-of-domain nonsense.
+- [ ] Diagnostics import/comparison aligns baseline fast, tuned fast and high-detail reference by sim time, crank angle, and causal events; a changed mix fader does not falsely count as changed physical power.
+See [27](27-high-fidelity-experiment-orchestration.md) and [28](28-shared-realtime-surrogates-and-calibration.md).
 
 ## Objective quality
 Define per-preset target tolerances **after** acquiring trustworthy recordings/reference solver outputs. Capture event timing error, RPM trajectory error, torque error, spectral envelope distances, perceptual spectral features, transient signatures and listening evaluation. No arbitrary claim of a physically exact recorded car from objective DSP metrics alone.
