@@ -32,6 +32,20 @@ and one authoritative solver state. Never duplicate core EventBus, Clock,
 TelemetryRegistry, validator or ApproximationRegistry. Do not edit other owners'
 public files except through an accepted contract change request.
 
+For this exact AG card, update ONLY its relevant task-specific Markdown checklist:
+ - Check a requirement/test box solely when its evidence is real and cited in the PR.
+ - Include test commands/results, positive+negative fixtures and committed artifacts.
+ - Do not check the AG-... COMPLETE box before the PR actually merges.
+ - Do not check a parent roadmap box; only the integrator promotes it after all
+   linked AG cards have their COMPLETE boxes checked on main.
+ - An unverified prerequisite, pending ADR, mock-only implementation or skipped
+   test stays unchecked and is reported BLOCKED or PARTIAL.
+ - After merge, the authorized independent technical integrator records the
+   merged SHA in a tracking-only update, checks AG COMPLETE last, and marks a
+   parent roadmap step checked only after EVERY linked child is complete.
+ See plan/08-implementation-roadmap.md "Completion tracking" and
+ plan/agents/task-index.md; never duplicate status in the task index.
+
 Implement the card's bounded deliverable, a positive and negative automated test,
 and any required fixture, sample trace, audio evidence or screenshot. Run actual tests.
 Do not claim a feature is implemented solely because its interface exists. Do not
