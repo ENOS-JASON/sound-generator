@@ -1,5 +1,12 @@
 # 05 — Reference simulation and calibration pipeline
 
+## Round 2 — Measurement-based calibration and reference-only recordings
+
+The owner requires **numerically validated physics plus comparison against actual measurements when available**, with confidence/uncertainty/provenance displayed separately. Mesh convergence alone does not prove absolute accuracy; absence of measured reference does not prevent clearly labeled `simulation-estimate` models from running. For each measurement dataset store its source/license/consent, test conditions (RPM/load, temperatures, measurement location/microphone and gain calibration), units, timestamps and confidence; align physical and acoustic features to matching crank events and environmental conditions. Report measured vs modeled error honestly.
+
+**Real-world audio recordings may be imported solely as analyzed calibration/validation features and never used for engine, stem, loop or diagnostic playback.** Generated simulation sound is always procedural. Offline study/export tools target **Windows and Linux**, with optional native CPU/GPU backends, and use versioned **browser ZIP** trace bundles plus optional Parquet/HDF5 scientific data. See [approved Round 2](decisions/USER-APPROVED-ROUND-02.md), [27](27-high-fidelity-experiment-orchestration.md) and [30](30-agent-handoff-contracts-and-decisions.md).
+
+
 ## Mandatory fidelity controls and multi-zone physics
 
 Advanced training must be **user-configurable in numerical detail** instead of one mandatory high-cost simulation. Define Quick (0D), Balanced (burned/unburned zones), Detailed (multi-zone gas with segmented liner/head/piston thermal zones plus 1D intake/exhaust cells and wall sections) and Research (further verified refinement) tiers, with **per-component overrides** and dynamic capability-limited parameters. The engine cylinder has crank-resolved intake, compression, flame/heat-release propagation, expansion, blowdown and exhaust; gas temperature, pressure, mass/species and heat transfer couple to multiple metal wall layers and piston/head regions. Intake/exhaust paths have independently chosen axial gas cells, thermal wall layers and pressure-wave/junction modeling. Detail choices must be reproducible and physically validated, not labeled as full CFD without implementing it. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
