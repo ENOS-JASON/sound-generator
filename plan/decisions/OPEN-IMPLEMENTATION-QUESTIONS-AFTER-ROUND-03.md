@@ -1,6 +1,6 @@
-# Implementation ambiguities remaining after approved Rounds 1–3
+# Historical O3 questionnaire and validation gaps — all owner choices answered
 
-**Status: OPEN technical decisions / validation tasks, not owner approvals.** Use [approved Round 1](USER-APPROVED-ROUND-01.md), [Round 2](USER-APPROVED-ROUND-02.md), and [Round 3](USER-APPROVED-ROUND-03.md). **25 of 25 owner multiple-choice answers are recorded**; these remaining finer details should not erase or reinterpret an approved choice.
+**Status: OWNER CHOICES CLOSED (15/15 approved on 2026-11-17); historical questions and still-relevant technical verification notes only.** The binding owner answers are in [USER-APPROVED-O3-IMPLEMENTATION-DECISIONS](USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md); the **current remaining verification work** is in [OPEN-VERIFICATION-AFTER-O3-APPROVAL](OPEN-VERIFICATION-AFTER-O3-APPROVAL.md). Never treat the older alternative questions below as unresolved owner choices or infer their former recommendations as decisions. Use [approved Round 1](USER-APPROVED-ROUND-01.md), [Round 2](USER-APPROVED-ROUND-02.md), and [Round 3](USER-APPROVED-ROUND-03.md). **40 of 40 owner multiple-choice answers (Rounds 1–3 plus O3) are recorded**; these remaining finer details should not erase or reinterpret an approved choice.
 
 When a question is architectural, the accountable agent presents a concise decision/benchmark proposal to the **project owner**. Technical feasibility claims are **NON VALIDATED** until reproducible evidence for the actual target environment exists. Route routine implementation judgment through the approved **dedicated AI technical integrator**, subject to its as-yet-unverified GitHub permissions/operating policy.
 
@@ -22,7 +22,7 @@ When a question is architectural, the accountable agent presents a concise decis
 | **O3-14 / P2** | User identity/expert affordances | Expert calibration access means expert UI, not necessarily accounts/login. Any role-based permissions, authentication or sharing must be explicitly chosen; GitHub Pages has no default backend identity provider. | `AG-M3-09`, `AG-M0-01`, before security claims |
 | **O3-15 / P2** | AI escalation and concurrency | Which PR labels/paths classify *major* or security-sensitive changes; how AI detects missing evidence, conflicting branches, license/recording policy violations, reviewers' own PRs, and blocked decisions? A token/scoping or branch ruleset API capability must be validated, not inferred. | `AG-M0-19`, owner policy, G0/G8 |
 
-## Already approved — do not re-ask
+## Rounds 1–3 already approved — do not re-ask
 
 - **R3-Q1:** carburetor/no-ECU selected on first launch **unless an existing valid saved user choice is being recovered**.
 - **R3-Q2:** two editable **carb and EFI** I4 presets (not a single preset or claim of real-production exactness).
@@ -32,8 +32,8 @@ When a question is architectural, the accountable agent presents a concise decis
 - **R3-Q6:** both imported and **legally distributable bundled measurement references**, never sample/diagnostic playback.
 - **R3-Q7:** CLI **plus local graphical monitor**, not mandatory remote queue.
 - **R3-Q8:** **IndexedDB browser autosave** and optional ZIP snapshots, not unlimited filesystem persistence.
-- **R3-Q9:** **dedicated AI integrator with escalation**, no presumed bot installation, autonomous merge rights or owner-ADR authority.
+- **R3-Q9:** **dedicated AI integrator with escalation**. The later O3-02 B answer **conditionally authorizes AI routine-PR merging after actual required checks and explicitly authorized rules**; GitHub bot installation/permissions remain unverified, and major ADRs/shared-contract changes still escalate to the owner.
 
-## Protocol for closing an ambiguity
+## Historical verification process (follow current register instead)
 
 For each item record `question ID / affected AG IDs / proposed options / owner approval if architectural / verification command or prototype / concrete output artifact / status and date`. Close only when the exact decision and needed technical evidence are recorded in an accepted ADR/implementation PR. **An approved user requirement does not itself verify that a specific connector, browser permission, GitHub API action or installed AI integration agent exists.**
