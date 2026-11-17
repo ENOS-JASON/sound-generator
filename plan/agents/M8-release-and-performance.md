@@ -57,3 +57,17 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Owned area:** `.github/workflows/, docs/release` and local tests only.
 **Required source reading:** [01](../01-architecture.md), [31](../31-integration-gates-and-support-matrix.md).
 **Done when:** Reload works under /sound-generator/, AudioWorklet loads and release traces available. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M8-05
+
+**Roadmap source:** Run a dedicated support/compatibility matrix on the owner's 10th-generation Core i9 and GeForce GTX1080 desktop, distinct from the owner-approved future mid-range FPS benchmark configuration.
+
+**Precise deliverable:** Create a reproducible primary-hardware compatibility test suite with a published machine manifest (actual i9 SKU, GPU, RAM, OS, drivers, CUDA version, available browsers), covering browser WebGL/Canvas2D/I4 rendering, 44.1/48kHz AudioWorklet phase/replay and solver Worklet/Worker benchmark input compatibility as well as offline CPU/CUDA backend detection/precision/parity. Coordinate with AG-M6D-08 legacy CUDA `sm_61` and AG-M8-02 30FPS/60FPS reference benchmark. **Support on GTX1080 means functional compatible paths**, not guaranteed 30/60 FPS on the user machine; independent owner-approved mid-range reference hardware supplies the published FPS target. Do not demand GPU replacement or silently upgrade beyond Pascal-supported CUDA tooling.
+
+**Prerequisites:** G1/G2/G3 prototype, AG-M6D-08 compatibility test and AG-M8-01 cross-browser harness, AG-M8-02 proposed mid-range reference setup; user provides access to the actual i9/GTX1080 machine only when available. Approved [O3-01 A, O3-05 B and additional hardware constraint](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md).
+
+**Owned files and modules:** `tests/hardware/intel-i9-10th-gtx1080/, docs/compatibility/gtx1080/, tests/benchmarks/primary-machine/`. Do not change other AG cards' contracts without an owner-approved ADR.
+
+**Required references:** [07](../07-testing-and-acceptance.md), [01](../01-architecture.md), [27](../27-high-fidelity-experiment-orchestration.md), [shared contracts](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md), [pending verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
+**Acceptance / evidence:** Positive: I4 mechanical and EFI drive/run on browser supported 2D and 3D with no solver corruption, generated audio operates with both slow-motion modes, CPU offline solver works; GTX1080 CUDA 12.x `sm_61` numerical smoke plus CPU parity is observed where GPU enabled. Negative: GPU unavailable/old driver/CUDA 13-only runtime produces explicit compatibility warning and CPU fallback, never fake acceleration; missing physical test machine leaves `not-verified-on-hardware`. Publish browser/driver/CPU/GPU report with distinct 30/60 FPS **reference-device** outcome. Include positive/negative fixtures, actual toolchain/driver/browser command logs, reproducibility and a one-card handoff report. Any unavailable hardware/driver/licensed input is `blocked`/`not verified`, not a simulated pass.
