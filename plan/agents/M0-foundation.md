@@ -124,6 +124,8 @@
 
 ### AG-M0-10
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-01 A — primary benchmark:** run equivalent physics in Worklet vs Worker on the user's **10th-gen Core i9 + GTX1080** desktop first (exact SKU/OS/driver still unknown). Record CPU/AudioWorklet clock/jitter/underruns under representative I4/starter/manual/road load, provide owner-visible comparison and **do not choose final solver placement without approval**. Mid-range render FPS reference hardware is a separate proposal owned by AG-M8-02. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Approved Round 2 requirement:** Owner approved **initial physical pitch-lowered slow-motion audio mode** (`slowMotionAudioMode='physical'`). Both modes and state/event invariants remain. Worklet-vs-Worker solver placement is still UNDECIDED until fair benchmark and explicit owner approval. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Roadmap source:** Implement authoritative fixed-step **SimulationClock** with `timeScale` (including 0.05/0.1/0.25/0.5/1x), pause, tick/crank-angle/next-event stepping and exact physics-time <-> audio-sample mapping; mock simulation emits deterministic events and can be compared at different playback speeds.
@@ -200,6 +202,8 @@
 
 ### AG-M0-13
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-11 C — ZIP first:** implement safe versioned ZIP recording/workspace snapshots now; **do not select Parquet or HDF5** until documented M6 study volume/query/streaming needs and owner-facing format decision. Preserve future adapter contracts. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Approved Round 3 acceptance:** Preserve **ZIP trace recording** as default portable data container and support **optional ZIP workspace snapshots** with separate manifest/type, including IndexedDB selected I4/controller/mix/calibration/listener metadata; do not imply IndexedDB itself can store unlimited research data. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** The default portable recording must be a **validated ZIP archive** with versioned JSON manifest, typed binary chunks, checksums, commands, events and optional **generated** output audio. Add corrupt/oversize ZIP tests; optional Parquet/HDF5 offline research is outside this card. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
@@ -256,6 +260,8 @@
 
 ### AG-M0-16
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-10 B + hardware:** versioned reference backend contract must support multicore CPU and **prioritized NVIDIA CUDA** in Windows/Linux, with an independently compiled **CUDA 12.x / `sm_61` Pascal** path for **GTX1080** (owner required). CUDA13 cannot be the sole toolchain. `AG-M6D-08` owns tested Pascal kernels. No modern GPU-only tensor assumptions; honest CPU fallback and numerical precision/VRAM policy. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Approved Round 2 requirement:** The `ReferenceComputeBackend`/experiment contract explicitly supports offline **Windows and Linux** capabilities and optional native CPU/GPU providers with hardware/precision/provenance, not a compulsory particular accelerator. Research output interfaces may support optional Parquet/HDF5 while browser ZIP remains canonical. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Roadmap source:** Define high-fidelity `ExperimentDefinition`/variation contracts: all-component manifest identity, one-part and preset-part changes, paired initial seeds/scenarios, fidelity config, reference-to-fast common output and study result formats.
@@ -286,6 +292,8 @@
 
 ### AG-M0-18
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-03 B / O3-13 B:** autosave config/controller, user mixer, source calibration, widgets, scenarios and **bounded recent debug data**; keep **current workspace + bounded configurable historical snapshots** by count/age/size, recover last-good transaction and enforce quota. No full high-fidelity data/history without cap. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Roadmap source:** Define versioned IndexedDB persistence and resilient local autosave for browser state, preserving ZIP snapshots as optional portable exports.
 
 **Precise deliverable:** Build browser-only `PersistentWorkspaceStore` with versioned IndexedDB schema, stable key/owner namespaces for selected vehicle/controller, wizard draft, audio mix/expert calibration reference, widget layout and small scenario/debug metadata. Autosave is asynchronous/debounced and never called inside AudioWorklet/solver; keep at least one last-known-good state on failed migration/quota. Expose save/recover/error/clear controls for M3 via a typed interface. Generated ZIP snapshots still come from AG-M0-13. Default factory carb loads only when **no valid saved user selection** exists.
@@ -299,6 +307,8 @@
 **Acceptance / evidence:** Test first-run carb selection, change/save EFI, reload and recover EFI (not reset to carb), corrupted/unknown-version records, migration rollback, quota/denied IndexedDB fallback and portable ZIP export unaffected. No raw multi-day research dataset autosave. Persisted expert trim remains separate from user mix. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
 
 ### AG-M0-19
+
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-02 B / O3-15 B — conditional routine merging is owner-approved.** AI integrator may **merge normal one-card PRs** after explicitly configured/verified CI, branch protections, code ownership, schema/tests, security and license gates. **Mandatory owner escalation** for major ADRs, shared/public TypeScript APIs/ports/event contracts, cross-module ownership, security and licensing. Prove least-privilege GitHub bot identity/actual review/merge API before executing any merge, audit merge SHA/rules, reject self-review and CI-only auto-merge. Host/permissions still not installed or validated. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
 **Roadmap source:** Specify and prototype the dedicated AI technical integration agent for routine GitHub PR reviews with CI validation and escalation to owner on major ADRs or unresolved conflicts.
 
