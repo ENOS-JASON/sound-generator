@@ -104,8 +104,8 @@ Current known decisions needing explicit M0 freeze (Round 1–3 owner approvals 
 - Solver owner/thread placement **after equivalent Worklet vs Worker benchmark and explicit owner approval**.
 - **Svelte + Vite approved**; router/store/version conventions remain to freeze.
 - Canonical versioned VehicleDefinition/events/trace on-disk container.
-- Default capture/telemetry budgets and tests per target browser.
-- First **I4 gasoline/starter/manual/road-load** baseline with **both carburetor/no-ECU and EFI/ECU selectable** approved; default controller choice, gearbox values and engine dimensions remain open.
-- Numerical model fidelity and acceptance tolerances/measurement reference of later solvers.
+- Default capture/telemetry budgets and tests per target browser; **IndexedDB quota/recovery policy**, workspace ZIP snapshot boundaries and reference hardware for measurable 30/60 FPS targets.
+- First **I4 gasoline/starter/manual/road-load** baseline with **two editable presets**, **factory-default carburetor/no-ECU** and selectable EFI/ECU approved; gear ratios, engine dimensions and measured plausibility still open.
+- Numerical model fidelity and acceptance tolerances/measurement reference of later solvers; distributable reference catalog licensing evidence and **AI integrator authenticated review/merge rights**. See [open validation](decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
 
 When unresolved, the agent's task is to record a **blocking ADR or fixture dependency**, not implement a second incompatible solution.
