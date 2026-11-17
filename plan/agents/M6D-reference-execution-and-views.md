@@ -36,6 +36,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 
 ### AG-M6D-03a
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-10 B:** prioritize NVIDIA CUDA alongside mandatory multicore CPU; include **GTX1080 Pascal `sm_61` and CUDA12.x** backend adapter from AG-M6D-08. CUDA13-only toolchain is incompatible with this mandatory path. Detect/report GPU precision/driver/VRAM; CPU fallback must be functional and not mislabeled. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Approved Round 3 acceptance:** The Windows/Linux CLI exposes a **versioned local job-control protocol** for the separately assigned `AG-M6D-07` GUI; avoid embedding the solver in GUI. GPU optional; no remote queue. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Windows **and** Linux offline scheduling are mandatory smoke-tested platforms; CPU backend always works without GPU. GPU/native backends are optional and discoverable, with device/driver/precision reported. A Windows-only or Linux-only CLI cannot be considered complete. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
@@ -49,6 +51,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Acceptance evidence:** Two seeds run on configured CPU workers; no oversubscription without explicit option. An alternate mock numerical backend exports identical physical-boundary units/manifest with declared device, precision and resource limits. Real GPU execution may be added as a separately approved provider. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
 
 ### AG-M6D-03b
+
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-09 B:** the CLI exposes versioned local job status/checkpoint/pause/cancel for a **CLI-launched loopback-only graphical web dashboard**, not standalone desktop wrapper or remote queue. Existing Windows/Linux checkpoint compatibility continues. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
 **Approved Round 3 acceptance:** Expose checkpoint/stop/resume/status semantics sufficient for an offline GUI to reconnect after a monitor restart; no simulated-time corruption or new source of solver state. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
@@ -73,6 +77,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Acceptance evidence:** Baseline unchanged seeds compare; exact intended/realized diff retained across reruns. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
 
 ### AG-M6D-05
+
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-11 C:** export validated ZIP first, preserve optional scientific-export adapter interfaces but **do not implement or choose Parquet vs HDF5 merely because they are named**; propose from actual datasets and owner-reviewed compatibility/format evidence. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
 **Approved Round 3 acceptance:** G6 reviewer must include `AG-M6D-07` **local graphical monitoring** of Windows/Linux CLI or identify missing platform evidence and mark relevant gate blocked, not falsely say GUI delivered. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
@@ -109,6 +115,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Acceptance evidence:** Runs with invalid CFL not labeled converged; coarse/fine errors and metrics exported. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
 
 ### AG-M6D-07
+
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-09 B:** implement a **local web dashboard launched by CLI and bound only to loopback (`127.0.0.1`/`::1`)**. Apply origin validation, CSRF protection, local process/command permission boundaries, no remote binding and no server on Pages. GUI framework remains a technical choice requiring owner approval if major. Accessible only on same machine; no separate desktop app package required. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
 **Roadmap source:** Provide a Windows/Linux local graphical high-fidelity job monitor in addition to the headless CLI, without requiring remote/cloud services.
 
