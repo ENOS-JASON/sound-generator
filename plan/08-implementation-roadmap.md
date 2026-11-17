@@ -1,6 +1,8 @@
 # 08 — Dependency-ordered implementation roadmap
 
-**Status:** proposed, not started. Implement vertical end-to-end slices; avoid spending weeks on high-fidelity training before a measurable simple engine exists. Each checklist item is separately reviewable and should ship with tests.
+**Status:** proposed, not started. Implement vertical end-to-end slices; avoid spending weeks on high-fidelity training before a measurable simple engine exists.
+
+**Agent execution rule:** each checkbox below links to the **one or more distinct agent cards** required to complete it. Hand one card to one agent, with [handoff instructions](agents/README.md), [normative contracts and unresolved ADRs](30-agent-handoff-contracts-and-decisions.md) and the card's specific references. A checkbox split into children is done **only when all child cards pass**. See [task index](agents/task-index.md), [audit](29-plan-audit-and-gap-register.md) and [integration gates](31-integration-gates-and-support-matrix.md). Do not assign a whole milestone as a single task.
 
 ## Non-negotiable build-order gate
 
