@@ -15,6 +15,12 @@ User / Scenario Driver --> timestamped commands --> Engine Control + Determinist
 Offline high-fidelity reference solver --> scenario dataset --> optimizer --> validated trained profile
 ```
 
+## Authoritative shared event bus
+
+**Mandatory from M0/M1:** the system has one logically shared, typed event protocol and a single authoritative producer of domain events per simulation run. A deterministic command scheduler applies validated UI/scenario actions at simulation-tick boundaries; the engine/ECU/drivetrain emits an ordered causal event stream. Audio, UI, 3D, scenario gates and training consume those events or read-only state snapshots; they do not fabricate or mutate engine state. Use local synchronous dispatch inside the solver and bounded `MessagePort` bridges between main thread, Worker and AudioWorklet. Cross-thread communication must be asynchronous and cannot be a shared singleton object. High-frequency audio excitation stays local to the worklet and is derived from phase/events, avoiding round trips through the main thread.
+
+Enforce typed command/event envelopes, IDs, simulation ticks/sample frames, causation/correlation IDs, sequence gap detection, bounded queues, critical-event preservation and telemetry coalescing. The engine event log drives replay and scenario gates. See **[11 — Shared Event Bus and Messaging](11-event-bus-and-messaging.md)** for authoritative contract, topology and acceptance tests.
+
 ## Ownership and timing
 - **Audio clock is canonical for audible events**; derive piston firing and exhaust pulses from cumulative crank angle, not requestAnimationFrame RPM snapshots. Establish timestamp synchronization of control commands to audio sample frames.
 - Real-time engine dynamics advance at a fixed integrator timestep with bounded catch-up; audio synthesis uses phase-accurate interpolation between state snapshots. Decide whether the fast solver runs entirely inside AudioWorklet or uses a lock-free SharedArrayBuffer ring buffer (requires cross-origin isolation); default to Worklet-owned minimal solver to avoid isolation requirements on GitHub Pages.
@@ -28,6 +34,7 @@ Offline high-fidelity reference solver --> scenario dataset --> optimizer --> va
 src/
   app/                 # shell, state management and UI
   core/                # units, deterministic math, integrators, seeded PRNG
+  events/              # typed command/event maps, deterministic bus, recorder, transport adapters
   engine/              # starter, cylinders, crank, ECU, combustion, maps
   drivetrain/          # clutch, gears, wheels, vehicle forces
   dsp/                 # procedural source, filters, resonators, mixing
