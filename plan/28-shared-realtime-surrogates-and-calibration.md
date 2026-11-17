@@ -1,5 +1,12 @@
 # 28 — Fast generic simulator first; shared surrogate math calibrated from high-fidelity runs
 
+## O3 reference measurement research and CPU/CUDA parity
+
+Agents must **research candidate measurement datasets with legally redistributable licensing terms**, provide source, attribution/usage restrictions and owner approval evidence **before bundling**; no reference recording audio may play (even in diagnostics) or replace procedural sound. Only proven data contribute measured confidence status. Reference and trained-profile component IDs/units must remain consistent between Windows/Linux **multicore CPU** and NVIDIA CUDA backends. **GTX1080 Pascal `sm_61`/CUDA12.x** must have a compatible GPU kernel path with honest CPU fallback and provenance; modern CUDA13-only backend may coexist but cannot make the owner's GPU unsupported. Source model precision and convergence must not be sacrificed to make GPU acceleration appear functional.
+
+Research interchange prioritizes **ZIP first**; choose optional Parquet/HDF5 only after validated study sizes/query/streaming requirements and owner review. [O3 approved decisions](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md).
+
+
 ## Round 3 licensed reference-measurement catalog
 
 The calibration pipeline must accept **user-imported owned/licensed** physical/audio measurements **and bundled measurement datasets only when redistribution/attribution rights have been independently proven** for distribution through the repo/site. Record provenance, model and test conditions, time units, uncertainty/confidence, reference IDs and measured vs simulation status. If no verified bundle exists, ship no real recorded audio assets and accurately report that reference coverage is unavailable. **Real-world recordings are strictly analysis/calibration/held-out validation data and never generated or diagnostic playback sources**.
