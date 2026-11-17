@@ -1,5 +1,21 @@
 # 07 — Test strategy and acceptance criteria
 
+## O3-approved additional acceptance and hardware test matrix
+
+- **Physics owner benchmark:** identical I4 fuel/starter/manual-road load physics under Worklet-owned and Worker-owned runtime **on primary 10th-gen Intel i9 + GTX1080 desktop**; record CPU, audio deadline, phase/events, control latency, GC and model step. Results are owner-reviewed **before solver choice**. Unavailable hardware => mark verification `blocked`, not passed.
+- **Legacy CUDA and CPU:** compile and run **GTX1080 Pascal `sm_61` compatible CUDA12.x kernel(s)** on Windows/Linux where hardware is accessible; compare physical port/energy results with multicore CPU reference and test GPU missing/incompatible driver/CUDA13-only toolchain/low VRAM cases. Must provide real CPU fallback. The Pascal hardware test cannot be replaced with a mocked "success".
+- **3D/2D reference benchmark:** `AG-M8-02` proposes a **separate representative mid-range desktop**, waits for owner approval of CPU/GPU/RAM/OS/scene/resolution, then measures **30 FPS 3D / 60 FPS 2D** with frame-time distribution. Run **compatibility** separately on owner's i9/GTX1080; performance target on mid-range reference need not equal on-device performance.
+- **Browser support:** test the **latest two stable major versions where available** of desktop Chrome/Chromium, Firefox, Safari, record versions/dates and explicitly mark unavailable macOS/Safari configurations, rather than claiming success.
+- **IndexedDB:** configs, mix, calibration trims, widgets, scenarios, **bounded recent diagnostic data** and **configurable bounded historical snapshots**. Exercise invalid/old schema, interrupted save, quota exceeded, eviction, last-good recovery, restoring EFI over factory carb, ZIP snapshot independent of browser storage.
+- **Audio:** advanced toggle with **no authentication** exposes bounded per-source **gain trims only**, calibrated conditions/version/undo; no user-editable EQ/source DSP. Listening cabin/engine-bay/roadside/exhaust stays unchanged when 3D/2D camera moves; physics/ECU/timing unaffected.
+- **Licensed reference inputs:** research candidates and submit license proof for owner approval **before public bundling**; unproven data remain excluded. User-provided data may be analyzed but never played as a car recording.
+- **Offline GUI:** CLI launches dashboard on `127.0.0.1`/`::1` only; remote bind/forged Origin/CSRF must fail; authenticated-in-process commands and restart/checkpoint workflow tested. No server at GitHub Pages.
+- **Integration governance:** AI agent **may merge only routine PRs** with current head SHA, verified least-privilege bot, required CI and explicit branch/rule protections. Shared public TypeScript contracts, cross-module APIs/ownership and major architecture/security/licenses escalate to owner; test blocked/self-review and false-green CI cases. No actual merge claim without host-confirmed commit.
+- **Research formats:** browser ZIP tested first. Parquet or HDF5 should not be chosen without a measured study/query use case and appropriate owner review.
+
+Source: [O3 approvals](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md); [open verification details](decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
+
 ## Round 3 additional acceptance tests
 
 - **First launch vs autosave:** empty IndexedDB loads the **carb/mechanical I4**; select editable EFI, change bore/mix, reload, and confirm **EFI remains selected**. Corrupt/older/quota-denied IndexedDB produces safe recovery and ZIP export opportunity, not silent reset/data loss.
