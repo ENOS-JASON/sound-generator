@@ -1,5 +1,12 @@
 # 25 — Mandatory core diagnostics, record/replay, charts and comparison
 
+## Round 3 workspace autosave and provenance controls
+
+A **versioned IndexedDB workspace autosave** protects user-selected vehicle, controller mode, validated editable drafts, debug widgets, scenario settings, user mixer, expert calibration profile IDs and listening perspective, using a bounded recovery/quota policy. It must **not** be confused with a complete high-fidelity research dataset; explicit ZIP recording bundles remain the portable interchange, and **optional ZIP workspace snapshots** protect current editable state. Preserve a last-good state across corrupt/failed migrations and avoid locking the app when storage is disabled.
+
+Captured/summarized telemetry records **source calibration revision**, `cabin|engine-bay|roadside|exhaust`, renderer FPS, simulated time and source audio mode independently. Real-world imported or legally bundled recordings are **feature-analysis data only, never reference playback**, separate from synthesized-output audio captures. No assertion of measured reference performance or catalog license is valid without evidence. See [Round 3](decisions/USER-APPROVED-ROUND-03.md), `AG-M0-18` and `AG-M3-11`.
+
+
 ## Round 2 — Portable capture, recorded measurement policy and support targets
 
 All browser data exports/imports must be a **ZIP** archive with JSON manifest plus versioned typed chunked commands/events/telemetry, hashes/checksums and optional **generated** output/audio stems. The implementation must enforce archive size/decompression/version/schema limits, mark incomplete or missing channels and retain clock, selected controller, calibration/provenance, slow-motion mode and event identity. No single-gigantic-memory-buffer assumption. Offline research may optionally export **Parquet/HDF5**, but browser use never depends on such scientific codecs. `AG-M0-13` defines exact ZIP layout and test fixtures; `AG-M6D-05` preserves matching metadata.
