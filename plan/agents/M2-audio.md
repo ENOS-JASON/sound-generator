@@ -1,6 +1,6 @@
 # M2 — independently assignable agent tasks
 
-Use AudioWorklet with one sound clock and read-only physical events. First sound sources can be implemented against M1 golden traces; they are not allowed to own physics state.
+AudioWorklet owns the audio sample-output clock. **Physics ownership remains undecided** until equivalent Worklet/Worker benchmarks and explicit owner approval. Read the same typed physics interface regardless of its eventual runtime placement. First sound sources can be implemented against M1 golden traces; they are not allowed to own physics state.
 
 **Common contract:** [30 — handoff](../30-agent-handoff-contracts-and-decisions.md), [31 — gates](../31-integration-gates-and-support-matrix.md); use accepted versioned mocks when real predecessor is absent and mark live integration pending.
 
@@ -68,10 +68,10 @@ Use AudioWorklet with one sound clock and read-only physical events. First sound
 
 **Original roadmap task:** Add sound-physics synchronization tests, worklet callback profiler and output capture with source-level FFT/waveform/routing diagnostics, A/B comparisons and correct timbre/event timing at slowed playback scale.
 
-**Bounded deliverable:** AudioWorklet phase, CPU/deadline and capture/export tests incl. slow-time and 44.1/48 kHz.
+**Bounded deliverable:** AudioWorklet phase, CPU/deadline, FFT/capture and mode-switch tests for **physical pitch-lowered and pitch-preserving slow-motion audio** at 44.1/48 kHz.
 
-**Required upstream evidence:** AG-M2-01, AG-M2-02b, AG-M2-03b. Missing prerequisites block live integration, not isolated fixture tests.
+**Required upstream evidence:** AG-M2-01, AG-M2-02b, AG-M2-03b, AG-M2-05. Missing prerequisites block live integration, not isolated fixture tests.
 
 **Owned modules/files:** `tests/audio/, tests/fixtures/golden/audio`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [03](../03-audio-synthesis.md), [07](../07-testing-and-acceptance.md), [24](../24-simulation-clock-and-time-scaling.md), [25](../25-core-diagnostics-recording-and-comparison.md).
-**Done when:** No NaNs/underruns in defined environment; A/B source FFT capture/import and 0.1x events align with physics. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Done when:** No NaNs/underruns in defined environment; A/B source FFT capture/import and 0.1x events align with physics in **both modes**, with measured pitch/latency/CPU/artifact limits and no silent fallback. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
