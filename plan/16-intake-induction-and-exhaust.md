@@ -47,6 +47,12 @@ Distinguish:
 
 Model an exhaust-state reservoir for unburned species, oxygen, pressure/temperature, acoustic propagation and catalyst/muffler attenuation. Use deterministic seeded event sampling with physical prerequisites; an event has source cylinder, exhaust location, time, energy and event id. Very different exhaust layouts and temperatures should change the results. Components can experience modeled thermal stress; presets must not normalize potentially destructive real-world tunes as harmless engineering instructions.
 
+## Offline high-resolution intake/exhaust simulation
+
+Each selected intake/exhaust component may advertise a **supported reference fidelity profile**: lumped 0D pressure/temperature reservoirs at Quick level, multiple connected volumes at Balanced, and validated **1D axial gas cells plus independently discretized metal wall thermal sections** at Detailed/Research. Pipe/runner geometry, valve lift/flow coefficients, turbomachinery power, gas composition/pressure/temperature and wall materials are stable physical values; changing zone/cell counts changes only numerical resolution. A finer solver must use stable time steps, consistent junction mass/energy transfer, wall heat exchange and correct acoustic propagation/reflections. Its combustion/afterfire location can be resolved to cells for reference audio impulse extraction; don't synthesize arbitrary post-hoc pops. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
+
+The guided configurator includes intake/boost topology, bank runner mapping and exhaust graph as context-sensitive steps: avoid showing wastegate controls when no turbine exists or intercooler settings with no connected heat exchanger. All allowed fields/options are determined by actual component capabilities and validated geometry. See [22](22-guided-vehicle-configurator.md).
+
 ## Audio and visualization
 
 - **Intake sound** depends on plenum pressure, runner lengths/volumes, ITB pulse sources, mass flow, throttle opening, compressor speed, surge, BOV and airbox geometry.
