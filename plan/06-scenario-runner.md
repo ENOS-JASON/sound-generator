@@ -37,8 +37,16 @@ Actual schema must align with [09](09-data-contracts.md); event condition holdin
 ## Lifecycle and clock policy
 Initialize seed/preset and reset solver; apply on-enter actions exactly once; evaluate gate against subsequent monotonically indexed event/state snapshots; take fixed simulation steps; fail if timeout reached, guard fails, simulation becomes non-finite or step budget exceeded. Timeout always uses simulation seconds, never wall-clock alone. A separate wall-clock watchdog catches deadlocked workers. A scenario can run accelerated offline or in real time with equivalent state transitions within tolerance.
 
+## Technology and failure scenario coverage
+
+Build a registered, capability-aware scenario catalog per [19](19-scenario-coverage-and-presets.md): healthy and low-battery starts; high internal battery resistance, worn/stuck starter and solenoid; mechanical-carb/distributor (no ECU) vs editable ECU; mild/aggressive pop-and-bang tune with physical prerequisite and negative-control checks; naturally aspirated vs ITB/parallel/compound turbo/supercharger configurations; 1–12 cylinder inline/V/flat; clutch/gear torque, automatic/DCT/CVT behavior, AWD/part-time 4WD 2H/4H/4L transfer and differential locks; hill, brakes, traction loss and engine stall; crank and wheel torque/hp/energy accounting. A newly registered component must declare relevant scenarios; supported combinations failing required tests block shipping. Not-yet-implemented families remain explicit unimplemented items rather than false passes.
+
 ## Additional required scenarios
 Normal warm start, battery low, crank with fuel disabled, repeated short crank attempts, stall under excessive load, restart after stall, hot-start, partial fire then die, key-off coasting, limiter sustained release/re-entry, limiter spark vs fuel cut, 2-step launch, aggressive throttle transitions, decel/overrun afterfire, clutch-in free rev, loaded gear shift and downshift, traction and burnout, browser pause/resume. Assertions verify **absence** of impossible events as well as presence of expected ones.
+
+## Physical invariants during every scenario
+
+At each fixed simulation tick or bounded diagnostic sampling interval, assert finite unit-consistent torque/power, connected port conservation residuals and physically bounded temperature/mass flows, correct crank/gear ratio when locked, correct wheel traction and no unauthorized power from disconnected components. Capture per-source audio event correlation, mixer output and view switching side effects. Engine transitions (crank, run, stall, cutoff) and afterfire gates are confirmed by authoritative events and state, never presumed from passage of time alone.
 
 ## Reports
 Per-step status, entered/exited sim times, observed gate and event ids, timeout/branch reason, assertions, RPM/torque/pulse trace, model hash, seed and comparison metrics; JSON plus human-readable report. Scenario authoring UI and headless CLI use the same schema and engine code.
