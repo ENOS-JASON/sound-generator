@@ -16,7 +16,7 @@ See [agent contracts and working proposals](../30-agent-handoff-contracts-and-de
 
 - **Approved:** major architecture decisions require project-owner approval; Svelte + Vite; first complete I4 gasoline starter/manual/load vertical slice; eventual actual 3D CFD, chemistry and material simulation support; native CPU/GPU/other offline numerical backends allowed; both slow-motion audio modes with a switch.
 - **Not yet decided:** AudioWorklet vs Worker ownership must be **benchmarked first and then returned to the owner for selection**; neither is the default winner.
-- **Round 2 resolves:** hash routing on GitHub Pages, physical slow-motion audio default, selectable carburetor/no-ECU versus EFI/ECU in first I4, offline Windows/Linux, cross-browser desktop targets, ZIP export family, measured validation when available, and routine PR review with CI + integrator. UI store/Svelte version, audio DSP thresholds, exact ZIP implementation and integrator identity remain open.
+- **Round 2 resolved:** hash routing, physical slow-motion audio default, two I4 controller modes, Windows/Linux, desktop browser coverage, ZIP export, measured validation where available and CI+integrator reviews. **Round 3 additionally approved:** factory carb initial selection, two editable examples, 30/60 reference FPS targets, expert trims, four listening perspectives, license-verified bundled measurements, local compute GUI, IndexedDB autosave and **dedicated AI integrator**. Its specific hosting/identity/GitHub privileges remain **NON VALIDATED**, as do physical/preset numeric parameters and tooling.
 
 ## Pending decisions and suggested owners
 
@@ -31,7 +31,11 @@ See [agent contracts and working proposals](../30-agent-handoff-contracts-and-de
 | ADR-007 | **Offline Windows + Linux**, with optional native CPU/GPU/WASM/other backends (UD-R1-06, UD-R2-07); exact numerical stack open | `AG-M0-16` |
 | ADR-008 | Supported/approximate/planned/unsupported capability state | `AG-M0-04` |
 | ADR-009 | **Numerical and available real-measurement validation, explicit confidence status** (UD-R2-05); model-specific tolerances open | **`AG-M0-03` accountable** for schema, provider owner consulted for its thresholds |
-| ADR-010 | **Real recordings for calibration/validation only; imported and bundled catalog** (UD-R2-04, UD-R3-06). Bundled recordings permitted **only after redistribution/license evidence**, never playback. | Release/asset owner before asset import |
+| ADR-010 | **Real recordings for calibration/validation only; imported and bundled catalog** (UD-R2-04, UD-R3-06). Bundled recordings permitted **only after redistribution/license evidence**, never playback. | `AG-M7-12` + `AG-M8-03` | 
+| ADR-011 | **IndexedDB workspace autosave** and safe recovery + optional ZIP snapshots (UD-R3-08); exact DB schema/quota/migrations open. | `AG-M0-18` + `AG-M3-11` |
+| ADR-012 | **Expert versioned calibration trims + four procedural listening positions** (UD-R3-04/05); exact calibration values/acoustic DSP algorithm open. | `AG-M2-06/07` + `AG-M3-09/10` |
+| ADR-013 | **Dedicated AI integration agent with owner escalation** (UD-R3-09), no verified bot/GitHub review/merge privileges yet. | `AG-M0-19` |
+| ADR-014 | **Windows/Linux CLI and local graphical study monitor** (UD-R3-07), toolkit/IPC/packaging open. | `AG-M6D-07` |
 
 **Owner approval vs ADR acceptance:** the user approved Round 1–3 decisions are binding today. A formal ADR is only marked `Accepted` after its remaining technical details, fixtures/tests and owner approval where major. M0 must not assume a Worklet-owned solver, Vue, or an unapproved storage/compute stack. Svelte + Vite with hash routing and pitch-lowered slowdown default are selected; Svelte version/store, numerical thresholds and physics solver placement remain open.
 
