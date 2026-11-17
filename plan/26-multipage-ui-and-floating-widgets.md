@@ -1,5 +1,13 @@
 # 26 — Multi-page UI and movable diagnostics widgets
 
+## Round 2 — Binding UI behaviors
+
+- The initial I4 Builder offers **two mutually exclusive, runnable control paths**: carburetor + mechanical distributor and *no ECU*, or EFI + ECU. Selecting a mode updates steps/fields/validation and sources, without exposing the absent controller's settings. Invalid imported presets are rejected by the same validator.
+- New-session slow motion defaults to **physical pitch-lowered audio**; a clearly visible switch changes to pitch-preserved audio without changing simulation events, timing or RPM/torque. Do not misrepresent the other mode as unavailable when its DSP has passed tests.
+- Desktop Chrome/Chromium, Firefox and Safari are the initial browser targets. When WebGL is unavailable or slow, offer **Canvas 2D/telemetry** rather than crashing. Browser audio still requires user gesture and must be error-reported.
+- Navigation preserves the single runtime, audio, trace recording and draggable widgets; `/#/drive` is a route fragment, not a second absolute server path. See [approved Round 2](decisions/USER-APPROVED-ROUND-02.md).
+
+
 **Required from M0.** This is a multi-page application, not one infinite page of controls. Browser navigation must work from the GitHub Pages subdirectory; use a router strategy that supports static hosting (e.g. hash routing or verified Pages fallback) and preserve the current simulation session across navigation.
 
 ## Page structure (proposed)
@@ -30,7 +38,7 @@ Page names/routing are provisional; responsibilities and distinct navigation con
 
 ## Graph and UI architecture
 
-- **Svelte + Vite is owner-approved** ([Round 1](decisions/USER-APPROVED-ROUND-01.md)); strict TypeScript throughout. `AG-M0-01` must propose the Svelte major version, router/state conventions and GitHub Pages navigation strategy for explicit approval where architectural. **Vue is not an option unless the owner changes the decision.**
+- **Svelte + Vite with hash-based navigation is owner-approved** ([Round 1](decisions/USER-APPROVED-ROUND-01.md), [Round 2](decisions/USER-APPROVED-ROUND-02.md)); strict TypeScript throughout. Published URLs are under `/sound-generator/#/...`; refresh and direct links work without server rewrites. `AG-M0-01` still owns the Svelte major version, specific hash-router library and store conventions; major new architectural selections require owner approval. **Vue and clean-history routes are not authorized alternatives.**
 - Keep a typed app-shell interface `PageRegistry`, `DebugWidgetRegistry`, `UiProjectionStore` and `GlobalRuntimeControls`; UI watches immutable throttled telemetry projections, not mutable solver buffers.
 - Shared time-series graph widgets allow multiple channels, units, legend, zoom/scrub, live vs recorded vs reference/fast overlay and crosshair event anchors. Audio graphs include waveform, frequency spectrum and optional spectrogram.
 - Diagram 3D/2D engine can be full-page or embedded panels; switching does not change physical state or audio timing.
