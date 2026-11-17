@@ -4,15 +4,28 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 
 ### AG-M5-01
 
+- [ ] **AG-M5-01 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+
 **Original step:** Parse/validate schema with deterministic seeded initial state.
 
 **Bounded deliverable:** Versioned scenario parser and seed/initial-condition validation.
 **Inputs/dependencies:** G0-B and M1 headless fixture. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `src/scenarios/schema`; other public schemas require accepted ADR.
 **Read:** [06](../06-scenario-runner.md), [09](../09-data-contracts.md), [11](../11-event-bus-and-messaging.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Schema import roundtrip; invalid version/field/timeouts rejected. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-01** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Schema import roundtrip
+- [ ] invalid version/field/timeouts rejected.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-02
+
+- [ ] **AG-M5-02 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Implement elapsed/time/event/condition/all/any gates, sustained conditions and finite timeouts using canonical event sequence watermarks and authoritative solver state.
 
@@ -20,9 +33,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-01. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `src/scenarios/gates`; other public schemas require accepted ADR.
 **Read:** [06](../06-scenario-runner.md), [11](../11-event-bus-and-messaging.md), [24](../24-simulation-clock-and-time-scaling.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Old event cannot satisfy new step; a paused sim cannot expire simulation timeout. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-02** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Old event cannot satisfy new step
+- [ ] a paused sim cannot expire simulation timeout.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-03
+
+- [ ] **AG-M5-03 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Implement branch/retry policies, negative assertions and event-history semantics.
 
@@ -30,9 +54,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-02. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `src/scenarios/control-flow`; other public schemas require accepted ADR.
 **Read:** [06](../06-scenario-runner.md), [19](../19-scenario-coverage-and-presets.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Intentional no-event produces explicit timeout; infinite retry never hangs. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-03** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Intentional no-event produces explicit timeout
+- [ ] infinite retry never hangs.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-04
+
+- [ ] **AG-M5-04 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Build experiment/study definitions: baseline vehicle + complete component and parameter manifests, run groups for a single changed part, a named set of parts, parameter sweep, repeated validation runs, matched seeds and event-gated scenario sequences.
 
@@ -40,9 +75,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M0-16 and AG-M5-01. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `src/experiments/study-manifest`; other public schemas require accepted ADR.
 **Read:** [09](../09-data-contracts.md), [27](../27-high-fidelity-experiment-orchestration.md), [28](../28-shared-realtime-surrogates-and-calibration.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Exact component diff and dependent recalculation recorded; undeclared change rejected. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-04** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Exact component diff and dependent recalculation recorded
+- [ ] undeclared change rejected.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-05
+
+- [ ] **AG-M5-05 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Add headless A/B fast-model runner and comparisons of component-by-component torque/energy/airflow, audio stem spectra/transients and external load; preserve identical conditions and record realized component differences.
 
@@ -50,9 +96,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-04, G1 fast model fixture. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `src/experiments/fast-compare`; other public schemas require accepted ADR.
 **Read:** [25](../25-core-diagnostics-recording-and-comparison.md), [27](../27-high-fidelity-experiment-orchestration.md), [28](../28-shared-realtime-surrogates-and-calibration.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Same baseline repeat within tolerance; changing runner shows physical/sonic diff or explicitly unresolved signal. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-05** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Same baseline repeat within tolerance
+- [ ] changing runner shows physical/sonic diff or explicitly unresolved signal.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-06a
+
+- [ ] **AG-M5-06a COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Build headless scenario matrix, traces, reporter and UI scenario editor/playback.
 
@@ -60,9 +117,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-02 and AG-M5-03. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `src/scenarios/runner-and-reporter`; other public schemas require accepted ADR.
 **Read:** [06](../06-scenario-runner.md), [19](../19-scenario-coverage-and-presets.md), [25](../25-core-diagnostics-recording-and-comparison.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Pass/fail/timeout/unsupported have distinct codes; report includes causation and sim time. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-06a** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Pass/fail/timeout/unsupported have distinct codes
+- [ ] report includes causation and sim time.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-06b
+
+- [ ] **AG-M5-06b COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Build headless scenario matrix, traces, reporter and UI scenario editor/playback.
 
@@ -70,9 +138,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-06a and G0 UI shell. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `src/ui-pages/scenarios`; other public schemas require accepted ADR.
 **Read:** [06](../06-scenario-runner.md), [26](../26-multipage-ui-and-floating-widgets.md), [25](../25-core-diagnostics-recording-and-comparison.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Open, edit, run and replay; route navigation doesn't reset the engine or lose gate state. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-06b** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Open, edit, run and replay
+- [ ] route navigation doesn't reset the engine or lose gate state.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-07a
+
+- [ ] **AG-M5-07a COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** Define independent success/failure chains for **both approved first-I4 variants**: carburetor/mechanical distributor/**no ECU** and EFI/**ECU**, with low battery, worn starter, ignition, idle, limiter capability and invalid mode-specific controller requests. No false event pass for absent ECU. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -82,9 +161,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-06a, released M1/M4A providers. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `tests/scenarios/starts-and-controls`; other public schemas require accepted ADR.
 **Read:** [18](../18-electrical-control-generations-and-tunes.md), [19](../19-scenario-coverage-and-presets.md), [06](../06-scenario-runner.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Positive and negative expected events, no phantom afterfire; failures include exact reason. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-07a** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Positive and negative expected events, no phantom afterfire
+- [ ] failures include exact reason.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-07b
+
+- [ ] **AG-M5-07b COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](../19-scenario-coverage-and-presets.md)).
 
@@ -92,9 +182,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-06a and released M4B providers. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `tests/scenarios/induction`; other public schemas require accepted ADR.
 **Read:** [16](../16-intake-induction-and-exhaust.md), [19](../19-scenario-coverage-and-presets.md), [06](../06-scenario-runner.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Airflow pressure and torque respond to actual induction and sound source; missing provider not silently passed. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-07b** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Airflow pressure and torque respond to actual induction and sound source
+- [ ] missing provider not silently passed.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-07c
+
+- [ ] **AG-M5-07c COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](../19-scenario-coverage-and-presets.md)).
 
@@ -102,9 +203,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-06a and released M4C providers. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `tests/scenarios/drivetrain`; other public schemas require accepted ADR.
 **Read:** [17](../17-transmissions-drivetrains-and-wheels.md), [19](../19-scenario-coverage-and-presets.md), [20](../20-torque-power-load-and-energy.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Power conservation and proper driven-wheel split; invalid transfer case command rejected. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-07c** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Power conservation and proper driven-wheel split
+- [ ] invalid transfer case command rejected.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-07d
+
+- [ ] **AG-M5-07d COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](../19-scenario-coverage-and-presets.md)).
 
@@ -112,9 +224,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-06a and released M4D providers. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `tests/scenarios/layouts`; other public schemas require accepted ADR.
 **Read:** [15](../15-engine-families-and-presets.md), [19](../19-scenario-coverage-and-presets.md), [13](../13-2d-engine-cutaway.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Pulse cadence and crank phase accurate with bank-mapped 2D projections; unsupported layout reported. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-07d** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Pulse cadence and crank phase accurate with bank-mapped 2D projections
+- [ ] unsupported layout reported.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-08
+
+- [ ] **AG-M5-08 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Add component graph conservation tests, pairwise configuration coverage, high-risk cross combinations and explicit unimplemented/unsupported reporting.
 
@@ -122,9 +245,20 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-06a, component manifest and load ledger. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `src/testing/covering-arrays`; other public schemas require accepted ADR.
 **Read:** [07](../07-testing-and-acceptance.md), [19](../19-scenario-coverage-and-presets.md), [20](../20-torque-power-load-and-energy.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** A forbidden component combo fails preflight; bad energy balance fails while planned matrix cases remain reported. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-08** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] A forbidden component combo fails preflight
+- [ ] bad energy balance fails while planned matrix cases remain reported.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-09
+
+- [ ] **AG-M5-09 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** Validate first-I4 controller selection and imports for mechanical vs EFI/ECU, rejecting mismatched injection and electronic-only fields. UI and archive import must share the validator, including the ZIP-based capture codec where tests use a run recording. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -134,9 +268,19 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M0-06, AG-M3-05c or accepted wizard fixtures. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `tests/configurator/import-parity`; other public schemas require accepted ADR.
 **Read:** [09](../09-data-contracts.md), [22](../22-guided-vehicle-configurator.md), [15](../15-engine-families-and-presets.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** Mechanical+ECU-only tune, turbo without turbine, 2WD+4L and bad bore/rod fail the same way. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-09** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Mechanical+ECU-only tune, turbo without turbine, 2WD+4L and bad bore/rod fail the same way.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-10
+
+- [ ] **AG-M5-10 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Define event-aligned advanced reference scenario traces and zone-level flow/temperature/pressure/thermal-loss test cases, with independent mesh/time-step convergence protocols.
 
@@ -144,9 +288,21 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M0-08 and AG-M5-06a. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `tests/fixtures/reference/scenarios`; other public schemas require accepted ADR.
 **Read:** [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [27](../27-high-fidelity-experiment-orchestration.md), [06](../06-scenario-runner.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** No valve flow when closed absent leakage; wrong energy sign fails fixture; unsupported tier flagged. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-10** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] No valve flow when closed absent leakage
+- [ ] wrong energy sign fails fixture
+- [ ] unsupported tier flagged.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M5-11
+
+- [ ] **AG-M5-11 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original step:** Run randomized boundary cases and automated stress tests.
 
@@ -154,4 +310,13 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 **Inputs/dependencies:** AG-M5-06a, G1 fast runtime. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
 **Owned files:** `tests/stress/scenarios`; other public schemas require accepted ADR.
 **Read:** [07](../07-testing-and-acceptance.md), [19](../19-scenario-coverage-and-presets.md), [24](../24-simulation-clock-and-time-scaling.md), [handoff contract](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance evidence:** No runaway memory/NaN/event duplication in declared domain; failing seed is reproducible. Commit runnable positive + negative case, report data hashes, and a completion handoff.
+**Acceptance checklist — AG-M5-11** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] No runaway memory/NaN/event duplication in declared domain
+- [ ] failing seed is reproducible.
+- [ ] Commit runnable positive + negative case, report data hashes, and a completion handoff.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
