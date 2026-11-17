@@ -21,8 +21,8 @@ Every component family, configuration and subsystem publishes:
 |---|---|---|---|
 | **G0-A — Decision freeze** | ADR-001–009 resolved at applicable boundary; one UI framework/router, one canonical schema, event IDs, physical-port units/signs, trace manifest | Parallel M0 service implementations, M1/M2 component work | `plan/decisions/` records, type/schema fixtures and CI |
 | **G0-B — Synthetic observability** | M0 mock clock/commands/events, synthetic worklet, waveform/FFT and physics chart, recording export/import/replay/compare, several routes and movable widget; all bounded | M1 engine and M2 audio development | reproducible mock `fixtures/golden/mock-run` plus Playwright/Vitest report and screenshot |
-| **G1 — Generic engine** | M1 crank/torque load, starter/ignition/idle/stall, minimal mechanical and ECU strategy, 720-degree phases, fast approximation baseline, seeded headless tests | M2 full sound; M3 engine views; M4 tech families | example preset/physics trace + energy/event assertions |
-| **G2 — Procedural audible engine** | phase-coherent starter/combustion/exhaust/intake, mixer calibration/headroom and unit worklet tests at 44.1/48k | M3 audio mixer UI, full driving demo | encoded WAV or recorded stem features and load/performance report |
+| **G1 — Generic engine** | **I4 gasoline** crank/torque load, starter/ignition/idle/stall, **basic manual clutch/gearbox and road/vehicle resistance with reflected engine load**, 720-degree phases, baseline equations and seeded headless tests | M2 full sound; M3 engine views; M4 tech families | example preset/physics trace + energy/event assertions |
+| **G2 — Procedural audible engine** | phase-coherent I4/starter/intake/exhaust tied to manual/road load, mixer headroom and **both pitch-lowered and pitch-preserved slow-motion audio modes**, with 44.1/48k worklet tests | M3 audio mixer UI, full driving demo | encoded WAV or recorded stem features and load/performance report |
 | **G3 — Usable guided lab** | 3D and 2D by cylinder bank, config wizard validation, Audio Studio, per-page widgets and live torque graphs | Demo, scenario editor and detailed component editors | browser E2E + screen captures and imported preset regression |
 | **G4 — Verified technology slices** | Each shipped M4 model (turbo, DCT, 4WD, etc.) passes port-load/energy, state and audio tests, has valid configs and `supportStatus` | Promotion of that specific provider to available presets/scenarios | named provider report + golden scenario trace; no global all-tech gate |
 | **G5 — Canonical scenarios and experiments** | Automated gates/timeouts, variants, baseline A/B, coverage and invalid-state reporting; uses G1 event/clock fixtures | M6 reference workloads and M7 fitting datasets | complete run report with exact intended/realized component diffs |
@@ -73,8 +73,8 @@ Fixtures may be stored as large downloadable CI artifacts instead of directly in
 - **Contract exactness:** zero invalid type/unit conversions, no unrecognized required event IDs, no unsupported config marked runnable, no unverified checksum accepted.
 - **Numerical stability:** non-finite values and negative physical absolute temperatures/pressures fail; mass/energy residual thresholds must be documented per model and fixture, including discretization/timestep.
 - **Event causality:** must preserve ordering and step-entry watermarks; no fake starter success, combustion during fuel cut without an explicitly modeled mechanism, or reconstructed events from 2D animation.
-- **Audio real-time:** no observed callback deadline misses in defined CI/manual stress runs; state sample rates/platform/hardware and measured duration rather than universal guarantees. Gain clipping tests use stated headroom and source calibration conditions.
-- **Time scaling:** physics trace/command/event equivalence by **simulation tick and input schedule** for 0.1x vs 1x; audio pitch/time differences are expected under physical slow-motion mode.
+- **Audio real-time:** both approved slow-motion modes must meet separate measurable quality/latency/deadline budgets (otherwise display unavailable/failed rather than silently substitute). No observed callback deadline misses in defined CI/manual stress runs; state sample rates/platform/hardware and measured duration rather than universal guarantees. Gain clipping tests use stated headroom and source calibration conditions.
+- **Time scaling:** physics traces/events equivalent by simulation tick/input schedule at 0.1x/1x **and both audio modes**. Physical slowdown changes pitch; the pitch-preserving mode is validated against explicit pitch/timbre/transient/CPU/latency criteria, with audio-mode differences permitted but engine-state differences forbidden.
 - **Training accuracy:** held-out objective and worst-case residual must meet **per-provider declared thresholds**. Until measured/calibrated, call it a simulation estimate. `Research` tier alone does not prove physical truth.
 - **Performance:** G0 tests on browser with mocked worklet; G8 includes 44.1/48kHz device testing, normal/slow-motion, low-end mode and graphics fallback.
 
@@ -100,12 +100,12 @@ The [task index](agents/task-index.md) assigns stable IDs to **every checkbox** 
 
 ## 7. Open decisions / escalation
 
-Current known decisions needing explicit M0 freeze:
-- Solver owner/thread placement vs full coupled physics performance.
-- Svelte vs Vue and router/store conventions.
+Current known decisions needing explicit M0 freeze (owner-approved Round 1 constraints are binding; see [owner decisions](decisions/USER-APPROVED-ROUND-01.md)):
+- Solver owner/thread placement **after equivalent Worklet vs Worker benchmark and explicit owner approval**.
+- **Svelte + Vite approved**; router/store/version conventions remain to freeze.
 - Canonical versioned VehicleDefinition/events/trace on-disk container.
 - Default capture/telemetry budgets and tests per target browser.
-- First supported engine/controller/driveline preset set, *separate* from type names shown in UI.
+- First **I4 gasoline/starter/manual/road-load** reference preset approved; exact ECU vs carburetor/controller, gearbox values and physical dimensions remain to choose.
 - Numerical model fidelity and acceptance tolerances/measurement reference of later solvers.
 
 When unresolved, the agent's task is to record a **blocking ADR or fixture dependency**, not implement a second incompatible solution.
