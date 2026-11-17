@@ -1,5 +1,12 @@
 # 22 — Step-by-step, capability-aware vehicle configurator
 
+## O3 approved browser persistence and preset validation
+
+The *initial physical numbers* of the two editable carb and EFI generic I4 presets are **proposed by agents with justification/tests and presented to the project owner for approval**, not silently selected. A valid user-saved EFI selection overrides the factory carb first-load default.
+
+IndexedDB autosave retains validated user-defined engine/transmission/controller geometry and settings, plus user mixer/expert gain trim, perspective, UI widget layout, scenario draft and **bounded recent diagnostic data**, with **bounded configurable historical snapshot count/age/bytes** and quota/error recovery. Manual ZIP snapshots stay available when browser storage is disabled. Expert source controls use an **Advanced toggle without authentication**, support calibrated gain revisions/undo only and never expose arbitrary EQ as part of this decision. Audio listener position stays **independent of visual camera**. See [approved O3](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md).
+
+
 ## Round 3 default and resumable workspace behavior
 
 On a **first empty valid IndexedDB workspace**, initialize the **mechanical carburetor/no-ECU I4** as factory selected. Offer two **separately complete editable** I4 vehicle examples: factory carb and EFI/ECU. Switching between them requires graph capability validation and safe engine reset, while valid bore/stroke and appropriate user-selected values are retained within the saved selected workspace. A valid stored EFI selection must **not** be overwritten by the default on reload.
