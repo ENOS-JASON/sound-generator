@@ -8,6 +8,9 @@
 - [ ] Define SI units, deterministic PRNG, versioned engine/event schema, import validation and demo preset.
 - [ ] Define strict TypeScript component/port graph contracts, factories/capability registry, typed power/energy sign conventions, bank/cylinder geometry for 1–12 cylinders and technology fidelity status (see [14–20](14-modular-typescript-platform.md)).
 - [ ] Define independent controller, intake/induction, engine-family, transmission/differential, electrical and audio/renderer model interfaces before concrete implementations.
+- [ ] Define a **step-by-step schema-driven wizard**: capability/field descriptors, step prerequisites, per-field conditional option/range/visibility providers, draft-state/undo policy and shared preset/graph validation; see [22](22-guided-vehicle-configurator.md).
+- [ ] Specify bore/stroke/rod/compression geometry input contracts and derived cylinder/total displacement with SI conversion, plus verified equation/constraint tests.
+- [ ] Define configurable **reference-fidelity profile contracts** (Quick/Balanced/Detailed/Research), component solver capabilities, gas/metal/wall zone axes, step/CFL/stability tolerances and resource preflight; see [21](21-adjustable-fidelity-multizone-reference-simulation.md).
 - [ ] Specify shared typed EventMap/CommandMap, event ownership, causation IDs, simulation tick/sample-frame clocks, subscriber API and bounded cross-thread transport contracts (see [11](11-event-bus-and-messaging.md)).
 - [ ] Implement capability detection, error overlay, user gesture AudioContext start and static fallback UI.
 **Exit:** demo loads at repository GitHub Pages subpath; tests run in CI; no runtime server required.
@@ -16,6 +19,7 @@
 - [ ] Implement fixed-step deterministic solver, authoritative local event collector/bus, command scheduler, immutable ordered event log, clock/reset and trace recording.
 - [ ] Test event ordering, exactly-once command application, subscription cleanup, re-entrancy prevention and deterministic replay.
 - [ ] Implement rotating inertia, drag/friction, per-cylinder crank/720° firing order and generic inline/V/flat bank geometry, compression load.
+- [ ] Implement editable bore and stroke, rod length and clearance/compression geometry; recompute displacement and connected cylinder-volume/air-charge data consistently whenever a validated geometry change is applied.
 - [ ] Add coupled crank, auxiliary and driveline rotational ports, free-rev/dyno/road-load adapters, SI torque/power measurements and energy-balance diagnostics.
 - [ ] Implement minimal mechanically controlled carburetor/distributor path **without ECU** plus separately selectable ECU reference controller; reject controls not supported by the active strategy.
 - [ ] Add ignition switch, battery SoC/voltage/internal resistance, starter motor/solenoid/engagement and torque-speed curve with defined interfaces for wear and heat.
@@ -34,9 +38,12 @@
 ## M3 — 3D and interactive lab
 - [ ] Build procedural low-poly car and cutaway engine scene in Three.js and lightweight Canvas2D **side-view row per bank** (every cylinder/piston/rod/valve, cycle, combustion and actual mass-flow indication).
 - [ ] Animate crank/pistons/valves/firing using actual engine angle and cylinder events.
-- [ ] Add start/stop, throttle, ignition, load and preset editor UI with SI conversions.
+- [ ] Implement **M3-A guided wizard**: template/start-blank, contextual step navigation, Basic/Advanced mode, validated fields, allowed values, unit-aware inputs, derived bore/stroke/displacement and live bank/mixer preview.
+- [ ] Implement **M3-B step providers** for engine/control/intake/exhaust/electrical/transmission/drivetrain/wheels; conditional fields/options from component registry, final graph preflight, invalid downstream change preview/undo and save/resume drafts.
+- [ ] Implement **M3-C training setup step**: supported Quick/Balanced/Detailed/Research tiers, per-component zone and timestep controls, preflight cost/capability and Worker/CLI job selection (UI editor may precede actual M6 solvers).
+- [ ] Add start/stop, throttle, ignition, load and preset editor UI with SI conversions; applying configuration to an active simulation requires a validated reset/safe boundary.
 - [ ] Add RPM/crank and wheel torque/hp/kW plus component loss meter, read-only event timeline, mixer channel/bus/master editor and 2D/3D/telemetry switch; no renderer may drive physics.
-**Exit:** live physically consistent tuning and visualization while sound plays.
+**Exit:** live physically consistent tuning and visualization while sound plays; wizard can create a valid preset with editable bore/stroke, shows only applicable fields and prevents unsupported or inconsistent configurations.
 
 ## M4 — Connected technology integration tracks (incremental slices)
 
@@ -73,24 +80,45 @@ M4 is **not** one indivisible milestone. Deliver and validate each model family 
 - [ ] Build headless scenario matrix, traces, reporter and UI scenario editor/playback.
 - [ ] Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](19-scenario-coverage-and-presets.md)).
 - [ ] Add component graph conservation tests, pairwise configuration coverage, high-risk cross combinations and explicit unimplemented/unsupported reporting.
+- [ ] Add wizard + JSON import parity tests (no ECU vs ECU, transmission type, turbo/NA, 4WD/2WD, V/flat cylinder-bank constraints), geometry/displacement property checks, and safe schema migration/undo tests.
+- [ ] Define event-aligned advanced reference scenario traces and zone-level flow/temperature/pressure/thermal-loss test cases, with independent mesh/time-step convergence protocols.
 - [ ] Run randomized boundary cases and automated stress tests.
 **Exit:** start, failure, stalls, rev limiter, shifts and afterfire all have passing and intentionally failing cases with diagnostic reports.
 
-## M6 — Advanced reference simulation
-- [ ] Define high-fidelity boundary conditions, state/torque/acoustic impulse outputs and units.
-- [ ] Implement finer-step combustion/flow/resonator reference components; validate conservation and known baselines for varying engine geometry, controller technology, induction and driveline energy flow.
-- [ ] Implement reproducible simulation sweep runner with dataset metadata and canonical event/command trace format.
-- [ ] Create reference data from licensed recordings (optional) and calibrated engine measurements.
-**Exit:** independently checked reference traces for full scenario envelope.
+## M6 — Adjustable-fidelity multi-zone reference simulation
+
+### M6-A — Reference solver foundations and coarse levels
+- [ ] Define a common numerical solver interface, reference state/port units, crank-angle/cycle boundary conditions, event alignment and deterministic run/trace manifests.
+- [ ] Implement **Quick 0D cylinder** and **Balanced burned/unburned two-zone** thermodynamic/heat-release models with wall/coolant heat-loss accounting, valve intake/exhaust mass flow and torque coupling.
+- [ ] Implement compatible lumped intake/exhaust gas-path models and segmented baseline metal temperatures; verify cross-port mass/enthalpy/energy consistency.
+
+### M6-B — Detailed cylinder combustion and wall zones
+- [ ] Implement **multi-zone cylinder gas** (burned/unburned/core/near-wall and optional refined regions) with configurable zone count, inter-zone mass/heat transfer, ignition/combustion progress and expansion/blowdown.
+- [ ] Implement cylinder **liner axial bands and radial conduction layers**, head/piston crown metal layers and local gas-wall heat flux; keep actual dimensions separate from mesh resolution.
+- [ ] Couple crank piston geometry (bore, stroke, rod, compression), valve/port lift, cylinder thermodynamics and pressure-driven torque; validate mesh refinement, pressure/temperature fields, mass/energy residuals and repeatable events.
+
+### M6-C — Intake, exhaust and advanced flow/thermal zones
+- [ ] Implement configurable intake/exhaust **1D axial gas cells** (pressure, temperature, flow, waves) at valves/runners/collectors/mufflers, including junctions and reflection/propagation behavior.
+- [ ] Add independent exhaust/intake **wall axial segments and radial thermal layers**, turbine/intercooler heat paths where supported, and physically conditioned afterfire heat/pressure propagation.
+- [ ] Enforce CFL/adaptive timestep, crank-angle/event boundaries, physical positivity and failure/diagnostic reporting across all reference modules.
+
+### M6-D — Training detail UI and reproducible execution
+- [ ] Wire Quick/Balanced/Detailed/Research profiles and per-component overrides into the guided wizard; disable unavailable solvers and invalid zone counts.
+- [ ] Implement preflight zone/cell count, memory/trace-size/cost estimate, browser Worker or offline CLI execution, progress/cancel/checkpoints and bounded output sampling.
+- [ ] Create per-zone diagnostic trace viewer, coarse/fine **mesh/time-step convergence reports**, reproducible dataset manifests and optional licensed measured-reference comparisons.
+
+**Exit:** independently validated coarse and detailed cylinder/intake/exhaust reference models, resource-aware configurable fidelity, converged scenario/zone traces and documented limitations; the AudioWorklet remains unaffected.
 
 ## M7 — Calibration / training
 - [ ] Define weighted physical/audio loss, per-scenario scores and constraints.
+- [ ] Extract reference pressure/heat-release/port-flow/resonance features from multiple fidelity levels and fit compact physically constrained fast-model corrections; never require spatial gas/metal meshes at runtime.
 - [ ] Implement bounded parameter search, spline/map fitting and regularization.
 - [ ] Add scenario/configuration-disjoint holdout sets across engine family, intake/boost, controller and transmission/AWD combinations, boundary sampling and model comparison.
+- [ ] Record source fidelity/mesh versions and convergence/uncertainty in every trained artifact; reject un-converged/unreliable reference configurations as training ground truth.
 - [ ] Export versioned coefficient profiles with validity bounds, provenance and hashes; activate via validated scheduled command and PROFILE_ACTIVATED event.
 - [ ] Load and atomically swap validated profiles; add stable baseline fallback.
 - [ ] Reject candidates with worse transition behavior, instability or audio CPU overruns.
-**Exit:** quantified holdout improvement and zero mandatory scenario regressions.
+**Exit:** quantified holdout improvement and zero mandatory scenario regressions; trained coefficients fit real-time budgets and are traceable to validated reference fidelity/mesh settings.
 
 ## M8 — Optimization, release and documentation
 - [ ] Browser/device matrix, 44.1/48kHz handling, audio suspend/device-change tests.
