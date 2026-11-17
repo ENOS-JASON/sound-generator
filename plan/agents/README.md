@@ -1,6 +1,6 @@
 # Agent execution — start here
 
-**For a developer agent receiving one task with no previous chat history:** this folder is the implementation handoff. Do not interpret the [roadmap](../08-implementation-roadmap.md) as enough detail by itself.
+**For a developer agent receiving one task with no previous chat history:** this folder is the implementation handoff. Read [approved Round 1](../decisions/USER-APPROVED-ROUND-01.md) and [approved Round 2](../decisions/USER-APPROVED-ROUND-02.md) before interpreting older proposed choices. [Round 3](../decisions/OPEN-QUESTIONS-ROUND-03.md) is **pending**, not approved. Do not interpret the [roadmap](../08-implementation-roadmap.md) as enough detail by itself.
 
 ## Do exactly this
 
@@ -9,12 +9,12 @@
 3. Check prerequisite **task artifacts and accepted ADRs**. If absent, mark `BLOCKED` or implement against the explicitly identified mock **without pretending full integration**.
 4. Implement only the bounded deliverables in the card's **owned code area**; use existing `src/contracts` definitions. Do not duplicate the clock, event bus, ledger, recorder, validator or approximation registry.
 5. Add the card's required **positive/negative test**, demo/trace fixture or screenshot, and documented limitations. Run relevant typecheck/unit/browser tests (or state why impossible).
-6. Submit one PR or reviewable change set per card, including the completion report format in [30 §6](../30-agent-handoff-contracts-and-decisions.md).
+6. Submit **one focused PR per card**, including the completion report format in [30 §6](../30-agent-handoff-contracts-and-decisions.md). Routine PRs require actual CI plus **technical-integrator** review; only the integrator merges. The project owner approves major architectural ADRs, not automatically every routine diff. **No CI-only auto-merge.**
 
 ## How the documents are organized
 
 - [AGENT_PROMPT.md](AGENT_PROMPT.md): copy/paste prompt for assigning a single work order to a new agent with no prior conversation.
-- [../decisions/README.md](../decisions/README.md): proposed architecture decisions; downstream agents wait for accepted records and schema fixtures.
+- [../decisions/README.md](../decisions/README.md): current accepted user choices, open subdecisions and ADR register. Svelte+Vite **hash routing**, browser **ZIP**, first I4 **carb/no-ECU and EFI/ECU** paths, offline Windows/Linux and desktop Chromium/Firefox/Safari are already approved; do not reopen them without project-owner authorization.
 - [task-index.md](task-index.md): every roadmap checkbox has a stable **AG ID**, an exact copied scope and a link to its independently assignable card. Some broad source bullets are split into **letter-suffixed cards**, each intended for a separate agent. A split is not complete until **all** child cards pass.
 - `M0-foundation.md` … `M9-plus.md`: phase-specific task briefs containing the **inputs, owned modules, exact deliverable, tests and blocking contract references**. Each card is designed to be handed alone with [30](../30-agent-handoff-contracts-and-decisions.md), without requiring awareness of other phase discussions.
 - [29 — audit](../29-plan-audit-and-gap-register.md): source contradictions and why assignments were split.
