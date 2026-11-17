@@ -1,5 +1,16 @@
 # 01 — Runtime architecture and deployment
 
+## O3-approved runtime and development-machine constraints
+
+**Read [binding O3 decisions](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md).** Benchmark equivalent Worklet-owned/Worker-owned I4 physics **first on the owner's primary 10th-gen Intel Core i9 + GeForce GTX1080 desktop**; present results before owner chooses solver ownership. This machine must have functional rendering/browser-audio and offline **multicore CPU plus NVIDIA Pascal `sm_61` / CUDA 12.x** compatibility paths. NVIDIA removed Pascal compilation from CUDA 13; do not require a CUDA13-only native library or tensor-core GPU, and make CPU fallback explicit. Exact CPU SKU/OS/driver/RAM and real device performance remain **UNVERIFIED**.
+
+The **published 30 FPS 3D / 60 FPS Canvas 2D** reference benchmark uses an **agent-proposed mid-range desktop whose specs require owner approval**, not automatically the owner's GTX1080 hardware. Browser support targets the **latest two stable major desktop versions where available** of Chromium/Chrome, Firefox and Safari; no CUDA dependency in a GitHub Pages browser.
+
+Browser IndexedDB autosaves bounded config/mixer/calibration/widgets/scenario and **bounded recent diagnostic data** with **configurable bounded historical snapshots**, separately from optional ZIP export. Expert calibration is **per-source gain trim only** with calibrated conditions/undo and an Advanced toggle **without authentication**. Audio cabin/engine-bay/roadside/exhaust listener choices are **independent of camera motion**.
+
+For offline high-fidelity studies, prioritize Windows/Linux CLI with CPU + CUDA provider(s), and a **CLI-launched loopback-only local web dashboard** secured against nonlocal access and unwanted browser-origin/CSRF requests. ZIP ships first; select optional Parquet/HDF5 only after real study requirements. The **dedicated AI integrator may conditionally merge routine PRs after verified rules/CI/permissions**, and must escalate major ADRs plus shared TypeScript APIs and component ownership changes to owner. No bot deployment, merge permission, GPU test or FPS result is thereby claimed.
+
+
 ## Round 3 architectural boundaries
 
 The browser app remains Svelte + Vite with hash routes. Add a **versioned IndexedDB workspace persistence service** accessed by the main/UI thread, never by the authoritative physics solver or AudioWorklet callback. On first launch with no valid stored choice, load carb/mechanical/no-ECU I4; after a user selects and saves EFI, recover **EFI** rather than force factory carb. ZIP is an optional export/import **workspace snapshot** and remains the mandatory portable *recording export container* under Round 2.
