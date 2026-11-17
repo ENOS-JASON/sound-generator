@@ -2,6 +2,10 @@
 
 **Status:** mandatory visualization mode, not a placeholder. Build it alongside 3D in **M3**, with the renderer contract defined in M0. Uses [04 — Visualization and UI](04-3d-and-ux.md), [02 — Engine physics](02-physics-model.md) and [11 — Event bus](11-event-bus-and-messaging.md).
 
+## Core clock and slow-motion requirement
+
+Both 2D Canvas and 3D views consume the **same authoritative simulation ticks, crank angle, valve states, airflow and combustion events** via read-only projections. Slow-motion control is provided by `SimulationClock` ([24](24-simulation-clock-and-time-scaling.md)), **not** a renderer-specific animation timer. At 0.05x, 0.1x, 0.25x or 0.5x, all cylinder-bank rows animate at the appropriately slowed presentation rate while retaining accurate physical phase and event causation; audio sound/event timing follows the same time map. Pause and crank-angle/next-event stepping must freeze/advance the exact same 2D/3D pose, not only the canvas. Changing view mode must preserve clock, engine, mixer, recording, event stream and diagnostics subscriptions.
+
 ## Switching and performance goals
 
 Allow the user to switch at any time between:
@@ -66,6 +70,10 @@ Bank/cylinder maps are supplied by the engine family registry and must support s
 ## Optional offline research-zone inspector
 
 The 2D real-time cutaway remains driven by compact, authoritative per-cylinder state; **do not attempt to render a high-resolution multi-zone CFD/thermal solver on the audio or UI frame thread**. An additional offline research inspector may display stored/streamed **cylinder burned/unburned/near-wall gas zones, liner axial/radial wall thermal grids, piston/head heat flux and valve mass flow**, plus intake/exhaust gas cells and metal wall bands from recorded reference traces. Label spatial zoning and solver fidelity honestly. Research overlay can be paused/downsampled independently and must not alter the live engine or its sound. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
+
+## On-page debug widgets and session comparison
+
+A small drag/hide widget can show cylinder phase/valve lift, intake/exhaust flow, pressure, electrical starter data, one audio waveform/FFT or source level over the 2D/3D scene. Full Diagnostics and Compare pages offer larger graphs, imported recordings and baseline-vs-trained/reference overlays. These widgets are read-only and register through [25](25-core-diagnostics-recording-and-comparison.md) and [26](26-multipage-ui-and-floating-widgets.md), with throttled updates and no impact on rendering/physics when closed.
 
 ## User interaction
 
