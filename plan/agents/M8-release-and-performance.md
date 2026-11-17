@@ -6,6 +6,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M8-01
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-12 B:** browser compatibility target is **latest two released stable major versions, where available**, of desktop Chrome/Chromium, Firefox and Safari; record concrete build IDs at test/release time. Safari requires compatible macOS testing, otherwise report unverified, not passed. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Approved Round 3 acceptance:** Desktop Chromium/Firefox/Safari tests distinguish **rendered FPS** from engine tick and AudioWorklet sample deadlines; IndexedDB denied/clear/reload behavior must be documented. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Browser acceptance must cover **desktop Chrome/Chromium, Firefox and Safari** (supported macOS), hash-route navigation, 2D fallback, 44.1/48 kHz and sound mode switches. Add **Windows and Linux offline CLI** smoke tests. Unsupported platform or unavailable test machine must be disclosed. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
@@ -19,6 +21,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Done when:** Document Chromium/Firefox/Safari where testable; degraded browser doesn't kill physics. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M8-02
+
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-05 B:** **propose representative mid-range reference desktop** (CPU/GPU/RAM/OS/browser/scene/resolution) for project-owner approval *before* declaring benchmark target; measure 30 FPS 3D / 60 FPS 2D there, independent from user's **i9 10th-gen/GTX1080** mandatory compatibility machine (AG-M8-05). See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
 **Approved Round 3 acceptance:** Owner-approved targets: **≥30 FPS 3D** and **≥60 FPS Canvas 2D** on an explicitly documented reference desktop hardware/OS/browser, viewport/DPR and scene. Publish measured frame-time percentile/FPS and source evidence. Until hardware and benchmarking exist these are **unverified targets**, not guarantees. Audio/physics still independent. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
@@ -46,6 +50,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M8-04
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-02 B / O3-15 B:** enforce tested **conditional AI routine-PR merging** after explicit authorized checks; owner escalation for major ADRs and shared TS API/contracts/module ownership changes. Live bot identity/merge permissions must be verified before any actual merge. Release gate includes i9 10th-gen GTX1080 compatibility evidence and latest-two-stable browser matrix; no CI-only merge. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Approved Round 3 acceptance:** Release only after IndexedDB autosave/ZIP recovery, calibration/listener UI, both presets, **local Windows/Linux research monitor** and reference-device measured 30/60 FPS acceptance; routine PR review is by a **dedicated AI integrator** with documented CI evidence and owner escalation. Actual autonomous GitHub merge rights must be separately verified/approved (no CI-only merge). See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Released Pages app must serve `/sound-generator/#/...` without rewrite, preserve runtime across pages and pass desktop Chromium/Firefox/Safari tests (with documented platform gaps). Offline CLI must be smoke-tested on Windows/Linux, browser ZIP security tested, and **technical integrator + CI** must review ordinary PRs while owner signs major ADRs. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
@@ -59,6 +65,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Done when:** Reload works under /sound-generator/, AudioWorklet loads and release traces available. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M8-05
+
+**Approved O3 implementation requirement (supersedes older provisional card language):** **Additional user hardware requirement:** i9 10th generation and **GTX1080 `sm_61`** are mandatory compatibility targets. CUDA12.x legacy path and CPU fallback must be tested; this device is **not automatically the agent-proposed mid-range 30/60 FPS reference**. Don't require NVIDIA RTX/Tensor Cores or CUDA13 for the necessary route. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
 **Roadmap source:** Run a dedicated support/compatibility matrix on the owner's 10th-generation Core i9 and GeForce GTX1080 desktop, distinct from the owner-approved future mid-range FPS benchmark configuration.
 
