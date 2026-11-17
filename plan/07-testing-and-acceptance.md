@@ -10,6 +10,13 @@ These tests must run on a **deterministic synthetic physics model and synthetic 
 - [ ] Bounded memory, backpressure and no heavy work in AudioWorklet callback; closed widgets don't keep expensive FFT/readback running.
 **M0 must block M1/M2 if any core observability gate fails.** See [24](24-simulation-clock-and-time-scaling.md), [25](25-core-diagnostics-recording-and-comparison.md), [26](26-multipage-ui-and-floating-widgets.md).
 
+## Owner-approved Round 1 integration acceptance
+
+- **Solver placement:** benchmark Worklet-owned vs Worker-owned equivalent solver with the same deterministic I4/start/manual/load input trace, measure audio deadline/jitter/transport/CPU/latency and browser/low-end behavior; final selection must be **owner approved** before enforcing one placement.
+- **First full physical slice:** I4 gasoline four-stroke with starter, basic manual clutch/gearbox and road-load back reaction; successful start/idle/neutral/clutch engagement, brake/hill load, stall and restart must all pass with SI torque/energy ledger. Isolated free rev cannot pass first complete engine gate.
+- **Dual audio time scaling:** physical lowered-pitch and pitch-preserved stretching modes selectable and recorded, with independent quality/latency/CPU budgets. The identical physical simulation events/states are preserved across mode changes.
+- **Reference extensibility:** future 3D CFD/kinetics/material fields and native CPU/GPU solver modules can be registered behind versioned SI projection/manifest interfaces, with explicit `planned` status until implemented and numerically validated; no claim that 0D gas zones are CFD.
+
 ## Test pyramid
 - Unit: units, integrator, firing order / 720-degree phase, maps, starter torque, ECU hysteresis, bounded DSP filters, seed reproducibility, schema migrations.
 - Property/invariant: finite samples, plausible RPM/torque bounds, no engine energy generation without an input, no phantom cylinder ignition, positive or bounded state variables, no zero-time cycling.
