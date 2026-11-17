@@ -1,5 +1,12 @@
 # 10 — Risks, assumptions and outstanding decisions
 
+## Round 3 risk clarification
+
+The owner approved: **carburetor/mechanical I4 factory selection** with **two complete editable carb/EFI examples**; **30 FPS 3D / 60 FPS 2D** targets on reference desktop hardware (not physics/audio clocks); **expert-versioned source calibration trims**; four independent **procedural listening perspectives**; **imported plus proven-licensed bundled measurement references** (real recordings never playback); **Windows/Linux CLI plus local graphical research monitor**; **IndexedDB browser autosave with optional ZIP workspace snapshots**; and **dedicated AI technical integrator with escalation**, not a human/hybrid reviewer.
+
+**UNRESOLVED / NON VALIDATED risks:** actual reference hardware and reproducible FPS results; exact physical/gearbox/audio values of initial examples; trim bounds/profile migrations; spatial acoustic transfer source measurements; public redistribution permission and availability for bundled datasets; GUI toolkit and safe local job IPC; browser storage quota/migration/corrupt state; AI GitHub integration identity/token/branch policy and merge rights. A bot or license is **not verified merely because the owner chose that feature**. See [approved Round 3](decisions/USER-APPROVED-ROUND-03.md) and [open validation register](decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+
 ## Round 2 — Newly resolved decisions and remaining risks
 
 **Approved** ([Round 2](decisions/USER-APPROVED-ROUND-02.md)): two selectable *first I4* control variants (carb/mechanical/no-ECU versus EFI/ECU); Svelte+Vite with hash URLs; pitch-lowered physical slow motion is the default; real recordings analyzed for calibration/validation only and **never used for playback**; confidence claims require numerical plus available measured comparisons; browser ZIP and optional offline Parquet/HDF5; Windows+Linux offline and desktop Chromium/Firefox/Safari web support; CI plus technical-integrator review for routine PRs, project owner for major ADRs.
