@@ -1,5 +1,12 @@
 # 05 — Reference simulation and calibration pipeline
 
+## O3-approved numerical backend and licensed measurement workflow
+
+The offline compute contract prioritizes **multicore CPU plus NVIDIA CUDA**, including an explicitly supported **GeForce GTX1080 Pascal `sm_61` backend build using CUDA Toolkit 12.x** and honest CPU fallback for unsupported precision/VRAM. A CUDA 13-only dependency cannot be the sole path to offline simulation. Preserve correctness/convergence and full component/solver/device provenance across CPU/CUDA. Owner's i9 10th-gen/GTX1080 desktop is the initial compatibility/Worklet-vs-Worker benchmark target; **successful performance on it is not yet measured**.
+
+Agents must **research real-world datasets and submit license redistribution evidence for owner approval before bundling**. User-provided owned/licensed measurements remain possible, and reference audio is strictly **feature analysis/calibration, never sample playback**. Save ZIP datasets first; defer Parquet/HDF5 selection until actual study/query/streaming formats are validated. The CLI launches a **local loopback-only browser dashboard** for long study control; no remote queue, Pages backend, or public interface. See [O3 decisions](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [V4 evidence](decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
+
 ## Round 2 — Measurement-based calibration and reference-only recordings
 
 The owner requires **numerically validated physics plus comparison against actual measurements when available**, with confidence/uncertainty/provenance displayed separately. Mesh convergence alone does not prove absolute accuracy; absence of measured reference does not prevent clearly labeled `simulation-estimate` models from running. For each measurement dataset store its source/license/consent, test conditions (RPM/load, temperatures, measurement location/microphone and gain calibration), units, timestamps and confidence; align physical and acoustic features to matching crank events and environmental conditions. Report measured vs modeled error honestly.
