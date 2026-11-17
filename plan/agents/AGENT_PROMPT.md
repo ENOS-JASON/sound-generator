@@ -14,6 +14,8 @@ Implement ONLY this work order. Start by reading:
   plan/31-integration-gates-and-support-matrix.md
   The "Required references" explicitly listed on your AG card.
 
+Project owner approved major-decision oversight, Svelte + Vite, both slow-motion audio modes and the first I4/manual/load baseline. See plan/decisions/USER-APPROVED-ROUND-01.md. Benchmark Worklet versus Worker physics and ask the owner to approve the final architecture; never silently select a winner.
+
 Do not interpret a milestone as an implementation task, and do not independently select an
 architecture already owned by a contract/ADR agent. Verify that prerequisite task IDs,
 type fixtures and accepted ADRs are committed. If any are missing, return BLOCKED and
@@ -53,7 +55,7 @@ For the first assignment, use **`AG-M0-01`**, which freezes the app/TypeScript/U
 
 ## Where to find the scope
 
-- [99 source steps → 159 cards](task-index.md)
+- [100 source steps → 160 cards](task-index.md)
 - [M0 foundation task cards](M0-foundation.md)
 - [M6 reference substeps](M6A-reference-foundations.md)
 - [Architectural decision registry](../decisions/README.md)
