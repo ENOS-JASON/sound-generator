@@ -58,6 +58,8 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 
 ### AG-M2-03b
 
+**Approved Round 3 acceptance:** Mixers must keep ordinary user source/bus/master controls **distinct** from separately versioned expert calibration (`AG-M2-06`) and four listening-transfer profiles (`AG-M2-07`). Do not combine them into a single global volume knob. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Approved Round 2 requirement:** The stem/mixer must accept **only registered procedural generated physical sources**. Imported real-world audio may supply reference features for comparison/calibration but may not appear in a bus, sample layer, live source or reference playback player. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Build plenum/airbox/intake, exhaust/body resonances, filter smoothing, calibrated full-reference source generation, independent stem/bus/master gains, meters, mute/solo and safe output headroom.
@@ -71,6 +73,8 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 **Done when:** Mute/solo changes sound not torque; full-reference stems don't peak-normalize each block; no master clipping at fixture peak. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M2-04
+
+**Approved Round 3 acceptance:** G2 verifies **versioned expert source trims** and all four generated listening perspectives, no change to torque/physics, and sample deadline and safe output across both clock modes. Rendering 30/60 FPS is not an audio callback rate. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Initial browser/audio test matrix includes **desktop Chromium, Firefox and Safari** where platforms available; check physical slow motion **default**, optional pitch-preserved mode, 44.1/48kHz timing/latency and emitted source provenance. Missing platform evidence is not a pass. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
