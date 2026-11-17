@@ -36,6 +36,13 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 | [21 — Adjustable-fidelity multi-zone simulation](21-adjustable-fidelity-multizone-reference-simulation.md) | Quick-to-Research reference detail, multi-zone cylinder/wall, intake/exhaust meshes, convergence and surrogate training |
 | [22 — Guided vehicle configurator](22-guided-vehicle-configurator.md) | Step-by-step vehicle creation, conditional valid fields, bore/stroke geometry, live derived values and preflight validation |
 
+| [23 — Quoted architecture direction](23-quoted-project-direction-and-decisions.md) | Preserved technical-choices quote, complete requirements passage and intended build order |
+| [24 — Simulation clock and time scaling](24-simulation-clock-and-time-scaling.md) | Slow-motion, pause/step, synchronized 2D/3D/audio, deterministic replay |
+| [25 — Core diagnostics and capture](25-core-diagnostics-recording-and-comparison.md) | Mandatory pre-engine debug menus, telemetry/audio charts, export/import and comparisons |
+| [26 — Multi-page UI and widgets](26-multipage-ui-and-floating-widgets.md) | Multiple routes and draggable/hideable overlay widgets without resetting simulation |
+| [27 — High-fidelity experiment orchestration](27-high-fidelity-experiment-orchestration.md) | Multicore multi-hour runs, repeatability, one-part and part-set experiments, component provenance |
+| [28 — Shared surrogate models](28-shared-realtime-surrogates-and-calibration.md) | Generic fast engine first, high-fidelity calibration and reusable reduced equations/maps |
+
 ## Guiding principles
 
 1. **Physics determines events; DSP renders their sound.** The visuals observe the same engine state.
@@ -52,28 +59,37 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 12. **Configurable reference fidelity, not one fixed expensive solver.** Let users select global and per-component detail: multi-zone cylinder gas and combustion, segmented cylinder liner/head/piston walls, and intake/exhaust gas cells/wall layers. Validate conservation, timestep stability, mesh convergence and resource budgets before creating compact real-time training artifacts. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
 13. **Guided, physically valid configuration.** A step-by-step wizard exposes only capabilities and values valid for the active engine, controller, induction, transmission and drivetrain. Bore and stroke are editable, derived displacement and dependencies update automatically, and the same validators protect UI and imported presets. See [22](22-guided-vehicle-configurator.md).
 
+14. **Core observability before features.** The typed simulation clock/time scaling, debug menus, live audio/physics charts, record/export/import/replay/compare and a multi-page shell must work on synthetic signals **before M1 physics or M2 audio features**. See [24–26](24-simulation-clock-and-time-scaling.md).
+15. **Generic fast model first.** M1/M2 delivers real physical and sonic behavior without trained artifacts; all equations use shared versioned component/port contracts and optional bounded correction maps for later training. See [28](28-shared-realtime-surrogates-and-calibration.md).
+16. **High-fidelity can be extraordinarily slow.** Hours for one piston cycle are acceptable at Research fidelity. Multicore jobs, checkpoints, provenance-rich component manifests and repeated/one-part/part-set scenario sequences create high-quality reference data. See [27](27-high-fidelity-experiment-orchestration.md).
+17. **Inspect and compare everything.** Physical, sonic, event, numerical and performance telemetry can be captured locally and imported to re-run/compare baseline, reference and trained models; diagnostics are nonintrusive. See [25](25-core-diagnostics-recording-and-comparison.md).
+
 ## Delivery path
 
 | Milestone | Result | Gate |
 |---|---|---|
-| M0 | Foundation and static deploy | Browser launches under `/sound-generator/` |
-| M1 | Deterministic engine dynamics | Crank, catch, idle, shutoff, failure to start, stall |
+| M0 | Foundational observability and static shell | Time scale, typed event bus, synthetic worklet+physics graphs, capture/export/import/replay/compare, multi-page debug UI and Pages build validated **before M1** |
+| M1 | Generic fast physics model | Crank, catch, idle, shutoff and stall, with trainable/fallback equation/map interfaces and complete diagnostics |
 | M2 | Procedural audio MVP | Stable phase-coherent ignition/exhaust/intake/starter output |
 | M3 | Guided configurator, 3D/2D / controls | Dynamic wizard with bore/stroke and validation, bank cutaway, source mixer, crank/wheel power inspector |
 | M4 | Connected powertrain technology slices | Gears, clutch, limiter, overrun, pops, induction, AWD/4WD and wheel loads |
-| M5 | Scenario runner and regression suite | All transition/timeout branches run headlessly |
-| M6 | Adjustable-fidelity reference solver | Quick/Balanced/Detailed/Research models with cylinder/wall/intake/exhaust zones, convergence and resource checks |
-| M7 | Fitting and compact trained artifacts | Held-out objective improvement without audio glitches |
+| M5 | Scenarios and experiment controls | Full event-gated tests, one-part/part-set variations, baseline/variant diffs and scenario capture |
+| M6 | Adjustable-fidelity multicore reference | Quick/Balanced/Detailed/Research gas/thermal zones, multi-hour cycles, all-thread optional CLI scheduling, repeatable component-tagged studies |
+| M7 | Shared equation/map fitting | Reduced-order per-component bindings, reusable math families, held-out physical/audio improvement without runtime regressions |
 | M8 | Optimization and public release | Cross-browser performance, CI and published GitHub Pages demo |
 
 See [the detailed roadmap](08-implementation-roadmap.md) for task order and acceptance criteria.
+
+## Mandatory sequencing
+
+**Do not defer debugging to the end.** Establish core clock/time-scale controls, event/telemetry registration, audio/physics graphs, record/export/import/replay/compare and multiple pages with floating widgets using deterministic synthetic data **in M0**. Implement the **generic simplified real-time engine in M1/M2**. Detailed multizone reference simulation and multicore variation studies come later in M6, and their results tune shared fast equations/maps in M7. [Original design quote and interpretation](23-quoted-project-direction-and-decisions.md).
 
 ## Initial technical direction (subject to benchmarks)
 
 - **Vite + TypeScript** for a portable static bundle.
 - **Web Audio API + AudioWorklet** for custom audio DSP; optional WebAssembly when profiling justifies it.
-- **Three.js** for the 3D car/engine view.
-- **Web Worker(s)** for offline/batch analysis, training and other expensive operations.
+- **Three.js** for the 3D car/engine view; native Canvas 2D for lower-cost bank-side cutaway; a multi-page Svelte or Vue 3 UI (framework to select at M0), with movable/hideable diagnostics widgets.
+- **Web Worker(s)** for offline/batch analysis; an offline TypeScript/Node worker-threads CLI with configurable use of all logical CPU threads for multi-hour/multi-run high-fidelity work.
 - Shared, versioned schemas; deterministic seeded scenarios and downloadable test traces.
 - `vite.config.ts` will use `base: '/sound-generator/'` on GitHub Pages unless a custom-domain/root deployment changes the base.
 - First physics reference implementation targets a four-stroke spark-ignition engine; **the initial schema must already support 1–12 cylinder inline/V/flat banks and interchangeable transmissions, controllers and intake/boost networks**. Wider technology families ship as distinct validated iterations (not fake generic presets).
