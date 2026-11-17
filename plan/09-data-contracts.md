@@ -81,6 +81,18 @@ See [14](14-modular-typescript-platform.md), [15](15-engine-families-and-presets
 
 See [21 — Adjustable reference fidelity](21-adjustable-fidelity-multizone-reference-simulation.md).
 
+## Clock/time scaling, diagnostics, recorder and experiment contracts
+
+**SimulationClock / TimeControl:** `simulationTick`, `simulationTimeSeconds`, `crankAngleRadians`, `audioSampleFrame`, `playbackScale` and paused state. `setTimeScale`, `pause`, `resume` and bounded `stepTicks/stepToCrankAngle/stepUntilEvent` go through a versioned control command envelope. Record both simulation ticks and audio frame mapping; time scale never changes physics equations. See [24](24-simulation-clock-and-time-scaling.md).
+
+**TelemetryChannelDefinition:** stable `componentId.channelId`, physical meaning, SI unit and display unit, numeric type, availability/capability, source clock, sample interval, bounds, privacy/performance class, aggregation/downsampling policy, instrument version. `DiagnosticEvent` is separate from authoritative domain events; unexpected channel gaps must be recorded.
+
+**CaptureManifest / CaptureBundle:** versioned run/vehicle/component graph and full parameter hashes, fast/reference solver and DSP version, trained profile, scenario inputs, seeds, time-scale map, channel catalog, events/causation, physics traces, optional master/per-source audio chunks, output sample rate, numerical tolerances, capture drop counts, integrity hashes and explicit `complete/incomplete` status. Accept bounded local files and validate before import; replay mode is `telemetryPlayback | deterministicResimulation | recordedAudioPlayback`. See [25](25-core-diagnostics-recording-and-comparison.md).
+
+**ExperimentDefinition / VariationSet:** immutable baseline component graph/parameter manifest; controlled `componentId.parameterPath` variants (one-part or named part-set), scenarios, input schedule, initial conditions, replication counts and seed policy, reference fidelity and zone mesh settings, worker CPU/memory/disk limits, capture detail, output comparison metrics and exact changed-part audit trail. A study produces run manifests with `baselineRunId`, `variantId`, realized graph diff and per-component physics/audio effects. See [27](27-high-fidelity-experiment-orchestration.md).
+
+**FastModelFamily / ComponentModelBinding:** stable versioned `familyId`, equation/kernel implementation ID, physical input/output names/units/validity domain/bounds, analytic baseline, trainable coefficient/lookup/spline/reduced-order data reference, component ID and calibration hash, fallback on unsupported/uncertain inputs. A reference high-fidelity solver **projects** its internal zone fields onto these common boundary units; a trained profile maps to existing bindings without executing imported code. Multiple components can share the **same** validated kernel/lookup data when physically compatible. See [28](28-shared-realtime-surrogates-and-calibration.md).
+
 ## EngineState and event
 `EngineState`: `simulationTimeSeconds`, `crankAngleRadians` (unwrapped), `angularVelocityRadPerSecond`, `state`, `batteryVolts`, `manifoldPressurePa`, `coolantTemperatureK`, `throttle`, `cylinderCombustion[]`, `wheelAngularSpeed[]`, `vehicleSpeedMps`, diagnostics. `EngineEvent`: `id` monotonic, `simulationTimeSeconds`, optional `sampleIndex`, `type`, `cause`, `cylinderIndex`, `payload`. Event types include KEY_ON, STARTER_ENGAGED, COMBUSTION, FIRST_FIRE, ENGINE_RUNNING, FAILED_START, LIMITER_ENTER, LIMITER_EXIT, FUEL_CUT_ENTER, FUEL_CUT_EXIT, AFTERFIRE, GEAR_CHANGED, SLIP_ENTER, SLIP_EXIT, ENGINE_STALLED and ENGINE_OFF.
 
