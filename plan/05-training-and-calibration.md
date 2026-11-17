@@ -1,5 +1,11 @@
 # 05 — Reference simulation and calibration pipeline
 
+## Mandatory fidelity controls and multi-zone physics
+
+Advanced training must be **user-configurable in numerical detail** instead of one mandatory high-cost simulation. Define Quick (0D), Balanced (burned/unburned zones), Detailed (multi-zone gas with segmented liner/head/piston thermal zones plus 1D intake/exhaust cells and wall sections) and Research (further verified refinement) tiers, with **per-component overrides** and dynamic capability-limited parameters. The engine cylinder has crank-resolved intake, compression, flame/heat-release propagation, expansion, blowdown and exhaust; gas temperature, pressure, mass/species and heat transfer couple to multiple metal wall layers and piston/head regions. Intake/exhaust paths have independently chosen axial gas cells, thermal wall layers and pressure-wave/junction modeling. Detail choices must be reproducible and physically validated, not labeled as full CFD without implementing it. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
+
+The training UI must use the guided configurator's validated component registry: expose only available solver families/zone counts based on selected engine, valves, intake/exhaust topology and device/budget. Require stability/CFL checks, mesh/time-step convergence, mass/energy residuals and a Worker/CLI resource preflight before accepting reference data. Low-detail and high-detail runs share state/event/port units, enabling event-aligned comparisons and physically constrained real-time surrogate fitting.
+
 ## Two-model strategy
 **High-fidelity reference (offline):** expensive, variable-step or much smaller fixed-step calculations, e.g. thermodynamic cylinder-pressure/heat-release approximation, detailed manifold transient flow, exhaust wave propagation / higher-order digital waveguides, starter/cylinder interactions, and measured reference profiles. Runs in Worker or external reproducible scripts, not in audio callback. Explicitly document any assumptions; expensive does not automatically mean physically correct.
 
@@ -27,6 +33,10 @@ baseline fast solver -> deterministic reference corpus
                      -> load validated profile or fall back to baseline
 ```
 
+## Spatial zone outputs and reference reliability
+
+A detailed run emits inspectable zone-level traces (where enabled): per-cylinder burned/unburned gas, wall liner axial/radial temperatures, piston/head heat flux and valve mass flow; runner/exhaust cell pressure/temperature/velocity and wall heat/afterfire locations. This dataset is **offline-only** and may be downsampled for inspection without modifying solver accuracy. Include grid topology, reference version, dt/integrator/CFL settings, convergence report and stability failures in the manifest. Mesh refinement must be shown to converge on relevant objectives (pressure pulses, torque/power, thermal/afterfire signatures) before judging model superiority.
+
 ## Training execution model
 Browser UI may launch small Worker batches with cancel/progress/checkpoints in IndexedDB. Large reference sweeps are better run offline via deterministic CLI/CI jobs; GitHub Pages does not execute backend computation. Training cannot mutate the currently playing profile without an explicit atomic swap (safe boundary/crossfade and filter state management).
 
@@ -36,6 +46,14 @@ Versioned JSON/compact binary: physics parameters, DSP coefficients/lookup table
 ## Reference quality guards
 
 High-fidelity solvers must document validated vs estimated thermodynamic, drivetrain and transmission equations. They must not create or duplicate axle power, use arbitrary negative resistance, or hide cross-component energy imbalance in audio training. Validate starting behavior, torque/hp calculation points, forced-induction load, afterfire prerequisites and power/traction limits before accepting a fitted model. A trained profile is version- and component-topology-specific unless generalization is demonstrated.
+
+## Fidelity and computational acceptance
+
+- [ ] Quick vs Balanced vs Detailed vs Research (where implemented) actually changes numerical/physical resolution, not merely an output-quality label.
+- [ ] User can tune cylinder gas zones, liner/head/piston thermal regions, valve/port detail and 1D intake/exhaust gas and wall discretization independently within declared bounds.
+- [ ] Preflight predicts zone/cell state count, memory/output size and whether the browser or offline CLI can execute the selected run; impossible settings are rejected with reasons.
+- [ ] Adaptive time/crank-angle steps and CFL/stiff-reaction constraints prevent unstable numeric traces; mesh convergence, heat/mass/energy residuals and reproducibility are reported.
+- [ ] Offline reference models fit physically valid compact real-time coefficients with improved held-out transition/torque/audio objectives; large zone arrays never enter the AudioWorklet.
 
 ## Acceptance
 Training improves the weighted **held-out** objective versus baseline; preserves all mandatory behavior transitions; satisfies invariant checks and runtime CPU budgets; no regression in clipping, nondeterminism or scenario coverage. Report failures, not just an average score. No unsupported claim that models match real vehicles without measurement calibration.
