@@ -36,6 +36,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 
 ### AG-M6D-03a
 
+**Approved Round 3 acceptance:** The Windows/Linux CLI exposes a **versioned local job-control protocol** for the separately assigned `AG-M6D-07` GUI; avoid embedding the solver in GUI. GPU optional; no remote queue. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Approved Round 2 requirement:** Windows **and** Linux offline scheduling are mandatory smoke-tested platforms; CPU backend always works without GPU. GPU/native backends are optional and discoverable, with device/driver/precision reported. A Windows-only or Linux-only CLI cannot be considered complete. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap requirement:** Add **offline TypeScript/Node `worker_threads` study scheduler** with configurable simultaneous jobs/worker pool up to all logical CPU cores, high-fidelity run streaming to disk, progress measured by sim time/crank cycles, checkpoint/resume, and no arbitrary short wall-time failure for hours-per-cycle computations.
@@ -47,6 +49,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Acceptance evidence:** Two seeds run on configured CPU workers; no oversubscription without explicit option. An alternate mock numerical backend exports identical physical-boundary units/manifest with declared device, precision and resource limits. Real GPU execution may be added as a separately approved provider. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
 
 ### AG-M6D-03b
+
+**Approved Round 3 acceptance:** Expose checkpoint/stop/resume/status semantics sufficient for an offline GUI to reconnect after a monitor restart; no simulated-time corruption or new source of solver state. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Checkpoint/streaming paths, atomic write and restore semantics must work on Windows and Linux (don't hardcode Unix paths). Capture artifacts use an immutable component/clock reference and are convertible to **browser ZIP**, with optional Parquet/HDF5 only for offline research. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -69,6 +73,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Acceptance evidence:** Baseline unchanged seeds compare; exact intended/realized diff retained across reruns. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
 
 ### AG-M6D-05
+
+**Approved Round 3 acceptance:** G6 reviewer must include `AG-M6D-07` **local graphical monitoring** of Windows/Linux CLI or identify missing platform evidence and mark relevant gate blocked, not falsely say GUI delivered. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Reference dataset format must preserve a **browser ZIP** manifest/interchange and optionally export Parquet/HDF5 offline. Include full part, numerical convergence, environmental/measurement-source/provenance and **confidence/uncertainty** fields; real-world recordings are analysis-only, not audio stems. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
