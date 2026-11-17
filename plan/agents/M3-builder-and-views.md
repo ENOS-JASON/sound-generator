@@ -42,6 +42,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 ### AG-M3-03
 
+**Approved Round 2 requirement:** Use **Svelte+Vite hash routes** for Builder/Drive/Audio/Diagnostics; verify browser refresh and navigation under GitHub Pages subpath, preserving all runtime/recorders/widgets. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap task:** Complete multi-page Builder/Drive/Audio Studio/Diagnostics/Presets navigation; source, cylinder and physics graphs are openable in removable/movable small widgets on any suitable page.
 
 **Bounded deliverable:** Complete Builder/Drive/Audio Studio/Diagnostics/Presets routes and movable diagnostic widgets.
@@ -54,6 +56,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 ### AG-M3-04
 
+**Approved Round 2 requirement:** The first I4 wizard must allow selection between **mechanical carb/distributor/no-ECU** and **EFI/ECU** as working variants, with bore/stroke/rod, starter, clutch/manual gear and road-load geometry kept valid. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap task:** Implement **M3-A guided wizard**: template/start-blank, contextual step navigation, Basic/Advanced mode, validated fields, allowed values, unit-aware inputs, derived bore/stroke/displacement and live bank/mixer preview.
 
 **Bounded deliverable:** Wizard template or blank, Back/Next, validity summaries, unit-aware numeric input and derived bore/stroke preview.
@@ -65,6 +69,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 **Done when:** I4 86-mm geometry created in GUI, invalid rod and unsupported ECU option blocked; draft save/resume. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M3-05a
+
+**Approved Round 2 requirement:** Expose two **mutually exclusive runnable** I4 control strategies: mechanical carb+distributor with no ECU versus EFI+ECU. Conditional wizard options and imported JSON use the same validator; no inactive strategy controls shown as editable. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Implement **M3-B step providers** for engine/control/intake/exhaust/electrical/transmission/drivetrain/wheels; conditional fields/options from component registry, final graph preflight, invalid downstream change preview/undo and save/resume drafts.
 
@@ -90,6 +96,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 ### AG-M3-05c
 
+**Approved Round 2 requirement:** Test a mode switch carb/no-ECU → EFI/ECU → carb with complete *realized component diff*, safe reset, preserved independent physical geometry, rejected hidden ECU maps and correct ZIP versioned preset validation when applicable. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap task:** Implement **M3-B step providers** for engine/control/intake/exhaust/electrical/transmission/drivetrain/wheels; conditional fields/options from component registry, final graph preflight, invalid downstream change preview/undo and save/resume drafts.
 
 **Bounded deliverable:** Whole-graph preflight, downstream invalidation diff, undo, drafts and versioned preset export.
@@ -113,6 +121,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 **Done when:** Quick exposes no fake mesh detail; unsupported Research disabled; resource budget input validates and exports profile. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M3-07
+
+**Approved Round 2 requirement:** On new session, `slowMotionAudioMode='physical'` is visible as the default; pitch-preserved option works via `AG-M2-05` and mode changes record metadata without affecting engine. Navigation under `/#/drive` must keep runtime alive. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Add start/stop, throttle, ignition, load and preset editor UI with SI conversions; applying configuration to an active simulation requires a validated reset/safe boundary.
 
@@ -149,6 +159,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 **Done when:** One cylinder solo isolates that source; mixing doesn't change torque; saved mix roundtrip. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M3-08c
+
+**Approved Round 2 requirement:** The 2D/3D/telemetry selector must function on **desktop Chromium, Firefox, Safari**; when WebGL is missing, Canvas 2D fallback remains useful and does not disable engine/audio. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Add RPM/crank and wheel torque/hp/kW plus component loss meter, read-only event timeline, mixer channel/bus/master editor and 2D/3D/telemetry switch; no renderer may drive physics.
 
