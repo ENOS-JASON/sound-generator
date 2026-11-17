@@ -1,0 +1,92 @@
+# 31 — Integration gates, release subsets, fixtures and support matrix
+
+This document prevents **a feature interface or mock from being mistaken for a working implementation** and gives independent agents clear promotion rules. Consult [29 — audit](29-plan-audit-and-gap-register.md), [30 — contracts](30-agent-handoff-contracts-and-decisions.md), [08 — roadmap](08-implementation-roadmap.md) and [agents/task-index](agents/task-index.md).
+
+## 1. Layered status model
+
+Every component family, configuration and subsystem publishes:
+
+| Field | Values | Meaning |
+|---|---|---|
+| `supportStatus` | `planned`, `unsupported`, `approximate`, `implemented` | Capability is future, incompatible, running with disclosed simplified approximations, or validated within declared domain |
+| `testStatus` | `not-run`, `pass`, `fail`, `blocked` | Evidence from actual CI/benchmarks |
+| `referenceStatus` | `none`, `synthetic-validated`, `numerical-converged`, `measurement-compared` | What **high fidelity** has been established; not a synonym for implemented |
+| `deploymentStatus` | `not-deployed`, `pages-smoke-passed` | Proven static host deployment |
+
+`implemented` requires executable physics and relevant invariant/scenario tests within stated input range. It does **not** imply audio measured against a real car unless independent external recordings/measurements are available. `approximate` is a meaningful running solver with known limitations, not an empty stub. Planned features may appear informationally but are disabled for runnable/persistable configurations. A **green build must list omitted planned/unsupported scenarios**, not suppress them.
+
+## 2. Hard inter-agent gates
+
+| Gate | Requires | Unlocks | Evidence artifact |
+|---|---|---|---|
+| **G0-A — Decision freeze** | ADR-001–009 resolved at applicable boundary; one UI framework/router, one canonical schema, event IDs, physical-port units/signs, trace manifest | Parallel M0 service implementations, M1/M2 component work | `plan/decisions/` records, type/schema fixtures and CI |
+| **G0-B — Synthetic observability** | M0 mock clock/commands/events, synthetic worklet, waveform/FFT and physics chart, recording export/import/replay/compare, several routes and movable widget; all bounded | M1 engine and M2 audio development | reproducible mock `fixtures/golden/mock-run` plus Playwright/Vitest report and screenshot |
+| **G1 — Generic engine** | M1 crank/torque load, starter/ignition/idle/stall, minimal mechanical and ECU strategy, 720-degree phases, fast approximation baseline, seeded headless tests | M2 full sound; M3 engine views; M4 tech families | example preset/physics trace + energy/event assertions |
+| **G2 — Procedural audible engine** | phase-coherent starter/combustion/exhaust/intake, mixer calibration/headroom and unit worklet tests at 44.1/48k | M3 audio mixer UI, full driving demo | encoded WAV or recorded stem features and load/performance report |
+| **G3 — Usable guided lab** | 3D and 2D by cylinder bank, config wizard validation, Audio Studio, per-page widgets and live torque graphs | Demo, scenario editor and detailed component editors | browser E2E + screen captures and imported preset regression |
+| **G4 — Verified technology slices** | Each shipped M4 model (turbo, DCT, 4WD, etc.) passes port-load/energy, state and audio tests, has valid configs and `supportStatus` | Promotion of that specific provider to available presets/scenarios | named provider report + golden scenario trace; no global all-tech gate |
+| **G5 — Canonical scenarios and experiments** | Automated gates/timeouts, variants, baseline A/B, coverage and invalid-state reporting; uses G1 event/clock fixtures | M6 reference workloads and M7 fitting datasets | complete run report with exact intended/realized component diffs |
+| **G6 — Valid reference solver** | component-by-component numerical/energy checks, chosen fidelity implemented, mesh/time-step stability where relevant, streaming/CLI/worker resource controls, scenarios/repeated runs | M7 fit using that **specific** validated dataset | component manifest, fidelity/mesh convergence, checkpoint/replay, dataset hash |
+| **G7 — Trained compact model** | reference and fast compatible states/ports, train/validation/held-out separation, physical invariants, no sample deadline regressions, domain/fallback validation | Mark individual trained profile compatible and publish it | profile artifact, metric comparison vs baseline, holdout manifest |
+| **G8 — Release** | Pages deployment, browser capability matrix, preset/import security, supported claims and provenance/license review | Public stable demo | deployment URL, smoke result, version and limitations |
+
+**No gate requires full M4 or M9+ support to release a valid subset.** A task may depend on a *particular fixture/provider* rather than waiting for every feature in the milestone. Progress through gates is by recorded artifacts, not a promise that another agent will finish a dependency.
+
+## 3. Fixture library owners and names (proposed)
+
+```text
+tests/fixtures/contracts/          # component/ports v2, events v1, command, clock, invalid inputs
+tests/fixtures/golden/mock-run/    # M0 sim/audio clock with known event+telemetry trace
+tests/fixtures/golden/i4-start/    # M1 controlled starter->first-fire->idle->off and failed-start
+tests/fixtures/golden/engine-layouts/ # I1, I4, V8, flat and 1..12 geometry/firing fixtures
+tests/fixtures/golden/load-path/   # clutch, gear, FWD/RWD, 4WD/traction, negative torque
+tests/fixtures/golden/audio/       # deterministic input state, audio features / optional reference WAV
+tests/fixtures/scenarios/          # versioned time/event gates, success and intentional failure
+tests/fixtures/imports/            # valid, unknown-version, malformed, oversize and incomplete bundle
+tests/fixtures/reference/          # 0D/two-zone/multi-zone small runs with manifest and residuals
+tests/fixtures/training/           # fast vs reference fit/holdout and out-of-domain fallback
+```
+
+Fixtures may be stored as large downloadable CI artifacts instead of directly in Git when licensing/size requires. Every fixture has a **manifest** with producing task, schema versions, seed, expected outcomes, units and tolerance policy. Do not invent binary golden files before implementation or claim they exist.
+
+## 4. Minimum acceptance values vs domain-specific budgets
+
+- **Contract exactness:** zero invalid type/unit conversions, no unrecognized required event IDs, no unsupported config marked runnable, no unverified checksum accepted.
+- **Numerical stability:** non-finite values and negative physical absolute temperatures/pressures fail; mass/energy residual thresholds must be documented per model and fixture, including discretization/timestep.
+- **Event causality:** must preserve ordering and step-entry watermarks; no fake starter success, combustion during fuel cut without an explicitly modeled mechanism, or reconstructed events from 2D animation.
+- **Audio real-time:** no observed callback deadline misses in defined CI/manual stress runs; state sample rates/platform/hardware and measured duration rather than universal guarantees. Gain clipping tests use stated headroom and source calibration conditions.
+- **Time scaling:** physics trace/command/event equivalence by **simulation tick and input schedule** for 0.1x vs 1x; audio pitch/time differences are expected under physical slow-motion mode.
+- **Training accuracy:** held-out objective and worst-case residual must meet **per-provider declared thresholds**. Until measured/calibrated, call it a simulation estimate. `Research` tier alone does not prove physical truth.
+- **Performance:** G0 tests on browser with mocked worklet; G8 includes 44.1/48kHz device testing, normal/slow-motion, low-end mode and graphics fallback.
+
+The engineer responsible for a model must publish numeric acceptance bounds **before tuning to pass its tests**; a later agent may change bounds only through a reviewed documented reason and updated fixtures.
+
+## 5. Independent provider release checklist
+
+Each new `EngineFamily`, `ControlStrategy`, `IntakeComponent`, `Transmission`, `DriveLayout`, `AudioSource`, `ReferenceModelProvider`, or `FastModelFamily` must provide:
+
+1. Registered stable type/version, allowed component graph/ports, units and operating-domain bounds; one authoritative state owner.
+2. Versioned config schema and **one valid + one invalid** example; conditional wizard field descriptors and unsupported-option reason.
+3. Core physics/algorithm and explicit approximation limitations; no fake control/system behavior.
+4. Typed events, telemetry channels, optional sound stems with unit/level calibration, 2D/3D projection when applicable.
+5. Minimal headless scenario, negative/failure case, conservation and event/timing assertions, import/export and performance evidence.
+6. Reference-fidelity capabilities or explicit `unavailable`; baseline fast model and safe trained overlay fallback.
+7. Handoff report listing implementation scope, residual risk and impacted agent task IDs.
+
+A model may be integrated as an isolated provider with a mocked view/UI at first; the support matrix must indicate which **subsystems** are verified. Do not block a valid M1 test on missing advanced 3D, or a valid M6 research kernel on a future hybrid UI.
+
+## 6. Acceptance of each roadmap work order
+
+The [task index](agents/task-index.md) assigns stable IDs to **every checkbox** in [08](08-implementation-roadmap.md). A task is complete when its specified code/fixture/tests and the required handoff report exist. **Milestone titles are not standalone agent assignments**; they are collections of separately owned tasks. One agent must never mark an adjacent card complete as a side effect of coding its own task.
+
+## 7. Open decisions / escalation
+
+Current known decisions needing explicit M0 freeze:
+- Solver owner/thread placement vs full coupled physics performance.
+- Svelte vs Vue and router/store conventions.
+- Canonical versioned VehicleDefinition/events/trace on-disk container.
+- Default capture/telemetry budgets and tests per target browser.
+- First supported engine/controller/driveline preset set, *separate* from type names shown in UI.
+- Numerical model fidelity and acceptance tolerances/measurement reference of later solvers.
+
+When unresolved, the agent's task is to record a **blocking ADR or fixture dependency**, not implement a second incompatible solution.
