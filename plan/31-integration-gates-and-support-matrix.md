@@ -32,6 +32,25 @@ Every component family, configuration and subsystem publishes:
 
 **No gate requires full M4 or M9+ support to release a valid subset.** A task may depend on a *particular fixture/provider* rather than waiting for every feature in the milestone. Progress through gates is by recorded artifacts, not a promise that another agent will finish a dependency.
 
+## 2A. Gate reviewers — explicit single-agent accountability
+
+A gate is not considered passed simply because a contributor marked one implementation checkbox. The following **accountable reviewer card** must verify that **all listed prerequisites** have passed and publish the gate evidence artifact. These reviewers may consult other agents, but only the named reviewer records the gate decision.
+
+| Gate | Accountable reviewer | What the reviewer must gather |
+|---|---|---|
+| G0-A | `AG-M0-16` | Accepted applicable ADR-001–009, versioned schema/port/event/clock fixture hashes and dependency list; cannot certify open decisions |
+| G0-B | `AG-M0-17` | Synthetic clock/audio/trace export-import/compare/UI shell E2E from independent M0 cards, and no audio callback blocking |
+| G1 | `AG-M1-11` | Starter/catch/idle/stall and load path golden traces with model-status and energy/event tests |
+| G2 | `AG-M2-04` | Procedural audio samples/stems, 0.1x/1x phase and worklet deadline evidence |
+| G3 | `AG-M3-08c` | Guided builder, 2D/3D switch, UI route/mixer and debug widget E2E evidence |
+| G4 | `AG-M4D-03` | Per-provider support and invariant test reports; only explicitly released providers, not all future technologies |
+| G5 | `AG-M5-08` | Time/event gate checks, headless scenario run status coverage and single-part/part-set comparison provenance |
+| G6 | `AG-M6D-05` | Reference solver version/mesh convergence, resource/checkpoint and complete component manifest; **per validated dataset** |
+| G7 | `AG-M7-11` | Held-out model improvement, regression/fallback, physical conservation and worklet CPU test results |
+| G8 | `AG-M8-04` | Browser/Pages smoke, release subset support statement, licensing/import/security and benchmark evidence |
+
+Gate reviewer work is **integration review within the named card**, not permission to reimplement missing upstream modules. Any missing evidence yields **blocked** with exact prerequisite card IDs.
+
 ## 3. Fixture library owners and names (proposed)
 
 ```text
