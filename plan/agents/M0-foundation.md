@@ -6,6 +6,8 @@
 
 ### AG-M0-01
 
+**Approved Round 2 requirement:** Start with **owner-approved Svelte + Vite and hash routing** on GitHub Pages; pin a compatible Svelte/router version and present major state-library choices for owner review. Add `/#/drive` navigation fixture; a history-route-only app cannot pass. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Roadmap source:** Initialize Vite + TypeScript app, strict types, lint/format/typecheck and test runner.
 
 **This agent delivers:** Root package scripts, **owner-approved Svelte + Vite** with strict TypeScript, test/lint/formatter config. Propose router/state conventions for owner approval before freezing the rest of ADR-002.
@@ -18,6 +20,8 @@
 
 ### AG-M0-02
 
+**Approved Round 2 requirement:** GitHub Pages must host `/sound-generator/#/...` hash links, including direct-link and refresh smoke tests without `history` rewrites. CI includes browser static-build and hash asset/AudioWorklet path checks. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Roadmap source:** Add GitHub Actions CI + Pages deployment, Vite base path, SPA fallback strategy (prefer hash routing if needed) and HTTPS smoke test.
 
 **This agent delivers:** GitHub Actions test/build/Pages workflow and static route/asset strategy.
@@ -29,6 +33,8 @@
 **Acceptance / evidence:** CI builds deployable artifact; verify nested /sound-generator/ path and hash route on HTTPS preview; no credential required by browser. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M0-03
+
+**Approved Round 2 requirement:** Schema fixtures must instantiate **two distinct I4 controller paths**, carburetor+mechanical distributor with **no ECU** and EFI+ECU. Reject mixed controllers, ECU-only maps under mechanical mode and missing starter/manual/load relationships. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Roadmap source:** Define SI units, deterministic PRNG, versioned engine/event schema, import validation and demo preset.
 
@@ -65,6 +71,8 @@
 **Acceptance / evidence:** Instantiate mock providers by registration; reject missing declared capabilities; no hidden global singleton. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M0-06
+
+**Approved Round 2 requirement:** The same field registry/validator must expose **both first-I4 controller alternatives** while hiding the other strategy's invalid fields. Test UI-derived and import-derived validity equality; no simultaneous carb+EFI controller without explicit supported component model. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Roadmap source:** Define a **step-by-step schema-driven wizard**: capability/field descriptors, step prerequisites, per-field conditional option/range/visibility providers, draft-state/undo policy and shared preset/graph validation; see [22](../22-guided-vehicle-configurator.md).
 
@@ -113,6 +121,8 @@
 **Acceptance / evidence:** Two same-tick events retain stable sequence; aliases mapped explicitly; stale run discarded; domain vs diagnostic events separated. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M0-10
+
+**Approved Round 2 requirement:** Owner approved **initial physical pitch-lowered slow-motion audio mode** (`slowMotionAudioMode='physical'`). Both modes and state/event invariants remain. Worklet-vs-Worker solver placement is still UNDECIDED until fair benchmark and explicit owner approval. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Roadmap source:** Implement authoritative fixed-step **SimulationClock** with `timeScale` (including 0.05/0.1/0.25/0.5/1x), pause, tick/crank-angle/next-event stepping and exact physics-time <-> audio-sample mapping; mock simulation emits deterministic events and can be compared at different playback speeds.
 
@@ -174,6 +184,8 @@
 
 ### AG-M0-12
 
+**Approved Round 2 requirement:** Synthetic audio-mode contract initializes `physical` for new sessions, emits traceable mode changes and keeps both modes type-safe; this card does not implement pitch-preservation DSP (`AG-M2-05`). See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Roadmap source:** Implement synthetic AudioWorklet source and meters with waveform and frequency spectrum display, source/event/audio-frame correlation and bounded optional raw audio capture, without blocking the worklet.
 
 **This agent delivers:** Synthetic AudioWorklet stimulus, bounded feature frames and source/master meters; register and trace the two `slowMotionAudioMode` choices before full DSP implementation. Do not presume the Worklet is physics owner before benchmark/approval.
@@ -186,6 +198,8 @@
 
 ### AG-M0-13
 
+**Approved Round 2 requirement:** The default portable recording must be a **validated ZIP archive** with versioned JSON manifest, typed binary chunks, checksums, commands, events and optional **generated** output audio. Add corrupt/oversize ZIP tests; optional Parquet/HDF5 offline research is outside this card. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Roadmap source:** Implement export/import of a versioned portable recording (component/preset/solver/seed/time-scale/event/telemetry/audio metadata), validation/checksum checks, deterministic re-run and A/B difference curves; confirm a synthetic baseline can be recorded and compared before physical engine work.
 
 **This agent delivers:** Portable trace bundle export/import codec with checksum, schema/version and import security; record ADR-006.
@@ -197,6 +211,8 @@
 **Acceptance / evidence:** Export a synthetic session, import and compare it; tampered checksum, oversize and unknown version must be rejected. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M0-14a
+
+**Approved Round 2 requirement:** Implement Svelte hash pages `/#/drive`/`/#/diagnostics`/`/#/settings`; navigation or refresh must not create a second engine. No clean-history route dependency. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Roadmap source:** Implement **multi-page UI shell** (Dashboard, Drive, Diagnostics, Settings), expandable physics/audio/event menus, reusable draggable/hideable diagnostic widgets, route-independent simulation service, persistent widget layout and static Pages-compatible navigation.
 
@@ -234,6 +250,8 @@
 
 ### AG-M0-16
 
+**Approved Round 2 requirement:** The `ReferenceComputeBackend`/experiment contract explicitly supports offline **Windows and Linux** capabilities and optional native CPU/GPU providers with hardware/precision/provenance, not a compulsory particular accelerator. Research output interfaces may support optional Parquet/HDF5 while browser ZIP remains canonical. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Roadmap source:** Define high-fidelity `ExperimentDefinition`/variation contracts: all-component manifest identity, one-part and preset-part changes, paired initial seeds/scenarios, fidelity config, reference-to-fast common output and study result formats.
 
 **This agent delivers:** ExperimentDefinition/variation and complete reference manifest plus backend-neutral `ReferenceComputeBackend` capabilities, resource/device/precision metadata and native CPU/GPU/WASM/other adapter contracts; no specific native/GPU stack is approved yet. Record ADR-007.
@@ -245,6 +263,8 @@
 **Acceptance / evidence:** Valid one-part and part-set manifest roundtrip; invalid component ID or undeclared extra change rejected. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M0-17
+
+**Approved Round 2 requirement:** Browser capability tests explicitly target **desktop Chrome/Chromium, Firefox, Safari** (on supported macOS), audio gesture/device fallback and WebGL-unavailable **Canvas 2D** mode; do not claim mobile support as required. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Roadmap source:** Implement capability detection, error overlay, user gesture AudioContext start and static fallback UI.
 
