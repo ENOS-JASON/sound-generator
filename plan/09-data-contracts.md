@@ -1,5 +1,15 @@
 # 09 — Versioned data contracts
 
+## Round 2 — Approved schema constraints (not final generated code)
+
+- **First I4 engine:** `VehicleDefinition` must represent *either* `ControlStrategy.kind='mechanical'` with carburetor/distributor and **no ECU** *or* an `ecu` + EFI injection/spark strategy as **two separately valid and runnable alternatives**. Shared engine geometry, starter, manual clutch/transmission and vehicle load contracts must not change ownership when switching. Reject an engine with both exclusive strategies active or with ECU maps attached to mechanical-only mode.
+- **Capture:** `CaptureBundle` browser interchange must be a **ZIP** containing a **versioned JSON manifest**, commands, domain/diagnostic events, typed chunked telemetry, checksums, source/units/time-scale/controller hashes and optional **synthesized-output audio**. Define exact filenames/codec/size in ADR-006; never interpret illustrative JSON here as a finalized ZIP codec.
+- **Research:** Parquet/HDF5 are optional **offline** export adapters using the same time and component/units/provenance definitions; neither is mandatory for the browser to import a base ZIP.
+- **Reference measurements:** store ownership/license, measurement context, environmental/load/RPM/microphone conditions, quality and uncertainty separately from numerical solver data. Real-world audio recordings are **analysis/validation inputs only**, not a playback source or stem.
+- **Platform metadata:** include Windows/Linux CPU/GPU/precision/driver/reproducibility information in reference jobs where applicable; client capability metadata records desktop Chromium/Firefox/Safari and 2D/WebGL fallback. Hash-route URL is a UI concern, not part of physical `VehicleDefinition`.
+See [Round 2 owner approvals](decisions/USER-APPROVED-ROUND-02.md), [30](30-agent-handoff-contracts-and-decisions.md) and [25](25-core-diagnostics-recording-and-comparison.md).
+
+
 Use explicit JSON schema validation at every import and an internal strongly-typed TypeScript representation. SI units internally, labelled UX conversions at boundary. The following are design examples, not yet implemented.
 
 ## EnginePreset (v1)
