@@ -1,5 +1,15 @@
 # 18 — Electrical health, pre-ECU/ECU controls and tuneable afterfire
 
+## Initial I4 control-mode contract — approved Round 2
+
+The *first complete* I4 gasoline vehicle must include **two selectable, working controller configurations** before its baseline can pass G1:
+
+- **Mechanical:** carburetor/choke/throttle and mechanical/vacuum distributor advance, **no ECU**, ECU map, electronic limiter cut or modern injector commands. Any electronic-only controls are unavailable/rejected and never silently simulated through fake ECU behavior.
+- **Electronic:** EFI fuel injection plus ECU sensor/actuator strategies (fuel/spark/idle and supported limiter maps), with physically correct air/fuel/ignition effects, starting/stalling and procedural sound.
+
+Both use common battery/starter, cylinder-bank/geometry, clutch/manual transmission, vehicle/wheel load, typed events and diagnostics contracts; mode switching requires graph revalidation and an explicit safe reset. Do not operate both mutually exclusive fuel-control paths simultaneously. Neither configuration is "display only" or a UI preset that maps to the same physically inappropriate controller. Default selected variant remains open. See [Round 2](decisions/USER-APPROVED-ROUND-02.md) and [G1](31-integration-gates-and-support-matrix.md).
+
+
 ## Goal
 
 Historical mechanical-only vehicles and newer ECU-controlled vehicles must be simulated through **interchangeable controllers**, not an assumption that every engine has an ECU. The engine responds to real air/fuel/spark mechanisms, battery/electrical condition, sensor/actuator limits and downstream thermal/drive loads. Software tuning changes control laws and thereby combustion and exhaust conditions; it must not directly play a sound.
