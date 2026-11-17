@@ -171,3 +171,45 @@ UI agents consume the frozen framework/router choice and immutable state project
 **Owned modules/files:** `src/ui-pages/view-switch`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [04](../04-3d-and-ux.md), [13](../13-2d-engine-cutaway.md), [24](../24-simulation-clock-and-time-scaling.md).
 **Done when:** Switch mid-crank/limiter does not reset runId/event sequence or AudioContext; inactive view stops render work. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M3-09
+
+**Roadmap source:** Build expert-only calibrated-source trim editor with independently versioned profiles, separate from everyday Audio Studio faders.
+
+**Precise deliverable:** Add an `Expert calibration` panel in Svelte Audio Studio for source reference level, bounded trim, source version/physical test condition and revision/reset/undo, clearly independent from user mix bus/source/master settings. Show read-only source stem meters, overload warnings, provenance and preview. Use AG-M2-06 service and AG-M0-18 IndexedDB autosave. No login/roles are presumed; expert means an explicitly activated advanced UI. Diagnostic compare tools may be reused, but standalone new A/B calibration profile manager is not approved.
+
+**Inputs / prerequisites:** AG-M2-06 calibration API, AG-M3-08b mixer UI, AG-M0-18 persistence and AG-M0-13 optional ZIP snapshots.
+
+**Owned files/modules:** `src/ui-pages/audio-studio/expert-calibration/, tests/browser/audio-calibration`; other agent contract directories are outside this card without an accepted owner-approved ADR.
+
+**Required reading:** [12](../12-audio-gain-staging-and-mixer.md), [26](../26-multipage-ui-and-floating-widgets.md), [25](../25-core-diagnostics-recording-and-comparison.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+**Acceptance / evidence:** Normal mixer visible independently; entering expert mode edits versioned source trim without touching physics, returning user fader unaffected; invalid trim rejected, undo/reset and persistence/restoration work, ZIP snapshot includes separate calibration metadata. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
+
+### AG-M3-10
+
+**Roadmap source:** Add UI controls to select cabin, engine-bay, roadside and exhaust listening perspective without changing the 2D/3D camera or engine solver.
+
+**Precise deliverable:** Build globally accessible and Audio Studio/Drive-controllable Svelte listening-position selector using AG-M2-07 typed mode. Show which viewpoint is active and what source transfer is approximate; optionally link visual camera only if a later approved decision does so. Store selected perspective under IndexedDB service and ZIP trace/profile. Do not implement new acoustic DSP in UI.
+
+**Inputs / prerequisites:** AG-M2-07 listener DSP and approved spatial command, AG-M0-18 persistence, AG-M3-03 page shell.
+
+**Owned files/modules:** `src/ui-pages/listening-perspective-control/, tests/browser/listener`; other agent contract directories are outside this card without an accepted owner-approved ADR.
+
+**Required reading:** [04](../04-3d-and-ux.md), [12](../12-audio-gain-staging-and-mixer.md), [26](../26-multipage-ui-and-floating-widgets.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+**Acceptance / evidence:** All four modes work at normal/slow time on desktop supported browsers, mode persists on route changes/reload, audio stem changes as expected, torque/events unchanged, WebGL failure leaves selector functional. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
+
+### AG-M3-11
+
+**Roadmap source:** Wire versioned IndexedDB autosave and recovery into the Svelte configurator, sessions, audio settings and movable widgets, with optional ZIP snapshots.
+
+**Precise deliverable:** Use the AG-M0-18 store to autosave editable vehicle/preset/control selection, scenario draft, user mix, expert-calibration profile references, perspective selection, widget layout and bounded debug metadata; show saved/unsaved/recovery/quota failure states. Expose explicit export/import of ZIP snapshot via AG-M0-13; never autosave enormous offline research. On first empty storage load **mechanical carb I4**; restoring previously saved EFI must win over factory default. Do not write a second persistence service.
+
+**Inputs / prerequisites:** AG-M0-18 store, AG-M0-13 archive codec, AG-M1-12 two editable I4 presets; UI card AG-M3-04/05a/05c/08b; calibration/listener choices available or mock state bound to frozen contracts.
+
+**Owned files/modules:** `src/ui-shell/workspace-persistence/, src/ui-pages/presets/autosave/, tests/browser/workspace-recovery`; other agent contract directories are outside this card without an accepted owner-approved ADR.
+
+**Required reading:** [22](../22-guided-vehicle-configurator.md), [25](../25-core-diagnostics-recording-and-comparison.md), [26](../26-multipage-ui-and-floating-widgets.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+**Acceptance / evidence:** New first launch chooses carb, user switches EFI and edits bore/mix, reload restores EFI and edits; corrupted record produces error and safe recovery, private mode/storage unavailable prompts ZIP export, quota error preserves previous good state. ZIP snapshot roundtrip yields same typed settings; no audio callback blocking. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
