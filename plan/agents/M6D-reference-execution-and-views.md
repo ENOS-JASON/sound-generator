@@ -132,6 +132,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 
 ### AG-M6D-08
 
+**Owner-reported compatibility target (2026-11-17):** Windows 11, **i9-10900KF**, **32 GB system RAM**, GTX 1080 Pascal `sm_61`; NVIDIA driver said to be latest supported but **exact driver/build/toolkit installation not verified**. Maintain pinned CUDA 12.x compilation and multicore CPU fallback, and test with actual device/driver reports rather than presuming `nvcc` is installed.
+
 **Roadmap source:** Build and validate a GTX 1080/Pascal-compatible NVIDIA CUDA numerical backend alongside multicore CPU for the Windows/Linux offline simulation, using an explicit legacy CUDA 12.x target.
 
 **Precise deliverable:** Create a versioned CUDA backend adapter with a build path **compatible with NVIDIA GeForce GTX 1080 Pascal, compute capability `sm_61`**, such as CUDA Toolkit 12.9 (subject to driver/OS validation), and an independent multicore CPU reference/fallback adapter. A modern-GPU CUDA 13.x target may be provided separately but **must not replace or break** the Pascal path. Runtime detects GPU/driver/toolkit, evaluates solver precision/memory requirements, records capability/driver/OS/backend version and selects CUDA only when validated; otherwise reports explicit CPU fallback, not false GPU success. No Tensor Core, `sm_75+` or newest-CUDA-only requirement for the compatible path. Heavy high-fidelity models whose precision or memory cannot be met on Pascal may validly run CPU, provided they are exposed and documented as CPU fallback rather than unsupported overall.
