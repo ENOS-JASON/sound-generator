@@ -1,5 +1,15 @@
 # 26 — Multi-page UI and movable diagnostics widgets
 
+## O3 approved browser UI constraints
+
+- **Advanced/Expert mode** is a **toggle without authentication**, not a security permission; editing stays limited to **calibrated gain trims with version/undo**, while ordinary source/bus/master faders remain separate. Do not create login, role, PIN or unlocked arbitrary EQ/DSP.
+- **Listening mode** (cabin, engine bay, roadside, exhaust) is **independent of visual camera**. Rotating/moving 3D/2D view never changes source transfer. Display both camera and audio listener state separately.
+- **Storage:** save configuration, mixer, calibration, widgets, scenarios and **bounded recent debug data** via IndexedDB; expose **configurable bounded historical snapshots** and manual ZIP backups. No unbounded research autosave.
+- **Browser releases:** latest **two stable major desktop versions where available** of Chrome/Chromium, Firefox and Safari; list exact builds tested and honest missing macOS/Safari evidence.
+- **Rendering:** 3D 30 FPS / Canvas 2D 60 FPS targets on an **agent-proposed mid-range desktop approved by the owner**; functional support on **owner i9 10th-gen + GTX1080** is mandatory and tested separately. Graphics FPS never controls the physics tick or audio deadlines.
+- **Local research GUI** is a **CLI-launched web dashboard bound to loopback only** on Windows/Linux, not a Pages backend, public remote service or separately mandated native desktop app. See [O3 approvals](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md).
+
+
 ## Round 3 browser workspace and controls
 
 - **Factory/default:** first launch with no saved valid workspace selects **carburetor/mechanical/no-ECU I4**. The Builder/Presets page also provides a **complete editable EFI/ECU I4**. On reload a valid IndexedDB workspace selected EFI remains EFI; factory defaults never silently override it.
