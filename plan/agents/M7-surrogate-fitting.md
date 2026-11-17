@@ -1,0 +1,125 @@
+# M7 — independent agent cards
+
+Only G6-valid high-fidelity data can calibrate the G1 generic simulator. All physics events, port units, and fallback math remain authoritative.
+
+For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-decisions.md) and [31 — integration gates](../31-integration-gates-and-support-matrix.md). Claims require measured fixtures.
+
+### AG-M7-01
+
+**Original roadmap item:** Define weighted physical/audio loss, per-scenario scores and constraints.
+
+**Exact scoped deliverable:** Define per-scenario/per-component physics, event-timing and audio objective units and weights.
+**Prerequisites:** G1 + G6 validated dataset. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/training/metrics` and local tests only.
+**Required source reading:** [05](../05-training-and-calibration.md), [07](../07-testing-and-acceptance.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
+**Done when:** Metric returns expected score for a known feature fixture; missing feature rejected. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-02a
+
+**Original roadmap item:** Fit configurable shared mathematical families (analytical coefficient, bounded lookup maps/splines, reduced-order state space and optionally compact ML) into existing M0/M1 approximation slots, with physical units, component-specific bindings, validity domains and fallback to generic baseline.
+
+**Exact scoped deliverable:** Fit bounded analytic coefficients, lookup tables and splines into existing FastComponentModel bindings.
+**Prerequisites:** AG-M7-01 and M0 approximation registry. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/training/analytic-and-lookup-fit` and local tests only.
+**Required source reading:** [28](../28-shared-realtime-surrogates-and-calibration.md), [05](../05-training-and-calibration.md).
+**Done when:** Constrained holdout error improves vs baseline and out-of-domain fallback remains finite. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-02b
+
+**Original roadmap item:** Fit configurable shared mathematical families (analytical coefficient, bounded lookup maps/splines, reduced-order state space and optionally compact ML) into existing M0/M1 approximation slots, with physical units, component-specific bindings, validity domains and fallback to generic baseline.
+
+**Exact scoped deliverable:** Fit reduced-order dynamic state, optionally a compact ML model only after simple candidates tested.
+**Prerequisites:** AG-M7-02a and transient fixture. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/training/reduced-order-fit` and local tests only.
+**Required source reading:** [28](../28-shared-realtime-surrogates-and-calibration.md), [20](../20-torque-power-load-and-energy.md).
+**Done when:** Dynamic lag and stability tests on unseen input schedule with measured CPU. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-03
+
+**Original roadmap item:** Detect reusable/identical mathematically and physically compatible models across multiple components and deduplicate shared equations/lookup data while preserving exact component IDs, parameter sets and provenance.
+
+**Exact scoped deliverable:** Identify compatible equations vs identical map data and deduplicate without losing component identity.
+**Prerequisites:** AG-M7-02a and typed domain contract. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/approximations/reuse-validator` and local tests only.
+**Required source reading:** [28](../28-shared-realtime-surrogates-and-calibration.md), [09](../09-data-contracts.md).
+**Done when:** Identical units/domain reuse is accepted, incompatible component parameters rejected. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-04
+
+**Original roadmap item:** Consume one-part/part-set sensitivity comparisons to determine which changes impact physical torque/airflow/exhaust and which change sound source timing/timbre; calibrate appropriate fast variables rather than copying raw high-detail trajectories.
+
+**Exact scoped deliverable:** Calculate paired one-part/part-set physical and sound sensitivities separately.
+**Prerequisites:** G5 experiment diff and G6 source traces. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/training/sensitivity` and local tests only.
+**Required source reading:** [27](../27-high-fidelity-experiment-orchestration.md), [25](../25-core-diagnostics-recording-and-comparison.md).
+**Done when:** Muffler acoustics-only change does not report fake crank torque improvement. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-05
+
+**Original roadmap item:** Extract reference pressure/heat-release/port-flow/resonance features from multiple fidelity levels and fit compact physically constrained fast-model corrections; never require spatial gas/metal meshes at runtime.
+
+**Exact scoped deliverable:** Project gas/thermal/flow/pressure impulses into versioned fast-model feature vectors.
+**Prerequisites:** G6 converged per-zone dataset. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/training/reference-feature-extractor` and local tests only.
+**Required source reading:** [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
+**Done when:** Mass/torque/flow units and crank-angle timestamps match common boundary contract. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-06
+
+**Original roadmap item:** Implement bounded parameter search, spline/map fitting and regularization.
+
+**Exact scoped deliverable:** Deterministic bounded optimizer and regularization across defined training set.
+**Prerequisites:** AG-M7-01 and candidate model families. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/training/optimizer` and local tests only.
+**Required source reading:** [05](../05-training-and-calibration.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
+**Done when:** Invalid or unstable coefficient discarded; identical seed has equivalent optimum. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-07
+
+**Original roadmap item:** Add scenario/configuration-disjoint holdout sets across engine family, intake/boost, controller and transmission/AWD combinations, boundary sampling and model comparison.
+
+**Exact scoped deliverable:** Configuration-disjoint train/validation/holdout evaluator with worst-case metrics.
+**Prerequisites:** AG-M7-06 and scenario matrix. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/training/holdout` and local tests only.
+**Required source reading:** [05](../05-training-and-calibration.md), [07](../07-testing-and-acceptance.md), [19](../19-scenario-coverage-and-presets.md).
+**Done when:** Whole vehicle/part/scenario holdout cannot leak adjacent samples from training. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-08
+
+**Original roadmap item:** Record source fidelity/mesh versions and convergence/uncertainty in every trained artifact; reject un-converged/unreliable reference configurations as training ground truth.
+
+**Exact scoped deliverable:** Check provenance, mesh convergence and fidelity version before using reference labels.
+**Prerequisites:** G6 reference manifest. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/training/provenance-validation` and local tests only.
+**Required source reading:** [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [27](../27-high-fidelity-experiment-orchestration.md).
+**Done when:** Corrupt/unconverged input dataset rejected, never silently trained. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-09
+
+**Original roadmap item:** Export versioned coefficient profiles with validity bounds, provenance and hashes; activate via validated scheduled command and PROFILE_ACTIVATED event.
+
+**Exact scoped deliverable:** Export versioned compact component-bound equation/maps and metric manifest.
+**Prerequisites:** AG-M7-07 and AG-M7-08. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/training/profile-export` and local tests only.
+**Required source reading:** [09](../09-data-contracts.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
+**Done when:** Valid profile roundtrips; incompatible units, checksum or model version rejected. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-10
+
+**Original roadmap item:** Load and atomically swap validated profiles; add stable baseline fallback.
+
+**Exact scoped deliverable:** Load/atomically activate validated trained profiles with per-component analytic fallback.
+**Prerequisites:** AG-M7-09 and G1 engine. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `src/approximations/profile-loader` and local tests only.
+**Required source reading:** [28](../28-shared-realtime-surrogates-and-calibration.md), [25](../25-core-diagnostics-recording-and-comparison.md).
+**Done when:** Mid-run switch obeys safe boundary; wrong graph hash falls back with diagnostics. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-11
+
+**Original roadmap item:** Reject candidates with worse transition behavior, instability or audio CPU overruns.
+
+**Exact scoped deliverable:** Regression/release tests of trained physical events, energy and worklet CPU load.
+**Prerequisites:** AG-M7-07/10 and G2 worklet. Missing contract means blocked or fixture-only, never independently invented new protocol.
+**Owned area:** `tests/training/regression-and-runtime` and local tests only.
+**Required source reading:** [07](../07-testing-and-acceptance.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
+**Done when:** Candidate with better audio but broken crank energy fails; baseline remains runnable. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
