@@ -34,6 +34,15 @@
 | A24 — Medium | [08](08-implementation-roadmap.md) M4 bundles all modern drivetrains/boost with M9+ “all technologies” promise | A milestone counted complete with only interface stubs, or blocked forever by future models | **Component support matrix** (`implemented / approximate / planned`) + per-feature acceptance + release subset; never fake unsupported technology. See [31](31-integration-gates-and-support-matrix.md) |
 | A25 — Medium | [10](10-risks-and-decisions.md) “open decisions” has no owner/resolve date | Agents guess architecture and compete on same shared interface | Each unresolved choice becomes a decision ID, accountable **M0 owner** and freeze gate; downstream agent must not pick independently |
 
+## Round 1 owner decisions — audit disposition
+
+- **A01 remains OPEN:** equivalent AudioWorklet-owned and Worker-owned solver benchmarks followed by explicit project-owner selection. Do not pick a default solver owner.
+- **A02 partially resolved:** **Svelte + Vite approved**; router/store and version choice still open.
+- **A07 extended:** **both pitch-lowered and pitch-preserving slow motion are required**, with a selectable mode. Default and DSP quality/error budget still open.
+- **A11/A12 clarified:** interface must accommodate eventual **actual 3D CFD, chemistry and material models** and validated **native CPU/GPU/other numerical compute backends**. Initial M6 research is not thereby a validated 3D CFD solver.
+- **A17/A24 clarified:** first completely running baseline must be **I4 gasoline, starter, basic manual clutch/gearbox and vehicle/road load**. ECU/carb details still pending.
+- **Cross-cutting owner policy:** every major architecture change/choice is proposed to and approved by the project owner, not automatically accepted by a coding agent. See [Round 1](decisions/USER-APPROVED-ROUND-01.md).
+
 ## Required new control documents
 
 1. [30 — Handoff contracts, decisions and versioning](30-agent-handoff-contracts-and-decisions.md): ownership, normative technical decisions, schemas, change process, task template, integration rules.
