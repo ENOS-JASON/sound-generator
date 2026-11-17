@@ -15,6 +15,10 @@ Interactive playable vehicle sound laboratory with switchable 3D car/engine, lig
 - Pause/restart/reset, deterministic seeds, instrumentation and basic 3D synchronization.
 - Accessibility: keyboard controls, readable numeric display, reduce-motion option and graphics fallback.
 
+- **Core M0 diagnostics before engine work:** simulation time scaling, pause/step/next-event, shared physics/audio clock mapping, typed telemetry registry, expandable debug menus, live waveform/FFT/spectrogram/RPM/torque/port graphs, bounded recording, local export/import, deterministic replay, A/B difference graphs and synthetic test harness.
+- **Multi-page application:** Dashboard/Garage, step-by-step Builder, Drive/2D/3D, Audio Studio/Mixer, Diagnostics, Scenarios, Research, Experiments/Compare, Presets and Settings, with draggable/resizable/hideable floating debug widgets on compatible pages. Navigation never resets a running engine or audio.
+- **Real-time generic model first:** physically valid baseline equations and a reusable, versioned approximation/model registry with optional data-driven correction coefficient/map slots before any expensive reference solver is developed. No trained profile is required to run a usable engine.
+
 ## P1: full dynamics and sonic detail
 - Intake component graph: conventional plenums, variable runners, filters, carburetors, throttle bodies and ITBs; single/twin/sequential/compound turbo, multiple supercharger families, twincharging and charge cooling as individually verified models. Intake selection changes airflow, torque, transients and sound.
 - Engine generations: mechanical/no ECU (carburetor, distributor, mechanical governor), injection/ECU/drive-by-wire and editable ECU map/strategy modules; later diesel, two-stroke, rotary, hybrid and EV models use distinct family modules.
@@ -39,6 +43,10 @@ Interactive playable vehicle sound laboratory with switchable 3D car/engine, lig
 - Coverage-driven deterministic scenarios including pop-and-bang/afterfire, weak battery, worn starter, no-ECU and ECU behaviors, all supported cylinder-bank presets, induction combinations, 2WD/AWD/4WD/transmission modes, failed transitions and load conservation; objective spectral/temporal metrics and listener comparison.
 - Model selection: simple lookup/splines, compact regression, small ML surrogate only if warranted. Preserve conservation laws and deterministic fallbacks.
 - Browser import of validated trained profiles; reproducible training manifest and compatibility checks.
+
+- **Very expensive reference computations are permitted:** highest fidelity can take hours/days of wall time per simulated piston cycle, using configurable all-core offline workers, checkpoints and streamed high-volume data with no artificial short wall-time scenario failures.
+- **Experiment batches:** repeat same setup for numerical/seed validation; hold all else constant and alter one part/parameter; swap curated sets of parts; define sweeps, interactions, baseline/variant groups and event-gated scenario sequences; provenance includes every component, physical parameter and sound source.
+- **Model simplification:** calibrate the already-working fast formulas from high-fidelity state/audio features into bounded equations, lookup surfaces and reusable model families for multiple physically compatible components. Store per-component bindings, validity regions, exact baseline/reference manifests and uncertainty, and compare them through the shared diagnostics system.
 
 ## P3: extensibility
 - Diesel, rotary, two-stroke, motorcycle and EV powertrains require dedicated physics/sound modules; do not pretend four-stroke parameters model them faithfully.
