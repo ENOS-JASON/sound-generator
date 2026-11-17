@@ -1,5 +1,12 @@
 # 25 — Mandatory core diagnostics, record/replay, charts and comparison
 
+## Round 2 — Portable capture, recorded measurement policy and support targets
+
+All browser data exports/imports must be a **ZIP** archive with JSON manifest plus versioned typed chunked commands/events/telemetry, hashes/checksums and optional **generated** output/audio stems. The implementation must enforce archive size/decompression/version/schema limits, mark incomplete or missing channels and retain clock, selected controller, calibration/provenance, slow-motion mode and event identity. No single-gigantic-memory-buffer assumption. Offline research may optionally export **Parquet/HDF5**, but browser use never depends on such scientific codecs. `AG-M0-13` defines exact ZIP layout and test fixtures; `AG-M6D-05` preserves matching metadata.
+
+**Real-world recorded sounds are reference analysis only**: their features may be imported and compared against synthesized source spectra/transients, but no recorded-car audio becomes a generated playback source, a stem or an in-app reference audio player. Generated-audio captures can still be exported/replayed to diagnose this tool's own output. Report what was `simulation-estimate` vs numerically validated vs measurement-compared, with uncertainty, measured conditions and data provenance. Browser diagnostics and fallback must work in desktop Chromium, Firefox and Safari. See [Round 2](decisions/USER-APPROVED-ROUND-02.md).
+
+
 **Priority: M0 acceptance gate.** Build the debugging and instrumentation infrastructure **before implementing substantial engine/audio/vehicle physics**. A minimal mock/fixed-step simulator and synthetic AudioWorklet signal are sufficient to test the initial diagnostics stack. It must be usable while the actual modules arrive, without requiring retrofitting each subsystem later.
 
 ## Runtime core services
