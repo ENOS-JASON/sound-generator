@@ -1,5 +1,12 @@
 # 27 — High-fidelity experiments, multirun studies and multicore orchestration
 
+## Round 3 Windows/Linux local graphical monitoring
+
+**Approved:** keep the headless CLI as a reproducible computation entry point, and add a **separate local graphical monitoring application** on Windows and Linux. Its only authority is through a versioned local job-control interface over study IDs, commands and events: start/inspect/pause/cancel/checkpoint/resume, simulation/crank-time progress, worker CPU/GPU/RAM/VRAM/disk, logs and numerical failures. It does **not** require a remote queue, public backend, localhost endpoint on GitHub Pages or any change to the AudioWorklet.
+
+Selection of concrete GUI toolkit, local IPC/permissions, packaging and restart/recovery semantics remains **NON VALIDATED**, requires prototype and major ADR if architecture-changing. Windows/Linux smoke and interruption/recovery tests must be recorded; UI must not claim an offline solver completed merely from elapsed wall clock. Cross-platform checkpoint files retain full manifests and provenance. See [Round 3](decisions/USER-APPROVED-ROUND-03.md) and `AG-M6D-07`.
+
+
 ## Round 2 — Supported platforms and research data interchange
 
 Offline research orchestration must run on **Windows and Linux** with versioned typed backend adapters that can use CPU, native compiled kernels, compatible GPUs or WASM **when available and validated**. Platform-specific GPU acceleration is **optional**, but neither OS may be silently unsupported; CI smoke and hardware-conditional tests must disclose coverage. Record OS, device, driver, precision, reproducibility tolerance and available-worker scheduling separately from physics settings, and never assume Node `worker_threads` alone parallelizes a GPU/CFD kernel.
