@@ -1,10 +1,10 @@
 # Agent task index — one handoff per roadmap checkbox
 
-**Rule:** assign **one agent to each AG card**, never a whole M0–M9 milestone. For a roadmap item split into multiple cards, the original checkbox is completed only after **every listed child card** is reviewed and passes tests. Every card contains prerequisite evidence, file ownership, essential references and acceptance checks. See [README](README.md), [30](../30-agent-handoff-contracts-and-decisions.md) and [31](../31-integration-gates-and-support-matrix.md).
+**Rule:** give one agent exactly one `AG-` card, not a milestone. Broad roadmap checkboxes split into child cards are done only when **all** child tasks have passed tests and AI-integrator/CI review. Every card has prerequisites, essential references, bounded files and acceptance evidence. See [README](README.md), [30](../30-agent-handoff-contracts-and-decisions.md), [31](../31-integration-gates-and-support-matrix.md).
 
-**Status:** planning work orders only; no implementation has been claimed. Sequence contracts first, then mock integration, real-time fast engine, scenario studies, numerical reference and training. Use fixture-only integration when a producer is unavailable and report limitations.
+**Status: planning work orders only.** Owner approvals: [Round 1](../decisions/USER-APPROVED-ROUND-01.md), [Round 2](../decisions/USER-APPROVED-ROUND-02.md), [Round 3](../decisions/USER-APPROVED-ROUND-03.md). Major architectural choices still require owner consent; actual reviewer/GUI/licensing capability must be validated before claiming implementation.
 
-Mapped **100** roadmap items to **160** independently assignable cards.
+Mapped **110** roadmap items to **170** independently assignable cards.
 
 ## M0 — M0-foundation.md
 
@@ -27,6 +27,8 @@ Mapped **100** roadmap items to **160** independently assignable cards.
 | `M0-15` | [AG-M0-15](M0-foundation.md#ag-m0-15) | Define `FastComponentModel` / `ApproximationRegistry` contracts: generic analytic baseline, optional trained coefficient/lookup slot, version/unit/validity/fallback, component IDs and reference projection; training must be possible later without rewriting M1 solver. |
 | `M0-16` | [AG-M0-16](M0-foundation.md#ag-m0-16) | Define reference experiments and `ReferenceComputeBackend` with **Windows/Linux support**, optional CPU/GPU, provenance/precision and research-export format contracts; maintain browser ZIP as exchange base. |
 | `M0-17` | [AG-M0-17](M0-foundation.md#ag-m0-17) | Implement **desktop Chromium/Firefox/Safari** capability detection, audio gesture/unlock/error UI and lower-cost Canvas 2D fallback when 3D unsupported. |
+| `M0-18` | [AG-M0-18](M0-foundation.md#ag-m0-18) | Define **versioned IndexedDB browser autosave** with migrations/quota/recovery, preserve last valid EFI user choice, and keep optional ZIP snapshots through the existing recorder. |
+| `M0-19` | [AG-M0-19](M0-foundation.md#ag-m0-19) | Prototype/configure a dedicated **AI technical integration agent** for routine PR review with CI evidence, least-privilege GitHub permissions and escalation of major ADRs/issues to the project owner; do not assume bot or merge rights exist. |
 
 ## M1 — M1-fast-engine.md
 
@@ -43,6 +45,7 @@ Mapped **100** roadmap items to **160** independently assignable cards.
 | `M1-09` | [AG-M1-09a](M1-fast-engine.md#ag-m1-09a), [AG-M1-09b](M1-fast-engine.md#ag-m1-09b) | Add air/fuel/spark and combustion torque, catch criteria, OFF/CRANKING/FIRING/RUNNING/FAILED_START transitions. |
 | `M1-10` | [AG-M1-10a](M1-fast-engine.md#ag-m1-10a), [AG-M1-10b](M1-fast-engine.md#ag-m1-10b) | Implement selectable mechanical idle adjustment or ECU idle regulation, kill-switch shutdown, no-fuel failure, low-battery failure and load-induced stall. |
 | `M1-11` | [AG-M1-11](M1-fast-engine.md#ag-m1-11) | Build start/idle/stall/manual-clutch/road-load headless fixtures **for both carbureted/no-ECU and EFI/ECU I4 variants**, including valid/invalid controller commands and energy tests. |
+| `M1-12` | [AG-M1-12](M1-fast-engine.md#ag-m1-12) | Ship **two complete, physically valid editable I4 vehicle presets** (carburetor/mechanical/no ECU and EFI/ECU), first-run carb selected by default unless a valid autosaved user choice exists; test both with starter, manual gearbox and road load. |
 
 ## M2 — M2-audio.md
 
@@ -53,6 +56,8 @@ Mapped **100** roadmap items to **160** independently assignable cards.
 | `M2-03` | [AG-M2-03a](M2-audio.md#ag-m2-03a), [AG-M2-03b](M2-audio.md#ag-m2-03b) | Build plenum/airbox/intake, exhaust/body resonances, filter smoothing, calibrated full-reference source generation, independent stem/bus/master gains, meters, mute/solo and safe output headroom. |
 | `M2-04` | [AG-M2-04](M2-audio.md#ag-m2-04) | Validate **both approved slow-motion audio modes** alongside sound-physics synchronization, worklet deadline/latency, waveform/FFT capture, mode-switch diagnostics and event alignment. |
 | `M2-05` | [AG-M2-05](M2-audio.md#ag-m2-05) | Implement pitch-preserving slow-motion time-stretch DSP alongside physical pitch-lowered playback, with measured worklet CPU/latency, no silent fallback and deterministic mode switching (UI toggle in `AG-M3-07`). |
+| `M2-06` | [AG-M2-06](M2-audio.md#ag-m2-06) | Add **expert-editable, separately versioned per-source calibration trims** independent of user mixer faders and master gain, with reset/revision, headroom and physics invariants. |
+| `M2-07` | [AG-M2-07](M2-audio.md#ag-m2-07) | Implement procedural audio **cabin, engine-bay, roadside and exhaust listening perspectives** with source-aware transfer/attenuation and no changes to engine physics. |
 
 ## M3 — M3-builder-and-views.md
 
@@ -66,6 +71,9 @@ Mapped **100** roadmap items to **160** independently assignable cards.
 | `M3-06` | [AG-M3-06](M3-builder-and-views.md#ag-m3-06) | Implement **M3-C training setup step**: supported Quick/Balanced/Detailed/Research tiers, per-component zone and timestep controls, preflight cost/capability and Worker/CLI job selection (UI editor may precede actual M6 solvers). |
 | `M3-07` | [AG-M3-07](M3-builder-and-views.md#ag-m3-07) | Add start/stop, throttle, ignition, load and preset editor UI with SI conversions and the **physical/pitch-preserved slow-motion audio mode switch**; applying engine configuration requires a validated reset/safe boundary. |
 | `M3-08` | [AG-M3-08a](M3-builder-and-views.md#ag-m3-08a), [AG-M3-08b](M3-builder-and-views.md#ag-m3-08b), [AG-M3-08c](M3-builder-and-views.md#ag-m3-08c) | Add RPM/crank and wheel torque/hp/kW plus component loss meter, read-only event timeline, mixer channel/bus/master editor and 2D/3D/telemetry switch; no renderer may drive physics. |
+| `M3-09` | [AG-M3-09](M3-builder-and-views.md#ag-m3-09) | Add Svelte Audio Studio **expert calibration trim editor** and revision/undo with persistent calibration profile separate from ordinary source/bus/master mixer. |
+| `M3-10` | [AG-M3-10](M3-builder-and-views.md#ag-m3-10) | Add **four-position listening selector** (cabin/engine bay/roadside/exhaust) on Drive/Audio Studio, independent of 3D camera/physics and persistent across pages. |
+| `M3-11` | [AG-M3-11](M3-builder-and-views.md#ag-m3-11) | Integrate **IndexedDB autosave/recovery** for builder, selected controller/preset, mixer, expert calibration, scenarios and widgets, plus optional portable ZIP snapshot import/export. |
 
 ## M4A — M4A-controls-and-electrical.md
 
@@ -151,6 +159,7 @@ Mapped **100** roadmap items to **160** independently assignable cards.
 | `M6D-04` | [AG-M6D-04](M6D-reference-execution-and-views.md#ag-m6d-04) | Implement repeated validation/seed runs and paired **one-component/parameter and preset-of-components** variations under identical time/event-gated scenarios, capturing full actual component/part topology, state, versions and source audio provenance. |
 | `M6D-05` | [AG-M6D-05](M6D-reference-execution-and-views.md#ag-m6d-05) | Export full component/multizone/fidelity/solver/OS/backend provenance and measured-reference comparison/confidence, reimportable into browser **ZIP** and optional offline **Parquet/HDF5** research output without discarding units/hashes. |
 | `M6D-06` | [AG-M6D-06a](M6D-reference-execution-and-views.md#ag-m6d-06a), [AG-M6D-06b](M6D-reference-execution-and-views.md#ag-m6d-06b) | Create per-zone diagnostic trace viewer, coarse/fine **mesh/time-step convergence reports**, reproducible dataset manifests and optional licensed measured-reference comparisons. |
+| `M6D-07` | [AG-M6D-07](M6D-reference-execution-and-views.md#ag-m6d-07) | Implement Windows/Linux **local graphical high-fidelity job monitor** driving existing offline CLI through a versioned local job-control adapter; show resources, progress, logs, cancel and checkpoint/resume. No remote queue implied. |
 
 ## M7 — M7-surrogate-fitting.md
 
@@ -167,6 +176,7 @@ Mapped **100** roadmap items to **160** independently assignable cards.
 | `M7-09` | [AG-M7-09](M7-surrogate-fitting.md#ag-m7-09) | Export versioned coefficient profiles with validity bounds, provenance and hashes; activate via validated scheduled command and PROFILE_ACTIVATED event. |
 | `M7-10` | [AG-M7-10](M7-surrogate-fitting.md#ag-m7-10) | Load and atomically swap validated profiles; add stable baseline fallback. |
 | `M7-11` | [AG-M7-11](M7-surrogate-fitting.md#ag-m7-11) | Reject candidates with worse transition behavior, instability or audio CPU overruns. |
+| `M7-12` | [AG-M7-12](M7-surrogate-fitting.md#ag-m7-12) | Build user-imported and **verified-license bundled measurement reference catalog** with provenance/quality and analysis-only audio features; exclude recordings lacking redistribution rights and never use them for playback. |
 
 ## M8 — M8-release-and-performance.md
 
@@ -188,9 +198,11 @@ Mapped **100** roadmap items to **160** independently assignable cards.
 
 ## Cross-card references
 
-- [Audit register](../29-plan-audit-and-gap-register.md): 25 known sources of misunderstanding and their owners.
-- [Shared contracts / decision freeze](../30-agent-handoff-contracts-and-decisions.md): normative interface ownership, ADRs, typed events and time/physical conventions.
-- [Integration gates / support matrix](../31-integration-gates-and-support-matrix.md): when a card can unblock consumers and when a provider can be labeled implemented.
-- [Original full request](../23-quoted-project-direction-and-decisions.md): preserved intended build sequence.
+- [Agent onboarding and task procedure](README.md)
+- [Agent review prompt](AGENT_PROMPT.md)
+- [Audit register](../29-plan-audit-and-gap-register.md)
+- [Shared contracts and owner-approved decision procedure](../30-agent-handoff-contracts-and-decisions.md)
+- [Integration acceptance gates](../31-integration-gates-and-support-matrix.md)
+- [Remaining validation gaps after Round 3](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md)
 
-**If your work-order ID has no matching heading in its phase file, stop: the index is inconsistent. Do not implement from this index row alone.**
+**If an index row's card heading cannot be found in the linked phase file, stop and report an inconsistent work order, not an implicit authorization to invent code.**
