@@ -78,6 +78,8 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 ### AG-M1-07a
 
+**Approved Round 2 requirement:** G1 **cannot pass without this working mechanical/no-ECU I4 option**: carburetor/throttle/choke, distributor advance and correct fuel/ignition/idle behavior; reject ECU maps and electronic-only commands. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap task:** Implement minimal mechanically controlled carburetor/distributor path **without ECU** plus separately selectable ECU reference controller; reject controls not supported by the active strategy.
 
 **Bounded deliverable:** Minimal mechanical/no-ECU throttle/choke/distributor/idle inputs behind ControlStrategy.
@@ -89,6 +91,8 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 **Done when:** No electronic ECU map controls available; mechanical choke/advance affects charge and torque in a fixture. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M1-07b
+
+**Approved Round 2 requirement:** G1 **also requires a separately selectable EFI/ECU I4 option**. Implement injection/spark/sensors/idle through physical ports; do not merely expose map UI or secretly reuse carburetor behavior under an ECU label. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Implement minimal mechanically controlled carburetor/distributor path **without ECU** plus separately selectable ECU reference controller; reject controls not supported by the active strategy.
 
@@ -126,6 +130,8 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 ### AG-M1-09a
 
+**Approved Round 2 requirement:** Provide distinct charge/fuel/ignition source behavior for **carburetor/no-ECU vs EFI/ECU** in the initial I4, including tests showing real physical differences and no mixed controller path. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap task:** Add air/fuel/spark and combustion torque, catch criteria, OFF/CRANKING/FIRING/RUNNING/FAILED_START transitions.
 
 **Bounded deliverable:** Simple cylinder air mass, fuel delivery and spark state from pressure/temperature/throttle.
@@ -138,6 +144,8 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 ### AG-M1-09b
 
+**Approved Round 2 requirement:** First-fire, catch, idle and stalls must work in **both approved I4 controller modes**, with actual combustion and starter/manual-load responses; neither can be a visual-only preset. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap task:** Add air/fuel/spark and combustion torque, catch criteria, OFF/CRANKING/FIRING/RUNNING/FAILED_START transitions.
 
 **Bounded deliverable:** Conditioned per-cylinder heat-release/torque with first-fire and running/catch state transitions.
@@ -149,6 +157,8 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 **Done when:** First-fire event only on actual combustion; starter may crank without running; torque pulses follow 720-degree order. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M1-10a
+
+**Approved Round 2 requirement:** Both initial I4 configurations need **their applicable idle method** (mechanical adjustment versus ECU strategy); no electronic regulation should appear in carb/no-ECU mode. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Implement selectable mechanical idle adjustment or ECU idle regulation, kill-switch shutdown, no-fuel failure, low-battery failure and load-induced stall.
 
@@ -173,6 +183,8 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 **Done when:** Friction slows stopped engine, fuel-off cannot fire; stalling emits one causal event before off. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M1-11
+
+**Approved Round 2 requirement:** G1 golden scenarios **must cover both carbureted/mechanical/no-ECU and EFI/ECU I4** start, stable idle, failed start, basic manual clutch/road load, hill/braking stall, invalid controller commands, torque and energy conservation. Do not certify only one controller. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Build headless first-start/stall scenarios and physical invariant tests.
 
