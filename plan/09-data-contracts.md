@@ -1,5 +1,17 @@
 # 09 — Versioned data contracts
 
+## Round 3 versioned interfaces (design targets, not implemented API)
+
+- `InitialVehicleExamples` declares two **valid editable I4** vehicle/controller graphs; `factoryDefaultVehicleId` points to the mechanical carburetor/no-ECU preset **only when no valid saved user choice exists**. Explicitly distinguish `factoryDefault` from `currentWorkspaceSelectedVehicleId`.
+- `WorkspaceSnapshot` / `WorkspaceStore` uses versioned **IndexedDB** local persistence and migration transactions for vehicle/controller, scenario drafts, user mix, calibration trim *references*, selected listener and widgets. Snapshot export/import is optional **ZIP**, distinct from trace bundles; include record/version hashes and safe recovery. Avoid unlimited deep trace autosave.
+- `SourceCalibrationProfile`: `sourceId`, `schemaVersion`, `revisionId`, nominal reference physical condition, units, trim `gainDb`, range/headroom, provenance and safe activation; strictly separate from `UserMixProfile` and `VehicleDefinition`.
+- `ListeningPerspective`: `cabin | engine-bay | roadside | exhaust` plus versioned source-transfer/filter metadata, active mode trace, independent of renderer camera and physical solver.
+- `MeasurementReferenceCatalog`: origins `user-import` / `bundled-redistribution-verified`, source/license/consent/attribution/conditions/confidence; **reference recordings analyzed as features only, with no audio playback**. Bundled content excluded unless redistribution permission is proven.
+- `LocalStudyControl`: CLI job IDs, state enum, sim-time progress, backend/resource telemetry, errors, versioned checkpoint/pause/cancel/resume, local GUI client; no remote queue required.
+- `AgentReviewReport`: work-order/PR ID, CI test evidence, contract/gate/licensing checks, findings, requested changes, escalation category and owner decision reference; no implied autonomous merge rights.
+See [Round 3 approvals](decisions/USER-APPROVED-ROUND-03.md). Interfaces are **proposed**, require accepted ADRs/fixtures and tests before asserting feasibility.
+
+
 ## Round 2 — Approved schema constraints (not final generated code)
 
 - **First I4 engine:** `VehicleDefinition` must represent *either* `ControlStrategy.kind='mechanical'` with carburetor/distributor and **no ECU** *or* an `ecu` + EFI injection/spark strategy as **two separately valid and runnable alternatives**. Shared engine geometry, starter, manual clutch/transmission and vehicle load contracts must not change ownership when switching. Reject an engine with both exclusive strategies active or with ECU maps attached to mechanical-only mode.
