@@ -135,3 +135,17 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Owned area:** `tests/training/regression-and-runtime` and local tests only.
 **Required source reading:** [07](../07-testing-and-acceptance.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
 **Done when:** Candidate with better audio but broken crank energy fails; baseline remains runnable. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M7-12
+
+**Roadmap source:** Implement reference measurement ingestion and catalog supporting both user-imported and explicitly licensed bundled assets for calibration/validation only.
+
+**Precise deliverable:** Create a versioned `MeasurementReferenceCatalog` with **user-imported owned/licensed datasets** and **optional bundled measurements only after redistribution rights documented**. Store source provenance/license/attribution/conditions, units, timestamps, uncertainty and usable derived features for torque, combustion, pressure, intake/exhaust and spectral/transient comparisons. Import may analyze original audio; do not register recorded-car audio as an AudioSource/stem or offer in-app reference audio playback. Catalog can ship empty/unavailable with capability and tests if no verified redistributable assets exist. Provide exact feature/export contract to AG-M7-05/07/08 and AG-M8-03 licensing reviewer.
+
+**Inputs / prerequisites:** AG-M0-13 browser ZIP/schema, AG-M7-05 feature-extraction conventions, license/provenance ADR-010, offline Windows/Linux research format if relevant; actual bundled source files must be licensed separately.
+
+**Owned files/modules:** `src/reference-data/catalog/, src/reference-data/import/, tests/reference-data/catalog`; other agent contract directories are outside this card without an accepted owner-approved ADR.
+
+**Required reading:** [05](../05-training-and-calibration.md), [25](../25-core-diagnostics-recording-and-comparison.md), [28](../28-shared-realtime-surrogates-and-calibration.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+**Acceptance / evidence:** User-owned sample with complete license metadata imports feature descriptors; invalid license/format/corrupted reference rejected, bundled asset lacking redistribution proof is excluded; reference audio never routable to live mixer/audio player. Model report explicitly states missing measured coverage; do not claim verified car acoustics based only on numerics. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
