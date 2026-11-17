@@ -4,7 +4,7 @@
 
 | Verification ID | Binding choice | Required evidence or narrower unapproved detail | Accountable cards | Blocking acceptance |
 |---|---|---|---|---|
-| **V4-01** | O3-01 one primary dev desktop | Actual 10th-gen i9 model/RAM/OS/browser/GTX1080 driver and reproducible Worklet-vs-Worker same-I4 benchmark; present final solver owner to owner for approval | `AG-M0-10` | ADR-001 |
+| **V4-01** | O3-01 one primary dev desktop | Owner-reported **Windows 11 / i9-10900KF / 32 GB / GTX1080**, NVIDIA driver described as latest supported but exact version **unverified**; collect browser, driver and reproducible Worklet-vs-Worker same-I4 benchmark; present final solver owner to owner for approval | `AG-M0-10` | ADR-001 |
 | **V4-02** | O3-02 AI may merge routine PR under rules | Actual GitHub API installation/identity, scoped review + merge permission, branch protection, required CI checks, audit trail, owner-approved enforcement rules, independent/self-review defense and escalation tests; no credential assumptions | `AG-M0-19` | AI-assisted merge activation / G8 |
 | **V4-03** | O3-03 selected IndexedDB dataset classes | Schema/migration/quota/last-good recovery plus capped recent debug channels, storage disabled and ZIP snapshot tests | `AG-M0-18`, `AG-M3-11` | G0-B/G3 |
 | **V4-04** | O3-04 agents propose generic I4 values | Two quantitative physical vehicle examples with justification and acceptance tests **submitted for owner approval before publishing as defaults** | `AG-M1-12` | G1 presets |
@@ -19,7 +19,7 @@
 | **V4-13** | O3-13 bounded configurable history | Set rationale for default history count/age/byte limits, configure/evict/recover, quota-safe transactional snapshots and ZIP independent of IndexedDB; no unbounded storage | `AG-M0-18`, `AG-M3-11` | G0-B/G3 |
 | **V4-14** | O3-14 expert mode toggle no auth | GUI toggle disclosure, guarded dangerous gain edits and undo; explicit confirmation that no login/role/PIN is introduced or claimed as security | `AG-M3-09` | G3 |
 | **V4-15** | O3-15 escalates public contract/ownership changes | AI reviewer policy detects frozen public TS APIs/ports/bus/event IDs, `src/contracts/`, module ownership and security/license major paths; owner escalation tests incl. malicious PR and reviewer-authored PR | `AG-M0-19` | AI reviewer tests / G8 |
-| **V4-16** | Additional i9-10th-gen/GTX1080 **must be supported** | Exact GTX1080 device/driver/CUDA12.x support, CPU and GPU execution, resource constraints and browser WebGL compatibility on owner's machine; no performance promise without on-device test; report any CPU-only fallback per solver | `AG-M6D-08`, `AG-M8-05` | compatibility acceptance before release |
+| **V4-16** | Additional i9-10th-gen/GTX1080 **must be supported** | Owner-reported **Windows 11/i9-10900KF/32 GB/GTX1080**; exact NVIDIA driver build/CUDA12.x installed toolkit, actual CPU/GPU execution, resource constraints and browser WebGL compatibility on owner's machine **not yet verified**; no performance promise without on-device test; report any CPU-only fallback per solver | `AG-M6D-08`, `AG-M8-05` | compatibility acceptance before release |
 
 ## Required GTX 1080 legacy compatibility guardrail
 
@@ -27,7 +27,7 @@
 - NVIDIA official CUDA 13.0 release notes: **Pascal offline compile/library support removed** — https://docs.nvidia.com/cuda/archive/13.0.0/cuda-toolkit-release-notes/
 - NVIDIA official CUDA 12.9 release notes: CUDA 12.x still supports Pascal build — https://docs.nvidia.com/cuda/archive/12.9.0/cuda-toolkit-release-notes/index.html
 - **Mandatory `sm_61`-compatible CUDA 12.x build/profile, plus mandatory multicore CPU fallback.** Other GPUs can use a separate newer CUDA target without breaking legacy support. Library dependencies must be pinned per supported architecture and checked in CI/prototype; installing current CUDA 13 alone does not pass GTX1080 requirements.
-- Device driver branch, toolkit and OS are not yet known; do **not** instruct user to replace GPU, install unsafe drivers or assume all versions work. CUDA/OpenCL/CPU backends must be labeled with **actual availability**, and any precision-constrained solver may use validated CPU instead of an unsupported CUDA path.
+- **OS = Windows 11, CPU = i9-10900KF, RAM = 32 GB (owner-reported).** GPU = GeForce GTX1080, driver described as **latest supported** (exact numeric version/branch unknown). See [hardware profile](OWNER-DEVELOPMENT-HARDWARE.md). Device driver branch and CUDA toolkit are not yet known; do **not** instruct user to replace GPU, install unsafe drivers or assume all versions work. CUDA/OpenCL/CPU backends must be labeled with **actual availability**, and any precision-constrained solver may use validated CPU instead of an unsupported CUDA path.
 
 ## Governance
 
