@@ -6,6 +6,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M8-01
 
+- [ ] **AG-M8-01 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+
 **Approved O3 implementation requirement (supersedes older provisional card language):** **O3-12 B:** browser compatibility target is **latest two released stable major versions, where available**, of desktop Chrome/Chromium, Firefox and Safari; record concrete build IDs at test/release time. Safari requires compatible macOS testing, otherwise report unverified, not passed. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
 **Approved Round 3 acceptance:** Desktop Chromium/Firefox/Safari tests distinguish **rendered FPS** from engine tick and AudioWorklet sample deadlines; IndexedDB denied/clear/reload behavior must be documented. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
@@ -18,9 +20,20 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** G1/G2/G3 fixtures. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `tests/browser-compat` and local tests only.
 **Required source reading:** [01](../01-architecture.md), [07](../07-testing-and-acceptance.md).
-**Done when:** Document Chromium/Firefox/Safari where testable; degraded browser doesn't kill physics. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M8-01** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Document Chromium/Firefox/Safari where testable
+- [ ] degraded browser doesn't kill physics.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M8-02
+
+- [ ] **AG-M8-02 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved O3 implementation requirement (supersedes older provisional card language):** **O3-05 B:** **propose representative mid-range reference desktop** (CPU/GPU/RAM/OS/browser/scene/resolution) for project-owner approval *before* declaring benchmark target; measure 30 FPS 3D / 60 FPS 2D there, independent from user's **i9 10th-gen/GTX1080** mandatory compatibility machine (AG-M8-05). See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
@@ -32,9 +45,19 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** G2/G3 and M4 provider fixture. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `tests/benchmarks, src/performance` and local tests only.
 **Required source reading:** [07](../07-testing-and-acceptance.md), [25](../25-core-diagnostics-recording-and-comparison.md).
-**Done when:** Benchmark capture includes hardware, zero deadline misses in tested stress case, 2D lower load. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M8-02** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Benchmark capture includes hardware, zero deadline misses in tested stress case, 2D lower load.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M8-03
+
+- [ ] **AG-M8-03 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 3 acceptance:** Must verify redistribution rights for any **bundled reference recordings/measurements** from `AG-M7-12`; if unverified, exclude them. User-import reference analysis still works. No real-world sample/diagnostic playback. Confirm first-run carb and editable EFI examples. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
@@ -46,9 +69,19 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** G3 validated wizard. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/profiles, docs/licensing` and local tests only.
 **Required source reading:** [09](../09-data-contracts.md), [31](../31-integration-gates-and-support-matrix.md).
-**Done when:** Malformed imports rejected, support/accuracy table honest, sound samples licensed. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M8-03** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Malformed imports rejected, support/accuracy table honest, sound samples licensed.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M8-04
+
+- [ ] **AG-M8-04 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved O3 implementation requirement (supersedes older provisional card language):** **O3-02 B / O3-15 B:** enforce tested **conditional AI routine-PR merging** after explicit authorized checks; owner escalation for major ADRs and shared TS API/contracts/module ownership changes. Live bot identity/merge permissions must be verified before any actual merge. Release gate includes i9 10th-gen GTX1080 compatibility evidence and latest-two-stable browser matrix; no CI-only merge. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
@@ -62,9 +95,19 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** G0–G7 applicable for released subset. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `.github/workflows/, docs/release` and local tests only.
 **Required source reading:** [01](../01-architecture.md), [31](../31-integration-gates-and-support-matrix.md).
-**Done when:** Reload works under /sound-generator/, AudioWorklet loads and release traces available. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M8-04** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Reload works under /sound-generator/, AudioWorklet loads and release traces available.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M8-05
+
+- [ ] **AG-M8-05 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Verified on-device inventory (not GPU execution):** i9-10900KF / Windows 11 / 32 GB; GTX1080 WDDM **driver 582.78, 8,192 MiB VRAM**, `nvidia-smi` CUDA API **13.0**; PowerShell `nvcc` missing from PATH. Owner will install CUDA Toolkit **if needed** for testing, after an agent identifies the compatible CUDA12.x `sm_61` toolchain. Current state is **GPU and driver detected, CUDA compiler/actual Pascal kernel UNVERIFIED**, not a hardware incompatibility. See [hardware inventory](../decisions/OWNER-DEVELOPMENT-HARDWARE.md).
 
@@ -82,4 +125,17 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 **Required references:** [07](../07-testing-and-acceptance.md), [01](../01-architecture.md), [27](../27-high-fidelity-experiment-orchestration.md), [shared contracts](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md), [pending verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
-**Acceptance / evidence:** Positive: I4 mechanical and EFI drive/run on browser supported 2D and 3D with no solver corruption, generated audio operates with both slow-motion modes, CPU offline solver works; GTX1080 CUDA 12.x `sm_61` numerical smoke plus CPU parity is observed where GPU enabled. Negative: GPU unavailable/old driver/CUDA 13-only runtime produces explicit compatibility warning and CPU fallback, never fake acceleration; missing physical test machine leaves `not-verified-on-hardware`. Publish browser/driver/CPU/GPU report with distinct 30/60 FPS **reference-device** outcome. Include positive/negative fixtures, actual toolchain/driver/browser command logs, reproducibility and a one-card handoff report. Any unavailable hardware/driver/licensed input is `blocked`/`not verified`, not a simulated pass.
+**Acceptance checklist — AG-M8-05** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Positive: I4 mechanical and EFI drive/run on browser supported 2D and 3D with no solver corruption, generated audio operates with both slow-motion modes, CPU offline solver works
+- [ ] GTX1080 CUDA 12.x `sm_61` numerical smoke plus CPU parity is observed where GPU enabled.
+- [ ] Negative: GPU unavailable/old driver/CUDA 13-only runtime produces explicit compatibility warning and CPU fallback, never fake acceleration
+- [ ] missing physical test machine leaves `not-verified-on-hardware`.
+- [ ] Publish browser/driver/CPU/GPU report with distinct 30/60 FPS **reference-device** outcome.
+- [ ] Include positive/negative fixtures, actual toolchain/driver/browser command logs, reproducibility and a one-card handoff report.
+- [ ] Any unavailable hardware/driver/licensed input is `blocked`/`not verified`, not a simulated pass.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
