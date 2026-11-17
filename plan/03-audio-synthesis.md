@@ -12,6 +12,10 @@ Sound is computed from simulated mechanical and thermodynamic events, not loopin
 - Drivetrain, tire/road: gear whine linked to gear forces, tire noise by speed, slip/traction chirps and squeal, surface-dependent noise.
 - Spatial: positions for engine bay/intake/exhaust/wheels, distance attenuation and optional first-order stereo/doppler/spatial effects; multiple microphones/camera views later.
 
+## Event bus consumption
+
+The synthesizer uses physically authored engine events, phase information and state from the canonical bus contract in [11](11-event-bus-and-messaging.md). On-worklet per-cylinder excitation is local and sample accurate; the main thread never serves as an audio-rate relay. Every afterfire, misfire, limiter cut, shift transient or stall cue has a matching causal engine/ECU/drivetrain event or state, rather than being issued independently by the UI. Outbound telemetry is bounded and can be coalesced; the audible render cannot block waiting for other subscribers.
+
 ## DSP rules
 - AudioWorklet renders into current sample rate; use cumulative unwrapped crank phase and schedule impulses when firing angles cross the sample interval, including low-speed, zero-speed and rapid acceleration.
 - Preserve oscillator phase, envelopes and filter state through changing RPM; smoothing on physical controls, oversampling/anti-aliasing where justified.
