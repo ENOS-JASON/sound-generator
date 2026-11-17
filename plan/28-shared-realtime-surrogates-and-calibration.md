@@ -42,6 +42,10 @@ Both use the *same canonical* engine geometry, firing/bank map, controller/drive
 - Base model is useful with no reference profile. `modelStatus = baseline | trained | fallback` is exposed to diagnostics, and an incompatible model always falls back with an explicit reason.
 - Per-cylinder and per-component effects can share **model family implementations** with different parameter values; bank layout/firing order and geometry still determine actual physical behavior.
 
+## External high-fidelity solver and real-time boundary compatibility
+
+**Owner-approved direction:** Reference fidelity must eventually include actual 3D CFD, advanced chemical kinetics and multi-material computation, possibly on native CPU/GPU kernels; the fast engine **remains generic and runnable** without any reference backend. Each new spatial/chemical/solid solver maps to the canonical physical boundary measurements via a versioned projection adapter, with explicit model fidelity, units, uncertainty and source component identity. Neither 3D field arrays nor reaction networks enter the live AudioWorklet or compact fast step loop. A faster GPU result is not automatically more accurate than a numerically converged CPU result. See [21](21-adjustable-fidelity-multizone-reference-simulation.md), [27](27-high-fidelity-experiment-orchestration.md) and [Round 1](decisions/USER-APPROVED-ROUND-01.md).
+
 ## Compatibility/feature contracts
 
 Define a typed `PhysicalBoundaryState` used by fast/reference adapters:
