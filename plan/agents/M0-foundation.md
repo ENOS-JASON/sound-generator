@@ -275,3 +275,31 @@
 **Owned area:** `src/app/capabilities, src/ui-shell/notifications`. Avoid editing other task owners' contracts.
 **Required references:** [01](../01-architecture.md), [24](../24-simulation-clock-and-time-scaling.md), [26](../26-multipage-ui-and-floating-widgets.md).
 **Acceptance / evidence:** Audio suspend and unsupported WebGL mocked in E2E; user gesture resumes audio; 2D/telemetry remains accessible. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M0-18
+
+**Roadmap source:** Define versioned IndexedDB persistence and resilient local autosave for browser state, preserving ZIP snapshots as optional portable exports.
+
+**Precise deliverable:** Build browser-only `PersistentWorkspaceStore` with versioned IndexedDB schema, stable key/owner namespaces for selected vehicle/controller, wizard draft, audio mix/expert calibration reference, widget layout and small scenario/debug metadata. Autosave is asynchronous/debounced and never called inside AudioWorklet/solver; keep at least one last-known-good state on failed migration/quota. Expose save/recover/error/clear controls for M3 via a typed interface. Generated ZIP snapshots still come from AG-M0-13. Default factory carb loads only when **no valid saved user selection** exists.
+
+**Inputs / prerequisites:** AG-M0-03 schema and AG-M0-13 export format, fixed user preference/control IDs; browser storage capability stub allowed. Coordinate with AG-M0-14a app shell.
+
+**Owned files/modules:** `src/persistence/indexeddb/, src/contracts/persistence/, tests/browser/persistence`; other agent contract directories are outside this card without an accepted owner-approved ADR.
+
+**Required reading:** [09](../09-data-contracts.md), [25](../25-core-diagnostics-recording-and-comparison.md), [26](../26-multipage-ui-and-floating-widgets.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+**Acceptance / evidence:** Test first-run carb selection, change/save EFI, reload and recover EFI (not reset to carb), corrupted/unknown-version records, migration rollback, quota/denied IndexedDB fallback and portable ZIP export unaffected. No raw multi-day research dataset autosave. Persisted expert trim remains separate from user mix. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
+
+### AG-M0-19
+
+**Roadmap source:** Specify and prototype the dedicated AI technical integration agent for routine GitHub PR reviews with CI validation and escalation to owner on major ADRs or unresolved conflicts.
+
+**Precise deliverable:** Produce and, **only if the installed GitHub connection/permissions are technically verified**, configure an AI PR integrator that reads a single AG card, contract version and allowed file surface, checks CI/types/tests/fixtures/licenses and review security, emits review evidence, requests changes or escalates to the owner on major architecture, unsafe permissions or broken gates. Do **not** assume AI integration/merging is already configured. Keep least-privilege GitHub tokens and audit trails; never automatically merge solely on CI success; no unapproved branch-protection changes or owner-ADR acceptance. Merge authority remains an explicitly open permission/approval decision.
+
+**Inputs / prerequisites:** AG-M0-01 CI framework, AG-M0-02 GitHub CI, agent handoff contract [30](../30-agent-handoff-contracts-and-decisions.md), approved Round 3. Validate actual bot hosting/API review permissions with a disposable test PR before advertising autonomous review.
+
+**Owned files/modules:** `.github/agent-review/, plan/agents/integration-policy/, tests/integration/agent-review`; other agent contract directories are outside this card without an accepted owner-approved ADR.
+
+**Required reading:** [30](../30-agent-handoff-contracts-and-decisions.md), [31](../31-integration-gates-and-support-matrix.md), [10](../10-risks-and-decisions.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+**Acceptance / evidence:** Given synthetic PRs (normal+green, failing tests, modified contract, licensed reference missing redistribution, own-PR conflict, unknown owner ADR), return correct approve/request-changes/escalate action and recorded rationale. Validate credential scopes and whether actual GitHub PR review action is possible; mark NON VALIDATED if integration unavailable. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
