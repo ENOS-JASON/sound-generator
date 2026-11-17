@@ -8,15 +8,15 @@ See [agent contracts and working proposals](../30-agent-handoff-contracts-and-de
 
 | ADR | Decision to freeze | Assigned owner |
 |---|---|---|
-| ADR-001 | Authoritative fast solver placement and AudioWorklet/Worker/time mapping | `AG-M0-09` + `AG-M0-10` |
+| ADR-001 | Authoritative fast solver placement and AudioWorklet/Worker/time mapping | **`AG-M0-10` accountable**, `AG-M0-09` consulted |
 | ADR-002 | One UI framework, routing mode and state ownership | `AG-M0-01` |
-| ADR-003 | Canonical VehicleDefinition v2 schema and legacy-v1 migration disposition | `AG-M0-03` + `AG-M0-04` |
+| ADR-003 | Canonical VehicleDefinition v2 schema and legacy-v1 migration disposition | **`AG-M0-03` accountable**, `AG-M0-04` consulted |
 | ADR-004 | Event/command IDs and control-plane aliasing | `AG-M0-09` |
-| ADR-005 | Default slowed physical-audio behavior and clock mapping | `AG-M0-10` + `AG-M0-12` |
+| ADR-005 | Default slowed physical-audio behavior and clock mapping | **`AG-M0-10` accountable**, `AG-M0-12` consulted |
 | ADR-006 | Portable capture container/manifest, integrity and binary chunk extension | `AG-M0-13` |
 | ADR-007 | Browser vs offline reference/training orchestration and job interface | `AG-M0-16` |
 | ADR-008 | Supported/approximate/planned/unsupported capability state | `AG-M0-04` |
-| ADR-009 | Numeric/conservation/quality acceptance budgets per model and fixture | `AG-M0-03` and relevant provider owner |
+| ADR-009 | Numeric/conservation/quality acceptance budgets per model and fixture | **`AG-M0-03` accountable** for schema, provider owner consulted for its thresholds |
 | ADR-010 | Assets and reference recording licenses | Release owner before asset import |
 
 **Proposed default does not equal an accepted contract.** In particular the [plan](../01-architecture.md) still gives alternative solver placement and UI framework options. M0 decisions must resolve these once, not let each downstream agent guess.
