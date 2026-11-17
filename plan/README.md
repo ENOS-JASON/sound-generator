@@ -4,7 +4,7 @@
 
 ## Goal
 
-Build a flexible, realistic, **real-time, physics-driven** internal-combustion vehicle sound synthesizer that runs fully in a browser on **GitHub Pages**, has a synchronized interactive **3D vehicle / engine view**, and improves its lightweight real-time model through **higher-fidelity offline simulation, calibration and automated scenario training**.
+Build a flexible, realistic, **real-time, physics-driven vehicle sound and powertrain simulator**, starting with internal-combustion engines and architected for historical, contemporary, hybrid and electric technologies. It runs fully in a browser on **GitHub Pages**, has switchable **3D, lightweight 2D per-bank engine cutaway and telemetry views**, and improves its fast model through **higher-fidelity offline simulation, calibration and automated scenario training**.
 
 An engine is a dynamic system, not an RPM-controlled audio player: firing pulses, combustion loading, rotational inertia, exhaust/intake resonances, starter load, fuel/ignition control, drivetrain, tires and acoustics should be causally linked. The sound must remain plausible while parameters change continuously.
 
@@ -55,7 +55,7 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 | M0 | Foundation and static deploy | Browser launches under `/sound-generator/` |
 | M1 | Deterministic engine dynamics | Crank, catch, idle, shutoff, failure to start, stall |
 | M2 | Procedural audio MVP | Stable phase-coherent ignition/exhaust/intake/starter output |
-| M3 | Interactive 3D / controls | Correct crank-piston-cam synchronization and live inspector |
+| M3 | Interactive 3D/2D / controls | Bank-by-bank cutaway, synchronized mechanisms, source mixer and crank/wheel power inspector |
 | M4 | Connected powertrain technology slices | Gears, clutch, limiter, overrun, pops, induction, AWD/4WD and wheel loads |
 | M5 | Scenario runner and regression suite | All transition/timeout branches run headlessly |
 | M6 | Higher-fidelity reference solver | Validated offline reference data across operating envelope |
