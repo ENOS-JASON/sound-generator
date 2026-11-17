@@ -97,7 +97,7 @@ UI agents consume the frozen framework/router choice and immutable state project
 **Required upstream evidence:** AG-M3-05a, AG-M3-05b. Missing prerequisites block live integration, not isolated fixture tests.
 
 **Owned modules/files:** `src/configurator/review-and-draft`. No changes to adjacent owners' public schemas without an accepted ADR.
-**Required references:** [09](../09-data-contracts.md), [22](../22-guided-vehicle-configurator.md), [30](../undefined).
+**Required references:** [09](../09-data-contracts.md), [22](../22-guided-vehicle-configurator.md), [30](../30-agent-handoff-contracts-and-decisions.md).
 **Done when:** Changing cylinders/gear retains valid overrides, clears incompatible settings explicitly, import validator matches UI result. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M3-06
