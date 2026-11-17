@@ -12,6 +12,10 @@ vehicle acceleration = (tire force - aerodynamic drag - rolling resistance - bra
 
 Constrain integration and nonphysical values; handle near-zero/negative omega explicitly. Use cylinder-resolved crank-angle pulse integration and firing order for 720-degree four-stroke cycle; cylinder thermodynamic states can be approximate initially. Crankshaft inertia, compression torque pulsation, friction and pumping must be active even without combustion.
 
+## Event ownership
+
+Engine, starter, ECU and drivetrain emit physically caused domain events into the shared authoritative event collector specified in [11](11-event-bus-and-messaging.md), stamped with simulation tick, ordering sequence, run ID, optional crank angle and command causation. Subsystems may react synchronously to engine state within a solver step, but no subscriber may recursively mutate authoritative state while events are being dispatched. The UI, audio, 3D and training do not create physical transitions.
+
 ## State machine
 `OFF -> KEY_ON -> CRANKING -> FIRING -> RUNNING -> STOPPING -> OFF`; also `CRANKING -> FAILED_START`, `FIRING -> FAILED_START`, `RUNNING -> STALLING -> OFF`, restart from eligible stopped states. Transition conditions include ignition switch, starter engagement, minimum rotational speed, successful combustion count/torque, battery capacity and ECU readiness. Every transition emits an identifiable event and reason. Do not use arbitrary timer alone for catching/starting.
 
