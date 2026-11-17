@@ -2,6 +2,14 @@
 
 **Required foundation architecture.** Keep an extensible simulation of vehicles spanning different eras without a monolithic `Engine`, hard-coded V8, universal ECU, or switch statement for every possible combination. Scope is modular **coverage by independently verified models**, not a claim that every historical technology is accurate on day one.
 
+## Foundation-level interfaces for timing, diagnostics and approximations
+
+This design adopts the **quoted architectural direction** in [23](23-quoted-project-direction-and-decisions.md): strict TypeScript, Vite, composition/interfaces, pure numerical kernels inside stateful classes, AudioWorklet, Three.js, Canvas 2D, Vitest/Playwright and Worker/offline CLI. Svelte vs Vue 3 remains a documented M0 UI framework selection.
+
+The first modules **before engine modeling** include `SimulationClock`/`TimeControl`, `CommandRouter`, `EventBus`, `TelemetryRegistry`, `DiagnosticsHub`, `TraceRecorder`, `AudioCaptureService`, `ComparisonEngine`, `GraphInspector`, a multi-page `PageRegistry` and `DebugWidgetRegistry`. All of these can be exercised with an instrumented synthetic physics oscillator and AudioWorklet tone generator. New physics components register typed diagnostics channels/events and are replayable from the beginning. Core time scaling and diagnostic UI must not be bolted on later.
+
+`FastComponentModel` and `ApproximationRegistry` form reusable unit/validity-bounded generic calculations with optional trainable coefficients/maps. Corresponding high-detail `ReferenceModelProvider` can project multi-zone outputs into these **same** physical boundary quantities later, without replacing component IDs or event contracts. `ExperimentRunner` drives multiple repetitions and one-part/part-preset changes through the scenario and recorder interfaces. See [24–28](24-simulation-clock-and-time-scaling.md).
+
 ## Recommended design (proposal; final framework choice remains open)
 
 - **Strict TypeScript** with small cohesive stateful classes for owned subsystems, interfaces for boundaries, pure functions and fixed-size typed arrays for numerical kernels. Prefer composition over inheritance and explicit constructor dependencies instead of global singletons.
@@ -70,7 +78,11 @@ Where applicable, each component also registers **reference fidelity options** a
 
 ```text
 src/contracts/    # versioned schemas/types for events, ports, components, presets, mix
-src/core/         # clock, solvers, conservation, typed event bus, reproducibility
+src/core/         # clock/time scaling, solvers, conservation, typed event bus
+src/diagnostics/  # per-component instrumentation, record/import/replay/comparison/plots
+src/approximations/# shared fast equations/maps, validity domains and fallbacks
+src/ui-shell/     # multi-route navigation and hideable/movable debug widgets
+src/experiments/  # batch scenarios, one-part/preset studies, full manifests
 src/engines/      # engine families, bank/crank geometry, combustion-specific models
 src/controls/     # mechanical governors, carb/ignition, ECU and hybrid controllers
 src/intake/       # filters, throttles, manifolds, compressors/intercoolers
@@ -86,6 +98,14 @@ src/configurator/ # wizard steps, conditional fields, derived geometry and valid
 ```
 
 Do not create classes just to wrap one formula; pure functions for piston geometry, thermodynamic approximations, unit conversion, filters and component losses are appropriate.
+
+## Generic solver first, high-fidelity compatibility built in
+
+- Implement a fast, conservation-aware physically meaningful generic model before high-fidelity training. Baseline formulas work without learned coefficients.
+- Every numerical function has explicit SI inputs/outputs, state/step dependencies, model version, compatible physical use cases, operating bounds, editable calibration parameters and safe fallback conditions.
+- Multiple components may bind to an identical `ApproximationFamily` equation/map when *the equation's physical validity contract* matches both; it must not merge distinct component identity, geometry or other source data.
+- A high-fidelity reference implementation of the same component can add pressure/temperature spatial zones and wall meshes without violating shared ports, control semantics, event/cylinder ordering and solver authority.
+- The simulation clock/time-scale mapping, diagnostics collection and portability of recorded traces are **core unit/integration test requirements** before starting M1.
 
 ## Implementation gates
 
