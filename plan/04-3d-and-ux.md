@@ -18,6 +18,16 @@ The primary setup experience is **a multi-step wizard**, not one oversized unive
 
 Training setup has selectable Quick/Balanced/Detailed/Research fidelity and per-component zone/mesh controls. It shows solver-supported fields only (e.g., combustion gas zones, liner wall bands and layers, exhaust pipe cell count) with units and estimated memory/trace size; an expensive reference run executes in a Worker or offline CLI rather than freezing audio or UI. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
 
+## Multi-page navigation, overlay diagnostics and unified time controls
+
+The application is **not** a single page. Use separate Dashboard/Garage, Builder, Drive with switchable 3D/2D/telemetry, Audio Studio/Mixer, Diagnostics, Scenarios, Research/Training, Experiments/Compare, Presets and Settings routes. A shared app-shell owns audio and physics across navigation, with global scale/pause/step controls. Widgets such as RPM/torque, starter battery, cylinder phase, live FFT/waveform or event timeline can be dragged, resized, hidden, reopened and pinned across appropriate pages. Stop unnecessary sampling when hidden. See [26](26-multipage-ui-and-floating-widgets.md).
+
+**Time scale is a simulation-core setting**, not an animation speed slider: 0.05x/0.1x/0.25x/0.5x/1x slow motion and pause/single-step make valves, pistons, gas flow and combustion markers in both 2D and 3D follow authoritative state while audio remains aligned. Camera mode and route changes do not change physical timestamps or traces. See [24](24-simulation-clock-and-time-scaling.md).
+
+A dedicated **Diagnostics** screen exposes collapsible physics/audio/system menus and live time-series and sound waveform/FFT/spectrogram graphs. Start/stop recording, export, import, visualize and compare A/B imported traces, including different engine configurations, trained approximations and reference runs. This diagnostic core is required from M0 with synthetic physics/audio before feature development. See [25](25-core-diagnostics-recording-and-comparison.md).
+
+A dedicated **Experiments** page configures same-setup validation replicates and runs that change one physical part or a selected part preset, with time/event-gated sequences, full component manifests, high-fidelity model/thread count and per-component physics/audio diff views. Expensive jobs may run offline on a dedicated CPU machine for hours per piston cycle; progress and imported results are distinct from live simulation. See [27](27-high-fidelity-experiment-orchestration.md).
+
 ## Interaction
 Transport: key-on, ignition/start hold/release, kill engine; throttle and brake pedals, clutch, gear controls, load/dyno selection, automatic/replay mode. Tuning groups: engine geometry, torque and friction, ECU, air/fuel, exhaust, audio, drivetrain, environment. Each knob has units, validated bounds, reset, tooltip/physical meaning and live values. Expose preset version, seed and model version. Advanced controls behind an expert toggle.
 
