@@ -1,5 +1,12 @@
 # 12 — Audio gain staging, sources, and master mixing
 
+## O3 calibration and listening choices — now binding
+
+**Expert calibration scope is strictly per-source gain trims** with calibrated physical operating conditions, version/revision and undo/reset, separate from source/bus/master user faders. It is enabled through a **visible Advanced/Expert toggle without accounts/auth/PIN**; not an access-control mechanism. Do **not** interpret the earlier open option of expert EQ, spectral response or freeform source DSP editing as approved. Calibrated source response itself remains technically constrained, with safe headroom.
+
+The **four procedural listening perspectives** (cabin, engine bay, roadside, exhaust) are **independent of the 2D/3D visual camera**. Camera movement cannot alter effective listener selection or transfer. Real-world reference sound remains **analysis/calibration data only, not playback or DSP sample source**. See [O3 approvals](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md); per-source trim `AG-M2-06` and listener `AG-M2-07`.
+
+
 ## Round 3 expert calibration and four procedural listener transfer modes
 
 **Approved:** a clearly gated **expert editor** can modify **separately versioned per-source calibration trims** using bounded decibel controls, documented nominal physical source conditions, revision/undo/reset and provenance. These values are **not ordinary user volume faders, bus/master gain, physical engine parameters or trainable crank torque coefficients**. The GUI should expose pre/post-calibration levels, user mix, final headroom and mode state without hidden normalization/clipping. Activation changes audio at a safe boundary and is reflected in captures/autosave and optional ZIP snapshots.
