@@ -1,5 +1,12 @@
 # 25 — Mandatory core diagnostics, record/replay, charts and comparison
 
+## O3 approved ZIP-first snapshots, bounded IndexedDB and trace policy
+
+Browser IndexedDB autosaves **configurations, per-source mixer, expert gain calibration profile/version, movable widgets, scenario drafts, listener selection and bounded recent debug data** with **configurable bounded historical snapshots**. Storage is explicitly quota-limited: define count/age/bytes and last-good/migration/eviction rules. Unbounded high-fidelity study arrays, raw long audio and remote job databases are **not** automatically autosaved. ZIP recording/export/import is developed **first**; optional Parquet/HDF5 research output must wait on validated numerical dataset and owner-review format decision, not be assumed.
+
+Capture independent IDs for calibrated per-source trim, user faders, listener perspective and visual camera. Listening cannot be derived from a moving 3D camera. Browser test reports include the **latest two stable major desktop versions where available** of Chromium/Chrome, Firefox and Safari. The required 10th-gen i9/GTX1080 user hardware needs separate smoke tests, while 30FPS 3D / 60FPS 2D measurements use an agent-proposed, owner-approved **mid-range reference desktop**. See [O3 approvals](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md).
+
+
 ## Round 3 workspace autosave and provenance controls
 
 A **versioned IndexedDB workspace autosave** protects user-selected vehicle, controller mode, validated editable drafts, debug widgets, scenario settings, user mixer, expert calibration profile IDs and listening perspective, using a bounded recovery/quota policy. It must **not** be confused with a complete high-fidelity research dataset; explicit ZIP recording bundles remain the portable interchange, and **optional ZIP workspace snapshots** protect current editable state. Preserve a last-good state across corrupt/failed migrations and avoid locking the app when storage is disabled.
