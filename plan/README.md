@@ -2,7 +2,9 @@
 
 > Planning baseline. **Status: design only.** No engine, renderer, training implementation, or GitHub Pages deployment is included yet.
 
-**For implementation agents:** start with [Agent handoff instructions](agents/README.md), then select **one** assignment from the [99-roadmap-step / 159-agent-card index](agents/task-index.md). Use the [copy/paste assignment prompt](agents/AGENT_PROMPT.md) for handoffs. Read only the card, mandatory [contract/ADR rules](30-agent-handoff-contracts-and-decisions.md), [pending decision register](decisions/README.md) and references specifically listed there. The roadmap is an overview; individual cards determine scope and acceptance.
+**For implementation agents:** start with [Agent handoff instructions](agents/README.md), then select **one** assignment from the [100-roadmap-step / 160-agent-card index](agents/task-index.md). Use the [copy/paste assignment prompt](agents/AGENT_PROMPT.md) for handoffs. Read only the card, mandatory [contract/ADR rules](30-agent-handoff-contracts-and-decisions.md), [pending decision register](decisions/README.md) and references specifically listed there. The roadmap is an overview; individual cards determine scope and acceptance.
+
+**Approved direction (Round 1):** [owner decisions and outstanding subchoices](decisions/USER-APPROVED-ROUND-01.md). Major architecture decisions require owner approval; fast solver placement awaits Worklet/Worker benchmarks; Svelte + Vite is selected; the first complete I4 gasoline baseline includes starter, manual gearbox and vehicle load; both slow-motion audio treatments are required; offline architecture permits future true 3D CFD/chemistry/materials and CPU/GPU native compute.
 
 ## Goal
 
