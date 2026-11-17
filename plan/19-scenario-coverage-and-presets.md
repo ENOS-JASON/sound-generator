@@ -19,6 +19,14 @@ A system with many engine families, induction combinations, transmission types a
 | Other | brake/AC/electrical loads, turbo heat soak, clutch/gear failure where modeled, multi-vehicle optional | explicit energy sources/sinks and bounded state |
 | Renderer/audio | 3D/2D switch while cranking and limiter; mixer solo/mute; sample-rate variation; paused browser | engine trace unaffected, no dropouts, per-cylinder phases/stems remain correct |
 
+## Reference-fidelity and wizard scenario extensions
+
+- For representative I1/I4/V8/flat/V12 presets, define a **geometry sweep** that changes bore and stroke, confirms changed displacement/chamber/crank dynamics, and rejects invalid rod/clearance/bank combinations before physics starts.
+- For the same time/event-gated cold-start, firing, throttle-ramp, limiter, overrun, afterfire, engine-brake and stall scenarios, run **Quick, Balanced and Detailed** reference tiers where implemented. Inspect cylinder pressure/temperature/heat-release, liner axial/radial metal temperatures, head/piston heat flux and exhaust/intake pressure-wave/timing traces with documented units and conservation errors.
+- Define **mesh/time-step refinement** scenarios over cylinder gas zone count, wall thermal layers, pipe axial gas cells and exhaust wall layers; require convergence evidence for selected metrics, not identical traces at all levels.
+- Exercise an invalid config path (no ECU with ECU-only tune, EV with bore/stroke, 2WD with 4L transfer, turbo settings without turbo) and verify wizard/JSON/run preflight agree on rejection and support status.
+- All reference training jobs respect deterministic scenario time/event gates, finite timeout and failure reporting; a numerically unstable advanced solver is a **failed scenario**, never a success or a fitted label.
+
 ## Must-have multi-step examples
 
 1. **Battery weak vs worn starter A/B:** same engine preset, separate health condition. Key-on -> crank until state/event or timeout -> attempt restart -> optional recharge/repair -> successful start; compare voltage under current, starter load/rotor speed and compression-pulse cadence. A failed starter must not masquerade as a weak battery.
