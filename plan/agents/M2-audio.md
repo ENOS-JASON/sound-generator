@@ -99,3 +99,31 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 **Required references:** [03](../03-audio-synthesis.md), [12](../12-audio-gain-staging-and-mixer.md), [24](../24-simulation-clock-and-time-scaling.md), [25](../25-core-diagnostics-recording-and-comparison.md), [owner approvals](../decisions/USER-APPROVED-ROUND-01.md) and [30](../30-agent-handoff-contracts-and-decisions.md).
 
 **Done when:** (a) at 0.1x/0.5x/1x pitch-preserving mode uses a distinct working audio treatment and its sound is slower while fundamental/spectral pitch is approximately maintained within an explicitly measured tolerance, (b) physical mode changes pitch as intended, (c) audio frames/event markers and engine tick/event hashes remain aligned in both modes, (d) mode switches have bounded clicks, CPU and added latency and report quality/deadline errors rather than falsely claiming preservation, (e) capture metadata stores selected mode/algorithm; run positive and negative sample-rate/browser tests and submit the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M2-06
+
+**Roadmap source:** Implement separately versioned, expert-editable physical audio calibration trims, not conflated with ordinary source/bus/master mixer levels.
+
+**Precise deliverable:** Introduce `SourceCalibrationProfile` with sourceId, profileId/schemaVersion, reference operating condition and units, calibrated gain/trim in dB with safety ranges, provenance and revision/undo/reset. Allow expert-safe edit and activation at an audio block boundary, preserving causal sound and click-free transitions; expose a typed calibration service to M3 Audio Studio, keep user faders and master separate and unmodified. Expert mode is a UI affordance, not an inferred login/security system.
+
+**Inputs / prerequisites:** AG-M2-03b procedural source mixer, AG-M0-11a telemetry and AG-M0-13 ZIP/profile contract; physics/energy ports are read-only to calibration.
+
+**Owned files/modules:** `src/audio/calibration-profiles/, src/contracts/audio-calibration/, tests/audio/calibration`; other agent contract directories are outside this card without an accepted owner-approved ADR.
+
+**Required reading:** [12](../12-audio-gain-staging-and-mixer.md), [03](../03-audio-synthesis.md), [25](../25-core-diagnostics-recording-and-comparison.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+**Acceptance / evidence:** Calibrated reference source plus expert trim changes recorded/sonic stem gain without modifying engine torque, source event order or user fader values; invalid/clipping trim rejected or bounded, profile version roundtrip/undo/restore, 44.1/48k mode switch no glitch. No real-world recorded sound source. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
+
+### AG-M2-07
+
+**Roadmap source:** Provide four procedural-audio listening perspectives—cabin, engine bay, roadside, exhaust—with independent source-aware transfer models.
+
+**Precise deliverable:** Implement versioned `ListeningPerspective` mapping `cabin|engine-bay|roadside|exhaust` to procedural stem attenuation, spatial/panning, spectral transfer and optional simplified distance/reflection responses. Viewpoint is audio post-source transfer only; it does not edit ECU, source calibration trim, user bus gain, geometry or physics state. Provide a neutral baseline and clearly labeled approximate calibration instead of falsely claiming measured cabin impulse response. No real-world sound file convolution/playback; internally calculated or physically generated transfer/filter response only unless later expressly approved.
+
+**Inputs / prerequisites:** AG-M2-03b source/bus mixer, AG-M2-02b/03a source identity fixtures, approved typed command/trace contract; AG-M3-10 will implement UI.
+
+**Owned files/modules:** `src/audio/listening-perspectives/, src/contracts/listener/, tests/audio/listener`; other agent contract directories are outside this card without an accepted owner-approved ADR.
+
+**Required reading:** [03](../03-audio-synthesis.md), [04](../04-3d-and-ux.md), [12](../12-audio-gain-staging-and-mixer.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+**Acceptance / evidence:** Four profiles selectable, characteristic spatial/spectral differences with source-level meters, no nonfinite/clipping, no engine/crank/event changes; switching perspectives is click-free and recorded with time/algorithm ID, absent source handled gracefully. No explicit requirement for full 3D acoustic wave solver. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
