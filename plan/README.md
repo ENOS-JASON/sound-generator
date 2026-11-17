@@ -2,7 +2,7 @@
 
 > Planning baseline. **Status: design only.** No engine, renderer, training implementation, or GitHub Pages deployment is included yet.
 
-**For implementation agents:** start with [Agent handoff instructions](agents/README.md), then select **one** assignment from the [99-roadmap-step / 159-agent-card index](agents/task-index.md). Read only its card, mandatory [contract/ADR rules](30-agent-handoff-contracts-and-decisions.md) and the references specifically listed there. The roadmap is an overview; individual cards determine scope and acceptance.
+**For implementation agents:** start with [Agent handoff instructions](agents/README.md), then select **one** assignment from the [99-roadmap-step / 159-agent-card index](agents/task-index.md). Use the [copy/paste assignment prompt](agents/AGENT_PROMPT.md) for handoffs. Read only the card, mandatory [contract/ADR rules](30-agent-handoff-contracts-and-decisions.md), [pending decision register](decisions/README.md) and references specifically listed there. The roadmap is an overview; individual cards determine scope and acceptance.
 
 ## Goal
 
