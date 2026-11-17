@@ -8,9 +8,9 @@
 
 **Roadmap source:** Initialize Vite + TypeScript app, strict types, lint/format/typecheck and test runner.
 
-**This agent delivers:** Root package scripts, Vite, TS strict, test/lint/formatter configuration and an accepted ADR-002 selecting one UI framework/router.
+**This agent delivers:** Root package scripts, **owner-approved Svelte + Vite** with strict TypeScript, test/lint/formatter config. Propose router/state conventions for owner approval before freezing the rest of ADR-002.
 
-**Prerequisites:** No earlier code; freeze ADR-002 before UI-dependent agents.. If a predecessor is incomplete, use an accepted contract fixture and mark live integration pending.
+**Prerequisites:** No earlier code; the owner approved Svelte + Vite in [Round 1](../decisions/USER-APPROVED-ROUND-01.md), while router/store subchoices still need approval before dependent agents. If a predecessor is incomplete, use an accepted contract fixture and mark live integration pending.
 
 **Owned area:** `package.json, lockfile, vite.config.ts, tsconfig, src/app shell skeleton`. Avoid editing other task owners' contracts.
 **Required references:** [01](../01-architecture.md), [26](../26-multipage-ui-and-floating-widgets.md), [30](../30-agent-handoff-contracts-and-decisions.md).
@@ -116,13 +116,13 @@
 
 **Roadmap source:** Implement authoritative fixed-step **SimulationClock** with `timeScale` (including 0.05/0.1/0.25/0.5/1x), pause, tick/crank-angle/next-event stepping and exact physics-time <-> audio-sample mapping; mock simulation emits deterministic events and can be compared at different playback speeds.
 
-**This agent delivers:** Deterministic fixed sim tick + scaled audio-frame mapping, pause/resume/step; ADR-001/005 owner resolution.
+**This agent delivers:** Deterministic sim tick and scaled audio-frame mapping, pause/resume/step and both audio-mode contracts; **benchmark equivalent AudioWorklet-owned and Worker-owned physics**, present evidence and obtain owner approval before freezing ADR-001. The default mode in ADR-005 is still open.
 
 **Prerequisites:** `AG-M0-09`, `AG-M0-03`. If a predecessor is incomplete, use an accepted contract fixture and mark live integration pending.
 
 **Owned area:** `src/core/clock, src/testing/mock-solver`. Avoid editing other task owners' contracts.
 **Required references:** [11](../11-event-bus-and-messaging.md), [24](../24-simulation-clock-and-time-scaling.md), [30](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance / evidence:** 0.1x/1x produce identical mock physics event trace keyed by sim tick; step bounded; no duplicate firing on scale change. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance / evidence:** 0.1x/1x produce identical mock physics event trace keyed by sim tick; step bounded; no duplicate firing on scale change. Publish comparable jitter/CPU/latency/transport/browser measurements for both solver locations and obtain owner approval before claiming ADR-001 accepted. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M0-11a
 
@@ -176,7 +176,7 @@
 
 **Roadmap source:** Implement synthetic AudioWorklet source and meters with waveform and frequency spectrum display, source/event/audio-frame correlation and bounded optional raw audio capture, without blocking the worklet.
 
-**This agent delivers:** Synthetic AudioWorklet stimulus, bounded feature frames and source/master meters. Preserve the authoritative clock and do not implement actual engine audio.
+**This agent delivers:** Synthetic AudioWorklet stimulus, bounded feature frames and source/master meters; register and trace the two `slowMotionAudioMode` choices before full DSP implementation. Do not presume the Worklet is physics owner before benchmark/approval.
 
 **Prerequisites:** `AG-M0-09`, `AG-M0-10`, `AG-M0-11a`. If a predecessor is incomplete, use an accepted contract fixture and mark live integration pending.
 
@@ -236,7 +236,7 @@
 
 **Roadmap source:** Define high-fidelity `ExperimentDefinition`/variation contracts: all-component manifest identity, one-part and preset-part changes, paired initial seeds/scenarios, fidelity config, reference-to-fast common output and study result formats.
 
-**This agent delivers:** ExperimentDefinition/variation and complete reference run manifest contracts for one-part/part-set changes and resource settings; record ADR-007.
+**This agent delivers:** ExperimentDefinition/variation and complete reference manifest plus backend-neutral `ReferenceComputeBackend` capabilities, resource/device/precision metadata and native CPU/GPU/WASM/other adapter contracts; no specific native/GPU stack is approved yet. Record ADR-007.
 
 **Prerequisites:** `AG-M0-03`, `AG-M0-08`, `AG-M0-04`. If a predecessor is incomplete, use an accepted contract fixture and mark live integration pending.
 
