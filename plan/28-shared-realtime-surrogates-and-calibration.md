@@ -1,5 +1,12 @@
 # 28 — Fast generic simulator first; shared surrogate math calibrated from high-fidelity runs
 
+## Round 2 — Training acceptance and reference provenance
+
+Fast generic physics and procedural audio remain fully usable before training. Training data from both carbureted/mechanical/no-ECU and EFI/ECU I4 setups must be compared on the same physical-port units, retaining **distinct controller identity and the correct availability of sensors, fuel and ignition behaviors**. A trained map for one controller must not silently override or create a nonexistent controller on another.
+
+Higher-fidelity numerical reference data are checked for conservation, convergence and stability; compare to actual physical/sound measurements **when available** and publish model provenance plus uncertainty/confidence. Real-world recordings provide calibration/validation features only; **no sampled car-sound layer, recorded intake/exhaust event, or runtime recording playback** may become a fast model sound source. Research imports may be optional Parquet/HDF5, while the browser's default compatible portable trace bundle is ZIP. See [Round 2](decisions/USER-APPROVED-ROUND-02.md).
+
+
 **Hard sequencing rule:** build a **working generic simplified physics + procedural sound engine first**, with a calibration-ready mathematical structure. Only then add very expensive high-fidelity reference simulations, variation studies and model fitting. The two implementations must be compatible **from the start**, not coupled by ad hoc CSV transformations after completion.
 
 ## Two engines, shared physical semantics
