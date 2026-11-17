@@ -7,10 +7,14 @@
 **Hours of wall-clock computation for a single four-stroke piston cycle (720° of crank rotation) are acceptable at the highest fidelity.** No short hardcoded wall-time limit or artificial quality clamp is permitted merely to make the simulator appear responsive. Results must still be trustworthy, monitorable, interruptible and resumable.
 
 - **Browser/GitHub Pages:** lightweight reference sweeps in dedicated Workers, configurable CPU/size caps and persistent output. The main-thread UI, AudioWorklet and active live simulation cannot be obstructed. Browser execution is not assumed suitable for enormous multizone/CFD jobs.
-- **Offline high-compute CLI:** TypeScript/Node.js orchestration using `worker_threads` and independent processes or a compiled/WASM/native numerical kernel where benchmarks warrant it. **Configurable maximum workers up to all usable logical CPU threads** (default respect resource headroom). Separate concurrency settings for independent scenario jobs and for within-run solver parallelism; don't oversubscribe both.
+- **Offline high-compute CLI:** TypeScript orchestrates **pluggable CPU, native compiled, GPU, WASM and other suitable numerical kernels** (approved UD-R1-06), locally or through an explicitly configured worker process. Use Node `worker_threads` for job-level CPU parallelism when appropriate; a GPU-backed solver may have a different worker/queue topology. Expose independent limits for CPU logical threads, GPU device(s), VRAM, per-run parallelism, concurrent jobs, CPU/GPU memory and disk. Don't oversubscribe or assume GPU acceleration is always more accurate/faster; backend specifics remain owner-reviewed major choices.
 - Large jobs write chunked disk data (not giant in-memory arrays), use checkpoints, resume by job/run hash and can span hours/days. A progress heartbeat reports *simulated* crank degrees/cycles and integration steps, simulated seconds, solver stage, wall CPU time, per-worker memory and throughput. Wall-clock liveness watchdogs must distinguish **slow but advancing** from **deadlocked** runs; legitimate long time per cycle is not failure.
 - Explicit resource budget: threads, RAM, disk/output, precision, checkpoint cadence, solver count, job priority and acceptable completion policy. Estimators report calibrated rough work, not an invented guaranteed finish time. If output or RAM cannot fit, fail preflight or allow an explicit streamed/downsampled capture policy.
 - Parallel scheduling must preserve deterministic inputs and per-run results; do not promise bit-identical floating-point outcomes across different thread counts or CPU/solver implementations. Record environment, threading and numerical tolerances.
+
+## Backend-neutral reproducible job requirements
+
+The `ReferenceComputeBackend` contract must declare backend name/version, precision, supported solver/fidelity families, device/CPU/GPU capabilities, resource bounds, deterministic/reduction policy, checkpoint/resume support and data serialization. Record source code/build hash, CPU/GPU model, thread count, driver/runtime, precision and numerical tolerances in every run. Validate per-port physical projections/units against portable solver fixtures, and compare outputs across backends within declared error tolerances. Portable orchestration can fall back to CPU **with explicit notice**, not silently label GPU or CFD outputs. Native kernels or GPU programs are not permitted in browser audio callbacks.
 
 ## Study types
 
@@ -91,7 +95,8 @@ A guided **Experiments** page:
 - [ ] One-part test changing only intake runner length captures specific altered airflow/torque and intake/exhaust acoustic features, with full baseline/variant manifests.
 - [ ] Part-set test can replace intake + compressor + exhaust and computes correct new topology/load while keeping unrelated settings stable.
 - [ ] Repeated high-fidelity scenarios verify repeatability and expose stochastic variance/solver instability; failed runs cannot become good training labels.
-- [ ] CPU worker limit can reach all available logical threads **when configured**, without oversubscribing unexpectedly or requiring a web server on GitHub Pages.
+- [ ] CPU worker limit can reach all available logical threads **when configured**, and optional native/GPU backend resource limits are enforced, without oversubscribing unexpectedly or requiring a web server on GitHub Pages.
+- [ ] A numerical backend provider can be discovered and validated via capability and versioned SI boundary/trace contracts, and runs disclose device, precision, driver, memory and output portability; unsupported GPU falls back transparently to a compatible CPU backend.
 - [ ] Legitimate multi-hour piston-cycle simulation can report progress and checkpoint without false scenario timeout.
 - [ ] Import of a run recreates the **exact component and parameter configuration**, even if current UI defaults have changed.
 - [ ] Comparison reports per-component physics effects, per-source sound effects and numerical uncertainty.
