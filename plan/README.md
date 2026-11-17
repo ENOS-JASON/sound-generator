@@ -23,6 +23,7 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 | [08 — Implementation roadmap](08-implementation-roadmap.md) | Dependency-ordered milestones and assignable tasks |
 | [09 — Schemas and contracts](09-data-contracts.md) | Versioned engine presets, events, profiles and training outputs |
 | [10 — Risks / decisions](10-risks-and-decisions.md) | Open decisions, limitations and design tradeoffs |
+| [11 — Shared event bus](11-event-bus-and-messaging.md) | Authoritative events, command routing, ordering, cross-thread transports and replay |
 
 ## Guiding principles
 
@@ -33,6 +34,7 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 5. **Static-hosting first.** No runtime backend, API keys or mandatory cloud services. Training may run locally/offline and commit compact versioned presets.
 6. **Realistic transitions matter.** Key-on, starter engagement, cranking, first firing, catching, stable idle, acceleration, overrun, limiter behavior, gear shifts, misfires, stalls and stop must each be modeled and testable.
 7. **No sample library requirement.** Procedural sound is the baseline; optional legally sourced reference recordings are for objective calibration/evaluation, not required playback.
+8. **One shared event contract.** Physics/ECU/drivetrain own authoritative domain events, while audio, visuals, scenarios and training consume the same ordered stream across safe browser transports. See [11](11-event-bus-and-messaging.md).
 
 ## Delivery path
 
