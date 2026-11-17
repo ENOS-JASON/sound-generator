@@ -2,13 +2,23 @@
 
 **For a developer agent receiving one task with no previous chat history:** this folder is the implementation handoff. Read [approved Round 1](../decisions/USER-APPROVED-ROUND-01.md), [Round 2](../decisions/USER-APPROVED-ROUND-02.md), [Round 3](../decisions/USER-APPROVED-ROUND-03.md) and **[approved O3 implementation decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md)** before older proposals. The [O3 questionnaire](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md) is historical: **all 15 answered**. [Remaining implementation verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md) is open. Do not interpret the [roadmap](../08-implementation-roadmap.md) as enough detail by itself.
 
+## Per-agent checkbox tracking (required)
+
+Every one of the **172 AG cards** has a valid GitHub Markdown `- [ ] **AG-... COMPLETE**` task checkbox directly below its existing `### AG-...` anchor. Its original acceptance/evidence sentence(s) were preserved as **individually checkable criteria**, followed by separate positive-test, negative-test, CI/artifact and independent review/merge evidence checkboxes.
+
+**The coding agent** may check each individual acceptance/test box **only with an actual passing result**, cited executed command, output/trace and linked focused PR. A failed/skipped test, mock-only prototype, missing prerequisite, unverified GPU/browser or owner-pending architecture approval **stays unchecked**; mark the issue BLOCKED/PARTIAL in the PR report. Never pre-check items merely because they are planned.
+
+**The independent technical integrator** verifies all acceptance boxes, required CI/branch checks and applicable owner approvals. After the specific PR actually merges, it checks **`AG-... COMPLETE` last**, citing the merged PR/commit SHA in a **tracking-only update** (the merge cannot be claimed complete in its still-open PR). Conditional AI routine merging is governed by the already approved O3 policy; real GitHub bot access/permission must be verified first. Security, major ADRs and shared TS public API/ownership changes still require owner escalation.
+
+**The only project-level completion dashboard is [08 — roadmap](../08-implementation-roadmap.md).** The [index](task-index.md) is the map from each parent roadmap checkbox to one or more AG cards, **not another checkbox dashboard**. An integrator may check a roadmap parent only after **every listed child** has its own checked COMPLETE box, verified and committed on `main`, and gate evidence is available. For a parent referencing 2–5 child AGs, finishing one child **does not** complete the parent. Regressions reopen both affected AG items and roadmap parents. **All tasks start unchecked.**
+
 ## Do exactly this
 
 1. Locate your **`AG-...` ID** in [task-index.md](task-index.md), open the linked phase brief and find the card with that ID.
 2. Read [30 — shared contracts and decisions](../30-agent-handoff-contracts-and-decisions.md), plus only the **Required references** on your card. Read [31 — integration gates](../31-integration-gates-and-support-matrix.md) if claiming a milestone/provider complete.
 3. Check prerequisite **task artifacts and accepted ADRs**. If absent, mark `BLOCKED` or implement against the explicitly identified mock **without pretending full integration**.
 4. Implement only the bounded deliverables in the card's **owned code area**; use existing `src/contracts` definitions. Do not duplicate the clock, event bus, ledger, recorder, validator or approximation registry.
-5. Add the card's required **positive/negative test**, demo/trace fixture or screenshot, and documented limitations. Run relevant typecheck/unit/browser tests (or state why impossible).
+5. Add the card's required **positive/negative test**, demo/trace fixture or screenshot, and documented limitations. Run relevant typecheck/unit/browser tests (or state why impossible), then check **only the corresponding individually verified acceptance/test boxes in that AG card**. Never check its `COMPLETE` box until the PR has actually merged.
 6. Submit **one focused PR per card**, including the completion report format in [30 §6](../30-agent-handoff-contracts-and-decisions.md). Routine PRs require actual CI plus **dedicated AI integration-agent review** and **may be merged by that AI agent after all explicitly authorized required checks/rules are verified** (owner-approved O3-02 B). All major ADRs and **shared public TS contracts, cross-component APIs and ownership changes** escalate to owner (O3-15 B). **No CI-only merge.** The AI bot's actual GitHub review/merge permissions are **not yet verified/configured**; never pretend it merged a PR without host confirmation.
 
 ## How the documents are organized
