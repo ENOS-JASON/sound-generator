@@ -73,7 +73,7 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 **Required upstream evidence:** AG-M1-01, AG-M1-04, AG-M0-04. Missing prerequisites block live integration, not isolated fixture tests.
 
 **Owned modules/files:** `src/core/physics-ports/load, src/core/energy-ledger`. No changes to adjacent owners' public schemas without an accepted ADR.
-**Required references:** [17](../17-transmissions-drivetrains-and-wheels.md), [20](../20-torque-power-load-and-energy.md), [30](../undefined).
+**Required references:** [17](../17-transmissions-drivetrains-and-wheels.md), [20](../20-torque-power-load-and-energy.md), [30](../30-agent-handoff-contracts-and-decisions.md).
 **Done when:** Load applied through locked gear slows engine; disengaged clutch does not; no duplicate output power at two axles. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M1-07a
