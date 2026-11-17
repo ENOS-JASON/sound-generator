@@ -2,6 +2,12 @@
 
 **Status: required design.** Advanced training is not one fixed "high quality" solver. It must let the user choose computational detail, per physical component, and generate a measurable, reproducible reference corpus for fitting the **separate real-time model**. This extends [05 — Training and calibration](05-training-and-calibration.md), [20 — Torque/power/energy](20-torque-power-load-and-energy.md) and [14 — Component architecture](14-modular-typescript-platform.md).
 
+## Extreme-fidelity workload policy
+
+**No restrictive wall-time target:** at Research level a single engine/piston cycle can take **multiple real hours or longer**. That is acceptable, provided the run has numerical/energy validation, progress measured in crank angle/simulated time, explicit resource budgets and checkpoint/resume. Use an offline worker-threads CLI on a dedicated machine with configurable use of **all available logical CPU cores**, writing zone-level results to disk and using multiple workers for independent reference runs. A single fine-grid cycle may remain partially serial; do not imply all threads always speed up one model. The browser's real-time engine and GitHub Pages deployment stay independent.
+
+Research study settings also support **replicates for validation**, **one changed part/parameter**, and **part-preset/multiple component changes** with matched seeds and scenario steps. Capture every installed part, its precise geometry/parameters/materials, connected flow/torque ports, solver versions/fidelity/mesh, controls, environmental state, physical and acoustic output, and a precise baseline/variant diff. This is required for extracting comparable responses into reusable simplified maps; see [27](27-high-fidelity-experiment-orchestration.md).
+
 ## Goals and boundaries
 
 1. Start with selectable **Quick / Balanced / Detailed / Research** reference presets and an **Advanced** editor for overrides. Each preset sets numerical resolution, enabled physical mechanisms, output frequency and cost limits. A preset is a versioned configuration, not a subjective quality guarantee.
@@ -93,6 +99,10 @@ The training fidelity profile should contain, as supported:
 ```
 
 **Values are illustrative, not validated for any particular engine, pipe length or device.** Production validation needs geometry/step coupling, solver capabilities and memory checks. Profiles may override specific `componentId` instances (e.g. exhaust bank B or cylinder 4) after a consistent global preset.
+
+## Compatibility with the generic real-time solver
+
+The fast model exists **first**, with versioned SI port interfaces and trainable equation/map slots. High-detail cylinder/pipe/thermal results project onto those same physical boundaries: crank/cylinder work and heat, per-component mass flow and exhaust impulse, starter/shaft loads and sound excitation, preserving component IDs and event/clock semantics. Fit bounded coefficients or shared physically valid approximation families rather than requiring a mesh to run in the audio callback. Track extrapolation and fallback, reference numerical uncertainty and held-out torque/audio errors. See [28](28-shared-realtime-surrogates-and-calibration.md).
 
 ## Training-to-real-time pipeline
 
