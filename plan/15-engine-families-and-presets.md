@@ -1,5 +1,10 @@
 # 15 — Engine families, geometry, firing characteristics and preset library
 
+## Round 3 initial I4 vehicle examples
+
+**Two verified editable reference examples are mandatory for the first runnable vertical slice**, not just engine-family metadata. Each uses correct four-stroke inline-four bank/crank/valves, starter/electrical, intake/fuel/ignition, manual clutch/gearbox, wheel/vehicle/road load and procedural source identities. Provide (1) **carburetor + mechanical distributor, no ECU — factory default** and (2) **EFI + ECU — separately selectable**. Both must be runnable/validated through the same geometry/power/event and wizard/import boundaries; no fabricated exact real-production vehicle claim. Select factory carb only if no valid saved user-selected vehicle exists. Concrete bore/stroke/gearing/vehicle numbers are still to be proposed, tested and documented. See [Round 3](decisions/USER-APPROVED-ROUND-03.md), `AG-M1-12` and [G1](31-integration-gates-and-support-matrix.md).
+
+
 ## Goal and support boundary
 
 Support **configurable single-cylinder through twelve-cylinder** conventional piston engines from the outset at the data-model level, with realistic bank, crank and firing relationships. Engine-family models must be independently extensible for technologies from older cars through contemporary vehicles. A configurable schema does **not** imply that every combination has validated acoustic and thermodynamic behavior immediately.
