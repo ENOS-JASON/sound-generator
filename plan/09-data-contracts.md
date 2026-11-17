@@ -69,6 +69,18 @@ A `VehicleDefinition` references **registered component instances and connected 
 
 See [14](14-modular-typescript-platform.md), [15](15-engine-families-and-presets.md), [16](16-intake-induction-and-exhaust.md), [17](17-transmissions-drivetrains-and-wheels.md), [18](18-electrical-control-generations-and-tunes.md) and [20](20-torque-power-load-and-energy.md).
 
+## Geometry, wizard and fidelity contracts (new requirements)
+
+**Engine geometry:** the active cylinder family exposes SI `boreMeters`, `strokeMeters`, optional per-cylinder geometry, connecting-rod length, crank radius/stroke consistency, clearance and compression data. For equal cylinders, `displacementTotalM3 = (pi / 4) * boreMeters^2 * strokeMeters * cylinderCount`; this is a **derived** quantity rather than an independently editable and inconsistent value. Per-cylinder uneven geometry uses a sum. Validate all values, chamber geometry and layout from the same registry; see [22](22-guided-vehicle-configurator.md).
+
+**Wizard:** versioned `ConfiguratorStepDefinition` and `FieldDefinition` map physical/component capabilities to step applicability, `visibleWhen`, `enabledWhen`, `requiredWhen`, allowed options and constraints, defaults, display units and derived values. The predicates/derivation functions are trusted **TypeScript code**, not imported executable JSON. Preset JSON and wizard use the **same** validators. A draft may be incomplete but is not runnable until global graph validation succeeds. Changing upstream components yields a preview of invalidated downstream fields and reversible updates.
+
+**ReferenceFidelityProfile:** versioned profile with `preset: quick|balanced|detailed|research`, global max simulation timestep, max crank-angle step, adaptive scheme, CFL/tolerances/output interval/memory and run budget, plus per-`componentId` solver selections and discretization. Depending on installed component capabilities, fields include cylinder burned/unburned or gas zone counts; liner axial bands/radial layers; piston crown/head thermal layers; intake/exhaust axial gas cells and wall metal layers; optional valve/port flow resolution. Each declares material/geometry independently of zone counts. Never put mesh arrays in a real-time mix preset.
+
+**ReferenceRunManifest:** input vehicle graph hash, fidelity profile hash, active solver versions, numerical scheme/time grid, zone topology, scenario/seed hashes, physical-unit map, conservation/CFL reports, mesh/time-step convergence, resource use, failed-run reasons and license metadata. Training artifact embeds source manifest hashes and compatibility domain, not raw reference state.
+
+See [21 — Adjustable reference fidelity](21-adjustable-fidelity-multizone-reference-simulation.md).
+
 ## EngineState and event
 `EngineState`: `simulationTimeSeconds`, `crankAngleRadians` (unwrapped), `angularVelocityRadPerSecond`, `state`, `batteryVolts`, `manifoldPressurePa`, `coolantTemperatureK`, `throttle`, `cylinderCombustion[]`, `wheelAngularSpeed[]`, `vehicleSpeedMps`, diagnostics. `EngineEvent`: `id` monotonic, `simulationTimeSeconds`, optional `sampleIndex`, `type`, `cause`, `cylinderIndex`, `payload`. Event types include KEY_ON, STARTER_ENGAGED, COMBUSTION, FIRST_FIRE, ENGINE_RUNNING, FAILED_START, LIMITER_ENTER, LIMITER_EXIT, FUEL_CUT_ENTER, FUEL_CUT_EXIT, AFTERFIRE, GEAR_CHANGED, SLIP_ENTER, SLIP_EXIT, ENGINE_STALLED and ENGINE_OFF.
 
@@ -81,6 +93,10 @@ See [14](14-modular-typescript-platform.md), [15](15-engine-families-and-presets
 
 ## Trace
 Immutable run metadata: solver version, DSP version, schema version, seed, preset hash, trained profile hash, timestep, audio sample rate, environment, actions and state/event snapshots. Timestamps are simulation seconds; sample indices for audio anchor. Trace includes failures and diagnostics.
+
+## Unified validation at boundaries
+
+Every entry point (wizard, JSON import, scenario runner, worker/CLI reference solver, real-time profile activation) must call the same capability/topology/range validation before marking a vehicle/preset or fidelity profile usable. Rendering may hide inapplicable settings, but cannot relax physics constraints. `implemented/approximate/planned` capability status is explicit. Persist resolved default values, active component IDs and dependency revisions for reproducible training; changing engine geometry or system topology invalidates incompatible trained coefficient hashes.
 
 ## TrainedProfile
 `schemaVersion`, `id`, `compatibleSolverRange`, `trainingManifestHash`, `fitParameters`, `lookupTables`, `domainBounds`, `referenceSolverVersion`, `trainSetHash`, `holdoutSetHash`, `metricSummary`, `limitations`. Prefer inspectable coefficients. Validate bounds, finite numbers, table sizes and provenance before load. Fall back to deterministic baseline on incompatibility.
