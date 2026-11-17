@@ -2,6 +2,10 @@
 
 **Status:** proposed, not started. Implement vertical end-to-end slices; avoid spending weeks on high-fidelity training before a measurable simple engine exists. Each checklist item is separately reviewable and should ship with tests.
 
+## Non-negotiable build-order gate
+
+**M0 cannot finish until clock/time scaling, event bus, an instrumented synthetic physics source, synthetic AudioWorklet sound + live waveform/spectrum/meters, expandable/hideable physics/audio/event debug menus, recording/export/import/replay/comparison, and a multi-page shell with a draggable/hideable debug widget all work in CI.** M1/M2 physics and sound development starts only after this foundation proves that it can observe and compare its own results. Read [23 — quoted design direction](23-quoted-project-direction-and-decisions.md) and [24–28](24-simulation-clock-and-time-scaling.md).
+
 ## M0 — Repository foundation and GitHub Pages
 - [ ] Initialize Vite + TypeScript app, strict types, lint/format/typecheck and test runner.
 - [ ] Add GitHub Actions CI + Pages deployment, Vite base path, SPA fallback strategy (prefer hash routing if needed) and HTTPS smoke test.
@@ -12,11 +16,19 @@
 - [ ] Specify bore/stroke/rod/compression geometry input contracts and derived cylinder/total displacement with SI conversion, plus verified equation/constraint tests.
 - [ ] Define configurable **reference-fidelity profile contracts** (Quick/Balanced/Detailed/Research), component solver capabilities, gas/metal/wall zone axes, step/CFL/stability tolerances and resource preflight; see [21](21-adjustable-fidelity-multizone-reference-simulation.md).
 - [ ] Specify shared typed EventMap/CommandMap, event ownership, causation IDs, simulation tick/sample-frame clocks, subscriber API and bounded cross-thread transport contracts (see [11](11-event-bus-and-messaging.md)).
+- [ ] Implement authoritative fixed-step **SimulationClock** with `timeScale` (including 0.05/0.1/0.25/0.5/1x), pause, tick/crank-angle/next-event stepping and exact physics-time <-> audio-sample mapping; mock simulation emits deterministic events and can be compared at different playback speeds.
+- [ ] Define per-component typed diagnostic/telemetry contracts (units/owner/clock/sampling), and implement `DiagnosticsHub`, `TelemetryRegistry`, bounded `TraceRecorder`, `ReplayController`, `ComparisonEngine` and reusable live graph services.
+- [ ] Implement synthetic AudioWorklet source and meters with waveform and frequency spectrum display, source/event/audio-frame correlation and bounded optional raw audio capture, without blocking the worklet.
+- [ ] Implement export/import of a versioned portable recording (component/preset/solver/seed/time-scale/event/telemetry/audio metadata), validation/checksum checks, deterministic re-run and A/B difference curves; confirm a synthetic baseline can be recorded and compared before physical engine work.
+- [ ] Implement **multi-page UI shell** (Dashboard, Drive, Diagnostics, Settings), expandable physics/audio/event menus, reusable draggable/hideable diagnostic widgets, route-independent simulation service, persistent widget layout and static Pages-compatible navigation.
+- [ ] Define `FastComponentModel` / `ApproximationRegistry` contracts: generic analytic baseline, optional trained coefficient/lookup slot, version/unit/validity/fallback, component IDs and reference projection; training must be possible later without rewriting M1 solver.
+- [ ] Define high-fidelity `ExperimentDefinition`/variation contracts: all-component manifest identity, one-part and preset-part changes, paired initial seeds/scenarios, fidelity config, reference-to-fast common output and study result formats.
 - [ ] Implement capability detection, error overlay, user gesture AudioContext start and static fallback UI.
-**Exit:** demo loads at repository GitHub Pages subpath; tests run in CI; no runtime server required.
+**Exit (blocking):** Pages app works; a reproducible mock run can time-scale, pause/step and drive audio/video graphs, record/export/import/replay/compare with physical/audio clock alignment, all via the Diagnostics route or movable widget; only then start M1 physical components.
 
 ## M1 — Physics core and starting
-- [ ] Implement fixed-step deterministic solver, authoritative local event collector/bus, command scheduler, immutable ordered event log, clock/reset and trace recording.
+- [ ] Implement generic fixed-step deterministic **real-time physics** using M0 clock/event/recorder contracts, causal event collector, command scheduler and existing imported trace comparison.
+- [ ] Implement each component's analytical baseline/parameter slots with versioned shared math kernels, SI input/output, physical bounds, trainable correction hooks and domain-dependent fallback; engine works correctly when no trained profile exists.
 - [ ] Test event ordering, exactly-once command application, subscription cleanup, re-entrancy prevention and deterministic replay.
 - [ ] Implement rotating inertia, drag/friction, per-cylinder crank/720° firing order and generic inline/V/flat bank geometry, compression load.
 - [ ] Implement editable bore and stroke, rod length and clearance/compression geometry; recompute displacement and connected cylinder-volume/air-charge data consistently whenever a validated geometry change is applied.
@@ -26,24 +38,25 @@
 - [ ] Add air/fuel/spark and combustion torque, catch criteria, OFF/CRANKING/FIRING/RUNNING/FAILED_START transitions.
 - [ ] Implement selectable mechanical idle adjustment or ECU idle regulation, kill-switch shutdown, no-fuel failure, low-battery failure and load-induced stall.
 - [ ] Build headless first-start/stall scenarios and physical invariant tests.
-**Exit:** meaningful RPM trace for start/catch/idle/stall without fabricated state transitions.
+**Exit:** generic baseline equations produce physically meaningful start/catch/idle/stall/torque traces without trained artifacts, with full component telemetry and replay comparison under 0.1x/1x time scaling.
 
 ## M2 — Procedural sound MVP
 - [ ] Implement AudioWorklet loader + sample-accurate control/phase transport and bounded bus bridge with critical-event gap detection.
 - [ ] Synthesize starter whine/solenoid/engagement, compression and initial sporadic firing, then stable combustion pulse train; per-cylinder/bank routing must handle arbitrary validated firing layouts.
 - [ ] Build plenum/airbox/intake, exhaust/body resonances, filter smoothing, calibrated full-reference source generation, independent stem/bus/master gains, meters, mute/solo and safe output headroom.
-- [ ] Add sound-physics synchronization tests, worklet callback profiler and output capture.
-**Exit:** recognizable crank-to-idle-to-stop; no clicks/NaNs or callback overruns in test run.
+- [ ] Add sound-physics synchronization tests, worklet callback profiler and output capture with source-level FFT/waveform/routing diagnostics, A/B comparisons and correct timbre/event timing at slowed playback scale.
+**Exit:** generic untrained engine + procedural sound runs at normal/slow-motion speeds; diagnostics can capture, reimport and compare engine/audio sound stems without glitches.
 
-## M3 — 3D and interactive lab
+## M3 — Guided builder, 3D/2D views and multi-page audio lab
 - [ ] Build procedural low-poly car and cutaway engine scene in Three.js and lightweight Canvas2D **side-view row per bank** (every cylinder/piston/rod/valve, cycle, combustion and actual mass-flow indication).
-- [ ] Animate crank/pistons/valves/firing using actual engine angle and cylinder events.
+- [ ] Animate crank/pistons/valves/firing using authoritative engine angle and cylinder events, with synchronized slow-motion, pause/step, viewport switching and lost-render-frame recovery.
+- [ ] Complete multi-page Builder/Drive/Audio Studio/Diagnostics/Presets navigation; source, cylinder and physics graphs are openable in removable/movable small widgets on any suitable page.
 - [ ] Implement **M3-A guided wizard**: template/start-blank, contextual step navigation, Basic/Advanced mode, validated fields, allowed values, unit-aware inputs, derived bore/stroke/displacement and live bank/mixer preview.
 - [ ] Implement **M3-B step providers** for engine/control/intake/exhaust/electrical/transmission/drivetrain/wheels; conditional fields/options from component registry, final graph preflight, invalid downstream change preview/undo and save/resume drafts.
 - [ ] Implement **M3-C training setup step**: supported Quick/Balanced/Detailed/Research tiers, per-component zone and timestep controls, preflight cost/capability and Worker/CLI job selection (UI editor may precede actual M6 solvers).
 - [ ] Add start/stop, throttle, ignition, load and preset editor UI with SI conversions; applying configuration to an active simulation requires a validated reset/safe boundary.
 - [ ] Add RPM/crank and wheel torque/hp/kW plus component loss meter, read-only event timeline, mixer channel/bus/master editor and 2D/3D/telemetry switch; no renderer may drive physics.
-**Exit:** live physically consistent tuning and visualization while sound plays; wizard can create a valid preset with editable bore/stroke, shows only applicable fields and prevents unsupported or inconsistent configurations.
+**Exit:** page navigation and 2D/3D/audio graphs remain synchronized during 0.05–1x playback; wizard/mixer and draggable/hideable debug widgets work without reconstructing the engine, and valid bore/stroke-only options remain enforced.
 
 ## M4 — Connected technology integration tracks (incremental slices)
 
@@ -73,19 +86,21 @@ M4 is **not** one indivisible milestone. Deliver and validate each model family 
 
 **Exit:** Every **implemented** M4 component passes isolated physics/audio tests and registered end-to-end power/load/scenario gates. Preset metadata clearly differentiates supported, approximate and planned technology families; no claim that all historical vehicles are complete.
 
-## M5 — Scenario orchestration
+## M5 — Scenario orchestration and fast-model variation studies
 - [ ] Parse/validate schema with deterministic seeded initial state.
 - [ ] Implement elapsed/time/event/condition/all/any gates, sustained conditions and finite timeouts using canonical event sequence watermarks and authoritative solver state.
 - [ ] Implement branch/retry policies, negative assertions and event-history semantics.
+- [ ] Build experiment/study definitions: baseline vehicle + complete component and parameter manifests, run groups for a single changed part, a named set of parts, parameter sweep, repeated validation runs, matched seeds and event-gated scenario sequences.
+- [ ] Add headless A/B fast-model runner and comparisons of component-by-component torque/energy/airflow, audio stem spectra/transients and external load; preserve identical conditions and record realized component differences.
 - [ ] Build headless scenario matrix, traces, reporter and UI scenario editor/playback.
 - [ ] Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](19-scenario-coverage-and-presets.md)).
 - [ ] Add component graph conservation tests, pairwise configuration coverage, high-risk cross combinations and explicit unimplemented/unsupported reporting.
 - [ ] Add wizard + JSON import parity tests (no ECU vs ECU, transmission type, turbo/NA, 4WD/2WD, V/flat cylinder-bank constraints), geometry/displacement property checks, and safe schema migration/undo tests.
 - [ ] Define event-aligned advanced reference scenario traces and zone-level flow/temperature/pressure/thermal-loss test cases, with independent mesh/time-step convergence protocols.
 - [ ] Run randomized boundary cases and automated stress tests.
-**Exit:** start, failure, stalls, rev limiter, shifts and afterfire all have passing and intentionally failing cases with diagnostic reports.
+**Exit:** start/failure/stall/limiter/afterfire scenarios plus one-part and part-set fast-model experiments run and report physically/audio meaningful differences, with component provenance and imported baseline revalidation.
 
-## M6 — Adjustable-fidelity multi-zone reference simulation
+## M6 — Adjustable-fidelity, potentially multi-hour, multicore reference simulation
 
 ### M6-A — Reference solver foundations and coarse levels
 - [ ] Define a common numerical solver interface, reference state/port units, crank-angle/cycle boundary conditions, event alignment and deterministic run/trace manifests.
@@ -105,12 +120,18 @@ M4 is **not** one indivisible milestone. Deliver and validate each model family 
 ### M6-D — Training detail UI and reproducible execution
 - [ ] Wire Quick/Balanced/Detailed/Research profiles and per-component overrides into the guided wizard; disable unavailable solvers and invalid zone counts.
 - [ ] Implement preflight zone/cell count, memory/trace-size/cost estimate, browser Worker or offline CLI execution, progress/cancel/checkpoints and bounded output sampling.
+- [ ] Add **offline TypeScript/Node `worker_threads` study scheduler** with configurable simultaneous jobs/worker pool up to all logical CPU cores, high-fidelity run streaming to disk, progress measured by sim time/crank cycles, checkpoint/resume, and no arbitrary short wall-time failure for hours-per-cycle computations.
+- [ ] Implement repeated validation/seed runs and paired **one-component/parameter and preset-of-components** variations under identical time/event-gated scenarios, capturing full actual component/part topology, state, versions and source audio provenance.
+- [ ] Record fidelity/mesh/solver/threads/hardware/energy residuals, source excitation/spectra and per-component causal differences in a versioned reference dataset with provenance hashes; invalidate unstable or incomplete runs.
 - [ ] Create per-zone diagnostic trace viewer, coarse/fine **mesh/time-step convergence reports**, reproducible dataset manifests and optional licensed measured-reference comparisons.
 
-**Exit:** independently validated coarse and detailed cylinder/intake/exhaust reference models, resource-aware configurable fidelity, converged scenario/zone traces and documented limitations; the AudioWorklet remains unaffected.
+**Exit:** independent coarse/detailed cylinder/intake/exhaust models run for as many wall-clock hours as required, resume from checkpoints and export complete part-tagged reproducible baseline/variant/replicate datasets, without blocking AudioWorklet.
 
 ## M7 — Calibration / training
 - [ ] Define weighted physical/audio loss, per-scenario scores and constraints.
+- [ ] Fit configurable shared mathematical families (analytical coefficient, bounded lookup maps/splines, reduced-order state space and optionally compact ML) into existing M0/M1 approximation slots, with physical units, component-specific bindings, validity domains and fallback to generic baseline.
+- [ ] Detect reusable/identical mathematically and physically compatible models across multiple components and deduplicate shared equations/lookup data while preserving exact component IDs, parameter sets and provenance.
+- [ ] Consume one-part/part-set sensitivity comparisons to determine which changes impact physical torque/airflow/exhaust and which change sound source timing/timbre; calibrate appropriate fast variables rather than copying raw high-detail trajectories.
 - [ ] Extract reference pressure/heat-release/port-flow/resonance features from multiple fidelity levels and fit compact physically constrained fast-model corrections; never require spatial gas/metal meshes at runtime.
 - [ ] Implement bounded parameter search, spline/map fitting and regularization.
 - [ ] Add scenario/configuration-disjoint holdout sets across engine family, intake/boost, controller and transmission/AWD combinations, boundary sampling and model comparison.
@@ -118,7 +139,7 @@ M4 is **not** one indivisible milestone. Deliver and validate each model family 
 - [ ] Export versioned coefficient profiles with validity bounds, provenance and hashes; activate via validated scheduled command and PROFILE_ACTIVATED event.
 - [ ] Load and atomically swap validated profiles; add stable baseline fallback.
 - [ ] Reject candidates with worse transition behavior, instability or audio CPU overruns.
-**Exit:** quantified holdout improvement and zero mandatory scenario regressions; trained coefficients fit real-time budgets and are traceable to validated reference fidelity/mesh settings.
+**Exit:** measured held-out improvements for both physics and source audio, no mandatory scenario/energy regressions, versioned reused equation/map families and fallback; tuned fast engine runs within real-time CPU budget and maps to the original high-detail components.
 
 ## M8 — Optimization, release and documentation
 - [ ] Browser/device matrix, 44.1/48kHz handling, audio suspend/device-change tests.
