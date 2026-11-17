@@ -1,5 +1,14 @@
 # 01 — Runtime architecture and deployment
 
+## Round 3 architectural boundaries
+
+The browser app remains Svelte + Vite with hash routes. Add a **versioned IndexedDB workspace persistence service** accessed by the main/UI thread, never by the authoritative physics solver or AudioWorklet callback. On first launch with no valid stored choice, load carb/mechanical/no-ECU I4; after a user selects and saves EFI, recover **EFI** rather than force factory carb. ZIP is an optional export/import **workspace snapshot** and remains the mandatory portable *recording export container* under Round 2.
+
+Keep **calibration trim versioning, everyday user mixer, listener perspective and physical engine state separate**. Listener positions cabin/engine-bay/roadside/exhaust are compact DSP transfer views, **not** a 3D acoustic-wave/CFD solver. Rendering targets of **30 FPS 3D and 60 FPS Canvas2D on specified reference hardware** cannot change physics/audio clocks, and performance is **NON VALIDATED** until measured.
+
+Offline training has a **separate local Windows/Linux graphical monitor** consuming the CLI's stable job-control API, not a GitHub Pages backend or distributed worker system. A **dedicated AI PR integration agent** is the approved routine reviewer, but GitHub bot/review/merge permission support remains **NON VALIDATED** until an authenticated prototype. Project owner still approves major ADRs. See [Round 3](decisions/USER-APPROVED-ROUND-03.md).
+
+
 ## Data flow
 ```text
 User / Scenario Driver --> timestamped commands --> Engine Control + Deterministic Fixed-Step Solver
