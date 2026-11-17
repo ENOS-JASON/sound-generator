@@ -1,5 +1,12 @@
 # 03 — Real-time procedural audio
 
+## Round 3 source calibration and spatial-listening contract
+
+Implement independently versioned expert **source calibration-trim profiles**, separated from ordinary source faders/buses/master settings; robust full-reference procedural synthesis and safe master headroom remain unchanged. Expert trim affects *audio calibration* only, never engine energy, torque, combustion or user mix. The owner approved **four selectable listening perspectives**: **cabin, engine-bay, roadside, exhaust**. Their source-specific transfer/attenuation, panning and optional physically motivated filtering must retain causal component identity; changes in perspective are recorded, click-free and do not mutate the solver or force the render camera to move.
+
+Recordings of real-world vehicles may be **user-imported or included in a bundled catalog solely after license/redistribution verification** for calibration/validation feature analysis; they must **not be playable** as generated sources or diagnostic reference clips. A synthesized WAV exported for QA is different. The first two editable I4 presets (carb factory-default; EFI selectable) must sound physically different in their applicable controller states, not through arbitrary sample selection. Audio meets real-time deadlines independently from the **30 FPS 3D / 60 FPS 2D reference-hardware presentation targets**. See [approved Round 3](decisions/USER-APPROVED-ROUND-03.md).
+
+
 ## Objective
 Sound is computed from simulated mechanical and thermodynamic events, not looping clips whose pitch is controlled by RPM. Prioritize convincing transients and phase coherence before adding many layers.
 
