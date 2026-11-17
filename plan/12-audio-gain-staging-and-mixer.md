@@ -1,5 +1,10 @@
 # 12 — Audio gain staging, sources, and master mixing
 
+## Round 2 — Calibration-only real-world reference input
+
+Generated and mixed engine/vehicle sound **must remain procedural**. Imported real-world recordings are licensed/reference-only measurement inputs to offline sound analysis, fitting and held-out validation; they are **not playable live or as a diagnostic recording**, and must not register as an `AudioSource`/stem, sample loop, wavetable sampled car clip or mixer bus. Synthesized audio captures can be exported for inspection. The first I4 supports distinct mechanical-carburetor/distributor and EFI/ECU-conditioned sources when applicable. The default slow-motion audio mode is **physical/pitch-lowered**; pitch-preserving processing stays selectable and separately metered. See [Round 2](decisions/USER-APPROVED-ROUND-02.md).
+
+
 **Status:** required design. **Priority:** source gain architecture at M2; full mixer editor in M3 and M4. This extends [03 — Audio synthesis](03-audio-synthesis.md) and uses the event contract in [11](11-event-bus-and-messaging.md).
 
 ## Mandatory source-level principle: generate robust sound, then attenuate
