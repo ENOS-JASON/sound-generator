@@ -74,7 +74,7 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 
 ### AG-M5-07a
 
-**Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](19-scenario-coverage-and-presets.md)).
+**Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](../19-scenario-coverage-and-presets.md)).
 
 **Bounded deliverable:** Warm/cold start, weak battery vs worn starter, no-ECU/ECU, limiter, stall and afterfire scenarios.
 **Inputs/dependencies:** AG-M5-06a, released M1/M4A providers. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
@@ -84,7 +84,7 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 
 ### AG-M5-07b
 
-**Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](19-scenario-coverage-and-presets.md)).
+**Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](../19-scenario-coverage-and-presets.md)).
 
 **Bounded deliverable:** Airbox, carb/ITB, turbo/supercharger/compound and overrun tune conditions.
 **Inputs/dependencies:** AG-M5-06a and released M4B providers. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
@@ -94,7 +94,7 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 
 ### AG-M5-07c
 
-**Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](19-scenario-coverage-and-presets.md)).
+**Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](../19-scenario-coverage-and-presets.md)).
 
 **Bounded deliverable:** Manual/AT/DCT/CVT, FWD/RWD/AWD/4WD 2H/4H/4L, clutch/traction/slope.
 **Inputs/dependencies:** AG-M5-06a and released M4C providers. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
@@ -104,7 +104,7 @@ These are separate deliverables with one agent per card. Rich M5 runner reuses t
 
 ### AG-M5-07d
 
-**Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](19-scenario-coverage-and-presets.md)).
+**Original step:** Add weak-battery vs worn-starter, pop-and-bang positive/negative, ECU/no-ECU, all released engine-bank layouts, intake/compound boost, manual/auto/DCT/CVT, AWD/4WD 2H/4H/4L, stall and dyno torque/hp cases (see [19](../19-scenario-coverage-and-presets.md)).
 
 **Bounded deliverable:** All implemented I/V/flat 1–12 cylinder bank and firing order cases.
 **Inputs/dependencies:** AG-M5-06a and released M4D providers. No invented state/event parser; use accepted contract fixtures when a producer isn't ready.
