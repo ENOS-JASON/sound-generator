@@ -6,6 +6,8 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 ### AG-M1-01
 
+- [ ] **AG-M1-01 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+
 **Original roadmap task:** Implement generic fixed-step deterministic **real-time physics** using M0 clock/event/recorder contracts, causal event collector, command scheduler and existing imported trace comparison.
 
 **Bounded deliverable:** Fixed-step headless/live engine driver that owns state, command ordering and output snapshots; consumes frozen tick/event API.
@@ -14,9 +16,21 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/core/solver-runtime, src/testing/headless`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [02](../02-physics-model.md), [11](../11-event-bus-and-messaging.md), [24](../24-simulation-clock-and-time-scaling.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
-**Done when:** Two equal seeded command sequences produce matching event hashes and snapshots; no second state owner is created. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-01** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Two equal seeded command sequences produce matching event hashes and snapshots
+- [ ] no second state owner is created.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-02
+
+- [ ] **AG-M1-02 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap task:** Implement each component's analytical baseline/parameter slots with versioned shared math kernels, SI input/output, physical bounds, trainable correction hooks and domain-dependent fallback; engine works correctly when no trained profile exists.
 
@@ -26,9 +40,21 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/approximations/baseline, tests/fixtures/training`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [14](../14-modular-typescript-platform.md), [20](../20-torque-power-load-and-energy.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
-**Done when:** One component operates analytic fallback with finite power; invalid model binding rejected and logged. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-02** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] One component operates analytic fallback with finite power
+- [ ] invalid model binding rejected and logged.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-03
+
+- [ ] **AG-M1-03 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap task:** Test event ordering, exactly-once command application, subscription cleanup, re-entrancy prevention and deterministic replay.
 
@@ -38,9 +64,20 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `tests/core/events, tests/fixtures/golden/mock-run`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [11](../11-event-bus-and-messaging.md), [24](../24-simulation-clock-and-time-scaling.md), [25](../25-core-diagnostics-recording-and-comparison.md).
-**Done when:** Simulated duplicate/delayed/out-of-order/old-run commands cannot cause a second state mutation or missed critical-event test pass. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-03** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Simulated duplicate/delayed/out-of-order/old-run commands cannot cause a second state mutation or missed critical-event test pass.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-04
+
+- [ ] **AG-M1-04 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap task:** Implement rotating inertia, drag/friction, per-cylinder crank/720° firing order and generic inline/V/flat bank geometry, compression load.
 
@@ -50,9 +87,22 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/engines/geometry, src/engines/crank`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [02](../02-physics-model.md), [15](../15-engine-families-and-presets.md), [20](../20-torque-power-load-and-energy.md).
-**Done when:** I1 vs I4 vs V-bank fixture has valid cylinder phase; no combustion when fuel disabled; crank coasts with friction. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-04** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] I1 vs I4 vs V-bank fixture has valid cylinder phase
+- [ ] no combustion when fuel disabled
+- [ ] crank coasts with friction.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-05
+
+- [ ] **AG-M1-05 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap task:** Implement editable bore and stroke, rod length and clearance/compression geometry; recompute displacement and connected cylinder-volume/air-charge data consistently whenever a validated geometry change is applied.
 
@@ -62,9 +112,22 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/engines/cylinder-geometry, src/core/geometry tests`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [02](../02-physics-model.md), [15](../15-engine-families-and-presets.md), [22](../22-guided-vehicle-configurator.md).
-**Done when:** 86 mm bore and stroke I4 yields expected total volume; invalid clearance/rod bounds are rejected; visuals don't own formula. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-05** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] 86 mm bore and stroke I4 yields expected total volume
+- [ ] invalid clearance/rod bounds are rejected
+- [ ] visuals don't own formula.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-06
+
+- [ ] **AG-M1-06 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap task:** Add coupled crank, auxiliary and driveline rotational ports, free-rev/dyno/road-load adapters, SI torque/power measurements and energy-balance diagnostics.
 
@@ -74,9 +137,22 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/core/physics-ports/load, src/core/energy-ledger`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [17](../17-transmissions-drivetrains-and-wheels.md), [20](../20-torque-power-load-and-energy.md), [30](../30-agent-handoff-contracts-and-decisions.md).
-**Done when:** A validated I4 in neutral revs independently; engaging a basic manual gear/clutch under brake or hill reflects wheel load back to crank, can stall the engine, and tracks shaft/road energy without duplicating power. Do not mark a free-rev-only demo complete. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-06** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] A validated I4 in neutral revs independently
+- [ ] engaging a basic manual gear/clutch under brake or hill reflects wheel load back to crank, can stall the engine, and tracks shaft/road energy without duplicating power.
+- [ ] Do not mark a free-rev-only demo complete.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-07a
+
+- [ ] **AG-M1-07a COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 3 acceptance:** Mechanical carburetor/distributor/no-ECU remains fully runnable and is **factory selected** in the first-launch baseline. Do not hide or reduce the EFI alternative. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
@@ -90,9 +166,21 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/controls/mechanical, src/engines/carburetor-basic`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [15](../15-engine-families-and-presets.md), [18](../18-electrical-control-generations-and-tunes.md), [22](../22-guided-vehicle-configurator.md).
-**Done when:** No electronic ECU map controls available; mechanical choke/advance affects charge and torque in a fixture. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-07a** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] No electronic ECU map controls available
+- [ ] mechanical choke/advance affects charge and torque in a fixture.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-07b
+
+- [ ] **AG-M1-07b COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** G1 **also requires a separately selectable EFI/ECU I4 option**. Implement injection/spark/sensors/idle through physical ports; do not merely expose map UI or secretly reuse carburetor behavior under an ECU label. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -104,9 +192,22 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/controls/ecu-basic`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [18](../18-electrical-control-generations-and-tunes.md), [14](../14-modular-typescript-platform.md), [20](../20-torque-power-load-and-energy.md).
-**Done when:** ECU commands affect torque only through fuel/air/spark; no direct RPM assignment; mechanical mode remains unaffected. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-07b** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] ECU commands affect torque only through fuel/air/spark
+- [ ] no direct RPM assignment
+- [ ] mechanical mode remains unaffected.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-08a
+
+- [ ] **AG-M1-08a COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap task:** Add ignition switch, battery SoC/voltage/internal resistance, starter motor/solenoid/engagement and torque-speed curve with defined interfaces for wear and heat.
 
@@ -116,9 +217,21 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/electrical/battery`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [18](../18-electrical-control-generations-and-tunes.md), [20](../20-torque-power-load-and-energy.md), [25](../25-core-diagnostics-recording-and-comparison.md).
-**Done when:** High resistance sags terminal voltage under same starter current; no free battery energy. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-08a** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] High resistance sags terminal voltage under same starter current
+- [ ] no free battery energy.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-08b
+
+- [ ] **AG-M1-08b COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap task:** Add ignition switch, battery SoC/voltage/internal resistance, starter motor/solenoid/engagement and torque-speed curve with defined interfaces for wear and heat.
 
@@ -128,9 +241,22 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/electrical/starter`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [02](../02-physics-model.md), [18](../18-electrical-control-generations-and-tunes.md), [20](../20-torque-power-load-and-energy.md).
-**Done when:** Cranking can fail when voltage low; starter cannot accelerate indefinitely above normal running RPM; current and starter torque match load. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-08b** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Cranking can fail when voltage low
+- [ ] starter cannot accelerate indefinitely above normal running RPM
+- [ ] current and starter torque match load.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-09a
+
+- [ ] **AG-M1-09a COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** Provide distinct charge/fuel/ignition source behavior for **carburetor/no-ECU vs EFI/ECU** in the initial I4, including tests showing real physical differences and no mixed controller path. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -142,9 +268,21 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/engines/charge-and-fuel`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [02](../02-physics-model.md), [16](../16-intake-induction-and-exhaust.md), [18](../18-electrical-control-generations-and-tunes.md).
-**Done when:** Closed intake prevents invented charge; fuel off prevents sustained firing even with spinning starter. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-09a** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Closed intake prevents invented charge
+- [ ] fuel off prevents sustained firing even with spinning starter.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-09b
+
+- [ ] **AG-M1-09b COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** First-fire, catch, idle and stalls must work in **both approved I4 controller modes**, with actual combustion and starter/manual-load responses; neither can be a visual-only preset. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -156,9 +294,22 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/engines/combustion, src/engines/lifecycle`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [02](../02-physics-model.md), [11](../11-event-bus-and-messaging.md), [15](../15-engine-families-and-presets.md).
-**Done when:** First-fire event only on actual combustion; starter may crank without running; torque pulses follow 720-degree order. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-09b** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] First-fire event only on actual combustion
+- [ ] starter may crank without running
+- [ ] torque pulses follow 720-degree order.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-10a
+
+- [ ] **AG-M1-10a COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** Both initial I4 configurations need **their applicable idle method** (mechanical adjustment versus ECU strategy); no electronic regulation should appear in carb/no-ECU mode. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -170,9 +321,20 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/controls/idle`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [02](../02-physics-model.md), [18](../18-electrical-control-generations-and-tunes.md), [20](../20-torque-power-load-and-energy.md).
-**Done when:** Low/high load idle trends correct, no direct RPM teleport, controller unavailable when not equipped. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-10a** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Low/high load idle trends correct, no direct RPM teleport, controller unavailable when not equipped.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-10b
+
+- [ ] **AG-M1-10b COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap task:** Implement selectable mechanical idle adjustment or ECU idle regulation, kill-switch shutdown, no-fuel failure, low-battery failure and load-induced stall.
 
@@ -182,9 +344,21 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/engines/shutdown-and-stall`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [02](../02-physics-model.md), [11](../11-event-bus-and-messaging.md), [19](../19-scenario-coverage-and-presets.md).
-**Done when:** Friction slows stopped engine, fuel-off cannot fire; stalling emits one causal event before off. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-10b** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Friction slows stopped engine, fuel-off cannot fire
+- [ ] stalling emits one causal event before off.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-11
+
+- [ ] **AG-M1-11 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 3 acceptance:** For G1, include **both `AG-M1-12` physically valid editable first-I4 presets**, and prove carb defaults on an empty new session while restored EFI selection remains EFI. Both carry manual gearbox/road load and independent invalid-controller fixtures. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
@@ -198,9 +372,22 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Owned modules/files:** `src/testing/scenarios-minimal, tests/fixtures/golden/i4-start`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [06](../06-scenario-runner.md), [07](../07-testing-and-acceptance.md), [19](../19-scenario-coverage-and-presets.md).
-**Done when:** I4 warm start, no-fuel crank, low battery, neutral rev, clutch engagement under load, acceleration, brake/hill load and clutch-load stall run as deterministic positive/negative fixtures; include event time and energy bounds. Advanced manual/other gearboxes are separate M4 provider cards. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M1-11** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] I4 warm start, no-fuel crank, low battery, neutral rev, clutch engagement under load, acceleration, brake/hill load and clutch-load stall run as deterministic positive/negative fixtures
+- [ ] include event time and energy bounds.
+- [ ] Advanced manual/other gearboxes are separate M4 provider cards.
+- [ ] Include a negative case and runnable test/fixture
+- [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M1-12
+
+- [ ] **AG-M1-12 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved O3 implementation requirement (supersedes older provisional card language):** **O3-04 A:** independently propose quantitative physically plausible SI values for **both generic carb and EFI I4 presets**—bore/stroke/rod, compression, valve/ignition/fuel, battery/starter, gear ratios, mass/drag/tires—and provide energy/torque/HP/idle/start/stall fixtures and rationale. **Submit actual proposed values to project owner for approval before freezing the initial default preset**. Do not assume a named real production engine or invent real measurements. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
@@ -214,4 +401,15 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 **Required reading:** [15](../15-engine-families-and-presets.md), [18](../18-electrical-control-generations-and-tunes.md), [20](../20-torque-power-load-and-energy.md), [22](../22-guided-vehicle-configurator.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
-**Acceptance / evidence:** Each preset imports and drives with valid power/energy, no ECU fields on mechanical preset, distinct fueling/timing response from EFI, all geometry and ratios editable with validation. Factory new session starts carb, previously saved EFI stays EFI, preset switch requires controlled reset. Include source/units and explicit accuracy/approximation claims. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
+**Acceptance checklist — AG-M1-12** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Each preset imports and drives with valid power/energy, no ECU fields on mechanical preset, distinct fueling/timing response from EFI, all geometry and ratios editable with validation.
+- [ ] Factory new session starts carb, previously saved EFI stays EFI, preset switch requires controlled reset.
+- [ ] Include source/units and explicit accuracy/approximation claims.
+- [ ] Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
