@@ -124,6 +124,8 @@
 
 ### AG-M0-10
 
+**Latest on-device evidence:** Windows 11 / i9-10900KF / 32 GB / GTX1080; `nvidia-smi` driver **582.78**, CUDA Version **13.0** (driver API, not compiler), and `nvcc` unavailable on current PowerShell PATH. The owner is willing to install the **specific compatible CUDA 12.x toolkit only if needed for an actual test**; do not preemptively replace display driver. See [hardware inventory](../decisions/OWNER-DEVELOPMENT-HARDWARE.md).
+
 **Owner-reported primary benchmark hardware (2026-11-17):** Windows 11, **Intel Core i9-10900KF**, **32 GB RAM**, **GeForce GTX 1080**. NVIDIA driver described as latest supported, exact numeric version and CUDA installation unverified. Capture driver/browser/OS build on test day. Owner-provided machine is **not** automatically the proposed mid-range reference desktop for the published 3D/2D frame targets.
 
 **Approved O3 implementation requirement (supersedes older provisional card language):** **O3-01 A — primary benchmark:** run equivalent physics in Worklet vs Worker on the user's **10th-gen Core i9 + GTX1080** desktop first (exact SKU/OS/driver still unknown). Record CPU/AudioWorklet clock/jitter/underruns under representative I4/starter/manual/road load, provide owner-visible comparison and **do not choose final solver placement without approval**. Mid-range render FPS reference hardware is a separate proposal owned by AG-M8-02. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
