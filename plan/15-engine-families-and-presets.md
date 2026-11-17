@@ -1,5 +1,10 @@
 # 15 — Engine families, geometry, firing characteristics and preset library
 
+## O3 approved first preset parameter workflow
+
+The two starter I4 presets remain **generic physically plausible, complete editable vehicles**, one mechanical carb/distributor **factory default** and one EFI/ECU, both with starter, clutch/manual gearbox and road load. **`AG-M1-12` must propose actual bore/stroke/compression, control/ignition, battery/starter, gear ratios, tire/vehicle specs and predicted torque/HP/idle/start/load responses with SI units and invariant tests, and seek explicit project-owner approval of their numerical values before freeze.** Do not present agent guesses as already approved or as measured production-car specifications. Preserve user IndexedDB-selected EFI state over factory carb on reload. See [O3 owner choice](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md).
+
+
 ## Round 3 initial I4 vehicle examples
 
 **Two verified editable reference examples are mandatory for the first runnable vertical slice**, not just engine-family metadata. Each uses correct four-stroke inline-four bank/crank/valves, starter/electrical, intake/fuel/ignition, manual clutch/gearbox, wheel/vehicle/road load and procedural source identities. Provide (1) **carburetor + mechanical distributor, no ECU — factory default** and (2) **EFI + ECU — separately selectable**. Both must be runnable/validated through the same geometry/power/event and wizard/import boundaries; no fabricated exact real-production vehicle claim. Select factory carb only if no valid saved user-selected vehicle exists. Concrete bore/stroke/gearing/vehicle numbers are still to be proposed, tested and documented. See [Round 3](decisions/USER-APPROVED-ROUND-03.md), `AG-M1-12` and [G1](31-integration-gates-and-support-matrix.md).
