@@ -13,7 +13,7 @@ Research study settings also support **replicates for validation**, **one change
 1. Start with selectable **Quick / Balanced / Detailed / Research** reference presets and an **Advanced** editor for overrides. Each preset sets numerical resolution, enabled physical mechanisms, output frequency and cost limits. A preset is a versioned configuration, not a subjective quality guarantee.
 2. Support **per-component fidelity** independently: combustion, cylinder gas, cylinder metal/walls, intake runners, valves/ports, manifolds, compressor/turbine, charge cooler, exhaust runners/collectors/muffler and thermal/drivetrain/electrical submodels where applicable.
 3. Simulate enough spatial structure to represent local pressure, temperature, mass flow, flame propagation and wall heat transfer **where the selected model supports it**. Higher fidelity must not silently imply full 3D CFD or chemical kinetics accuracy.
-4. Keep advanced reference simulation and mesh/zone structures out of the AudioWorklet. Browser Web Workers may run constrained jobs; large sweeps can use an offline TypeScript/Node CLI or an explicitly opted-in local tool. GitHub Pages remains a static site with no runtime server.
+4. Keep advanced reference simulation and mesh/zone structures out of the AudioWorklet. Browser Web Workers may run constrained jobs; large sweeps run offline under a TypeScript orchestration CLI with validated **native CPU, GPU, WASM or other numerical backends**. Neither TypeScript nor Node `worker_threads` is mandatory for heavy kernels. GitHub Pages remains a static site with no runtime server.
 5. Convert reference results to versioned tables, fitted parameters, acoustic impulse/resonance descriptors or small surrogates for a physically constrained, fast real-time model. Do not ship the raw reference mesh as a real-time workload.
 
 ## Selectable detail levels
@@ -61,7 +61,13 @@ Allow intake/exhaust valve lift and flow area vs crank angle, discharge coeffici
 - Include branching, merging, reflections, propagation delay and impedance changes at valves, cylinders, collectors, mufflers, turbo turbine, bypass/wastegate and tailpipe. Junctions must conserve mass and energy within model tolerance.
 - Turbo/compressor and intercooler resolution controls may choose performance-map interpolation, rotor inertia/thermal lumped state or detailed segmented heat/flow states; **mechanical/electrical/exhaust power** still feeds the authoritative energy ledger at every level.
 - Afterfire/pop-and-bang reference calculations use local exhaust gas temperature, unburned fuel/oxygen mixture and residence time at actual path cells; propagate resulting pressure/heat event through the chosen exhaust model, not randomly trigger generic output.
-- Optional future 2D/3D gas-flow/CFD/chemical kinetics backends can be registered behind interfaces. They require separate validation, numerical resources and licenses.
+- **Owner-approved long-term architectural requirement:** eventually support **actual spatial 3D CFD**, advanced combustion **chemical reaction/kinetics and species transport**, and detailed **solid material/thermal behavior**. Plan replaceable mesh/field/physics/chemical-material model backends, 3D cell and boundary identifiers, conservation/boundary projections and solver versioning. This does **not** make the initial multi-zone 0D thermodynamic or 1D pipe models full CFD. A 3D CFD/chemistry backend remains `planned` until implemented, converged and verified on available measured data; do not fake it with additional gas zones. See [Round 1](decisions/USER-APPROVED-ROUND-01.md).
+
+## Future spatial and multi-physics adapter contracts
+
+The initial M0/M6 interfaces must be able to add future 3D CFD, species/chemical kinetics and multi-material solid heat/structural simulations without changing the live fast-model definition. Keep `ReferenceSolverProvider` independent from runtime DSP, define a **physical geometry/mesh** relation for each part (cylinder, head, piston, valve, intake/exhaust), and provide versioned boundary projections of **mass, momentum, energy, heat flux, composition and acoustic excitation** into canonical fast/reference physical ports. Different reference engines may provide different dimensional field resolutions; model tier/field type and native/GPU backend are explicit in run manifests.
+
+Advanced spatial/multiphysics backends require distinct validated numerics, solver capabilities, timestep and hardware/precision settings, checkpoint formats, convergence/measurement evidence and licensing. No demand that actual CFD finish during M6 Quick/Balanced/Detailed initial releases. An optional backend may be unavailable without invalidating an existing valid 0D/1D reference model. See [Round 1 owner approval](decisions/USER-APPROVED-ROUND-01.md).
 
 ## Resolution configuration and numerical safety
 
@@ -146,4 +152,4 @@ Outputs store fidelity profile hash, zone topology/grid, numerical scheme, solve
 - **M6-C:** Intake/exhaust 1D finite-volume/wave networks and segmented wall/exhaust heat transfer; validated flow/thermal coupling and afterfire propagation.
 - **M6-D:** Fidelity editor, resource estimator, browser Worker/CLI execution, progress/cancel/checkpoint and zone-result viewer.
 - **M7:** extraction/fitting/held-out verification of compact surrogate profiles across differing fidelity levels, with uncertainty and runtime acceptance.
-- **Later:** optional validated advanced chemistry/CFD or expanded specialty components, without replacing the browser reference tiers.
+- **Later (required extensibility, implementation pending):** register and verify actual 3D CFD, detailed chemical kinetics/species transport, conjugate heat transfer and multi-material behavior through the reference backend interface. These providers are individually `planned` until physics tests, convergence and measured comparison are available; preserve browser reference tiers.
