@@ -144,6 +144,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M7-12
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-08 B:** **research candidate datasets and prepare exact license/redistribution/attribution evidence for owner approval before bundling**. Imported user-owned measurements remain. If no approved redistributable assets exist, bundled catalog stays empty; no unlicensed copied recordings or reference playback. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Roadmap source:** Implement reference measurement ingestion and catalog supporting both user-imported and explicitly licensed bundled assets for calibration/validation only.
 
 **Precise deliverable:** Create a versioned `MeasurementReferenceCatalog` with **user-imported owned/licensed datasets** and **optional bundled measurements only after redistribution rights documented**. Store source provenance/license/attribution/conditions, units, timestamps, uncertainty and usable derived features for torque, combustion, pressure, intake/exhaust and spectral/transient comparisons. Import may analyze original audio; do not register recorded-car audio as an AudioSource/stem or offer in-app reference audio playback. Catalog can ship empty/unavailable with capability and tests if no verified redistributable assets exist. Provide exact feature/export contract to AG-M7-05/07/08 and AG-M8-03 licensing reviewer.
