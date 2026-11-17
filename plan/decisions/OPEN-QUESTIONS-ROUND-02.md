@@ -1,6 +1,6 @@
-# Pending owner questions — Round 2
+# Round 2 questionnaire — answered (historical reference)
 
-**Status: OPEN — no answers approved.** These questions follow [owner-approved Round 1](USER-APPROVED-ROUND-01.md). Proposed recommendations below are **not decisions** and must not be implemented/frozen until the project owner selects an answer. The project owner must approve all major architecture choices. Use answer IDs `R2-Q1` through `R2-Q9`.
+**Status: CLOSED — 9/9 answered by the project owner on 2026-11-17.** The exact approved choices and remaining narrow subdecisions are in [USER-APPROVED-ROUND-02](USER-APPROVED-ROUND-02.md). This file preserves the *original questionnaire and suggestions*, not a source of pending choices or authorized alternatives. Do not interpret the `Suggested` column as overriding the approved answers. See also [Round 1](USER-APPROVED-ROUND-01.md).
 
 | ID | Unresolved decision | A | B | C | Suggested, not approved | Affected ADR/tasks |
 |---|---|---|---|---|---|---|
@@ -22,4 +22,4 @@
 - Import storage limits, handling of multi-terabyte research datasets, local vs remote remote-control of job orchestration.
 - Physical microphone positions/listener spatialization, sound-pressure calibration, dynamic range, external lab measurements and accepted sources.
 
-A response to Round 2 should be recorded in a separate `USER-APPROVED-ROUND-02.md`; do not overwrite this open questionnaire or modify the original quoted requirements. Where the user selects an option that still contains a subdecision (e.g. choose later after benchmark), that subdecision stays open with a new owner task/ADR.
+**Recorded:** [Round 2 approvals](USER-APPROVED-ROUND-02.md). Further decisions are tracked in [Round 3](OPEN-QUESTIONS-ROUND-03.md) and as unresolved ADR details. Historic question text above is retained for traceability.
