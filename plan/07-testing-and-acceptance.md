@@ -1,5 +1,17 @@
 # 07 — Test strategy and acceptance criteria
 
+## Round 3 additional acceptance tests
+
+- **First launch vs autosave:** empty IndexedDB loads the **carb/mechanical I4**; select editable EFI, change bore/mix, reload, and confirm **EFI remains selected**. Corrupt/older/quota-denied IndexedDB produces safe recovery and ZIP export opportunity, not silent reset/data loss.
+- **Two production-ready demo examples:** carb/no-ECU and EFI/ECU have separately valid topology/parameters with starter, gearbox/road load, starting/idle/stall/gear scenarios and plausible physical conservation. Each is editable/importable, and controller-only invalid settings reject. No unverified claimed real-production accuracy.
+- **Presentation performance:** on declared reference desktop hardware and test scene, measure **≥30 FPS 3D** and **≥60 FPS Canvas 2D** with an explicit frame-time measurement methodology; report device/resolution/percentiles and unsupported browsers. Audio callback deadlines and fixed physics ticks must remain independent. No performance result is claimed until tested.
+- **Expert source calibration:** version/trim edit/revert/ZIP roundtrip changes only source calibration and synthesized sound; everyday user fader and engine power state unchanged, clipping/headroom protected.
+- **Spatial listening:** cabin, engine bay, roadside and exhaust produce distinguishable, bounded, procedurally synthesized source-transfer views with accurate mode trace; switching cannot alter torque/timing. No mandatory full 3D acoustic propagation.
+- **Reference measurements:** user-import with provenance; bundled real reference only with **verified redistribution rights for public distribution**. Missing rights → exclude/unavailable; test that recorded sound cannot connect to a live/diagnostic playback player or audio stem.
+- **Windows/Linux high-fidelity:** CLI plus local graphical monitor can observe/reconnect, pause/cancel safely, checkpoint/resume and report numerical failure. Explicitly document absent OS/GUI test infrastructure; do not claim verified capability from a design alone.
+- **AI integration agent:** synthetic PR tests for normal/failed CI, touched frozen contracts, unlicensed bundle, missing approvals and owner-escalation; actual authenticated GitHub review/protection/merge permissions must be verified before declaring deployed. Owner must approve all major ADRs. See [approved Round 3](decisions/USER-APPROVED-ROUND-03.md) and [open implementation details](decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+
 ## Round 2 — Mandatory release test coverage
 
 - Initial I4 engine has two separate **runnable** control fixtures: carburetor/mechanical distributor/no ECU versus EFI/ECU. Both include starter, manual clutch/gear and road load with physically distinct fuel/ignition/idle responses; ECU-only fields and electronic limiter commands must fail appropriately in mechanical mode.
