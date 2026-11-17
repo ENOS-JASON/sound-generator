@@ -6,6 +6,8 @@
 
 ## Non-negotiable build-order gate
 
+**M0 additionally requires versioned browser IndexedDB autosave, an approved AI-integrator review/escalation protocol (even if actual GitHub agent deployment is NON VALIDATED), and validated ZIP snapshot compatibility; a configured bot or external service must not be falsely claimed.**
+
 **M0 cannot finish until clock/time scaling, event bus, an instrumented synthetic physics source, synthetic AudioWorklet sound + live waveform/spectrum/meters, expandable/hideable physics/audio/event debug menus, recording/export/import/replay/comparison, and a multi-page shell with a draggable/hideable debug widget all work in CI.** Major architecture choices need owner approval. `AG-M0-10` must benchmark **both** equivalent Worker-owned and AudioWorklet-owned physics then return a recommended winner to the owner, without choosing automatically. Svelte + Vite is approved; router/state details remain open. See [Round 1](decisions/USER-APPROVED-ROUND-01.md). M1/M2 physics and sound development starts only after this foundation proves that it can observe and compare its own results. Read [23 — quoted design direction](23-quoted-project-direction-and-decisions.md) and [24–28](24-simulation-clock-and-time-scaling.md).
 
 ## M0 — Repository foundation and GitHub Pages
@@ -26,6 +28,8 @@
 - [ ] **Agent card:** [AG-M0-15](agents/M0-foundation.md#ag-m0-15) — Define `FastComponentModel` / `ApproximationRegistry` contracts: generic analytic baseline, optional trained coefficient/lookup slot, version/unit/validity/fallback, component IDs and reference projection; training must be possible later without rewriting M1 solver.
 - [ ] **Agent card:** [AG-M0-16](agents/M0-foundation.md#ag-m0-16) — Define reference experiments and `ReferenceComputeBackend` with **Windows/Linux support**, optional CPU/GPU, provenance/precision and research-export format contracts; maintain browser ZIP as exchange base.
 - [ ] **Agent card:** [AG-M0-17](agents/M0-foundation.md#ag-m0-17) — Implement **desktop Chromium/Firefox/Safari** capability detection, audio gesture/unlock/error UI and lower-cost Canvas 2D fallback when 3D unsupported.
+- [ ] **Agent card:** [AG-M0-18](agents/M0-foundation.md#ag-m0-18) — Define **versioned IndexedDB browser autosave** with migrations/quota/recovery, preserve last valid EFI user choice, and keep optional ZIP snapshots through the existing recorder.
+- [ ] **Agent card:** [AG-M0-19](agents/M0-foundation.md#ag-m0-19) — Prototype/configure a dedicated **AI technical integration agent** for routine PR review with CI evidence, least-privilege GitHub permissions and escalation of major ADRs/issues to the project owner; do not assume bot or merge rights exist.
 **Exit (blocking):** Pages app works; a reproducible mock run can time-scale, pause/step and drive audio/video graphs, record/export/import/replay/compare with physical/audio clock alignment, all via the Diagnostics route or movable widget; only then start M1 physical components.
 
 ## M1 — Physics core and starting
@@ -40,7 +44,8 @@
 - [ ] **Required child cards:** [AG-M1-09a](agents/M1-fast-engine.md#ag-m1-09a), [AG-M1-09b](agents/M1-fast-engine.md#ag-m1-09b) — Add air/fuel/spark and combustion torque, catch criteria, OFF/CRANKING/FIRING/RUNNING/FAILED_START transitions.
 - [ ] **Required child cards:** [AG-M1-10a](agents/M1-fast-engine.md#ag-m1-10a), [AG-M1-10b](agents/M1-fast-engine.md#ag-m1-10b) — Implement selectable mechanical idle adjustment or ECU idle regulation, kill-switch shutdown, no-fuel failure, low-battery failure and load-induced stall.
 - [ ] **Agent card:** [AG-M1-11](agents/M1-fast-engine.md#ag-m1-11) — Build start/idle/stall/manual-clutch/road-load headless fixtures **for both carbureted/no-ECU and EFI/ECU I4 variants**, including valid/invalid controller commands and energy tests.
-**Exit:** the first complete baseline is a **four-stroke inline-four gasoline engine with starter, a basic manual clutch/gearbox and physically coupled vehicle/road load** (neutral, clutch-slip, braking/hill load, gear engagement, and load-induced stall) without a trained profile. The advanced manual gearbox remains an independent M4C provider. A free-rev-only model **cannot pass G1**. **Both carbureted/mechanical and EFI/ECU controller variants are required for G1**; only the *initially highlighted default* is still open. Full telemetry and replay comparison under 0.1x/1x are required.
+- [ ] **Agent card:** [AG-M1-12](agents/M1-fast-engine.md#ag-m1-12) — Ship **two complete, physically valid editable I4 vehicle presets** (carburetor/mechanical/no ECU and EFI/ECU), first-run carb selected by default unless a valid autosaved user choice exists; test both with starter, manual gearbox and road load.
+**Exit:** the first complete baseline includes **two validated editable engine+vehicle presets** with factory default **carburetor/mechanical/no-ECU** (unless a valid IndexedDB user-selected alternative exists), and also a selectable **EFI/ECU I4**; both use a **four-stroke inline-four gasoline engine with starter, a basic manual clutch/gearbox and physically coupled vehicle/road load** (neutral, clutch-slip, braking/hill load, gear engagement, and load-induced stall) without a trained profile. The advanced manual gearbox remains an independent M4C provider. A free-rev-only model **cannot pass G1**. **Both carbureted/mechanical and EFI/ECU controller variants are required for G1**; only the *initially highlighted default* is still open. Full telemetry and replay comparison under 0.1x/1x are required.
 
 ## M2 — Procedural sound MVP
 - [ ] **Agent card:** [AG-M2-01](agents/M2-audio.md#ag-m2-01) — Implement AudioWorklet loader + sample-accurate control/phase transport and bounded bus bridge with critical-event gap detection.
@@ -48,8 +53,10 @@
 - [ ] **Required child cards:** [AG-M2-03a](agents/M2-audio.md#ag-m2-03a), [AG-M2-03b](agents/M2-audio.md#ag-m2-03b) — Build plenum/airbox/intake, exhaust/body resonances, filter smoothing, calibrated full-reference source generation, independent stem/bus/master gains, meters, mute/solo and safe output headroom.
 - [ ] **Agent card:** [AG-M2-04](agents/M2-audio.md#ag-m2-04) — Validate **both approved slow-motion audio modes** alongside sound-physics synchronization, worklet deadline/latency, waveform/FFT capture, mode-switch diagnostics and event alignment.
 - [ ] **Agent card:** [AG-M2-05](agents/M2-audio.md#ag-m2-05) — Implement pitch-preserving slow-motion time-stretch DSP alongside physical pitch-lowered playback, with measured worklet CPU/latency, no silent fallback and deterministic mode switching (UI toggle in `AG-M3-07`).
+- [ ] **Agent card:** [AG-M2-06](agents/M2-audio.md#ag-m2-06) — Add **expert-editable, separately versioned per-source calibration trims** independent of user mixer faders and master gain, with reset/revision, headroom and physics invariants.
+- [ ] **Agent card:** [AG-M2-07](agents/M2-audio.md#ag-m2-07) — Implement procedural audio **cabin, engine-bay, roadside and exhaust listening perspectives** with source-aware transfer/attenuation and no changes to engine physics.
 
-**Exit:** first I4/starter/manual/load procedural sound runs at normal and slowed time with both **selectable** slow-motion audio modes. Diagnostics capture/reimport/compare sound stems without glitches, and changing audio mode does not alter physics.
+**Exit:** first I4/starter/manual/load procedural sound runs at normal and slowed time with both **selectable** slow-motion audio modes, separately versioned expert-calibration trims and four procedural listening viewpoints. Diagnostics capture/reimport/compare sound stems without glitches, and changing audio mode does not alter physics.
 
 ## M3 — Guided builder, 3D/2D views and multi-page audio lab
 - [ ] **Required child cards:** [AG-M3-01a](agents/M3-builder-and-views.md#ag-m3-01a), [AG-M3-01b](agents/M3-builder-and-views.md#ag-m3-01b) — Build procedural low-poly car and cutaway engine scene in Three.js and lightweight Canvas2D **side-view row per bank** (every cylinder/piston/rod/valve, cycle, combustion and actual mass-flow indication).
@@ -60,7 +67,10 @@
 - [ ] **Agent card:** [AG-M3-06](agents/M3-builder-and-views.md#ag-m3-06) — Implement **M3-C training setup step**: supported Quick/Balanced/Detailed/Research tiers, per-component zone and timestep controls, preflight cost/capability and Worker/CLI job selection (UI editor may precede actual M6 solvers).
 - [ ] **Agent card:** [AG-M3-07](agents/M3-builder-and-views.md#ag-m3-07) — Add start/stop, throttle, ignition, load and preset editor UI with SI conversions and the **physical/pitch-preserved slow-motion audio mode switch**; applying engine configuration requires a validated reset/safe boundary.
 - [ ] **Required child cards:** [AG-M3-08a](agents/M3-builder-and-views.md#ag-m3-08a), [AG-M3-08b](agents/M3-builder-and-views.md#ag-m3-08b), [AG-M3-08c](agents/M3-builder-and-views.md#ag-m3-08c) — Add RPM/crank and wheel torque/hp/kW plus component loss meter, read-only event timeline, mixer channel/bus/master editor and 2D/3D/telemetry switch; no renderer may drive physics.
-**Exit:** page navigation and 2D/3D/audio graphs remain synchronized during 0.05–1x playback; wizard/mixer and draggable/hideable debug widgets work without reconstructing the engine, and valid bore/stroke-only options remain enforced.
+- [ ] **Agent card:** [AG-M3-09](agents/M3-builder-and-views.md#ag-m3-09) — Add Svelte Audio Studio **expert calibration trim editor** and revision/undo with persistent calibration profile separate from ordinary source/bus/master mixer.
+- [ ] **Agent card:** [AG-M3-10](agents/M3-builder-and-views.md#ag-m3-10) — Add **four-position listening selector** (cabin/engine bay/roadside/exhaust) on Drive/Audio Studio, independent of 3D camera/physics and persistent across pages.
+- [ ] **Agent card:** [AG-M3-11](agents/M3-builder-and-views.md#ag-m3-11) — Integrate **IndexedDB autosave/recovery** for builder, selected controller/preset, mixer, expert calibration, scenarios and widgets, plus optional portable ZIP snapshot import/export.
+**Exit:** page navigation and 2D/3D/audio graphs remain synchronized during 0.05–1x playback; first-run carb/default versus recovered user EFI choice, IndexedDB autosave/ZIP restore, expert trim, four listening modes, wizard/mixer and movable debug widgets work without reconstructing the engine. Visual targets: **30 FPS 3D / 60 FPS 2D on defined reference desktop hardware**, measured separately from physics/audio.
 
 ## M4 — Connected technology integration tracks (incremental slices)
 
@@ -128,8 +138,9 @@ M4 is **not** one indivisible milestone. Deliver and validate each model family 
 - [ ] **Agent card:** [AG-M6D-04](agents/M6D-reference-execution-and-views.md#ag-m6d-04) — Implement repeated validation/seed runs and paired **one-component/parameter and preset-of-components** variations under identical time/event-gated scenarios, capturing full actual component/part topology, state, versions and source audio provenance.
 - [ ] **Agent card:** [AG-M6D-05](agents/M6D-reference-execution-and-views.md#ag-m6d-05) — Export full component/multizone/fidelity/solver/OS/backend provenance and measured-reference comparison/confidence, reimportable into browser **ZIP** and optional offline **Parquet/HDF5** research output without discarding units/hashes.
 - [ ] **Required child cards:** [AG-M6D-06a](agents/M6D-reference-execution-and-views.md#ag-m6d-06a), [AG-M6D-06b](agents/M6D-reference-execution-and-views.md#ag-m6d-06b) — Create per-zone diagnostic trace viewer, coarse/fine **mesh/time-step convergence reports**, reproducible dataset manifests and optional licensed measured-reference comparisons.
+- [ ] **Agent card:** [AG-M6D-07](agents/M6D-reference-execution-and-views.md#ag-m6d-07) — Implement Windows/Linux **local graphical high-fidelity job monitor** driving existing offline CLI through a versioned local job-control adapter; show resources, progress, logs, cancel and checkpoint/resume. No remote queue implied.
 
-**Exit:** independent coarse/detailed cylinder/intake/exhaust models run for as many wall-clock hours as required, resume from checkpoints and export complete part-tagged reproducible baseline/variant/replicate datasets, without blocking AudioWorklet.
+**Exit:** independent coarse/detailed cylinder/intake/exhaust models run for as many wall-clock hours as required, resume from checkpoints and export part-tagged reproducible datasets; **Windows/Linux local graphical job monitor** controls the existing CLI without an external server, and never blocks AudioWorklet.
 
 ## M7 — Calibration / training
 - [ ] **Agent card:** [AG-M7-01](agents/M7-surrogate-fitting.md#ag-m7-01) — Define weighted physical/audio loss, per-scenario scores and constraints.
@@ -143,14 +154,15 @@ M4 is **not** one indivisible milestone. Deliver and validate each model family 
 - [ ] **Agent card:** [AG-M7-09](agents/M7-surrogate-fitting.md#ag-m7-09) — Export versioned coefficient profiles with validity bounds, provenance and hashes; activate via validated scheduled command and PROFILE_ACTIVATED event.
 - [ ] **Agent card:** [AG-M7-10](agents/M7-surrogate-fitting.md#ag-m7-10) — Load and atomically swap validated profiles; add stable baseline fallback.
 - [ ] **Agent card:** [AG-M7-11](agents/M7-surrogate-fitting.md#ag-m7-11) — Reject candidates with worse transition behavior, instability or audio CPU overruns.
-**Exit:** measured held-out improvements for both physics and source audio, no mandatory scenario/energy regressions, versioned reused equation/map families and fallback; tuned fast engine runs within real-time CPU budget and maps to the original high-detail components.
+- [ ] **Agent card:** [AG-M7-12](agents/M7-surrogate-fitting.md#ag-m7-12) — Build user-imported and **verified-license bundled measurement reference catalog** with provenance/quality and analysis-only audio features; exclude recordings lacking redistribution rights and never use them for playback.
+**Exit:** held-out improvement for physics and synthesized-source audio, no energy regressions, versioned equations/maps and baseline fallback; the reference catalog accepts user-owned and **proven-redistributable bundled** measurement data strictly for analysis, disclosing confidence and not playing real samples.
 
 ## M8 — Optimization, release and documentation
 - [ ] **Agent card:** [AG-M8-01](agents/M8-release-and-performance.md#ag-m8-01) — Test **desktop Chromium/Firefox/Safari** browsers, 44.1/48kHz audio, suspend/device changes, hash navigation and 2D fallback; additionally smoke offline CLI on Windows/Linux.
 - [ ] **Agent card:** [AG-M8-02](agents/M8-release-and-performance.md#ag-m8-02) — CPU/memory profiling, graphics LOD, DSP quality tiers and benchmark dashboard.
 - [ ] **Agent card:** [AG-M8-03](agents/M8-release-and-performance.md#ag-m8-03) — Preset import/export, reproducible demo and clear licensing/privacy attribution.
 - [ ] **Agent card:** [AG-M8-04](agents/M8-release-and-performance.md#ag-m8-04) — Release-test deployed GitHub Pages **hash routes** on desktop Chromium/Firefox/Safari, verify ZIP import/2D fallback and CLI Windows/Linux artifacts, ensure CI plus **technical-integrator** PR review and project-owner major ADR approval.
-**Exit:** stable public static demo with reproducible quality/benchmark report.
+**Exit:** stable public static demo with a reproducible **30 FPS 3D / 60 FPS 2D measured reference-hardware benchmark**, ZIP/IndexedDB recovery tests, validated licenses for any bundled references, and CI plus dedicated AI integration-agent routine review/escalation evidence.
 
 ## M9+ — Progressive automotive technology coverage after first public release
 
