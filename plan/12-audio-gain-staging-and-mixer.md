@@ -59,6 +59,10 @@ Stage order and pre/post-fader metering must be explicit; some audio effects (e.
 
 This inventory is expandable and should not require hard-coded UI layout changes. **Per-cylinder isolation is essential** when debugging firing order, imbalance or failed ignition. Groups also need faders and meters.
 
+## Extendable source registry for all technology families
+
+Source declarations come from the **registered physical component and its capabilities** rather than a hard-coded fixed set of stems. Adding a second turbo, ITB runners on all cylinder banks, a supercharger, early carburetor/distributor/starter mechanism, torque converter, CVT, differentials or EV/hybrid motor should automatically add the corresponding independently controllable calibrated source(s) when physically modeled. Every tone/pulse/noise retains its physical event/port origin and bank/cylinder identity. Different engine layouts, intake systems and gearboxes must have causally different sound, not only RPM-scaled generic clips. The mixer must distinguish physically absent sound, disabled/unsupported source and muted source. See [14–18](14-modular-typescript-platform.md).
+
 ## Mixer controls
 
 ### Individual source channel
