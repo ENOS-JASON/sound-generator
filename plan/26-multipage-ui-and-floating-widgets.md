@@ -30,7 +30,7 @@ Page names/routing are provisional; responsibilities and distinct navigation con
 
 ## Graph and UI architecture
 
-- Use **Svelte or Vue 3** as proposed in [23](23-quoted-project-direction-and-decisions.md); **final UI framework is a decision to record in M0** rather than silently selected.
+- **Svelte + Vite is owner-approved** ([Round 1](decisions/USER-APPROVED-ROUND-01.md)); strict TypeScript throughout. `AG-M0-01` must propose the Svelte major version, router/state conventions and GitHub Pages navigation strategy for explicit approval where architectural. **Vue is not an option unless the owner changes the decision.**
 - Keep a typed app-shell interface `PageRegistry`, `DebugWidgetRegistry`, `UiProjectionStore` and `GlobalRuntimeControls`; UI watches immutable throttled telemetry projections, not mutable solver buffers.
 - Shared time-series graph widgets allow multiple channels, units, legend, zoom/scrub, live vs recorded vs reference/fast overlay and crosshair event anchors. Audio graphs include waveform, frequency spectrum and optional spectrogram.
 - Diagram 3D/2D engine can be full-page or embedded panels; switching does not change physical state or audio timing.
