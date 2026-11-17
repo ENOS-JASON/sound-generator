@@ -1,5 +1,14 @@
 # 10 — Risks, assumptions and outstanding decisions
 
+## O3 approved choices and remaining unverified risks
+
+**Decided 15/15 O3 choices:** primary i9/GTX1080 desktop for first physics architecture benchmarks; AI conditionally allowed routine PR merges after authorized checks; autosave bounded diagnostics/history; generic I4 numerical presets proposed to owner; agent-proposed mid-range visual FPS reference desktop; expert gain-only trim + no-auth advanced toggle; camera-independent listener; license research/owner approval before bundling; CLI-launched loopback-only dashboard; CPU plus NVIDIA CUDA; browser ZIP first, scientific export selected later; latest two stable major supported desktop browser versions where available; owner escalation for shared TypeScript API/ownership changes. [Exact owner approvals](decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md).
+
+**Specific GPU compatibility risk:** NVIDIA's GTX1080 Pascal (`sm_61`) is unsupported by CUDA Toolkit **13.x offline compilation**; maintain tested **CUDA12.x `sm_61`** build alongside CPU fallback and optional newer targets. See [NVIDIA CUDA 13 release notes](https://docs.nvidia.com/cuda/archive/13.0.0/cuda-toolkit-release-notes/) and [legacy GPU list](https://developer.nvidia.com/cuda/gpus/legacy). Actual hardware/driver, precision and CUDA toolchain are **NOT YET VERIFIED**. The 10th-gen i9/GTX1080 is required *compatible*, not automatically the published 30/60 FPS reference machine.
+
+**Other unverified risks:** bot GitHub identity/actual merged SHA/branch rules and security escalation; local GUI localhost and CSRF protections; owner approval of proposed engine numerical parameters and mid-range benchmark device; exact browser version matrix and unsupported Safari/macOS cases; bounded IndexedDB/history quota recovery; license evidence for bundled reference recordings; numerical and GPU/CPU parity and model error budgets; Worklet vs Worker winner still pending benchmark and owner's choice. Distinguish **approved design** from **tested implementation** and **owner-pending later choices** in status reports. See [remaining verification](decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
+
 ## Round 3 risk clarification
 
 The owner approved: **carburetor/mechanical I4 factory selection** with **two complete editable carb/EFI examples**; **30 FPS 3D / 60 FPS 2D** targets on reference desktop hardware (not physics/audio clocks); **expert-versioned source calibration trims**; four independent **procedural listening perspectives**; **imported plus proven-licensed bundled measurement references** (real recordings never playback); **Windows/Linux CLI plus local graphical research monitor**; **IndexedDB browser autosave with optional ZIP workspace snapshots**; and **dedicated AI technical integrator with escalation**, not a human/hybrid reviewer.
