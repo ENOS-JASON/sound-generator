@@ -6,6 +6,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M7-01
 
+- [ ] **AG-M7-01 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+
 **Approved Round 2 requirement:** Training objective must distinguish **simulation-only / converged model / measurement-compared** quality and scenario uncertainty. Audio metrics use recorded real-world samples **as analyzed features only**, never as a runtime audio layer. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap item:** Define weighted physical/audio loss, per-scenario scores and constraints.
@@ -14,9 +16,20 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** G1 + G6 validated dataset. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/training/metrics` and local tests only.
 **Required source reading:** [05](../05-training-and-calibration.md), [07](../07-testing-and-acceptance.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
-**Done when:** Metric returns expected score for a known feature fixture; missing feature rejected. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-01** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Metric returns expected score for a known feature fixture
+- [ ] missing feature rejected.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-02a
+
+- [ ] **AG-M7-02a COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap item:** Fit configurable shared mathematical families (analytical coefficient, bounded lookup maps/splines, reduced-order state space and optionally compact ML) into existing M0/M1 approximation slots, with physical units, component-specific bindings, validity domains and fallback to generic baseline.
 
@@ -24,9 +37,19 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** AG-M7-01 and M0 approximation registry. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/training/analytic-and-lookup-fit` and local tests only.
 **Required source reading:** [28](../28-shared-realtime-surrogates-and-calibration.md), [05](../05-training-and-calibration.md).
-**Done when:** Constrained holdout error improves vs baseline and out-of-domain fallback remains finite. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-02a** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Constrained holdout error improves vs baseline and out-of-domain fallback remains finite.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-02b
+
+- [ ] **AG-M7-02b COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap item:** Fit configurable shared mathematical families (analytical coefficient, bounded lookup maps/splines, reduced-order state space and optionally compact ML) into existing M0/M1 approximation slots, with physical units, component-specific bindings, validity domains and fallback to generic baseline.
 
@@ -34,9 +57,19 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** AG-M7-02a and transient fixture. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/training/reduced-order-fit` and local tests only.
 **Required source reading:** [28](../28-shared-realtime-surrogates-and-calibration.md), [20](../20-torque-power-load-and-energy.md).
-**Done when:** Dynamic lag and stability tests on unseen input schedule with measured CPU. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-02b** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Dynamic lag and stability tests on unseen input schedule with measured CPU.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-03
+
+- [ ] **AG-M7-03 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap item:** Detect reusable/identical mathematically and physically compatible models across multiple components and deduplicate shared equations/lookup data while preserving exact component IDs, parameter sets and provenance.
 
@@ -44,9 +77,19 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** AG-M7-02a and typed domain contract. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/approximations/reuse-validator` and local tests only.
 **Required source reading:** [28](../28-shared-realtime-surrogates-and-calibration.md), [09](../09-data-contracts.md).
-**Done when:** Identical units/domain reuse is accepted, incompatible component parameters rejected. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-03** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Identical units/domain reuse is accepted, incompatible component parameters rejected.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-04
+
+- [ ] **AG-M7-04 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** One-part/component comparison reports causal physical vs synthesized-acoustic changes; calibration to real recorded sound uses analysis features, not playback source substitution. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -56,9 +99,19 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** G5 experiment diff and G6 source traces. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/training/sensitivity` and local tests only.
 **Required source reading:** [27](../27-high-fidelity-experiment-orchestration.md), [25](../25-core-diagnostics-recording-and-comparison.md).
-**Done when:** Muffler acoustics-only change does not report fake crank torque improvement. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-04** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Muffler acoustics-only change does not report fake crank torque improvement.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-05
+
+- [ ] **AG-M7-05 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 3 acceptance:** Measurements consumed through `AG-M7-12` versioned catalog may be imported by user or **bundled only with verified redistribution license**. Analyze feature/temporal data; no playing reference recordings, no fake catalog. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
@@ -70,9 +123,19 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** G6 converged per-zone dataset. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/training/reference-feature-extractor` and local tests only.
 **Required source reading:** [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
-**Done when:** Mass/torque/flow units and crank-angle timestamps match common boundary contract. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-05** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Mass/torque/flow units and crank-angle timestamps match common boundary contract.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-06
+
+- [ ] **AG-M7-06 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap item:** Implement bounded parameter search, spline/map fitting and regularization.
 
@@ -80,9 +143,20 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** AG-M7-01 and candidate model families. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/training/optimizer` and local tests only.
 **Required source reading:** [05](../05-training-and-calibration.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
-**Done when:** Invalid or unstable coefficient discarded; identical seed has equivalent optimum. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-06** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Invalid or unstable coefficient discarded
+- [ ] identical seed has equivalent optimum.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-07
+
+- [ ] **AG-M7-07 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 3 acceptance:** Holdout confidence report distinguishes numerically converged simulation from **actually licensed measured reference**. If bundled license unavailable, catalog must state absent/unavailable rather than substitute unlabeled recording. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
@@ -94,9 +168,19 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** AG-M7-06 and scenario matrix. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/training/holdout` and local tests only.
 **Required source reading:** [05](../05-training-and-calibration.md), [07](../07-testing-and-acceptance.md), [19](../19-scenario-coverage-and-presets.md).
-**Done when:** Whole vehicle/part/scenario holdout cannot leak adjacent samples from training. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-07** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Whole vehicle/part/scenario holdout cannot leak adjacent samples from training.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-08
+
+- [ ] **AG-M7-08 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** Reject incomplete/convergence-invalid references; report whether real measurement validation exists, its confidence and limits, not merely solver fidelity label. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -106,9 +190,19 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** G6 reference manifest. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/training/provenance-validation` and local tests only.
 **Required source reading:** [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [27](../27-high-fidelity-experiment-orchestration.md).
-**Done when:** Corrupt/unconverged input dataset rejected, never silently trained. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-08** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Corrupt/unconverged input dataset rejected, never silently trained.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-09
+
+- [ ] **AG-M7-09 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** Trained artifact must include stable references/hashes to ZIP or optional offline scientific source datasets and source licenses; **do not embed real-world recorded sound as an audio-rendering asset**. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -118,9 +212,20 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** AG-M7-07 and AG-M7-08. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/training/profile-export` and local tests only.
 **Required source reading:** [09](../09-data-contracts.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
-**Done when:** Valid profile roundtrips; incompatible units, checksum or model version rejected. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-09** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Valid profile roundtrips
+- [ ] incompatible units, checksum or model version rejected.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-10
+
+- [ ] **AG-M7-10 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap item:** Load and atomically swap validated profiles; add stable baseline fallback.
 
@@ -128,9 +233,20 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** AG-M7-09 and G1 engine. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `src/approximations/profile-loader` and local tests only.
 **Required source reading:** [28](../28-shared-realtime-surrogates-and-calibration.md), [25](../25-core-diagnostics-recording-and-comparison.md).
-**Done when:** Mid-run switch obeys safe boundary; wrong graph hash falls back with diagnostics. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-10** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Mid-run switch obeys safe boundary
+- [ ] wrong graph hash falls back with diagnostics.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-11
+
+- [ ] **AG-M7-11 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 3 acceptance:** G7 reviewer incorporates `AG-M7-12` catalog with **both import and license-verified bundled options**, rejects unlicensed playback assets and records actual measurement coverage/uncertainty. No fake source bundle. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
@@ -140,9 +256,20 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Prerequisites:** AG-M7-07/10 and G2 worklet. Missing contract means blocked or fixture-only, never independently invented new protocol.
 **Owned area:** `tests/training/regression-and-runtime` and local tests only.
 **Required source reading:** [07](../07-testing-and-acceptance.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
-**Done when:** Candidate with better audio but broken crank energy fails; baseline remains runnable. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Acceptance checklist — AG-M7-11** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Candidate with better audio but broken crank energy fails
+- [ ] baseline remains runnable.
+- [ ] Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M7-12
+
+- [ ] **AG-M7-12 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved O3 implementation requirement (supersedes older provisional card language):** **O3-08 B:** **research candidate datasets and prepare exact license/redistribution/attribution evidence for owner approval before bundling**. Imported user-owned measurements remain. If no approved redistributable assets exist, bundled catalog stays empty; no unlicensed copied recordings or reference playback. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
@@ -156,4 +283,17 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 **Required reading:** [05](../05-training-and-calibration.md), [25](../25-core-diagnostics-recording-and-comparison.md), [28](../28-shared-realtime-surrogates-and-calibration.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
-**Acceptance / evidence:** User-owned sample with complete license metadata imports feature descriptors; invalid license/format/corrupted reference rejected, bundled asset lacking redistribution proof is excluded; reference audio never routable to live mixer/audio player. Model report explicitly states missing measured coverage; do not claim verified car acoustics based only on numerics. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
+**Acceptance checklist — AG-M7-12** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] User-owned sample with complete license metadata imports feature descriptors
+- [ ] invalid license/format/corrupted reference rejected, bundled asset lacking redistribution proof is excluded
+- [ ] reference audio never routable to live mixer/audio player.
+- [ ] Model report explicitly states missing measured coverage
+- [ ] do not claim verified car acoustics based only on numerics.
+- [ ] Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
