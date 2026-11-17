@@ -33,6 +33,8 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 | [18 — Electrical, controls and tunes](18-electrical-control-generations-and-tunes.md) | No-ECU/ECU generations, battery and starter wear, tuning and pop-and-bang behavior |
 | [19 — Scenario matrix and presets](19-scenario-coverage-and-presets.md) | Coverage of start failures, powertrains, tunes, loads and combination tests |
 | [20 — Torque, power and load](20-torque-power-load-and-energy.md) | SI-based crank/wheel power, mechanical hp, loss/energy balances and dyno modes |
+| [21 — Adjustable-fidelity multi-zone simulation](21-adjustable-fidelity-multizone-reference-simulation.md) | Quick-to-Research reference detail, multi-zone cylinder/wall, intake/exhaust meshes, convergence and surrogate training |
+| [22 — Guided vehicle configurator](22-guided-vehicle-configurator.md) | Step-by-step vehicle creation, conditional valid fields, bore/stroke geometry, live derived values and preflight validation |
 
 ## Guiding principles
 
@@ -47,6 +49,8 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 9. **Composable technology, not monolithic special cases.** TypeScript component contracts and rotational/electrical/air/fuel/exhaust/thermal ports support historic mechanical systems, modern ECU engines and later hybrid/EV families. See [14](14-modular-typescript-platform.md).
 10. **Real load and measured output.** Every coupled accessory, compressor, transmission, axle, tire and road resistance contributes energy/torque to the single physics solver; horsepower is calculated from documented torque and speed measurement points. See [20](20-torque-power-load-and-energy.md).
 11. **Breadth through verified implementations.** Layout/preset schemas span single cylinder through V12, inline/V/flat and diverse induction/driveline/controller architectures. Each feature states its implemented, approximate or planned fidelity—no silent substitutions. See [15–19](15-engine-families-and-presets.md).
+12. **Configurable reference fidelity, not one fixed expensive solver.** Let users select global and per-component detail: multi-zone cylinder gas and combustion, segmented cylinder liner/head/piston walls, and intake/exhaust gas cells/wall layers. Validate conservation, timestep stability, mesh convergence and resource budgets before creating compact real-time training artifacts. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
+13. **Guided, physically valid configuration.** A step-by-step wizard exposes only capabilities and values valid for the active engine, controller, induction, transmission and drivetrain. Bore and stroke are editable, derived displacement and dependencies update automatically, and the same validators protect UI and imported presets. See [22](22-guided-vehicle-configurator.md).
 
 ## Delivery path
 
@@ -55,10 +59,10 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 | M0 | Foundation and static deploy | Browser launches under `/sound-generator/` |
 | M1 | Deterministic engine dynamics | Crank, catch, idle, shutoff, failure to start, stall |
 | M2 | Procedural audio MVP | Stable phase-coherent ignition/exhaust/intake/starter output |
-| M3 | Interactive 3D/2D / controls | Bank-by-bank cutaway, synchronized mechanisms, source mixer and crank/wheel power inspector |
+| M3 | Guided configurator, 3D/2D / controls | Dynamic wizard with bore/stroke and validation, bank cutaway, source mixer, crank/wheel power inspector |
 | M4 | Connected powertrain technology slices | Gears, clutch, limiter, overrun, pops, induction, AWD/4WD and wheel loads |
 | M5 | Scenario runner and regression suite | All transition/timeout branches run headlessly |
-| M6 | Higher-fidelity reference solver | Validated offline reference data across operating envelope |
+| M6 | Adjustable-fidelity reference solver | Quick/Balanced/Detailed/Research models with cylinder/wall/intake/exhaust zones, convergence and resource checks |
 | M7 | Fitting and compact trained artifacts | Held-out objective improvement without audio glitches |
 | M8 | Optimization and public release | Cross-browser performance, CI and published GitHub Pages demo |
 
