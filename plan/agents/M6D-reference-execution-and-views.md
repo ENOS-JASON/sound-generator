@@ -38,11 +38,11 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 
 **Original roadmap requirement:** Add **offline TypeScript/Node `worker_threads` study scheduler** with configurable simultaneous jobs/worker pool up to all logical CPU cores, high-fidelity run streaming to disk, progress measured by sim time/crank cycles, checkpoint/resume, and no arbitrary short wall-time failure for hours-per-cycle computations.
 
-**Precisely implement:** Node worker_threads offline job queue with max-worker limit and independent-run scheduling.
+**Precisely implement:** Backend-neutral offline study queue with a CPU `worker_threads` adapter plus discovery of compatible versioned native CPU, GPU, WASM or other numerical kernels; no GPU-specific choice without owner approval.
 **Inputs / prerequisites:** AG-M6D-02a and AG-M6A-01. Do not invent physical ports or source IDs; use versioned mock fixture only when explicitly reporting incomplete live integration.
 **Owned files:** `src/offline-cli/study-scheduler` plus local tests/fixtures only.
 **Required references:** [27](../27-high-fidelity-experiment-orchestration.md), [21](../21-adjustable-fidelity-multizone-reference-simulation.md).
-**Acceptance evidence:** Two seeds run on configured CPU workers; no oversubscription without explicit option. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
+**Acceptance evidence:** Two seeds run on configured CPU workers; no oversubscription without explicit option. An alternate mock numerical backend exports identical physical-boundary units/manifest with declared device, precision and resource limits. Real GPU execution may be added as a separately approved provider. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
 
 ### AG-M6D-03b
 
