@@ -63,6 +63,12 @@ This inventory is expandable and should not require hard-coded UI layout changes
 
 Source declarations come from the **registered physical component and its capabilities** rather than a hard-coded fixed set of stems. Adding a second turbo, ITB runners on all cylinder banks, a supercharger, early carburetor/distributor/starter mechanism, torque converter, CVT, differentials or EV/hybrid motor should automatically add the corresponding independently controllable calibrated source(s) when physically modeled. Every tone/pulse/noise retains its physical event/port origin and bank/cylinder identity. Different engine layouts, intake systems and gearboxes must have causally different sound, not only RPM-scaled generic clips. The mixer must distinguish physically absent sound, disabled/unsupported source and muted source. See [14–18](14-modular-typescript-platform.md).
 
+## Core capture and audio graph observability
+
+**Before M2:** build a synthetic AudioWorklet signal with real per-source/bus/master level measurements and waveform/FFT graph output through the unified [DiagnosticsHub](25-core-diagnostics-recording-and-comparison.md). The same signal can be recorded, exported, imported and compared to verify sample-frame alignment and gain semantics. **During M2/M3:** every physical stem registers source/bus IDs, calibration, mixer parameters and read-only feature channels, with bounded capture and rate-limited graph views. Audio Studio is a dedicated app page; graphs and controls may be pinned as small movable/hideable widgets over Drive/2D/3D per [26](26-multipage-ui-and-floating-widgets.md).
+
+Mix automation timestamps map from the core slowed simulation timeline to audio output sample frames, not animation frames; 0.1x and 1x must preserve causal engine event consistency. High-fidelity experiments provide component-tagged acoustic excitation and source descriptors, and [28](28-shared-realtime-surrogates-and-calibration.md) fits reusable compact source transfer maps without conflating physical changes with fader changes. Audio captures must disclose whether they reflect slow-motion playback and which mixer profile was active.
+
 ## Mixer controls
 
 ### Individual source channel
