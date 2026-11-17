@@ -1,5 +1,12 @@
 # 22 — Step-by-step, capability-aware vehicle configurator
 
+## Round 3 default and resumable workspace behavior
+
+On a **first empty valid IndexedDB workspace**, initialize the **mechanical carburetor/no-ECU I4** as factory selected. Offer two **separately complete editable** I4 vehicle examples: factory carb and EFI/ECU. Switching between them requires graph capability validation and safe engine reset, while valid bore/stroke and appropriate user-selected values are retained within the saved selected workspace. A valid stored EFI selection must **not** be overwritten by the default on reload.
+
+The Svelte wizard and Drive share an **IndexedDB autosave service** with version/migration/last-good-state recovery and explicit save/error/quota indicators. **Optional portable ZIP workspace snapshot** permits backup/restore; deep high-fidelity datasets remain offline/explicit. Expert audio calibration editing and four listening perspectives are not physical vehicle fields; their settings remain independently versioned in the workspace/mixer. See [approved Round 3](decisions/USER-APPROVED-ROUND-03.md), `AG-M0-18`/`AG-M1-12`/`AG-M3-11`.
+
+
 ## Round 2 — First I4 wizard and app navigation
 
 The initial user-facing I4 builder must offer **either** carburetor + mechanical distributor **without ECU**, **or** EFI + ECU, as selectable and *runnable* engine-control configurations. The field schema derives from the selected `ControlStrategy`: hide/reject injection maps on mechanical configuration, hide mechanical distributor/choke adjustments when they do not apply to ECU setup, and validate shared starter/transmission/wheel/road models consistently. Changing controller variant must show the realized component/connection diffs, preserve valid geometry/bore/stroke values and require an explicit safe reset if a live engine is running.
