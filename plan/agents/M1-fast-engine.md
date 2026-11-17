@@ -195,3 +195,17 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 **Owned modules/files:** `src/testing/scenarios-minimal, tests/fixtures/golden/i4-start`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [06](../06-scenario-runner.md), [07](../07-testing-and-acceptance.md), [19](../19-scenario-coverage-and-presets.md).
 **Done when:** I4 warm start, no-fuel crank, low battery, neutral rev, clutch engagement under load, acceleration, brake/hill load and clutch-load stall run as deterministic positive/negative fixtures; include event time and energy bounds. Advanced manual/other gearboxes are separate M4 provider cards. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+
+### AG-M1-12
+
+**Roadmap source:** Deliver two physically valid, editable first-I4 vehicle presets with first-run carburetor default and separately selectable EFI/ECU baseline.
+
+**Precise deliverable:** Create versioned, fully parameterized **mechanical carb+distributor/no-ECU** and **EFI/ECU** four-stroke I4 presets, each with valid SI cylinder geometry, starter/battery, fuel/ignition, manual clutch/gears and physically coupled vehicle/load. Use tested physical reference assumptions, not fabricated production-car precision. Register both as editable templates, mark factory carb preset as first-run default only when no valid IndexedDB saved selection. Engine fixture has seeded starter->first-fire->idle->clutch/gear load->stall and deliberately invalid controller combinations. Do not add a new engine solver or controller just to support these fixtures.
+
+**Inputs / prerequisites:** G1 solver components AG-M1-04/05/06/07a/07b/08a/08b/09a/09b/10a/10b and versioned AG-M0-03/06 validators; autosave selection interface from AG-M0-18 may be mocked with an agreed fixture initially.
+
+**Owned files/modules:** `presets/vehicles/first-i4/, tests/fixtures/golden/i4-two-control-modes/, tests/integration/initial-presets`; other agent contract directories are outside this card without an accepted owner-approved ADR.
+
+**Required reading:** [15](../15-engine-families-and-presets.md), [18](../18-electrical-control-generations-and-tunes.md), [20](../20-torque-power-load-and-energy.md), [22](../22-guided-vehicle-configurator.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md).
+
+**Acceptance / evidence:** Each preset imports and drives with valid power/energy, no ECU fields on mechanical preset, distinct fueling/timing response from EFI, all geometry and ratios editable with validation. Factory new session starts carb, previously saved EFI stays EFI, preset switch requires controlled reset. Include source/units and explicit accuracy/approximation claims. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
