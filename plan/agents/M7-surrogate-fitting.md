@@ -6,6 +6,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M7-01
 
+**Approved Round 2 requirement:** Training objective must distinguish **simulation-only / converged model / measurement-compared** quality and scenario uncertainty. Audio metrics use recorded real-world samples **as analyzed features only**, never as a runtime audio layer. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap item:** Define weighted physical/audio loss, per-scenario scores and constraints.
 
 **Exact scoped deliverable:** Define per-scenario/per-component physics, event-timing and audio objective units and weights.
@@ -46,6 +48,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M7-04
 
+**Approved Round 2 requirement:** One-part/component comparison reports causal physical vs synthesized-acoustic changes; calibration to real recorded sound uses analysis features, not playback source substitution. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap item:** Consume one-part/part-set sensitivity comparisons to determine which changes impact physical torque/airflow/exhaust and which change sound source timing/timbre; calibrate appropriate fast variables rather than copying raw high-detail trajectories.
 
 **Exact scoped deliverable:** Calculate paired one-part/part-set physical and sound sensitivities separately.
@@ -55,6 +59,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Done when:** Muffler acoustics-only change does not report fake crank torque improvement. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M7-05
+
+**Approved Round 2 requirement:** Feature extractor can consume the same schema from browser ZIP or optional Parquet/HDF5 offline; preserve component IDs, units, conditions and measurement/source provenance, never replace synthesized sound with real recordings. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap item:** Extract reference pressure/heat-release/port-flow/resonance features from multiple fidelity levels and fit compact physically constrained fast-model corrections; never require spatial gas/metal meshes at runtime.
 
@@ -76,6 +82,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M7-07
 
+**Approved Round 2 requirement:** Holdout separates configurations and measures against real data when available; disclose lack of measurement rather than claim measured accuracy. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap item:** Add scenario/configuration-disjoint holdout sets across engine family, intake/boost, controller and transmission/AWD combinations, boundary sampling and model comparison.
 
 **Exact scoped deliverable:** Configuration-disjoint train/validation/holdout evaluator with worst-case metrics.
@@ -86,6 +94,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M7-08
 
+**Approved Round 2 requirement:** Reject incomplete/convergence-invalid references; report whether real measurement validation exists, its confidence and limits, not merely solver fidelity label. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap item:** Record source fidelity/mesh versions and convergence/uncertainty in every trained artifact; reject un-converged/unreliable reference configurations as training ground truth.
 
 **Exact scoped deliverable:** Check provenance, mesh convergence and fidelity version before using reference labels.
@@ -95,6 +105,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Done when:** Corrupt/unconverged input dataset rejected, never silently trained. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M7-09
+
+**Approved Round 2 requirement:** Trained artifact must include stable references/hashes to ZIP or optional offline scientific source datasets and source licenses; **do not embed real-world recorded sound as an audio-rendering asset**. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap item:** Export versioned coefficient profiles with validity bounds, provenance and hashes; activate via validated scheduled command and PROFILE_ACTIVATED event.
 
