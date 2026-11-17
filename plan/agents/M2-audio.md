@@ -18,6 +18,8 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 
 ### AG-M2-02a
 
+**Approved Round 2 requirement:** Procedural starter sound must be generated from actual motor/electrical/crank state in **both I4 controller configurations**; recorded car sound samples are forbidden as source layers. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap task:** Synthesize starter whine/solenoid/engagement, compression and initial sporadic firing, then stable combustion pulse train; per-cylinder/bank routing must handle arbitrary validated firing layouts.
 
 **Bounded deliverable:** Calibrated procedural solenoid and starter motor whine/engagement tied to mechanical/electrical state.
@@ -29,6 +31,8 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 **Done when:** Audible only while starter state demands it; low-voltage/worn starter fixture changes timbre/cadence, with click-free disengagement. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M2-02b
+
+**Approved Round 2 requirement:** Combustion pulses are entirely **procedural** and carry causal source/tick/cylinder IDs; distinct carb/distributor versus EFI/ECU ignition/fueling affects sound only through real model state. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Synthesize starter whine/solenoid/engagement, compression and initial sporadic firing, then stable combustion pulse train; per-cylinder/bank routing must handle arbitrary validated firing layouts.
 
@@ -54,6 +58,8 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 
 ### AG-M2-03b
 
+**Approved Round 2 requirement:** The stem/mixer must accept **only registered procedural generated physical sources**. Imported real-world audio may supply reference features for comparison/calibration but may not appear in a bus, sample layer, live source or reference playback player. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap task:** Build plenum/airbox/intake, exhaust/body resonances, filter smoothing, calibrated full-reference source generation, independent stem/bus/master gains, meters, mute/solo and safe output headroom.
 
 **Bounded deliverable:** Calibrated per-source faders and category buses with mute/solo/meter, master headroom/limiter.
@@ -66,6 +72,8 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 
 ### AG-M2-04
 
+**Approved Round 2 requirement:** Initial browser/audio test matrix includes **desktop Chromium, Firefox and Safari** where platforms available; check physical slow motion **default**, optional pitch-preserved mode, 44.1/48kHz timing/latency and emitted source provenance. Missing platform evidence is not a pass. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap task:** Add sound-physics synchronization tests, worklet callback profiler and output capture with source-level FFT/waveform/routing diagnostics, A/B comparisons and correct timbre/event timing at slowed playback scale.
 
 **Bounded deliverable:** AudioWorklet phase, CPU/deadline, FFT/capture and mode-switch tests for **physical pitch-lowered and pitch-preserving slow-motion audio** at 44.1/48 kHz.
@@ -77,6 +85,8 @@ AudioWorklet owns the audio sample-output clock. **Physics ownership remains und
 **Done when:** No NaNs/underruns in defined environment; A/B source FFT capture/import and 0.1x events align with physics in **both modes**, with measured pitch/latency/CPU/artifact limits and no silent fallback. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M2-05
+
+**Approved Round 2 requirement:** **Physical pitch-lowered slowdown is the initial default**; pitch-preserved processing remains a user-selectable second mode. Switching cannot alter physics events. Real recordings are comparison data only, not this DSP's sampled content. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Implement the owner-approved **pitch-preserving slow-motion** audio treatment alongside physical pitch-lowered slow motion. A user-visible audio-mode switch is supplied by `AG-M3-07`; neither changes physical simulation tick/event/RPM/torque values.
 
