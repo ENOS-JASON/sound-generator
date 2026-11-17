@@ -1,5 +1,12 @@
 # 10 — Risks, assumptions and outstanding decisions
 
+## Round 2 — Newly resolved decisions and remaining risks
+
+**Approved** ([Round 2](decisions/USER-APPROVED-ROUND-02.md)): two selectable *first I4* control variants (carb/mechanical/no-ECU versus EFI/ECU); Svelte+Vite with hash URLs; pitch-lowered physical slow motion is the default; real recordings analyzed for calibration/validation only and **never used for playback**; confidence claims require numerical plus available measured comparisons; browser ZIP and optional offline Parquet/HDF5; Windows+Linux offline and desktop Chromium/Firefox/Safari web support; CI plus technical-integrator review for routine PRs, project owner for major ADRs.
+
+**Remaining risks needing explicit later decisions:** initial I4 default preset/geometry/gear ratios, router library/Svelte version/state store, solver placement pending measured Worklet vs Worker benchmark, browser/hardware performance envelopes, actual measurement sources and error thresholds, diagnostic data retention/caps, optional Parquet/HDF5 library/security, GPU vendor/backend portability, integrator identity and branch rules. Existing `Decisions to record before implementation` below is historic/proposed and **may not override approved owner choices**.
+
+
 ## Major risks / mitigations
 | Risk | Mitigation |
 |---|---|
