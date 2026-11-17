@@ -184,6 +184,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 ### AG-M3-09
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-06 A / O3-14 A:** Audio Studio exposes simple **Advanced/Expert toggle with no password, account, PIN, auth or roles**. Only per-source gain trims with nominal calibration conditions, profile versions, undo/reset—not user-facing expert EQ/source DSP editors. Explain toggle is not a security boundary. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Roadmap source:** Build expert-only calibrated-source trim editor with independently versioned profiles, separate from everyday Audio Studio faders.
 
 **Precise deliverable:** Add an `Expert calibration` panel in Svelte Audio Studio for source reference level, bounded trim, source version/physical test condition and revision/reset/undo, clearly independent from user mix bus/source/master settings. Show read-only source stem meters, overload warnings, provenance and preview. Use AG-M2-06 service and AG-M0-18 IndexedDB autosave. No login/roles are presumed; expert means an explicitly activated advanced UI. Diagnostic compare tools may be reused, but standalone new A/B calibration profile manager is not approved.
@@ -198,6 +200,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 ### AG-M3-10
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-07 A:** cabin, engine-bay, roadside and exhaust listener state is **independent of visual camera** at all times; UI camera movements never change sound transfer or selection. No follow-camera checkbox unless owner later approves. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Roadmap source:** Add UI controls to select cabin, engine-bay, roadside and exhaust listening perspective without changing the 2D/3D camera or engine solver.
 
 **Precise deliverable:** Build globally accessible and Audio Studio/Drive-controllable Svelte listening-position selector using AG-M2-07 typed mode. Show which viewpoint is active and what source transfer is approximate; optionally link visual camera only if a later approved decision does so. Store selected perspective under IndexedDB service and ZIP trace/profile. Do not implement new acoustic DSP in UI.
@@ -211,6 +215,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 **Acceptance / evidence:** All four modes work at normal/slow time on desktop supported browsers, mode persists on route changes/reload, audio stem changes as expected, torque/events unchanged, WebGL failure leaves selector functional. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
 
 ### AG-M3-11
+
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-03 B / O3-13 B:** persist only config, mixer, calibration, widgets, scenarios and **bounded recent debug data**, with **configurable capped history** and safe eviction/recovery; ZIP snapshots are optional manual exports, not an autosave of full research simulations. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
 **Roadmap source:** Wire versioned IndexedDB autosave and recovery into the Svelte configurator, sessions, audio settings and movable widgets, with optional ZIP snapshots.
 
