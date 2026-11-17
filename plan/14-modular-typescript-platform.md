@@ -1,5 +1,12 @@
 # 14 — Extensible TypeScript powertrain platform
 
+## Round 2 — Module and contract implications
+
+**Svelte + Vite hash routes** (`/sound-generator/#/drive`) are an approved UI constraint; app/solver, audio, tracing and persistent debug widgets remain route-independent. The first I4 must have two capability-validated, mutually exclusive `ControlStrategy` bindings: mechanical carburetor/distributor with **no ECU**, or EFI with ECU and maps/sensors. They plug into the same `VehicleDefinition`/physics ports, allowing tests of both on the starter, manual transmission and road load. Interface code must not silently create an ECU for no-ECU presets.
+
+`ReferenceComputeBackend` remains compatible with Windows/Linux and optional native CPU/GPU kernels; run records and optional Parquet/HDF5 export preserve typed SI units. `CaptureBundle` is browser ZIP as an interchange container with explicit versioned manifest. Browser build must be smoke-tested in desktop Chromium, Firefox and Safari; missing WebGL is a **2D fallback**, not missing physics. See [Round 2](decisions/USER-APPROVED-ROUND-02.md).
+
+
 **Required foundation architecture.** Keep an extensible simulation of vehicles spanning different eras without a monolithic `Engine`, hard-coded V8, universal ECU, or switch statement for every possible combination. Scope is modular **coverage by independently verified models**, not a claim that every historical technology is accurate on day one.
 
 ## Foundation-level interfaces for timing, diagnostics and approximations
