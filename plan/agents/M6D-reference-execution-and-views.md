@@ -36,6 +36,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 
 ### AG-M6D-03a
 
+**Approved Round 2 requirement:** Windows **and** Linux offline scheduling are mandatory smoke-tested platforms; CPU backend always works without GPU. GPU/native backends are optional and discoverable, with device/driver/precision reported. A Windows-only or Linux-only CLI cannot be considered complete. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap requirement:** Add **offline TypeScript/Node `worker_threads` study scheduler** with configurable simultaneous jobs/worker pool up to all logical CPU cores, high-fidelity run streaming to disk, progress measured by sim time/crank cycles, checkpoint/resume, and no arbitrary short wall-time failure for hours-per-cycle computations.
 
 **Precisely implement:** Backend-neutral offline study queue with a CPU `worker_threads` adapter plus discovery of compatible versioned native CPU, GPU, WASM or other numerical kernels; no GPU-specific choice without owner approval.
@@ -45,6 +47,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Acceptance evidence:** Two seeds run on configured CPU workers; no oversubscription without explicit option. An alternate mock numerical backend exports identical physical-boundary units/manifest with declared device, precision and resource limits. Real GPU execution may be added as a separately approved provider. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
 
 ### AG-M6D-03b
+
+**Approved Round 2 requirement:** Checkpoint/streaming paths, atomic write and restore semantics must work on Windows and Linux (don't hardcode Unix paths). Capture artifacts use an immutable component/clock reference and are convertible to **browser ZIP**, with optional Parquet/HDF5 only for offline research. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap requirement:** Add **offline TypeScript/Node `worker_threads` study scheduler** with configurable simultaneous jobs/worker pool up to all logical CPU cores, high-fidelity run streaming to disk, progress measured by sim time/crank cycles, checkpoint/resume, and no arbitrary short wall-time failure for hours-per-cycle computations.
 
@@ -66,6 +70,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 
 ### AG-M6D-05
 
+**Approved Round 2 requirement:** Reference dataset format must preserve a **browser ZIP** manifest/interchange and optionally export Parquet/HDF5 offline. Include full part, numerical convergence, environmental/measurement-source/provenance and **confidence/uncertainty** fields; real-world recordings are analysis-only, not audio stems. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
+
 **Original roadmap requirement:** Record fidelity/mesh/solver/threads/hardware/energy residuals, source excitation/spectra and per-component causal differences in a versioned reference dataset with provenance hashes; invalidate unstable or incomplete runs.
 
 **Precisely implement:** Provenance-complete reference dataset manifests with component graph, source audio and mesh/worker hashes.
@@ -85,6 +91,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Acceptance evidence:** Imported trace shows all available cylinder and pipe zones; hidden zones don't consume render CPU. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
 
 ### AG-M6D-06b
+
+**Approved Round 2 requirement:** When actual measured cylinder/torque/flow/thermal/sound reference data exist, compare against them with explicit confidence/uncertainty and licensing provenance. Without measurements, label results only as converged simulation estimates; failed numerical schemes may not become training truth. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap requirement:** Create per-zone diagnostic trace viewer, coarse/fine **mesh/time-step convergence reports**, reproducible dataset manifests and optional licensed measured-reference comparisons.
 
