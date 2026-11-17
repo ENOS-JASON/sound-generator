@@ -2,6 +2,8 @@
 
 > Planning baseline. **Status: design only.** No engine, renderer, training implementation, or GitHub Pages deployment is included yet.
 
+**For implementation agents:** start with [Agent handoff instructions](agents/README.md), then select **one** assignment from the [99-roadmap-step / 159-agent-card index](agents/task-index.md). Read only its card, mandatory [contract/ADR rules](30-agent-handoff-contracts-and-decisions.md) and the references specifically listed there. The roadmap is an overview; individual cards determine scope and acceptance.
+
 ## Goal
 
 Build a flexible, realistic, **real-time, physics-driven vehicle sound and powertrain simulator**, starting with internal-combustion engines and architected for historical, contemporary, hybrid and electric technologies. It runs fully in a browser on **GitHub Pages**, has switchable **3D, lightweight 2D per-bank engine cutaway and telemetry views**, and improves its fast model through **higher-fidelity offline simulation, calibration and automated scenario training**.
@@ -35,13 +37,16 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 | [20 — Torque, power and load](20-torque-power-load-and-energy.md) | SI-based crank/wheel power, mechanical hp, loss/energy balances and dyno modes |
 | [21 — Adjustable-fidelity multi-zone simulation](21-adjustable-fidelity-multizone-reference-simulation.md) | Quick-to-Research reference detail, multi-zone cylinder/wall, intake/exhaust meshes, convergence and surrogate training |
 | [22 — Guided vehicle configurator](22-guided-vehicle-configurator.md) | Step-by-step vehicle creation, conditional valid fields, bore/stroke geometry, live derived values and preflight validation |
-
 | [23 — Quoted architecture direction](23-quoted-project-direction-and-decisions.md) | Preserved technical-choices quote, complete requirements passage and intended build order |
 | [24 — Simulation clock and time scaling](24-simulation-clock-and-time-scaling.md) | Slow-motion, pause/step, synchronized 2D/3D/audio, deterministic replay |
 | [25 — Core diagnostics and capture](25-core-diagnostics-recording-and-comparison.md) | Mandatory pre-engine debug menus, telemetry/audio charts, export/import and comparisons |
 | [26 — Multi-page UI and widgets](26-multipage-ui-and-floating-widgets.md) | Multiple routes and draggable/hideable overlay widgets without resetting simulation |
 | [27 — High-fidelity experiment orchestration](27-high-fidelity-experiment-orchestration.md) | Multicore multi-hour runs, repeatability, one-part and part-set experiments, component provenance |
 | [28 — Shared surrogate models](28-shared-realtime-surrogates-and-calibration.md) | Generic fast engine first, high-fidelity calibration and reusable reduced equations/maps |
+| [29 — Plan audit / gap register](29-plan-audit-and-gap-register.md) | 25 concrete ambiguity/conflict findings and required resolutions |
+| [30 — Agent handoff and decisions](30-agent-handoff-contracts-and-decisions.md) | Contract ownership, proposed ADRs, frozen-unit/event rules, task completion template |
+| [31 — Integration gates and support status](31-integration-gates-and-support-matrix.md) | Evidence-based G0–G8 acceptance gates and implemented/approximate/planned claims |
+| [Agent work orders](agents/README.md) | Each roadmap checklist item mapped to one or more self-contained tasks with prerequisites and tests |
 
 ## Guiding principles
 
@@ -58,11 +63,11 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 11. **Breadth through verified implementations.** Layout/preset schemas span single cylinder through V12, inline/V/flat and diverse induction/driveline/controller architectures. Each feature states its implemented, approximate or planned fidelity—no silent substitutions. See [15–19](15-engine-families-and-presets.md).
 12. **Configurable reference fidelity, not one fixed expensive solver.** Let users select global and per-component detail: multi-zone cylinder gas and combustion, segmented cylinder liner/head/piston walls, and intake/exhaust gas cells/wall layers. Validate conservation, timestep stability, mesh convergence and resource budgets before creating compact real-time training artifacts. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
 13. **Guided, physically valid configuration.** A step-by-step wizard exposes only capabilities and values valid for the active engine, controller, induction, transmission and drivetrain. Bore and stroke are editable, derived displacement and dependencies update automatically, and the same validators protect UI and imported presets. See [22](22-guided-vehicle-configurator.md).
-
 14. **Core observability before features.** The typed simulation clock/time scaling, debug menus, live audio/physics charts, record/export/import/replay/compare and a multi-page shell must work on synthetic signals **before M1 physics or M2 audio features**. See [24–26](24-simulation-clock-and-time-scaling.md).
 15. **Generic fast model first.** M1/M2 delivers real physical and sonic behavior without trained artifacts; all equations use shared versioned component/port contracts and optional bounded correction maps for later training. See [28](28-shared-realtime-surrogates-and-calibration.md).
 16. **High-fidelity can be extraordinarily slow.** Hours for one piston cycle are acceptable at Research fidelity. Multicore jobs, checkpoints, provenance-rich component manifests and repeated/one-part/part-set scenario sequences create high-quality reference data. See [27](27-high-fidelity-experiment-orchestration.md).
 17. **Inspect and compare everything.** Physical, sonic, event, numerical and performance telemetry can be captured locally and imported to re-run/compare baseline, reference and trained models; diagnostics are nonintrusive. See [25](25-core-diagnostics-recording-and-comparison.md).
+18. **Agent-by-agent delivery with frozen contracts.** Each implementation card has its own documented inputs, outputs, file ownership, tests, prerequisites and handoff evidence. Stop on unresolved protocol conflicts instead of inventing alternate interfaces. See [29](29-plan-audit-and-gap-register.md), [30](30-agent-handoff-contracts-and-decisions.md), [31](31-integration-gates-and-support-matrix.md) and [agent task index](agents/task-index.md).
 
 ## Delivery path
 
