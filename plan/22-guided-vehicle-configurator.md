@@ -2,6 +2,12 @@
 
 **Status: mandatory product requirement, start the schema/UI foundations in M0 and ship the wizard in M3.** Users should build a vehicle with a guided **step-by-step configurator**, not a flat form exposing irrelevant or contradictory parameters. Every field and permitted value depends on the selections already made, the installed component capabilities, physical constraints and implementation support tier. Related: [09 — Data contracts](09-data-contracts.md), [14 — Modular TypeScript platform](14-modular-typescript-platform.md), [15 — Engine families and presets](15-engine-families-and-presets.md) and [21 — Fidelity controls](21-adjustable-fidelity-multizone-reference-simulation.md).
 
+## Multi-page navigation and contextual experiment editing
+
+The configurator is a **dedicated Builder page** inside the multi-page application, not a giant shared screen. Runtime remains alive when the user navigates to Drive, Audio Studio, Diagnostics, Scenarios, Research or Experiments. Floating draggable/hideable debug widgets can be pinned during configuration to inspect calculated displacement, compatible model status, geometry, torque maps or run metrics. See [26](26-multipage-ui-and-floating-widgets.md).
+
+The optional Research step exposes **fidelity model and mesh settings only for the currently supported components**; the Experiments page uses the same capability-aware choice/constraint functions to allow a single component/part or preset-of-parts change. A part experiment cannot silently include invalidated downstream components or unauthorized changes; it previews and records the exact physical diff. See [27](27-high-fidelity-experiment-orchestration.md).
+
 ## Experience and navigation
 
 - Start from **a validated vehicle/engine preset** (recommended) or **from scratch**. Display a concise summary, current step, progress, remaining requirements and optional Expert mode.
