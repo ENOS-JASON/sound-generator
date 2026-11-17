@@ -13,6 +13,8 @@
 
 ## How the documents are organized
 
+- [AGENT_PROMPT.md](AGENT_PROMPT.md): copy/paste prompt for assigning a single work order to a new agent with no prior conversation.
+- [../decisions/README.md](../decisions/README.md): proposed architecture decisions; downstream agents wait for accepted records and schema fixtures.
 - [task-index.md](task-index.md): every roadmap checkbox has a stable **AG ID**, an exact copied scope and a link to its independently assignable card. Some broad source bullets are split into **letter-suffixed cards**, each intended for a separate agent. A split is not complete until **all** child cards pass.
 - `M0-foundation.md` … `M9-plus.md`: phase-specific task briefs containing the **inputs, owned modules, exact deliverable, tests and blocking contract references**. Each card is designed to be handed alone with [30](../30-agent-handoff-contracts-and-decisions.md), without requiring awareness of other phase discussions.
 - [29 — audit](../29-plan-audit-and-gap-register.md): source contradictions and why assignments were split.
