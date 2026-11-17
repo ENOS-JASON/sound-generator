@@ -33,8 +33,22 @@ The configurator is a **step-by-step, capability-driven wizard** and the only su
 
 The high-fidelity reference solver has **separate configurable multi-zone components** for cylinder burned/unburned gas, metal liner/head/piston wall bands and layers, intake/exhaust 1D gas cells and segmented wall heat transfer, coupled via validated mass/energy/thermal ports. Adjustable timestep/CFL and convergence checks, resource preflight and Worker/offline CLI execution belong outside the real-time AudioWorklet. Training outputs only compact validated coefficients and manifests. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
 
+## Core clock, diagnostics and UI shell (build before physics)
+
+**M0 is gated on working instrumentation.** Define a `SimulationClock` with authoritative fixed simulation tick and time scale (0 pause, below 1 slow-motion) mapped to AudioWorklet sample frames and interpolated 3D/Canvas2D rendering. Keep physical state/RPM in simulated seconds; stretching playback cannot change the equations, firing order or event trace. Add pause/resume and bounded tick/crank-angle/next-event stepping, recording the scale transition. See [24](24-simulation-clock-and-time-scaling.md).
+
+Build a typed `TelemetryRegistry`, `DiagnosticsHub`, non-blocking `TraceRecorder`, `AudioCaptureService`, `ReplayController`, `ComparisonEngine` and `GraphInspector` with per-component debug registration. Verify real waveform/FFT/audio meter and synthetic physics charts, export/import/replay/comparison **before adding production physics**. Closed debug menus must not burden the worklet. See [25](25-core-diagnostics-recording-and-comparison.md).
+
+A static multi-route app shell hosts Dashboard, Drive, Diagnostics and Settings from M0, then Builder, Audio Studio, Scenarios, Research and Compare. Small diagnostics widgets are draggable, hideable and locally persistent, while the engine/clock/audio runtime outlives page navigation. See [26](26-multipage-ui-and-floating-widgets.md).
+
+## Fast-first, offline-reference compatible numerical architecture
+
+`VehicleDefinition`, typed physical-port contracts and a reusable `ApproximationRegistry` own *baseline analytical* fast equations and optional per-component coefficient/map bindings from M0. M1/M2 delivers a working sound-generating engine independent of M6/M7 training. High-fidelity solver projections use the same boundary units/IDs/events and canonical scenario commands, then fit compact constrained formulas/lookup tables for the real-time engine; shared equation kernels can serve multiple compatible components. See [28](28-shared-realtime-surrogates-and-calibration.md).
+
+Research jobs may take **hours per piston cycle**, execute on a dedicated multicore offline Node/compiled backend with configurable thread count and resumable chunked outputs, and batch repeated baseline/one-part/part-set variations with exact component manifests and sound-source provenance. They never execute inside AudioWorklet or UI frame loops. See [27](27-high-fidelity-experiment-orchestration.md).
+
 ## Ownership and timing
-- **Audio clock is canonical for audible events**; derive piston firing and exhaust pulses from cumulative crank angle, not requestAnimationFrame RPM snapshots. Establish timestamp synchronization of control commands to audio sample frames.
+- **Simulation tick/clock is canonical for physics and scenario events; AudioWorklet sample frames are canonical for audible output.** Time-scale control maps one timeline continuously to the other; derive cylinder firing and exhaust pulses from cumulative crank angle, never requestAnimationFrame. Map commands/events to precise audio sample frames with ordering and correlation.
 - Real-time engine dynamics advance at a fixed integrator timestep with bounded catch-up; audio synthesis uses phase-accurate interpolation between state snapshots. Decide whether the fast solver runs entirely inside AudioWorklet or uses a lock-free SharedArrayBuffer ring buffer (requires cross-origin isolation); default to Worklet-owned minimal solver to avoid isolation requirements on GitHub Pages.
 - Renderer uses requestAnimationFrame and interpolation/extrapolation of recent snapshots; never writes physics state, never blocks audio.
 - Main thread processes UI input and scenario editing; Worker handles expensive processing. AudioWorklet has no DOM access and must avoid allocation, network and unbounded work in process().
@@ -46,6 +60,9 @@ The high-fidelity reference solver has **separate configurable multi-zone compon
 src/
   app/                 # shell, state management and UI
   core/                # units, deterministic math, integrators, seeded PRNG
+  clock/               # scale/step/pause, simulated-to-audio-time mapping
+  diagnostics/         # telemetry registry, trace recorder, graph/analyzer, import/diff
+  approximations/      # shared analytic kernels, bounded map/correction model registry
   events/              # typed command/event maps, deterministic bus, recorder, transport adapters
   engines/             # engine family providers, bank geometry, crank and cylinder models
   controls/            # mechanical, carb/distributor, ECU/TCU and control strategies
@@ -57,11 +74,14 @@ src/
   dsp/                 # procedural source, filters, resonators, mixing
   audio/               # worklet/host, command/event transport
   visualization/       # Three.js, Canvas2D bank cutaway, telemetry projection
+  ui-shell/            # multi-page navigation, dockable/drag/hide debug widgets
   scenarios/           # schema, scheduler, predicates, assertions
   profiles/            # versioned preset, validation, import/export
   configurator/        # wizard step descriptors, capabilities, conditions, geometry derivations and draft validation
   reference/           # offline multi-fidelity gas/combustion, wall/thermal, 1D flow and numerical solvers
   training/            # offline sweeps, surrogate fitting, convergence and holdout validation
+  experiments/         # one-part/part-set study definitions, batch scheduler, paired diffs
+  offline-cli/         # Node worker_threads high-fidelity runner and checkpoints
   testing/             # scenario fixtures, metrics, benchmarks
 public/
   models/              # locally bundled lightweight optional 3D assets
