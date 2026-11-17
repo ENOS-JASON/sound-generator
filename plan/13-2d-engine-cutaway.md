@@ -51,6 +51,10 @@ Render and animate a complete mechanically meaningful cutaway, not just a piston
 - Intake/exhaust valve timings respect four-stroke phase and camshaft half-speed operation. Where a physical subsystem has not yet been simulated, show a clearly labeled approximation rather than fabricate precise flows.
 - Temperature/combustion and mass-flow visual intensities must map to solver quantities with defined units/normalization; visual animations must never drive the physics.
 
+## Support for diverse engine families and configurations
+
+Bank/cylinder maps are supplied by the engine family registry and must support single-cylinder through V12 inline/V/flat layouts with **one complete side-on horizontal row per configured bank**, correct cylinder order, crank phase and valve activity. The 2D renderer must not hard-code a V8 example or assume fixed cylinder index parity. Show mechanical choke, intake restriction, manifold pressure/ITB air flow, boost and exhaust energy only when relevant and actually modeled; reflect ignition, starter battery/wear, ECU cut/misfire and pop/afterfire event locations without phantom firing. Transmission/driveline torque information can appear in a separate schematic panel, never substituted for the cylinder cutaway. For later engine families **without physical piston/valves** (rotary, EV, turbine), register a corresponding specialized 2D projection rather than fabricate nonexistent cylinders/valves; declare its capabilities. See [14–18](14-modular-typescript-platform.md) and [20](20-torque-power-load-and-energy.md).
+
 ## Data and event integration
 
 - 2D consumes the same **authoritative crank phase, cylinder states, per-cylinder valve lift/port mass flow/combustion markers and engine events** as the 3D view; neither renderer creates a second engine model.
