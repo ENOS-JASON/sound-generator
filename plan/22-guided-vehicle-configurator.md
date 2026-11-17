@@ -1,5 +1,12 @@
 # 22 — Step-by-step, capability-aware vehicle configurator
 
+## Round 2 — First I4 wizard and app navigation
+
+The initial user-facing I4 builder must offer **either** carburetor + mechanical distributor **without ECU**, **or** EFI + ECU, as selectable and *runnable* engine-control configurations. The field schema derives from the selected `ControlStrategy`: hide/reject injection maps on mechanical configuration, hide mechanical distributor/choke adjustments when they do not apply to ECU setup, and validate shared starter/transmission/wheel/road models consistently. Changing controller variant must show the realized component/connection diffs, preserve valid geometry/bore/stroke values and require an explicit safe reset if a live engine is running.
+
+The wizard lives on a dedicated **Svelte+Vite hash-routed** page under `/sound-generator/#/builder`; when users navigate to Drive, Audio Studio or Diagnostics, one runtime remains alive. Desktop Chromium, Firefox and Safari are the initial test targets, and Canvas 2D remains available when 3D is unsupported. The default selected I4 variant and default engine dimensions are still open. See [Round 2](decisions/USER-APPROVED-ROUND-02.md).
+
+
 **Status: mandatory product requirement, start the schema/UI foundations in M0 and ship the wizard in M3.** Users should build a vehicle with a guided **step-by-step configurator**, not a flat form exposing irrelevant or contradictory parameters. Every field and permitted value depends on the selections already made, the installed component capabilities, physical constraints and implementation support tier. Related: [09 — Data contracts](09-data-contracts.md), [14 — Modular TypeScript platform](14-modular-typescript-platform.md), [15 — Engine families and presets](15-engine-families-and-presets.md) and [21 — Fidelity controls](21-adjustable-fidelity-multizone-reference-simulation.md).
 
 ## Multi-page navigation and contextual experiment editing
