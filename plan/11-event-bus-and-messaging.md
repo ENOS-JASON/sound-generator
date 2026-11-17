@@ -106,6 +106,10 @@ Maintain a typed `EventMap` keyed by event type and runtime validators at thread
 
 Event naming and category must stay consistent across schema, scenario runner and tests; only emit actual state transitions (not repeated each frame while a state remains true).
 
+## Expanded technology event catalog
+
+All new powertrain families use the **same authoritative domain event stream**, with event producers restricted to the component owning the physical transition, and `componentId`/port references where appropriate. Add and validate typed payloads for `BATTERY_VOLTAGE_LOW`, `STARTER_ENGAGEMENT_FAILED`, `STARTER_OVERHEATED`, `CHARGING_FAILED`, `INTAKE_BACKFIRE`, `AFTERFIRE`, `BOOST_LIMITED`, `WASTEGATE_CHANGED`, `GEAR_SHIFT_STARTED`, `CONVERTER_LOCKED`, `TRANSFER_CASE_MODE_CHANGED`, `DIFF_LOCK_CHANGED` and `TRACTION_LOST` while retaining the existing engine state and limiter event names. Electrical voltages, mass flow, per-component torque and power, boost pressure and wheel speeds are sampled **state projections**, not unbounded high-rate event spam. The API must support a new engine layout, induction component or driveline provider registering its events without bypassing central sequencing and schema validation; unrecognized events or unsupported controls fail safely.
+
 ## Scenario integration and training
 
 - The scenario runner subscribes to the **authoritative event log**, not visual or audio approximations. Event gates have a sequence watermark at step entry so they cannot accidentally match stale events.
