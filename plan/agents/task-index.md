@@ -4,7 +4,7 @@
 
 **Status:** planning work orders only; no implementation has been claimed. Sequence contracts first, then mock integration, real-time fast engine, scenario studies, numerical reference and training. Use fixture-only integration when a producer is unavailable and report limitations.
 
-Mapped **99** roadmap items to **159** independently assignable cards.
+Mapped **100** roadmap items to **160** independently assignable cards.
 
 ## M0 — M0-foundation.md
 
@@ -51,7 +51,8 @@ Mapped **99** roadmap items to **159** independently assignable cards.
 | `M2-01` | [AG-M2-01](M2-audio.md#ag-m2-01) | Implement AudioWorklet loader + sample-accurate control/phase transport and bounded bus bridge with critical-event gap detection. |
 | `M2-02` | [AG-M2-02a](M2-audio.md#ag-m2-02a), [AG-M2-02b](M2-audio.md#ag-m2-02b) | Synthesize starter whine/solenoid/engagement, compression and initial sporadic firing, then stable combustion pulse train; per-cylinder/bank routing must handle arbitrary validated firing layouts. |
 | `M2-03` | [AG-M2-03a](M2-audio.md#ag-m2-03a), [AG-M2-03b](M2-audio.md#ag-m2-03b) | Build plenum/airbox/intake, exhaust/body resonances, filter smoothing, calibrated full-reference source generation, independent stem/bus/master gains, meters, mute/solo and safe output headroom. |
-| `M2-04` | [AG-M2-04](M2-audio.md#ag-m2-04) | Add sound-physics synchronization tests, worklet callback profiler and output capture with source-level FFT/waveform/routing diagnostics, A/B comparisons and correct timbre/event timing at slowed playback scale. |
+| `M2-04` | [AG-M2-04](M2-audio.md#ag-m2-04) | Validate both slow-motion audio modes, mode switching, worklet deadline, physical event and sample alignment, capture and FFT. |
+| `M2-05` | [AG-M2-05](M2-audio.md#ag-m2-05) | Implement pitch-preserving slow-motion DSP alongside physical pitch-lowered audio, with bounded latency/CPU and recorded mode. |
 
 ## M3 — M3-builder-and-views.md
 
