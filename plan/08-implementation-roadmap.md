@@ -20,7 +20,7 @@
 - [ ] Implement minimal mechanically controlled carburetor/distributor path **without ECU** plus separately selectable ECU reference controller; reject controls not supported by the active strategy.
 - [ ] Add ignition switch, battery SoC/voltage/internal resistance, starter motor/solenoid/engagement and torque-speed curve with defined interfaces for wear and heat.
 - [ ] Add air/fuel/spark and combustion torque, catch criteria, OFF/CRANKING/FIRING/RUNNING/FAILED_START transitions.
-- [ ] Implement idle ECU, kill-switch shutdown, no-fuel failure, low-battery failure and load-induced stall.
+- [ ] Implement selectable mechanical idle adjustment or ECU idle regulation, kill-switch shutdown, no-fuel failure, low-battery failure and load-induced stall.
 - [ ] Build headless first-start/stall scenarios and physical invariant tests.
 **Exit:** meaningful RPM trace for start/catch/idle/stall without fabricated state transitions.
 
@@ -41,24 +41,29 @@
 ## M4 — Connected technology integration tracks (incremental slices)
 
 M4 is **not** one indivisible milestone. Deliver and validate each model family independently with its own integration and scenario tests. Do not mark unsupported engines, induction combinations or transmissions as fully simulated simply because their type appears in a preset schema.
+
 ### M4-A — Engine era, controls, electrical health
 - [ ] ECU limiter: soft/hard control, cylinder cut strategy, hysteresis and exit; capability-aware mechanical/no-ECU alternatives.
 - [ ] Add battery aging and cold cranking, worn/heat-soaked starter, solenoid failures, cable voltage drop, charging/alternator and accessory loads.
 - [ ] Add configurable ECU fuel/spark/boost/overrun maps and mechanical carb/distributor/choke behavior with mutually valid controls.
 - [ ] Intake/fueling transients, overrun fuel-cut, misfires, hot/cold differences and engine thermal states.
+
 ### M4-B — Intake, induction, exhaust and tunes
 - [ ] Add filter/airbox, throttle/plenum, variable runners, ITB/carburetor configurations with actual volumetric-efficiency and sonic effects.
 - [ ] Add validated single/parallel/sequential/compound turbo, supercharger types and twincharging/charge-cooling via a flow/energy graph; test mechanical/exhaust/electrical parasitic energy.
 - [ ] Exhaust afterfire/intake backfire and stock/mild/aggressive pop-and-bang tune strategies plus 2-step/anti-lag as opt-in **physically conditioned** features, each with failure/negative-control scenarios.
+
 ### M4-C — Transmissions and complete driveline
 - [ ] Add clutch, manual gearbox, vehicle mass/drag, brakes, wheels and slip/traction model.
 - [ ] Add separately validated automatic/torque converter, automated-manual/sequential, DCT and CVT models with distinct shift/coupling dynamics.
 - [ ] Add FWD/RWD, full-time/on-demand AWD, selectable 4WD/4x4 (2H, 4H, 4L), transfer cases, center/front/rear differentials, locks and dynamic load propagation to the crankshaft.
 - [ ] Synthesize gear shift, drivetrain whine, road noise, slip chirp and burnout.
+
 ### M4-D — Engine layouts and preset catalog
 - [ ] Publish validated single-cylinder through V12 inline/V/flat examples with firing order, bank angle, crank geometry and collector acoustics, including cross-plane/flat-plane V8 and distinct 2D rows.
 - [ ] Add forced-induction and exhaust configurations to verified preset combinations rather than treating every untested combination as supported.
 - [ ] Test per-component physical torque/energy accounting, separate drivetrain/cylinder/induction audio stems and power figures for each shipped configuration.
+
 **Exit:** Every **implemented** M4 component passes isolated physics/audio tests and registered end-to-end power/load/scenario gates. Preset metadata clearly differentiates supported, approximate and planned technology families; no claim that all historical vehicles are complete.
 
 ## M5 — Scenario orchestration
