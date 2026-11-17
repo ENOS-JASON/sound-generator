@@ -1,5 +1,18 @@
 # 07 — Test strategy and acceptance criteria
 
+## Round 2 — Mandatory release test coverage
+
+- Initial I4 engine has two separate **runnable** control fixtures: carburetor/mechanical distributor/no ECU versus EFI/ECU. Both include starter, manual clutch/gear and road load with physically distinct fuel/ignition/idle responses; ECU-only fields and electronic limiter commands must fail appropriately in mechanical mode.
+- GitHub Pages test uses **Svelte/Vite hash URLs** under `/sound-generator/#/drive`. Refresh, shareable deep link, navigation and audio/runtime persistence must work without history-route server rewrites.
+- New-session slowed audio starts in **physical (pitch-lowered)** mode; mode switch to pitch-preserving DSP is tested for sound and event/physics invariance. Both modes remain functional.
+- No captured real-world reference recording can become a live sound stem or sample layer; reference measurement import is validated for provenance and used only for numeric/audio *feature* comparison. Generated WAV capture remains allowed for diagnostics.
+- Imported **browser ZIP** (manifest/version/units/chunks/hash/size) roundtrips and rejects malicious/invalid payloads; offline optional Parquet/HDF5 exports preserve SI quantities and run/source hashes.
+- **Windows and Linux** offline CLI smoke tests and **desktop Chromium, Firefox and Safari** browser/audio/2D/3D-fallback E2E tests are required. If a test platform is inaccessible, disclose missing evidence and do not claim it passed.
+- Every routine code PR needs actual CI and **technical-integrator** review; project owner approves major ADRs. Missing approval or failed gate is `blocked`, never auto-merge.
+
+Source: [Round 2 decisions](decisions/USER-APPROVED-ROUND-02.md).
+
+
 ## M0 foundational observability gate — required before M1
 
 These tests must run on a **deterministic synthetic physics model and synthetic AudioWorklet source** before real engine work begins:
