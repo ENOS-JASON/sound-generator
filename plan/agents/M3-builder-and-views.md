@@ -30,6 +30,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 ### AG-M3-02
 
+**Approved Round 3 acceptance:** Performance invariant: **3D ≥30 FPS and Canvas 2D ≥60 FPS target on a later-specified reference desktop** under documented scene/browser/resolution; measure FPS without tying actual simulation ticks or audio sample frames to FPS. `AG-M8-02` owns standardized performance suite. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Original roadmap task:** Animate crank/pistons/valves/firing using authoritative engine angle and cylinder events, with synchronized slow-motion, pause/step, viewport switching and lost-render-frame recovery.
 
 **Bounded deliverable:** Clock-aware projection/interpolation, pause/step/slow motion/view switching for both renderers.
@@ -55,6 +57,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 **Done when:** Changing routes leaves engine/audio alive and debug widgets retain position/visibility; Pages link reload works. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M3-04
+
+**Approved Round 3 acceptance:** Wizard starts with the **mechanical carb/no-ECU I4** only when no valid saved user-selected vehicle exists; both carb and EFI editable starter/gear/road-load templates provided by `AG-M1-12`. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** The first I4 wizard must allow selection between **mechanical carb/distributor/no-ECU** and **EFI/ECU** as working variants, with bore/stroke/rod, starter, clutch/manual gear and road-load geometry kept valid. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -122,6 +126,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 ### AG-M3-07
 
+**Approved Round 3 acceptance:** On factory first launch select **carburetor/mechanical/no-ECU**; do not overwrite a valid autosaved selected EFI. Normal Drive controls do not own the `AG-M3-09` expert calibration or `AG-M3-10` listening-mode DSP service. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Approved Round 2 requirement:** On new session, `slowMotionAudioMode='physical'` is visible as the default; pitch-preserved option works via `AG-M2-05` and mode changes record metadata without affecting engine. Navigation under `/#/drive` must keep runtime alive. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap task:** Add start/stop, throttle, ignition, load and preset editor UI with SI conversions; applying configuration to an active simulation requires a validated reset/safe boundary.
@@ -148,6 +154,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 ### AG-M3-08b
 
+**Approved Round 3 acceptance:** Normal Audio Studio controls remain independent of `AG-M3-09` expert versioned source-calibration editor and `AG-M3-10` four-position listening selector. User faders, calibration and perspective persist as separate settings. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Original roadmap task:** Add RPM/crank and wheel torque/hp/kW plus component loss meter, read-only event timeline, mixer channel/bus/master editor and 2D/3D/telemetry switch; no renderer may drive physics.
 
 **Bounded deliverable:** Source/stem/bus/master mixing editor with level meters, per-source solo/mute and waveform/FFT.
@@ -159,6 +167,8 @@ UI agents consume the frozen framework/router choice and immutable state project
 **Done when:** One cylinder solo isolates that source; mixing doesn't change torque; saved mix roundtrip. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M3-08c
+
+**Approved Round 3 acceptance:** G3 reviewer requires `AG-M3-09/10/11` UI evidence and measured **30 FPS 3D / 60 FPS Canvas2D on documented reference desktop hardware**, separately from engine and audio simulation. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** The 2D/3D/telemetry selector must function on **desktop Chromium, Firefox, Safari**; when WebGL is missing, Canvas 2D fallback remains useful and does not disable engine/audio. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
