@@ -62,6 +62,7 @@ For the first assignment, use **`AG-M0-01`**, which freezes the app/TypeScript/U
 ## Where to find the scope
 
 - [110 source steps → 170 cards](task-index.md)
+- [Dedicated AI integration reviewer prompt](AI_INTEGRATOR_PROMPT.md) — approved review role, not yet a verified bot or authenticated merge service
 - [M0 foundation task cards](M0-foundation.md)
 - [M6 reference substeps](M6A-reference-foundations.md)
 - [Architectural decision registry](../decisions/README.md)
