@@ -27,6 +27,12 @@ The project uses **strict TypeScript interfaces, composition and independently r
 
 The UI selects between 3D, **2D canvas cutaway with one horizontal row per bank**, and telemetry-only mode. Only the active renderer updates. Audio has per-physical-source calibrated stems, category buses and independently adjustable master mix; neither mixers nor renderers change physics. See [12](12-audio-gain-staging-and-mixer.md) and [13](13-2d-engine-cutaway.md).
 
+## Wizard validation and multi-fidelity reference subsystems
+
+The configurator is a **step-by-step, capability-driven wizard** and the only supported guided editing path for engine, bore/stroke and derived displacement, induction topology, controller, transmission and wheel-drive configuration. Field visibility, permitted values and required steps derive from the same registry/validators as preset import and model instantiation; incompatible edits present the impact and preserve valid overrides. See [22](22-guided-vehicle-configurator.md).
+
+The high-fidelity reference solver has **separate configurable multi-zone components** for cylinder burned/unburned gas, metal liner/head/piston wall bands and layers, intake/exhaust 1D gas cells and segmented wall heat transfer, coupled via validated mass/energy/thermal ports. Adjustable timestep/CFL and convergence checks, resource preflight and Worker/offline CLI execution belong outside the real-time AudioWorklet. Training outputs only compact validated coefficients and manifests. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
+
 ## Ownership and timing
 - **Audio clock is canonical for audible events**; derive piston firing and exhaust pulses from cumulative crank angle, not requestAnimationFrame RPM snapshots. Establish timestamp synchronization of control commands to audio sample frames.
 - Real-time engine dynamics advance at a fixed integrator timestep with bounded catch-up; audio synthesis uses phase-accurate interpolation between state snapshots. Decide whether the fast solver runs entirely inside AudioWorklet or uses a lock-free SharedArrayBuffer ring buffer (requires cross-origin isolation); default to Worklet-owned minimal solver to avoid isolation requirements on GitHub Pages.
@@ -53,7 +59,9 @@ src/
   visualization/       # Three.js, Canvas2D bank cutaway, telemetry projection
   scenarios/           # schema, scheduler, predicates, assertions
   profiles/            # versioned preset, validation, import/export
-  training/            # offline reference, search, validation
+  configurator/        # wizard step descriptors, capabilities, conditions, geometry derivations and draft validation
+  reference/           # offline multi-fidelity gas/combustion, wall/thermal, 1D flow and numerical solvers
+  training/            # offline sweeps, surrogate fitting, convergence and holdout validation
   testing/             # scenario fixtures, metrics, benchmarks
 public/
   models/              # locally bundled lightweight optional 3D assets
@@ -69,6 +77,11 @@ plan/
 
 ## Performance budgets (targets, validate per device)
 Audio: 48kHz preferred but honor actual AudioContext.sampleRate; callback must finish comfortably before its render deadline (~2.67ms for 128 frames at 48kHz). Avoid main-thread blocking and garbage collector pressure. Initial target: sustained audio underruns = 0 in acceptance runs; graceful quality levels on weaker devices. 3D target 60fps on desktop, 30fps fallback; benchmark rather than guarantee. Training never runs in the audio callback.
+
+## Resource and fidelity invariants
+- Only the fast browser model participates in real-time audio; user-selected multi-zone detail never increases AudioWorklet DSP load.
+- Higher spatial/temporal fidelity is subject to numerical convergence and measured validation, not assumed to be truth. Profile hashes, mesh topology and model versions accompany all training outputs.
+- In the UI, only enabled/valid technology combinations become runnable; schema validators enforce the same invariants for direct preset imports and headless scenarios.
 
 ## Design invariants
 - Schema compatibility is explicit, never silent.
