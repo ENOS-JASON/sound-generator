@@ -202,6 +202,8 @@ G0-B must be proven; use versioned headless mock fixtures. Only the baseline eng
 
 ### AG-M1-12
 
+**Approved O3 implementation requirement (supersedes older provisional card language):** **O3-04 A:** independently propose quantitative physically plausible SI values for **both generic carb and EFI I4 presets**—bore/stroke/rod, compression, valve/ignition/fuel, battery/starter, gear ratios, mass/drag/tires—and provide energy/torque/HP/idle/start/stall fixtures and rationale. **Submit actual proposed values to project owner for approval before freezing the initial default preset**. Do not assume a named real production engine or invent real measurements. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
+
 **Roadmap source:** Deliver two physically valid, editable first-I4 vehicle presets with first-run carburetor default and separately selectable EFI/ECU baseline.
 
 **Precise deliverable:** Create versioned, fully parameterized **mechanical carb+distributor/no-ECU** and **EFI/ECU** four-stroke I4 presets, each with valid SI cylinder geometry, starter/battery, fuel/ignition, manual clutch/gears and physically coupled vehicle/load. Use tested physical reference assumptions, not fabricated production-car precision. Register both as editable templates, mark factory carb preset as first-run default only when no valid IndexedDB saved selection. Engine fixture has seeded starter->first-fire->idle->clutch/gear load->stall and deliberately invalid controller combinations. Do not add a new engine solver or controller just to support these fixtures.
