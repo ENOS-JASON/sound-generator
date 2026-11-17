@@ -132,6 +132,8 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 
 ### AG-M6D-08
 
+**Latest on-device evidence / optional toolchain installation:** GTX1080 WDDM **8,192 MiB VRAM**, NVIDIA **582.78** driver and `nvidia-smi CUDA Version 13.0` (driver API). `nvcc` **not found on PowerShell PATH**, actual CUDA Toolkit location unknown. Owner **can install the compatible CUDA 12.x toolkit when a reproducible `sm_61` build fixture and supported MSVC compiler requirements are ready**; do not require CUDA13 or a driver downgrade/update merely because `nvidia-smi` displays 13.0. Existing CPU fallback always required. See [hardware profile](../decisions/OWNER-DEVELOPMENT-HARDWARE.md).
+
 **Owner-reported compatibility target (2026-11-17):** Windows 11, **i9-10900KF**, **32 GB system RAM**, GTX 1080 Pascal `sm_61`; NVIDIA driver said to be latest supported but **exact driver/build/toolkit installation not verified**. Maintain pinned CUDA 12.x compilation and multicore CPU fallback, and test with actual device/driver reports rather than presuming `nvcc` is installed.
 
 **Roadmap source:** Build and validate a GTX 1080/Pascal-compatible NVIDIA CUDA numerical backend alongside multicore CPU for the Windows/Linux offline simulation, using an explicit legacy CUDA 12.x target.
