@@ -6,6 +6,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M8-01
 
+**Approved Round 3 acceptance:** Desktop Chromium/Firefox/Safari tests distinguish **rendered FPS** from engine tick and AudioWorklet sample deadlines; IndexedDB denied/clear/reload behavior must be documented. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Approved Round 2 requirement:** Browser acceptance must cover **desktop Chrome/Chromium, Firefox and Safari** (supported macOS), hash-route navigation, 2D fallback, 44.1/48 kHz and sound mode switches. Add **Windows and Linux offline CLI** smoke tests. Unsupported platform or unavailable test machine must be disclosed. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Original roadmap item:** Browser/device matrix, 44.1/48kHz handling, audio suspend/device-change tests.
@@ -18,6 +20,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 
 ### AG-M8-02
 
+**Approved Round 3 acceptance:** Owner-approved targets: **≥30 FPS 3D** and **≥60 FPS Canvas 2D** on an explicitly documented reference desktop hardware/OS/browser, viewport/DPR and scene. Publish measured frame-time percentile/FPS and source evidence. Until hardware and benchmarking exist these are **unverified targets**, not guarantees. Audio/physics still independent. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Original roadmap item:** CPU/memory profiling, graphics LOD, DSP quality tiers and benchmark dashboard.
 
 **Exact scoped deliverable:** CPU/memory benchmark, 3D/2D quality tiers and optional DSP fallback.
@@ -27,6 +31,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Done when:** Benchmark capture includes hardware, zero deadline misses in tested stress case, 2D lower load. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M8-03
+
+**Approved Round 3 acceptance:** Must verify redistribution rights for any **bundled reference recordings/measurements** from `AG-M7-12`; if unverified, exclude them. User-import reference analysis still works. No real-world sample/diagnostic playback. Confirm first-run carb and editable EFI examples. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Verify no real-world recording is packaged in audio stems/playback assets. Imported measured recordings have provenance/consent/license and are calibration-only. Demo presets include both mechanical/no-ECU and EFI/ECU I4 as separately runnable configurations. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -39,6 +45,8 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 **Done when:** Malformed imports rejected, support/accuracy table honest, sound samples licensed. Supply positive and negative fixture, executed test command and [handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M8-04
+
+**Approved Round 3 acceptance:** Release only after IndexedDB autosave/ZIP recovery, calibration/listener UI, both presets, **local Windows/Linux research monitor** and reference-device measured 30/60 FPS acceptance; routine PR review is by a **dedicated AI integrator** with documented CI evidence and owner escalation. Actual autonomous GitHub merge rights must be separately verified/approved (no CI-only merge). See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Released Pages app must serve `/sound-generator/#/...` without rewrite, preserve runtime across pages and pass desktop Chromium/Firefox/Safari tests (with documented platform gaps). Offline CLI must be smoke-tested on Windows/Linux, browser ZIP security tested, and **technical integrator + CI** must review ordinary PRs while owner signs major ADRs. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
