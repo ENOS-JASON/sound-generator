@@ -1,5 +1,12 @@
 # 04 — 3D visualization and tuning UI
 
+## Round 3 3D/2D frame budgets and listener controls
+
+Target **30 rendered FPS in 3D** and **60 rendered FPS in low-overhead 2D**, measured on **documented reference desktop hardware/browser, viewport, DPR, scene workload and frame-time distribution**. Targets are not guaranteed before measurement and must never adjust engine simulation-step frequency, AudioWorklet sample timing or physics state. When WebGL is unavailable, show Canvas 2D with **one horizontal per-bank side row**, complete modeled piston/valve/combustion/flow projection.
+
+Provide an independent **cabin, engine-bay, roadside or exhaust audio listening** selector. Audio perspective is **not automatically the 3D camera** (relationship remains to be decided). UI supports **factory carb I4** versus saved/user-selectable **EFI** without rewriting valid user selections. Expert audio calibration editing appears only in advanced/expert UI and is separate from the mixer. IndexedDB locally autosaves workspace/routes/widgets/settings, and optional ZIP restores snapshots. See [Round 3](decisions/USER-APPROVED-ROUND-03.md).
+
+
 ## 3D modes
 1. Whole vehicle: orbit/zoom, hood open/exploded mode, drivetrain/wheels and tailpipe positions; camera positions by cabin, engine bay, roadside and exhaust.
 2. Engine cutaway: animate crankshaft, connecting rods, pistons, cams/valves, throttle and starter from shared crank angle; show cylinder combustion pulses in firing order.
