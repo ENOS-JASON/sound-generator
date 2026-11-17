@@ -52,6 +52,12 @@ These interfaces express responsibility, **not** an instruction to call independ
 
 A signal/control connection is not a power connection. Loads flow **backwards** through the mechanical/electrical network to affect crankshaft torque and speed. Energy flows **forwards** to wheels, exhaust heat, electricity and losses. Solve shared networks without duplicating contributions.
 
+## Numerical and configurable UI extension contracts
+
+New physical engine, intake, exhaust and transmission providers must publish **wizard step/field capability descriptors**, conditional valid values and shared validators used by both the UI and JSON import. Cylinder geometry providers expose bore/stroke/rod/compression relationships and derived SI volume; changing engine family disables unrelated fields before an invalid configuration is applied. See [22](22-guided-vehicle-configurator.md).
+
+Where applicable, each component also registers **reference fidelity options** and numerical solver providers with separate Quick/Balanced/Detailed/Research capability statuses, per-component discretization parameters, stability/units/geometry requirements and resource estimates. A cylinder module may offer 0D/two-zone/multi-zone gas + segmented wall thermal models; runner/exhaust providers may offer 0D/1D flow and wall thermal layers. These are offline training-only interfaces; the real-time AudioWorklet uses compact source/state coefficients and cannot allocate per-zone research arrays. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
+
 ## Configuration and compatibility
 
 - A `VehicleDefinition` declares engine assembly, cylinder banks, induction graph, fuel system, control strategy, auxiliaries, driveline graph, wheel/tire definitions, sound model map and visual projection.
@@ -75,6 +81,8 @@ src/audio/        # source registry, mixer, worklet adapters, DSP kernels
 src/visualization/# 2D/3D with a shared read-only cylinder/port projection
 src/scenarios/    # command/event test programs and scenario catalogs
 src/training/     # reference solver, optimization and compatibility/quality gates
+src/reference/    # multi-fidelity solvers for zones, wall conduction, 1D gas flow and convergence
+src/configurator/ # wizard steps, conditional fields, derived geometry and validation
 ```
 
 Do not create classes just to wrap one formula; pure functions for piston geometry, thermodynamic approximations, unit conversion, filters and component losses are appropriate.
