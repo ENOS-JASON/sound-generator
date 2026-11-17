@@ -26,9 +26,9 @@ Define time scale `s = d(simulationTime)/d(realPlaybackTime)`, where `s=1` is no
 
 ## Audio time-scaling policy
 
-**Default "physical slow motion":** scale the **playback rate of simulated events and sound development** together; at 0.25x an otherwise identical crank/combustion cycle takes 4x more real time and audible cadence/pitch generally decreases. Physical state remains at its normal simulated speed and torque values. Adapt oscillator phase, continuous noise and resonator time constants coherently (see below) instead of only lowering event frequency while leaving every component sound unchanged.
+**Selectable mode A — physical pitch-lowered slow motion:** scale the **playback rate of simulated events and sound development** together; at 0.25x an otherwise identical crank/combustion cycle takes 4x more real time and audible cadence/pitch generally decreases. Physical state remains at its normal simulated speed and torque values. Adapt oscillator phase, continuous noise and resonator time constants coherently (see below) instead of only lowering event frequency while leaving every component sound unchanged.
 
-**Optional future "pitch-preserved inspection":** time-stretch audio for slow-motion while approximately preserving timbre/pitch if needed; this is a DSP feature with different artifacts, **not the default**. Clearly label mode and export it in trace metadata.
+**Selectable mode B — pitch-preserving slow-motion inspection:** apply bounded time-stretching to approximately preserve timbre/pitch while engine events unfold over the slowed playback timeline. **Both modes are owner-approved and must be implemented**, not a speculative future mode. Mode B can have different latency, transient handling and artifacts; render/physics remains authoritative. **Which mode launches by default is unresolved** until owner approval. Label active mode, switching behavior and its DSP latency; export mode and changes in trace metadata. See [Round 1](decisions/USER-APPROVED-ROUND-01.md).
 
 - Worklet output sample rate stays the device's 44.1/48/96 kHz, independent of simulation time scale.
 - Drive the same phase-accurate physical event schedule from the authoritative simulator, with a continuous mapping `simTime = integral(s(t_audio) dt_audio)`. Use exact sample indexes and deterministic fractional stepping to schedule impulses across speed changes.
@@ -36,6 +36,14 @@ Define time scale `s = d(simulationTime)/d(realPlaybackTime)`, where `s=1` is no
 - If a DSP component has physical seconds-based decay/filter behavior, explicitly define whether it is rendered in simulated-time or real listening-time and document its slow-motion acoustics; avoid mechanically impossible source/event timing.
 - For `s > 1`, maintain solver substeps, event counts and alias control; fail visibly or cap scale if deadlines cannot be met. Never silently skip physics events to make animation smooth.
 - Avoid using `AudioBufferSourceNode.playbackRate` for the entire live engine as a substitute for proper simulation time scaling.
+
+## Mode selection and implementation gates
+
+- Use a stable versioned `slowMotionAudioMode = 'physical' | 'pitch-preserved'` setting in the core/time/audio configuration and command trace; its UI switch belongs on Drive/Audio Studio global controls.
+- The **same deterministic simulation ticks and domain-event sequence** must be produced under either mode. The audio mode changes sound rendering only, not RPM, combustion, torque, cylinder geometry, coolant, drivetrain or other physical state.
+- First audibly complete release (M2/M3) must ship both modes. `AG-M2-05` owns pitch-preserving DSP; `AG-M2-04` validates both; `AG-M3-07` exposes switch. M0 establishes synthetic-mode contract and clock telemetry.
+- Explicitly measure latency, CPU, pitch error, transient quality and mode-switch discontinuities in representative 44.1/48 kHz browser tests. On unavailable/deadline failure, display the limitation and **do not silently claim pitch preservation**.
+- Default mode and exact UI interaction are **pending owner approval**; do not equate the previously suggested physical-default behavior with an accepted decision.
 
 ## 2D/3D/telemetry synchronization
 
@@ -81,7 +89,8 @@ The implementation may maintain an integer/fixed-point tick accumulator to avoid
 
 - [ ] `0.1x` and `1x` with identical deterministic commands produce equivalent simulation state and event traces indexed by sim tick (playback-wall durations may differ).
 - [ ] 2D/3D piston, valve and firing positions agree with core crank phase at `0.05x`, `0.25x`, `1x`, on pause/resume and when frames are skipped.
-- [ ] Worklet test source (synthetic initial signal, later actual firing) remains phase-continuous on scale changes and has no duplicated/omitted event markers, NaNs or unacceptable clicks.
+- [ ] Worklet test source (synthetic initial signal, later actual firing) remains phase-continuous on scale changes and switching between physical/pitch-preserving modes, with no duplicated/omitted event markers, NaNs or unacceptable clicks.
+- [ ] Both selectable audio modes run against identical sim tick/domain events; the pitch-preserved output satisfies declared approximate pitch/latency/deadline bounds and the physical slowdown changes pitch/cadence intentionally. Failures are visible rather than silently substituted.
 - [ ] Single-tick, crank-angle and next-event stepping terminate or report bounded inability to progress.
 - [ ] Audio sample rate, playback scale and numerical integration step remain distinct values in logs and captures.
 - [ ] Scenario timeouts are simulated-time based; very slow playback or hours-per-cycle reference runs do not cause false timeout due to wall elapsed time.
