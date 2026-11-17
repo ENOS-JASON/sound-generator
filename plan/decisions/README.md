@@ -4,6 +4,10 @@
 
 See [agent contracts and working proposals](../30-agent-handoff-contracts-and-decisions.md#3-architecture-decisions-to-freeze-before-parallel-implementation), [plan audit](../29-plan-audit-and-gap-register.md) and [G0-A integration gate](../31-integration-gates-and-support-matrix.md).
 
+## Pending Round 2 owner questions
+
+[Open Round 2 choices (R2-Q1–R2-Q9)](OPEN-QUESTIONS-ROUND-02.md) cover the first I4 controller, GitHub Pages routing, slow-motion default, audio reference data, validation standards, export formats, compute platforms, browser coverage and agent PR review. **None are approved yet.**
+
 ## Round 1 status summary
 
 - **Approved:** major architecture decisions require project-owner approval; Svelte + Vite; first complete I4 gasoline starter/manual/load vertical slice; eventual actual 3D CFD, chemistry and material simulation support; native CPU/GPU/other offline numerical backends allowed; both slow-motion audio modes with a switch.
