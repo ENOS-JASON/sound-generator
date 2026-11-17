@@ -116,13 +116,13 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 **Original roadmap task:** Add start/stop, throttle, ignition, load and preset editor UI with SI conversions; applying configuration to an active simulation requires a validated reset/safe boundary.
 
-**Bounded deliverable:** Drive/ignition/throttle/load/preset controls with validated tick-stamped command dispatch.
+**Bounded deliverable:** Drive/ignition/throttle/load/preset controls with validated tick-stamped command dispatch and an accessible `physical` / `pitch-preserved` slow-motion audio switch.
 
-**Required upstream evidence:** AG-M3-03, G1. Missing prerequisites block live integration, not isolated fixture tests.
+**Required upstream evidence:** AG-M3-03, G1 and AG-M2-05 for the working audio mode selector. Missing prerequisites block live integration, not isolated fixture tests.
 
 **Owned modules/files:** `src/ui-pages/drive-controls`. No changes to adjacent owners' public schemas without an accepted ADR.
 **Required references:** [22](../22-guided-vehicle-configurator.md), [24](../24-simulation-clock-and-time-scaling.md), [26](../26-multipage-ui-and-floating-widgets.md).
-**Done when:** Controls never write engine state directly; applying geometry requires safe reset; 0.1x input recorded with sim tick. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+**Done when:** Controls never write engine state directly; applying geometry requires safe reset; 0.1x controls and audio mode changes recorded with sim tick; switching audio mode does not change torque or physics events. Include a negative case and runnable test/fixture; submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M3-08a
 
