@@ -6,6 +6,12 @@
 3. Diagnostic overlay: highlighted active components, spark/fuel cut cylinders, mass-air/torque/load paths, wheel slip and instantaneous audio-source positions.
 4. Performance fallback: low-polygon procedural mesh, static fallback/2D controls when WebGL is absent; don't block audio.
 
+## Technology-aware 2D/3D content
+
+The required 2D Canvas cutaway shows a **complete horizontal side-view row for every cylinder bank** (inline, V or flat), with each piston/rod/crank, intake and exhaust valves, four-stroke phase, combustion, spark/fuel state and directional modeled intake/exhaust flow. Use bank metadata rather than odd/even assumptions. View switching to 2D or telemetry must suspend unused 3D rendering without interrupting sound or simulation; see [13](13-2d-engine-cutaway.md).
+
+Technology-specific controls/overlays are composed from capability manifests: cylinder layout/firing order; mechanical choke/distributor and no-ECU mode; ECU map editor and tune strategy; intake filter/runner/ITB/compressor graph; battery/voltage/starter wear; gear/transfer case/diff lock; powertrain and tire forces. Unsupported controls are disclosed and disabled, not silently simulated. Include measured crank/wheel torque/HP/kW and loss breakdown with explicit measurement mode, per [20](20-torque-power-load-and-energy.md).
+
 ## Interaction
 Transport: key-on, ignition/start hold/release, kill engine; throttle and brake pedals, clutch, gear controls, load/dyno selection, automatic/replay mode. Tuning groups: engine geometry, torque and friction, ECU, air/fuel, exhaust, audio, drivetrain, environment. Each knob has units, validated bounds, reset, tooltip/physical meaning and live values. Expose preset version, seed and model version. Advanced controls behind an expert toggle.
 
