@@ -5,7 +5,8 @@ Interactive playable vehicle sound laboratory with switchable 3D car/engine, lig
 
 ## P0: foundation and engine/audio MVP
 - Static GitHub Pages app, responsive UI, error/recovery states and first-run demo.
-- Extensible engine editor: single through twelve cylinders, inline/V/flat bank mapping, four-stroke reference cycle, displacement, compression proxy, inertia, friction, firing order and crank offsets, controller selection (mechanical/no ECU or ECU), idle control, ignition and fuel delivery; safe bounds/unit annotations.
+- **Guided step-by-step engine/vehicle configurator**, from template to engine family/layout, bore and stroke, compression and valve geometry, controller, air/induction/exhaust, electrical starting, transmission, drivetrain, wheels, mixer and review. Context-sensitive fields/options must use shared capability/physical validation; derived total displacement (cc/L) updates on bore/stroke/count changes. See [22](22-guided-vehicle-configurator.md).
+- Extensible engine editor: single through twelve cylinders, inline/V/flat bank mapping, four-stroke reference cycle, editable bore/stroke, compression proxy, inertia, friction, firing order and crank offsets, controller selection (mechanical/no ECU or ECU), idle control, ignition and fuel delivery; safe bounds/unit annotations.
 - Strict TypeScript component contracts and connected physical ports for rotational load, electricity, intake/fuel, exhaust and thermal energy; validated technology compatibility and honest support/fidelity status.
 - Calibrated full-reference audio sources with per-source gain/mute/solo, category buses, final master and clipping/headroom protection; no UI gain changes engine physics.
 - Required bank-by-bank 2D cutaway with every piston, intake/exhaust valve, combustion and modeled mass-flow indication, switchable without stopping sound.
@@ -29,6 +30,9 @@ Interactive playable vehicle sound laboratory with switchable 3D car/engine, lig
 - Parameter automation curves, preset A/B, record/play scenario trace, in-browser export of WAV and session metrics (subject to budget).
 
 ## P2: calibration and advanced simulation
+- User-selectable **Quick/Balanced/Detailed/Research** advanced reference fidelity, with independent validated overrides for cylinder gas/combustion zones, liner axial/radial wall layers, head and piston crown metal zones, inlet/exhaust runner cells and exhaust wall thermal sections.
+- Adjustable time/crank-angle integration, numerical stability/conservation tolerances, mesh/time-step convergence, preflight estimate of memory/steps/trace size, browser Worker vs offline CLI choice, deterministic progress/cancel/checkpoints and visible solver-capability limits.
+- Fit compact physically constrained real-time response/torque/acoustics models from high-fidelity event-aligned traces; the AudioWorklet never runs the expensive multi-zone solver. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
 - Offline high-fidelity combustion/thermodynamic and gas-flow approximations; richer resonator and wave models, parameter sensitivity sweeps.
 - Real or synthetic reference dataset (licensed measurements only); measured RPM/load/temp/transient labels, device/microphone metadata, optional multiple mic positions.
 - Automated calibration (coarse search then constrained optimization) of fast solver and synthesis parameters, uncertainty and regularization.
