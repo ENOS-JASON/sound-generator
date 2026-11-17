@@ -22,6 +22,12 @@ Replace any fixed engine-load scalar with typed connected port forces: crank/acc
 
 Engine composition is parameterized by bank/cylinder mapping and firing phase (single-cylinder through V12, inline/V/flat) and separated from control generation: carburetor/mechanical distributor without an ECU must run via mechanical controls, whereas ECU/drive-by-wire/tune maps implement their own actuator dynamics. Intake types, ITBs, turbos, superchargers and combinations alter mass flow, charge temperature, pressures, engine output and sound, with physically connected compressor loads. Model battery health and worn starter through voltage/current/torque dynamics rather than a direct RPM clamp. See [14–18](14-modular-typescript-platform.md).
 
+## Geometry and fidelity separation
+
+A conventional piston cylinder's **bore, stroke, rod length, crank radius, clearance/compression volume and valve geometry** are physical engine parameters. For equal cylinders, total displacement is computed as `(pi/4) * bore_m^2 * stroke_m * cylinderCount` and never maintained as an independent contradictory quantity. Bore/stroke edits must update indicated cylinder volume, compression/pressure dynamics, charge mass and derived torque; wizard constraints select physically coherent values (see [22](22-guided-vehicle-configurator.md)).
+
+The real-time physics model remains compact; the **offline reference solver** may discretize burned/unburned gas, flame/near-wall zones, metal liner axial and radial sections, piston/head layers and intake/exhaust pipe cells. Selected mesh and numeric resolution refine a fixed physical geometry; changing mesh zones must **not** change actual bore/stroke/material. Reference intake, compression, heat release, expansion, blowdown and exhaust flows obey valve-port, cylinder, wall and gas-path conservation at the chosen tier. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
+
 ## State machine
 `OFF -> KEY_ON -> CRANKING -> FIRING -> RUNNING -> STOPPING -> OFF`; also `CRANKING -> FAILED_START`, `FIRING -> FAILED_START`, `RUNNING -> STALLING -> OFF`, restart from eligible stopped states. Transition conditions include ignition switch, starter engagement, minimum rotational speed, successful combustion count/torque, battery capacity and ECU readiness. Every transition emits an identifiable event and reason. Do not use arbitrary timer alone for catching/starting.
 
