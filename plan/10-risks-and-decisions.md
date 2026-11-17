@@ -28,6 +28,18 @@
 | Too many combinations for exhaustive testing | Capability-aware generated pairwise coverage, high-risk interactions, held-out variant groups and visible unimplemented states; [19](19-scenario-coverage-and-presets.md) |
 | Claims of accurate power or all-era sound without measurements | Label simulated crank/wheel HP measurement points, uncertainty/fidelity and reference evidence; no pseudo-verified presets |
 
+## New cross-cutting technical risks
+
+| Risk | Mitigation |
+|---|---|
+| Engine, AudioWorklet and 2D/3D animations use different wall-time clocks during slow motion | One fixed-step `SimulationClock`, sample-frame map, phase-stable event delivery and deterministic time-scale replay; [24](24-simulation-clock-and-time-scaling.md) |
+| Debug logging/FFT causes audio underruns or changes physics | Non-blocking typed telemetry, bounded recorders, throttled UI plots and synthetic M0 stress gates; [25](25-core-diagnostics-recording-and-comparison.md) |
+| Single-page controls become unusable with many technologies | Multi-page app shell and optional hideable/movable diagnostics widgets, capability-filtered forms; [26](26-multipage-ui-and-floating-widgets.md) |
+| High-fidelity hours-per-cycle work accidentally marked timeout | Simulation-time scenario gates, configurable progress watchdog, checkpoints and resource-aware offline workers; [27](27-high-fidelity-experiment-orchestration.md) |
+| Reference data cannot be reproduced or tied to actual installed parts | Immutable full component manifests/graph hashes, run versions, accurate change sets, per-component physical/acoustic outputs and import validation |
+| Overfitted maps break shared physical assumptions or generate free power | Generic physics first, bounded shared model families, domain checks, conservation constraints and baseline fallback; [28](28-shared-realtime-surrogates-and-calibration.md) |
+| "All threads" assumed to linearly accelerate one tightly coupled simulation | Parallelize independent sweeps/runs and proven kernels, measure scaling and preserve resource/determinism policy |
+
 ## Decisions to record before implementation
 1. Engine targets: default gasoline inline-four naturally aspirated, then V6/V8; support user-defined firing order as validated schema.
 2. Sound target: procedural only first; measured recordings for calibration, not runtime sample mixing.
