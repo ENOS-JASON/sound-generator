@@ -6,15 +6,29 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 
 ### AG-M6D-01
 
+- [ ] **AG-M6D-01 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+
 **Original roadmap requirement:** Wire Quick/Balanced/Detailed/Research profiles and per-component overrides into the guided wizard; disable unavailable solvers and invalid zone counts.
 
 **Precisely implement:** Research/Quick/Balanced/Detailed wizard controls with per-component zones and actual availability.
 **Inputs / prerequisites:** M0 fidelity capability/field contracts and AG-M3-06. Do not invent physical ports or source IDs; use versioned mock fixture only when explicitly reporting incomplete live integration.
 **Owned files:** `src/ui-pages/research-fidelity` plus local tests/fixtures only.
 **Required references:** [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [22](../22-guided-vehicle-configurator.md), [09](../09-data-contracts.md).
-**Acceptance evidence:** Unsupported solver has disabled control; valid profile roundtrips with exact zone budget. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
+**Acceptance checklist — AG-M6D-01** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Unsupported solver has disabled control
+- [ ] valid profile roundtrips with exact zone budget.
+- [ ] Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable
+- [ ] record code/fixture versions.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M6D-02a
+
+- [ ] **AG-M6D-02a COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap requirement:** Implement preflight zone/cell count, memory/trace-size/cost estimate, browser Worker or offline CLI execution, progress/cancel/checkpoints and bounded output sampling.
 
@@ -22,9 +36,21 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Inputs / prerequisites:** AG-M0-08, AG-M6A-01. Do not invent physical ports or source IDs; use versioned mock fixture only when explicitly reporting incomplete live integration.
 **Owned files:** `src/reference/resource-preflight` plus local tests/fixtures only.
 **Required references:** [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [27](../27-high-fidelity-experiment-orchestration.md).
-**Acceptance evidence:** Oversize job rejected before launch; estimates include every zone/trace channel. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
+**Acceptance checklist — AG-M6D-02a** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Oversize job rejected before launch
+- [ ] estimates include every zone/trace channel.
+- [ ] Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable
+- [ ] record code/fixture versions.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M6D-02b
+
+- [ ] **AG-M6D-02b COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap requirement:** Implement preflight zone/cell count, memory/trace-size/cost estimate, browser Worker or offline CLI execution, progress/cancel/checkpoints and bounded output sampling.
 
@@ -32,9 +58,22 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Inputs / prerequisites:** AG-M6D-02a and reference worker API. Do not invent physical ports or source IDs; use versioned mock fixture only when explicitly reporting incomplete live integration.
 **Owned files:** `src/reference/browser-worker` plus local tests/fixtures only.
 **Required references:** [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [27](../27-high-fidelity-experiment-orchestration.md), [25](../25-core-diagnostics-recording-and-comparison.md).
-**Acceptance evidence:** Cancel deterministic small job; audio worklet unaffected; progress tied to simulated crank angle. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
+**Acceptance checklist — AG-M6D-02b** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Cancel deterministic small job
+- [ ] audio worklet unaffected
+- [ ] progress tied to simulated crank angle.
+- [ ] Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable
+- [ ] record code/fixture versions.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M6D-03a
+
+- [ ] **AG-M6D-03a COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved O3 implementation requirement (supersedes older provisional card language):** **O3-10 B:** prioritize NVIDIA CUDA alongside mandatory multicore CPU; include **GTX1080 Pascal `sm_61` and CUDA12.x** backend adapter from AG-M6D-08. CUDA13-only toolchain is incompatible with this mandatory path. Detect/report GPU precision/driver/VRAM; CPU fallback must be functional and not mislabeled. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
@@ -48,9 +87,23 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Inputs / prerequisites:** AG-M6D-02a and AG-M6A-01. Do not invent physical ports or source IDs; use versioned mock fixture only when explicitly reporting incomplete live integration.
 **Owned files:** `src/offline-cli/study-scheduler` plus local tests/fixtures only.
 **Required references:** [27](../27-high-fidelity-experiment-orchestration.md), [21](../21-adjustable-fidelity-multizone-reference-simulation.md).
-**Acceptance evidence:** Two seeds run on configured CPU workers; no oversubscription without explicit option. An alternate mock numerical backend exports identical physical-boundary units/manifest with declared device, precision and resource limits. Real GPU execution may be added as a separately approved provider. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
+**Acceptance checklist — AG-M6D-03a** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Two seeds run on configured CPU workers
+- [ ] no oversubscription without explicit option.
+- [ ] An alternate mock numerical backend exports identical physical-boundary units/manifest with declared device, precision and resource limits.
+- [ ] Real GPU execution may be added as a separately approved provider.
+- [ ] Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable
+- [ ] record code/fixture versions.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M6D-03b
+
+- [ ] **AG-M6D-03b COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved O3 implementation requirement (supersedes older provisional card language):** **O3-09 B:** the CLI exposes versioned local job status/checkpoint/pause/cancel for a **CLI-launched loopback-only graphical web dashboard**, not standalone desktop wrapper or remote queue. Existing Windows/Linux checkpoint compatibility continues. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
@@ -64,9 +117,20 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Inputs / prerequisites:** AG-M6D-03a, reference serialization. Do not invent physical ports or source IDs; use versioned mock fixture only when explicitly reporting incomplete live integration.
 **Owned files:** `src/offline-cli/checkpoints-streaming` plus local tests/fixtures only.
 **Required references:** [27](../27-high-fidelity-experiment-orchestration.md), [25](../25-core-diagnostics-recording-and-comparison.md).
-**Acceptance evidence:** Kill/resume small golden job with same manifest and output tolerance, incomplete chunk marked. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
+**Acceptance checklist — AG-M6D-03b** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Kill/resume small golden job with same manifest and output tolerance, incomplete chunk marked.
+- [ ] Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable
+- [ ] record code/fixture versions.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M6D-04
+
+- [ ] **AG-M6D-04 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap requirement:** Implement repeated validation/seed runs and paired **one-component/parameter and preset-of-components** variations under identical time/event-gated scenarios, capturing full actual component/part topology, state, versions and source audio provenance.
 
@@ -74,9 +138,21 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Inputs / prerequisites:** AG-M6D-03b, AG-M5-04 variation manifest. Do not invent physical ports or source IDs; use versioned mock fixture only when explicitly reporting incomplete live integration.
 **Owned files:** `src/experiments/reference-batch` plus local tests/fixtures only.
 **Required references:** [27](../27-high-fidelity-experiment-orchestration.md), [06](../06-scenario-runner.md), [28](../28-shared-realtime-surrogates-and-calibration.md).
-**Acceptance evidence:** Baseline unchanged seeds compare; exact intended/realized diff retained across reruns. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
+**Acceptance checklist — AG-M6D-04** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Baseline unchanged seeds compare
+- [ ] exact intended/realized diff retained across reruns.
+- [ ] Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable
+- [ ] record code/fixture versions.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M6D-05
+
+- [ ] **AG-M6D-05 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved O3 implementation requirement (supersedes older provisional card language):** **O3-11 C:** export validated ZIP first, preserve optional scientific-export adapter interfaces but **do not implement or choose Parquet vs HDF5 merely because they are named**; propose from actual datasets and owner-reviewed compatibility/format evidence. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
@@ -90,9 +166,21 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Inputs / prerequisites:** AG-M6D-03b and AG-M6D-04. Do not invent physical ports or source IDs; use versioned mock fixture only when explicitly reporting incomplete live integration.
 **Owned files:** `src/reference/run-manifest` plus local tests/fixtures only.
 **Required references:** [27](../27-high-fidelity-experiment-orchestration.md), [09](../09-data-contracts.md), [25](../25-core-diagnostics-recording-and-comparison.md).
-**Acceptance evidence:** Reimport reconstructs exact model/material/parts; missing/corrupt data cannot be trained. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
+**Acceptance checklist — AG-M6D-05** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Reimport reconstructs exact model/material/parts
+- [ ] missing/corrupt data cannot be trained.
+- [ ] Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable
+- [ ] record code/fixture versions.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M6D-06a
+
+- [ ] **AG-M6D-06a COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Original roadmap requirement:** Create per-zone diagnostic trace viewer, coarse/fine **mesh/time-step convergence reports**, reproducible dataset manifests and optional licensed measured-reference comparisons.
 
@@ -100,9 +188,21 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Inputs / prerequisites:** AG-M6D-05 and G0 graph inspector. Do not invent physical ports or source IDs; use versioned mock fixture only when explicitly reporting incomplete live integration.
 **Owned files:** `src/ui-pages/research-zone-viewer` plus local tests/fixtures only.
 **Required references:** [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [25](../25-core-diagnostics-recording-and-comparison.md).
-**Acceptance evidence:** Imported trace shows all available cylinder and pipe zones; hidden zones don't consume render CPU. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
+**Acceptance checklist — AG-M6D-06a** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Imported trace shows all available cylinder and pipe zones
+- [ ] hidden zones don't consume render CPU.
+- [ ] Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable
+- [ ] record code/fixture versions.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M6D-06b
+
+- [ ] **AG-M6D-06b COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** When actual measured cylinder/torque/flow/thermal/sound reference data exist, compare against them with explicit confidence/uncertainty and licensing provenance. Without measurements, label results only as converged simulation estimates; failed numerical schemes may not become training truth. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -112,9 +212,21 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 **Inputs / prerequisites:** AG-M6D-05 and convergence fixtures AG-M6B-03b. Do not invent physical ports or source IDs; use versioned mock fixture only when explicitly reporting incomplete live integration.
 **Owned files:** `src/reference/convergence-report` plus local tests/fixtures only.
 **Required references:** [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [05](../05-training-and-calibration.md), [07](../07-testing-and-acceptance.md).
-**Acceptance evidence:** Runs with invalid CFL not labeled converged; coarse/fine errors and metrics exported. Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable; record code/fixture versions.
+**Acceptance checklist — AG-M6D-06b** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Runs with invalid CFL not labeled converged
+- [ ] coarse/fine errors and metrics exported.
+- [ ] Provide solver manifest, units, seed, simulated-time progress, explicit status and runnable positive/negative tests where applicable
+- [ ] record code/fixture versions.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M6D-07
+
+- [ ] **AG-M6D-07 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved O3 implementation requirement (supersedes older provisional card language):** **O3-09 B:** implement a **local web dashboard launched by CLI and bound only to loopback (`127.0.0.1`/`::1`)**. Apply origin validation, CSRF protection, local process/command permission boundaries, no remote binding and no server on Pages. GUI framework remains a technical choice requiring owner approval if major. Accessible only on same machine; no separate desktop app package required. See [binding O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md) and [remaining verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
@@ -128,9 +240,22 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 
 **Required reading:** [27](../27-high-fidelity-experiment-orchestration.md), [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [30](../30-agent-handoff-contracts-and-decisions.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
-**Acceptance / evidence:** On Windows and Linux or documented accessible CI/manual environments, launch loopback-only web UI from CLI, reject nonloopback/origin/CSRF requests, monitor mock/real local job, reconnect after dashboard restart, pause/cancel/safely resume checkpoint, handle process died and wrong protocol version without corrupting job. No online network token requirement. Report platform test gaps and technical feasibility as NON VALIDATED until proven. Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
+**Acceptance checklist — AG-M6D-07** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] On Windows and Linux or documented accessible CI/manual environments, launch loopback-only web UI from CLI, reject nonloopback/origin/CSRF requests, monitor mock/real local job, reconnect after dashboard restart, pause/cancel/safely resume checkpoint, handle process died and wrong protocol version without corrupting job.
+- [ ] No online network token requirement.
+- [ ] Report platform test gaps and technical feasibility as NON VALIDATED until proven.
+- [ ] Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [ ] Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M6D-08
+
+- [ ] **AG-M6D-08 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Latest on-device evidence / optional toolchain installation:** GTX1080 WDDM **8,192 MiB VRAM**, NVIDIA **582.78** driver and `nvidia-smi CUDA Version 13.0` (driver API). `nvcc` **not found on PowerShell PATH**, actual CUDA Toolkit location unknown. Owner **can install the compatible CUDA 12.x toolkit when a reproducible `sm_61` build fixture and supported MSVC compiler requirements are ready**; do not require CUDA13 or a driver downgrade/update merely because `nvidia-smi` displays 13.0. Existing CPU fallback always required. See [hardware profile](../decisions/OWNER-DEVELOPMENT-HARDWARE.md).
 
@@ -146,4 +271,16 @@ For every card, read [30](../30-agent-handoff-contracts-and-decisions.md) and [3
 
 **Required references:** [27](../27-high-fidelity-experiment-orchestration.md), [21](../21-adjustable-fidelity-multizone-reference-simulation.md), [28](../28-shared-realtime-surrogates-and-calibration.md), [shared contracts](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved O3 decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md), [pending verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
-**Acceptance / evidence:** Compile a small numerical `sm_61` kernel with CUDA 12.x (do not use CUDA 13-only compiler), run actual GPU deviceQuery/solver smoke on GTX1080 when available on Windows/Linux and compare energy, torque, boundary variables and determinism tolerance against CPU reference. Negative cases: no GPU/driver, incompatible CUDA13-only toolchain, insufficient GPU memory, unsupported precision and modern-only library correctly route to CPU with explicit diagnostic. Publish build commands, toolkit/driver, device, CPU/GPU timing and platform limitations; **do not claim confirmed GTX1080 hardware success without measured evidence**. Include positive/negative fixtures, actual toolchain/driver/browser command logs, reproducibility and a one-card handoff report. Any unavailable hardware/driver/licensed input is `blocked`/`not verified`, not a simulated pass.
+**Acceptance checklist — AG-M6D-08** (all unchecked until verified):
+
+- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [ ] Compile a small numerical `sm_61` kernel with CUDA 12.x (do not use CUDA 13-only compiler), run actual GPU deviceQuery/solver smoke on GTX1080 when available on Windows/Linux and compare energy, torque, boundary variables and determinism tolerance against CPU reference.
+- [ ] Negative cases: no GPU/driver, incompatible CUDA13-only toolchain, insufficient GPU memory, unsupported precision and modern-only library correctly route to CPU with explicit diagnostic.
+- [ ] Publish build commands, toolkit/driver, device, CPU/GPU timing and platform limitations
+- [ ] **do not claim confirmed GTX1080 hardware success without measured evidence**.
+- [ ] Include positive/negative fixtures, actual toolchain/driver/browser command logs, reproducibility and a one-card handoff report.
+- [ ] Any unavailable hardware/driver/licensed input is `blocked`/`not verified`, not a simulated pass.
+- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
