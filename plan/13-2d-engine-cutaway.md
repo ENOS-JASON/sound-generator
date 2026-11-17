@@ -63,6 +63,10 @@ Bank/cylinder maps are supplied by the engine family registry and must support s
 - Project snapshots may be coalesced at rendering frequency, but discrete combustion/limiter/misfire markers retain event IDs and timestamps so they are not incorrectly repeated or dropped. A renderer can interpolate motion between snapshots.
 - Renderer subscriptions are read-only and are created/teared down on mode switches; inactive renderers must not consume frame cycles.
 
+## Optional offline research-zone inspector
+
+The 2D real-time cutaway remains driven by compact, authoritative per-cylinder state; **do not attempt to render a high-resolution multi-zone CFD/thermal solver on the audio or UI frame thread**. An additional offline research inspector may display stored/streamed **cylinder burned/unburned/near-wall gas zones, liner axial/radial wall thermal grids, piston/head heat flux and valve mass flow**, plus intake/exhaust gas cells and metal wall bands from recorded reference traces. Label spatial zoning and solver fidelity honestly. Research overlay can be paused/downsampled independently and must not alter the live engine or its sound. See [21](21-adjustable-fidelity-multizone-reference-simulation.md).
+
 ## User interaction
 
 - Toggle 3D / 2D / Telemetry without restarting; keyboard-accessible mode selection.
