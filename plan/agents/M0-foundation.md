@@ -34,6 +34,8 @@
 
 ### AG-M0-03
 
+**Approved Round 3 acceptance:** First runnable I4 presets are **two editable vehicle graphs**, carb/mechanical/no-ECU factory selection and EFI/ECU alternative (final published examples delivered by `AG-M1-12`). Do not turn factory default into a hardcoded override of the user-selected IndexedDB workspace. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Approved Round 2 requirement:** Schema fixtures must instantiate **two distinct I4 controller paths**, carburetor+mechanical distributor with **no ECU** and EFI+ECU. Reject mixed controllers, ECU-only maps under mechanical mode and missing starter/manual/load relationships. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Roadmap source:** Define SI units, deterministic PRNG, versioned engine/event schema, import validation and demo preset.
@@ -198,6 +200,8 @@
 
 ### AG-M0-13
 
+**Approved Round 3 acceptance:** Preserve **ZIP trace recording** as default portable data container and support **optional ZIP workspace snapshots** with separate manifest/type, including IndexedDB selected I4/controller/mix/calibration/listener metadata; do not imply IndexedDB itself can store unlimited research data. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
+
 **Approved Round 2 requirement:** The default portable recording must be a **validated ZIP archive** with versioned JSON manifest, typed binary chunks, checksums, commands, events and optional **generated** output audio. Add corrupt/oversize ZIP tests; optional Parquet/HDF5 offline research is outside this card. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
 **Roadmap source:** Implement export/import of a versioned portable recording (component/preset/solver/seed/time-scale/event/telemetry/audio metadata), validation/checksum checks, deterministic re-run and A/B difference curves; confirm a synthetic baseline can be recorded and compared before physical engine work.
@@ -211,6 +215,8 @@
 **Acceptance / evidence:** Export a synthetic session, import and compare it; tampered checksum, oversize and unknown version must be rejected. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M0-14a
+
+**Approved Round 3 acceptance:** Svelte hash-route runtime must restore a **versioned IndexedDB workspace** via `AG-M0-18`. The factory carb I4 is initial only with no valid saved choice. Do not initialize twice or reset a selected EFI when navigating. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Implement Svelte hash pages `/#/drive`/`/#/diagnostics`/`/#/settings`; navigation or refresh must not create a second engine. No clean-history route dependency. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -263,6 +269,8 @@
 **Acceptance / evidence:** Valid one-part and part-set manifest roundtrip; invalid component ID or undeclared extra change rejected. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M0-17
+
+**Approved Round 3 acceptance:** G0-B reviewer checks `AG-M0-18` IndexedDB valid/corrupt/denied recovery and `AG-M0-19` AI PR integrator policy/permission feasibility. This is **not** proof that a privileged AI reviewer was deployed. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
 **Approved Round 2 requirement:** Browser capability tests explicitly target **desktop Chrome/Chromium, Firefox, Safari** (on supported macOS), audio gesture/device fallback and WebGL-unavailable **Canvas 2D** mode; do not claim mobile support as required. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
