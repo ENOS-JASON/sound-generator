@@ -34,6 +34,12 @@ The runner consumes the **authoritative ordered event stream** defined in [11 â€
 ```
 Actual schema must align with [09](09-data-contracts.md); event condition holding across steps must be defined unambiguously. The example's throttle/load preset must be capable of reaching limiter; otherwise expect a scenario failure, not forced success.
 
+## Slow-motion and reference-time semantics
+
+The scenario runner uses an authoritative **simulation-time clock**, not page render rate, audio playback speed or wall-clock duration. At 0.1x, 1x or accelerated headless mode, the same initial state/seed and time-stamped inputs should produce equivalent physics/event transitions within tolerance; `timeScale` is presentation mapping, not a different combustion model. When paused, gates also pause; manual stepping advances only bounded authoritative ticks. Scenario reports record `timeScale` changes and clock mapping for audio comparison. See [24](24-simulation-clock-and-time-scaling.md).
+
+A Research fidelity job may progress only a few degrees of crank angle per real hour: finite **simulation-time** timeouts still apply, while a separate configurable liveness watchdog checks whether solver progress/checkpoints are advancing. Never declare a physically slow but advancing run timed out because of a hard-coded short wall deadline.
+
 ## Lifecycle and clock policy
 Initialize seed/preset and reset solver; apply on-enter actions exactly once; evaluate gate against subsequent monotonically indexed event/state snapshots; take fixed simulation steps; fail if timeout reached, guard fails, simulation becomes non-finite or step budget exceeded. Timeout always uses simulation seconds, never wall-clock alone. A separate wall-clock watchdog catches deadlocked workers. A scenario can run accelerated offline or in real time with equivalent state transitions within tolerance.
 
@@ -47,6 +53,10 @@ Normal warm start, battery low, crank with fuel disabled, repeated short crank a
 ## Physical invariants during every scenario
 
 At each fixed simulation tick or bounded diagnostic sampling interval, assert finite unit-consistent torque/power, connected port conservation residuals and physically bounded temperature/mass flows, correct crank/gear ratio when locked, correct wheel traction and no unauthorized power from disconnected components. Capture per-source audio event correlation, mixer output and view switching side effects. Engine transitions (crank, run, stall, cutoff) and afterfire gates are confirmed by authoritative events and state, never presumed from passage of time alone.
+
+## Baseline, single-part and part-preset experiment sequences
+
+The scenario runner is the canonical executor for the experiment matrix in [27](27-high-fidelity-experiment-orchestration.md). It must support **baseline**, **one changed physical part or parameter**, **named part-set/preset swap**, and repeated validation/mesh-refinement runs with the same event/time/condition gates, initial state and controlled seeds. Report the precise `componentId`, input change set, derived physical changes, reference fidelity/zone settings and outputs for torque/flow/energy and source audio features; use paired simulated-time/angle/event alignment for the comparison UI. A scenario that cannot proceed because of a numerical failure or invalid component change fails explicitly, not silently skipped or passed.
 
 ## Reports
 Per-step status, entered/exited sim times, observed gate and event ids, timeout/branch reason, assertions, RPM/torque/pulse trace, model hash, seed and comparison metrics; JSON plus human-readable report. Scenario authoring UI and headless CLI use the same schema and engine code.
