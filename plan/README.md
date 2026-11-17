@@ -4,7 +4,7 @@
 
 **For implementation agents:** start with [Agent handoff instructions](agents/README.md), then select **one** assignment from the [100-roadmap-step / 160-agent-card index](agents/task-index.md). Use the [copy/paste assignment prompt](agents/AGENT_PROMPT.md) for handoffs. Read only the card, mandatory [contract/ADR rules](30-agent-handoff-contracts-and-decisions.md), [pending decision register](decisions/README.md) and references specifically listed there. The roadmap is an overview; individual cards determine scope and acceptance.
 
-**Approved direction (Round 1):** [owner decisions and outstanding subchoices](decisions/USER-APPROVED-ROUND-01.md). Major architecture decisions require owner approval; fast solver placement awaits Worklet/Worker benchmarks; Svelte + Vite is selected; the first complete I4 gasoline baseline includes starter, manual gearbox and vehicle load; both slow-motion audio treatments are required; offline architecture permits future true 3D CFD/chemistry/materials and CPU/GPU native compute.
+**Approved direction:** [Round 1](decisions/USER-APPROVED-ROUND-01.md) and [Round 2](decisions/USER-APPROVED-ROUND-02.md) owner choices. Major architecture requires owner approval. Worklet/Worker physics ownership still awaits benchmark. **Svelte+Vite hash routing**, first I4 **carburetor/no-ECU or EFI/ECU** with starter/manual/road load, **default pitch-lowered slow motion plus selectable pitch preservation**, procedural-only live sound with recordings for calibration/validation, ZIP/optional scientific exports, Windows/Linux offline computation and desktop Chromium/Firefox/Safari support are required. Optional native/GPU and future actual 3D CFD/chemistry remain supported by extensible contracts.
 
 ## Goal
 
@@ -58,7 +58,7 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 4. **Scenarios are executable specifications.** Transitions may use simulation time, state conditions or named events, with finite timeouts, assertion checks and explicit failure results.
 5. **Static-hosting first.** No runtime backend, API keys or mandatory cloud services. Training may run locally/offline and commit compact versioned presets.
 6. **Realistic transitions matter.** Key-on, starter engagement, cranking, first firing, catching, stable idle, acceleration, overrun, limiter behavior, gear shifts, misfires, stalls and stop must each be modeled and testable.
-7. **No sample library requirement.** Procedural sound is the baseline; optional legally sourced reference recordings are for objective calibration/evaluation, not required playback.
+7. **Procedural audio exclusively in the live engine.** Real recordings may be imported **only for calibration, measurement and evaluation**, never live or diagnostic playback or embedded sample layers; source playback must be synthesized from physics. Generated output may be captured for diagnostics. See [Round 2](decisions/USER-APPROVED-ROUND-02.md).
 8. **One shared event contract.** Physics/ECU/drivetrain own authoritative domain events, while audio, visuals, scenarios and training consume the same ordered stream across safe browser transports. See [11](11-event-bus-and-messaging.md).
 9. **Composable technology, not monolithic special cases.** TypeScript component contracts and rotational/electrical/air/fuel/exhaust/thermal ports support historic mechanical systems, modern ECU engines and later hybrid/EV families. See [14](14-modular-typescript-platform.md).
 10. **Real load and measured output.** Every coupled accessory, compressor, transmission, axle, tire and road resistance contributes energy/torque to the single physics solver; horsepower is calculated from documented torque and speed measurement points. See [20](20-torque-power-load-and-energy.md).
@@ -95,7 +95,7 @@ See [the detailed roadmap](08-implementation-roadmap.md) for task order and acce
 
 - **Vite + TypeScript** for a portable static bundle.
 - **Web Audio API + AudioWorklet** for custom audio DSP; optional WebAssembly when profiling justifies it.
-- **Three.js** for the 3D car/engine view; native Canvas 2D for lower-cost bank-side cutaway; a multi-page Svelte or Vue 3 UI (framework to select at M0), with movable/hideable diagnostics widgets.
+- **Three.js** for 3D and **Canvas 2D** for lower-cost per-bank cutaway; **owner-approved Svelte + Vite with hash routing** (`/#/drive`) for multi-page UI, with movable/hideable diagnostics widgets.
 - **Web Worker(s)** for offline/batch analysis; an offline TypeScript/Node worker-threads CLI with configurable use of all logical CPU threads for multi-hour/multi-run high-fidelity work.
 - Shared, versioned schemas; deterministic seeded scenarios and downloadable test traces.
 - `vite.config.ts` will use `base: '/sound-generator/'` on GitHub Pages unless a custom-domain/root deployment changes the base.
