@@ -110,6 +110,12 @@ Event naming and category must stay consistent across schema, scenario runner an
 
 All new powertrain families use the **same authoritative domain event stream**, with event producers restricted to the component owning the physical transition, and `componentId`/port references where appropriate. Add and validate typed payloads for `BATTERY_VOLTAGE_LOW`, `STARTER_ENGAGEMENT_FAILED`, `STARTER_OVERHEATED`, `CHARGING_FAILED`, `INTAKE_BACKFIRE`, `AFTERFIRE`, `BOOST_LIMITED`, `WASTEGATE_CHANGED`, `GEAR_SHIFT_STARTED`, `CONVERTER_LOCKED`, `TRANSFER_CASE_MODE_CHANGED`, `DIFF_LOCK_CHANGED` and `TRACTION_LOST` while retaining the existing engine state and limiter event names. Electrical voltages, mass flow, per-component torque and power, boost pressure and wheel speeds are sampled **state projections**, not unbounded high-rate event spam. The API must support a new engine layout, induction component or driveline provider registering its events without bypassing central sequencing and schema validation; unrecognized events or unsupported controls fail safely.
 
+## Core time-scale and diagnostics fan-out
+
+The authoritative simulation event bus is keyed to integer `simulationTick`, while a separate **clock bridge** maps to sample-accurate `AudioWorklet` output and visual-frame interpolation under `playbackScale`. A `SET_TIME_SCALE` command, pause/resume and bounded step commands are validated and logged as control-plane actions, not physical engine combustion events. A slowed/paused viewer cannot independently create extra `COMBUSTION`, `AFTERFIRE` or `ENGINE_RUNNING` events. See [24](24-simulation-clock-and-time-scaling.md).
+
+Publish typed read-only event/telemetry projections to a **DiagnosticsHub** and recorder. Captures preserve event IDs/causation, source component IDs, physical port units, clock mapping and software versions; importing and replaying a capture must reproduce/compare relevant event sequences without listeners mutating physical state. High-rate audio and zone-level fields are sampled/streamed via bounded transport, **not** every worklet sample published as a bus event. See [25](25-core-diagnostics-recording-and-comparison.md).
+
 ## Scenario integration and training
 
 - The scenario runner subscribes to the **authoritative event log**, not visual or audio approximations. Event gates have a sequence watermark at step entry so they cannot accidentally match stale events.
