@@ -12,6 +12,10 @@ Sound is computed from simulated mechanical and thermodynamic events, not loopin
 - Drivetrain, tire/road: gear whine linked to gear forces, tire noise by speed, slip/traction chirps and squeal, surface-dependent noise.
 - Spatial: positions for engine bay/intake/exhaust/wheels, distance attenuation and optional first-order stereo/doppler/spatial effects; multiple microphones/camera views later.
 
+## All-era source coverage and mixer requirements
+
+Every physical mechanism that emits independently meaningful sound has a stable **calibrated full-reference source** with user gain/mute/solo and meters, routed through category buses and a master. Source generation runs at healthy reference levels (not arbitrarily weak then amplified), but proper headroom and attenuation preserve physically quieter operating states. Per-cylinder and per-bank voices reflect firing layout, vibration, intake runner and exhaust collector geometry. Add source families for carb/ITB/open airbox, turbo shaft/whistle/wastegate/BOV, supercharger types, afterfire/intake backfire, old distributor/starter solenoid and worn motor, gearboxes/converters/CVT/DCT, transfer/diffs, wheels and optionally hybrid/EV motors. The exact sounds are conditional on implemented physical states; unsupported features never emit fake cues. See [12](12-audio-gain-staging-and-mixer.md), [15](15-engine-families-and-presets.md), [16](16-intake-induction-and-exhaust.md), [17](17-transmissions-drivetrains-and-wheels.md) and [18](18-electrical-control-generations-and-tunes.md).
+
 ## Event bus consumption
 
 The synthesizer uses physically authored engine events, phase information and state from the canonical bus contract in [11](11-event-bus-and-messaging.md). On-worklet per-cylinder excitation is local and sample accurate; the main thread never serves as an audio-rate relay. Every afterfire, misfire, limiter cut, shift transient or stall cue has a matching causal engine/ECU/drivetrain event or state, rather than being issued independently by the UI. Outbound telemetry is bounded and can be coalesced; the audible render cannot block waiting for other subscribers.
@@ -30,6 +34,10 @@ The synthesizer uses physically authored engine events, phase information and st
 3. Engine-block mechanical resonator and pressure-dependent intake/exhaust resonators.
 4. Stable overrun, limiter cut/recovery, shift cut, stall transients and afterfire events.
 5. Mixing, mic model, spatialization, A/B and WAV export.
+
+## Causal loudness and source coherence
+
+Toggling a physical intake/boost configuration must change its pressure/flow/shaft and resulting audio events, not just switch EQ. A no-ECU carburetor should not generate electronic rev-cut sounds. Pop-and-bang tunes require eligible exhaust event flags, temperature/residual fuel and actual event IDs. Mixer changes must not alter crank torque, vehicle speed or scenario outcome. Compare spectral and temporal signatures by engine family, controller and drivetrain configuration rather than assuming identical sound at a common RPM.
 
 ## Test metrics
 Compare temporal pulse spacing, firing-order sidebands, RPM/load timbral envelope, spectral centroid/rolloff, octave-band energy, modulation spectrum, transient timing, noise floor and clipping rate. Align recordings by crank/marker events before comparing; waveform MSE alone is inadequate. Listening panels complement metrics. Evaluate at 44.1/48/96 kHz where supported.
