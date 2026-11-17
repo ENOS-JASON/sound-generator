@@ -42,7 +42,7 @@ A component contributes `torqueNm`, `angularVelocityRadPerSecond`, inertia, diss
 F_aero = 0.5 * airDensity * Cd * frontalArea * relativeAirSpeed^2 (opposes motion)
 F_roll = Crr * normalLoad (direction opposes rolling)
 F_grade = vehicleMass * gravity * sin(roadGrade)
-F_tire_longitudinal <= traction envelope(normalLoad, surface, slip, temperature)
+abs(F_tire_longitudinal) <= traction envelope(normalLoad, surface, slip, temperature)
 vehicleMass * acceleration = sum(tire forces) - aero - rolling - grade
 ```
 
