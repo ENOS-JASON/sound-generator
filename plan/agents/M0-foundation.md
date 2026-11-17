@@ -25,7 +25,7 @@
 **Prerequisites:** `AG-M0-01`. If a predecessor is incomplete, use an accepted contract fixture and mark live integration pending.
 
 **Owned area:** `.github/workflows/, Vite deploy config`. Avoid editing other task owners' contracts.
-**Required references:** [01](../01-architecture.md), [26](../26-multipage-ui-and-floating-widgets.md), [31](../undefined).
+**Required references:** [01](../01-architecture.md), [26](../26-multipage-ui-and-floating-widgets.md), [31](../31-integration-gates-and-support-matrix.md).
 **Acceptance / evidence:** CI builds deployable artifact; verify nested /sound-generator/ path and hash route on HTTPS preview; no credential required by browser. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M0-03
@@ -42,7 +42,7 @@
 
 ### AG-M0-04
 
-**Roadmap source:** Define strict TypeScript component/port graph contracts, factories/capability registry, typed power/energy sign conventions, bank/cylinder geometry for 1–12 cylinders and technology fidelity status (see [14–20](14-modular-typescript-platform.md)).
+**Roadmap source:** Define strict TypeScript component/port graph contracts, factories/capability registry, typed power/energy sign conventions, bank/cylinder geometry for 1–12 cylinders and technology fidelity status (see [14–20](../14-modular-typescript-platform.md)).
 
 **This agent delivers:** Physical port and capability registry types, typed compatibility graph, signs and support tier.
 
@@ -61,12 +61,12 @@
 **Prerequisites:** `AG-M0-04`. If a predecessor is incomplete, use an accepted contract fixture and mark live integration pending.
 
 **Owned area:** `src/contracts/component interfaces and tests/fixtures`. Avoid editing other task owners' contracts.
-**Required references:** [14](../14-modular-typescript-platform.md), [15](../15-engine-families-and-presets.md), [16](../undefined), [17](../17-transmissions-drivetrains-and-wheels.md), [18](../18-electrical-control-generations-and-tunes.md), [30](../30-agent-handoff-contracts-and-decisions.md).
+**Required references:** [14](../14-modular-typescript-platform.md), [15](../15-engine-families-and-presets.md), [16](../16-intake-induction-and-exhaust.md), [17](../17-transmissions-drivetrains-and-wheels.md), [18](../18-electrical-control-generations-and-tunes.md), [30](../30-agent-handoff-contracts-and-decisions.md).
 **Acceptance / evidence:** Instantiate mock providers by registration; reject missing declared capabilities; no hidden global singleton. Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 
 ### AG-M0-06
 
-**Roadmap source:** Define a **step-by-step schema-driven wizard**: capability/field descriptors, step prerequisites, per-field conditional option/range/visibility providers, draft-state/undo policy and shared preset/graph validation; see [22](22-guided-vehicle-configurator.md).
+**Roadmap source:** Define a **step-by-step schema-driven wizard**: capability/field descriptors, step prerequisites, per-field conditional option/range/visibility providers, draft-state/undo policy and shared preset/graph validation; see [22](../22-guided-vehicle-configurator.md).
 
 **This agent delivers:** Wizard step/field descriptors and single validator interface used by UI and import (no full wizard screen).
 
@@ -90,7 +90,7 @@
 
 ### AG-M0-08
 
-**Roadmap source:** Define configurable **reference-fidelity profile contracts** (Quick/Balanced/Detailed/Research), component solver capabilities, gas/metal/wall zone axes, step/CFL/stability tolerances and resource preflight; see [21](21-adjustable-fidelity-multizone-reference-simulation.md).
+**Roadmap source:** Define configurable **reference-fidelity profile contracts** (Quick/Balanced/Detailed/Research), component solver capabilities, gas/metal/wall zone axes, step/CFL/stability tolerances and resource preflight; see [21](../21-adjustable-fidelity-multizone-reference-simulation.md).
 
 **This agent delivers:** Versioned fidelity profile and component solver capability predicates; do not implement CFD.
 
@@ -102,7 +102,7 @@
 
 ### AG-M0-09
 
-**Roadmap source:** Specify shared typed EventMap/CommandMap, event ownership, causation IDs, simulation tick/sample-frame clocks, subscriber API and bounded cross-thread transport contracts (see [11](11-event-bus-and-messaging.md)).
+**Roadmap source:** Specify shared typed EventMap/CommandMap, event ownership, causation IDs, simulation tick/sample-frame clocks, subscriber API and bounded cross-thread transport contracts (see [11](../11-event-bus-and-messaging.md)).
 
 **This agent delivers:** Canonical typed CommandMap/EventMap and serialized event envelope with total order; record ADR-004.
 
