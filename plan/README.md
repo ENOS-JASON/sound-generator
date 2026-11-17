@@ -49,6 +49,7 @@ An engine is a dynamic system, not an RPM-controlled audio player: firing pulses
 | [30 — Agent handoff and decisions](30-agent-handoff-contracts-and-decisions.md) | Contract ownership, proposed ADRs, frozen-unit/event rules, task completion template |
 | [31 — Integration gates and support status](31-integration-gates-and-support-matrix.md) | Evidence-based G0–G8 acceptance gates and implemented/approximate/planned claims |
 | [Agent work orders](agents/README.md) | Each roadmap checklist item mapped to one or more self-contained tasks with prerequisites and tests |
+| [AI integration reviewer instructions](agents/AI_INTEGRATOR_PROMPT.md) | Dedicated AI review and owner-escalation workflow (operational GitHub permissions unverified) |
 | [Round 1–3 approved requirements](decisions/USER-APPROVED-ROUND-03.md) | Most recent owner choices and pointers to earlier approvals |
 | [Remaining technical validation gaps](decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md) | Specific unresolved/technically unverified decisions, accountable cards and proof needed |
 
