@@ -6,7 +6,7 @@
 
 ### AG-M0-01
 
-- [ ] **AG-M0-01 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-01 COMPLETE** — owner-reviewed and merged [PR #1](https://github.com/ENOS-JASON/sound-generator/pull/1) by `ENOS-JASON`, verified merge `394b5228cbf9dc0c51a0c3a935458f88a9c97085`; required CI [44309782838](https://github.com/ENOS-JASON/sound-generator/actions/runs/44309782838) passed; all applicable acceptance checks above are supported. Post-merge tracking reconciled under [owner review policy](../decisions/OWNER-PR-REVIEW-POLICY-2026-11-18.md).
 
 **Approved Round 2 requirement:** Start with **owner-approved Svelte + Vite and hash routing** on GitHub Pages; pin a compatible Svelte/router version and present major state-library choices for owner review. Add `/#/drive` navigation fixture; a history-route-only app cannot pass. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -28,11 +28,11 @@
 - [x] **Positive-path test/fixture:** passes with recorded command and actual result. See `tests/routing.test.mjs` and `plan/agents/reports/AG-M0-01.md` (3/3 node tests).
 - [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result. See invalid hash cases in `tests/fixtures/hash-route-cases.json` and executed Node TAP output in handoff.
 - [x] **CI + artifacts:** GitHub Actions run [44308222186](https://github.com/ENOS-JASON/sound-generator/actions/runs/44308222186) passed all applicable foundation checks; uploaded `ag-m0-01-dist` artifact 14428269976 and committed fixtures/handoff report. Browser/Pages smoke not claimed (AG-M0-02).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [x] **Approval and verified merge:** owner-reviewed and owner-merged [PR #1](https://github.com/ENOS-JASON/sound-generator/pull/1) (GitHub `merged_by=ENOS-JASON`, verified merge SHA `394b5228cbf9dc0c51a0c3a935458f88a9c97085`). Owner confirmed personal review. Required CI [44309782838](https://github.com/ENOS-JASON/sound-generator/actions/runs/44309782838) succeeded; no separate GitHub review or AI approval needed under [current policy](../decisions/OWNER-PR-REVIEW-POLICY-2026-11-18.md).
 
 ### AG-M0-02
 
-- [ ] **AG-M0-02 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-02 COMPLETE** — owner-reviewed and merged [PR #2](https://github.com/ENOS-JASON/sound-generator/pull/2) by `ENOS-JASON`, verified merge `2e72c27361c54866ff14cab260f06228cfb7aa03`; required CI [44317405493](https://github.com/ENOS-JASON/sound-generator/actions/runs/44317405493) passed; all applicable acceptance checks above are supported. Post-merge tracking reconciled under [owner review policy](../decisions/OWNER-PR-REVIEW-POLICY-2026-11-18.md).
 
 **Approved Round 2 requirement:** GitHub Pages must host `/sound-generator/#/...` hash links, including direct-link and refresh smoke tests without `history` rewrites. CI includes browser static-build and hash asset/AudioWorklet path checks. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -53,8 +53,8 @@
 - [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). See `tests/pages-smoke.mjs`, `plan/agents/reports/AG-M0-02.md` and PR #2.
 - [x] **Positive-path test/fixture:** [PR CI 44315805900](https://github.com/ENOS-JASON/sound-generator/actions/runs/44315805900) `node tests/pages-smoke.mjs static` and `https` passed nested asset loading and positive browser hash routes, including repeat-load.
 - [x] **Negative/invalid-path test/fixture:** [PR CI 44315805900](https://github.com/ENOS-JASON/sound-generator/actions/runs/44315805900) verified `#/missing` renders `Unknown route` and nonhash `/sound-generator/drive` is HTTP 404 (no history rewrite).
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [x] **CI + artifacts:** [post-merge main Actions run 44317405493](https://github.com/ENOS-JASON/sound-generator/actions/runs/44317405493) passed locked install, full check/build, static asset and HTTPS browser smoke; uploaded Pages artifact, deployed public site, and passed anonymous public HTTPS route/asset smoke. PR [44316133945](https://github.com/ENOS-JASON/sound-generator/actions/runs/44316133945) passed, plus handoff/fixtures.
+- [x] **Approval and verified merge:** owner-reviewed and owner-merged [PR #2](https://github.com/ENOS-JASON/sound-generator/pull/2) (GitHub `merged_by=ENOS-JASON`, verified merge SHA `2e72c27361c54866ff14cab260f06228cfb7aa03`). Owner confirmed personal review. Required CI [44317405493](https://github.com/ENOS-JASON/sound-generator/actions/runs/44317405493) succeeded; no separate GitHub review or AI approval needed under [current policy](../decisions/OWNER-PR-REVIEW-POLICY-2026-11-18.md).
 
 ### AG-M0-03
 
@@ -83,7 +83,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-04
 
@@ -106,7 +106,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-05
 
@@ -130,7 +130,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-06
 
@@ -156,7 +156,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-07
 
@@ -180,7 +180,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-08
 
@@ -203,7 +203,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-09
 
@@ -228,7 +228,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-10
 
@@ -261,7 +261,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-11a
 
@@ -284,7 +284,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-11b
 
@@ -308,7 +308,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-11c
 
@@ -331,7 +331,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-11d
 
@@ -354,7 +354,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-12
 
@@ -380,7 +380,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-13
 
@@ -409,7 +409,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-14a
 
@@ -437,7 +437,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-14b
 
@@ -461,7 +461,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-15
 
@@ -485,7 +485,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-16
 
@@ -512,7 +512,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-17
 
@@ -540,7 +540,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-18
 
@@ -569,7 +569,7 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-19
 
@@ -599,4 +599,4 @@
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.

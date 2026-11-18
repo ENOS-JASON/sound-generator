@@ -4,6 +4,8 @@
 
 **Operational status: NOT INSTALLED/VERIFIED.** No GitHub bot identity, review permission, Merge API, branch protection or credential has been configured by these planning files. Do not submit reviews or merges without actual authenticated host capability, a least-privilege approved access policy and evidence. **An approved conditional policy is not a currently available tool capability.**
 
+**Alternative path already authorized:** Project-owner personal review plus GitHub owner merge is sufficient without any separate AI review, GitHub approval submission or owner Markdown work. Under the [owner-approved review policy](../decisions/OWNER-PR-REVIEW-POLICY-2026-11-18.md), this prompt applies only to the **optional AI integrator path**. Agents reconcile owner-merged PRs from verified GitHub/CI evidence on their next execution.
+
 ## PR reviewer and authorized merger prompt
 
 ```text
