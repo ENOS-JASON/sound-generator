@@ -1,14 +1,39 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { CapabilityRegistry } from '../src/core/physics-ports/registry.ts';
-import { validatePortGraph } from '../src/core/physics-ports/graph.ts';
-import { defineCylinderTopology } from '../src/core/physics-ports/cylinders.ts';
-import {
+import { build } from 'esbuild';
+import { validateVehicleDefinitionV2 } from '../src/contracts/vehicle-definition.ts';
+
+// Bundle the contract modules for Node ESM tests without changing the
+// application's intentional extensionless TS imports or tsconfig.
+const compiled = await build({
+  stdin: {
+    contents: `
+      export { CapabilityRegistry } from './src/core/physics-ports/registry';
+      export { validatePortGraph } from './src/core/physics-ports/graph';
+      export { defineCylinderTopology } from './src/core/physics-ports/cylinders';
+      export { checkRotationalPowerBalance, rotationalPowerIntoComponentW }
+        from './src/core/physics-ports/power';
+    `,
+    resolveDir: process.cwd(),
+    sourcefile: 'port-graph-test-entry.ts',
+    loader: 'ts',
+  },
+  bundle: true,
+  platform: 'node',
+  format: 'esm',
+  write: false,
+});
+const {
+  CapabilityRegistry,
+  validatePortGraph,
+  defineCylinderTopology,
   checkRotationalPowerBalance,
   rotationalPowerIntoComponentW,
-} from '../src/core/physics-ports/power.ts';
-import { validateVehicleDefinitionV2 } from '../src/contracts/vehicle-definition.ts';
+} = await import(
+  'data:text/javascript;base64,' +
+    Buffer.from(compiled.outputFiles[0].contents).toString('base64')
+);
 
 const fixture = (name) =>
   JSON.parse(
