@@ -6,6 +6,7 @@
     "moduleResolution": "Bundler",
     "types": ["svelte", "vite/client"],
     "allowArbitraryExtensions": true,
+    "allowImportingTsExtensions": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noEmit": true,

@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "components": [
+    {
+      "id": "engine",
+      "kind": "engine",
+      "providerId": "mock-engine",
+      "componentSchemaVersion": 1,
+      "operatingDomain": "mock",
+      "modelSupport": "implemented",
+      "requiredCapabilities": ["physical-port"],
+      "ports": [
+        {
+          "id": "crank",
+          "kind": "rotational",
+          "direction": "out",
+          "required": true,
+          "effortUnit": "N*m",
+          "flowUnit": "rad/s"
+        },
+        {
+          "id": "air",
+          "kind": "air",
+          "direction": "in",
+          "required": true,
+          "effortUnit": "Pa",
+          "flowUnit": "kg/s",
+          "pressureBasis": "absolute"
+        },
+        {
+          "id": "throttle",
+          "kind": "control",
+          "direction": "in",
+          "required": true,
+          "effortUnit": "1",
+          "flowUnit": "1",
+          "signalType": "throttle"
+        }
+      ]
+    },
+    {
+      "id": "clutch",
+      "kind": "clutch",
+      "providerId": "mock-clutch",
+      "componentSchemaVersion": 1,
+      "operatingDomain": "mock",
+      "modelSupport": "implemented",
+      "requiredCapabilities": ["physical-port"],
+      "ports": [
+        {
+          "id": "input",
+          "kind": "rotational",
+          "direction": "in",
+          "required": true,
+          "effortUnit": "N*m",
+          "flowUnit": "rad/s"
+        }
+      ]
+    },
+    {
+      "id": "intake",
+      "kind": "intake",
+      "providerId": "mock-intake",
+      "componentSchemaVersion": 1,
+      "operatingDomain": "mock",
+      "modelSupport": "implemented",
+      "requiredCapabilities": ["physical-port"],
+      "ports": [
+        {
+          "id": "air-out",
+          "kind": "air",
+          "direction": "out",
+          "required": true,
+          "effortUnit": "Pa",
+          "flowUnit": "kg/s",
+          "pressureBasis": "absolute"
+        }
+      ]
+    },
+    {
+      "id": "pedal",
+      "kind": "pedal",
+      "providerId": "mock-pedal",
+      "componentSchemaVersion": 1,
+      "operatingDomain": "mock",
+      "modelSupport": "implemented",
+      "requiredCapabilities": ["physical-port"],
+      "ports": [
+        {
+          "id": "throttle-out",
+          "kind": "control",
+          "direction": "out",
+          "required": true,
+          "effortUnit": "1",
+          "flowUnit": "1",
+          "signalType": "throttle"
+        }
+      ]
+    },
+    {
+      "id": "electrical",
+      "kind": "battery",
+      "providerId": "mock-battery",
+      "componentSchemaVersion": 1,
+      "operatingDomain": "mock",
+      "modelSupport": "implemented",
+      "requiredCapabilities": ["physical-port"],
+      "ports": [
+        {
+          "id": "power",
+          "kind": "electrical",
+          "direction": "out",
+          "required": false,
+          "effortUnit": "V",
+          "flowUnit": "A"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "id": "shaft-link",
+      "from": {
+        "componentId": "engine",
+        "portId": "crank"
+      },
+      "to": {
+        "componentId": "clutch",
+        "portId": "input"
+      }
+    },
+    {
+      "id": "air-link",
+      "from": {
+        "componentId": "intake",
+        "portId": "air-out"
+      },
+      "to": {
+        "componentId": "engine",
+        "portId": "air"
+      }
+    },
+    {
+      "id": "control-link",
+      "from": {
+        "componentId": "pedal",
+        "portId": "throttle-out"
+      },
+      "to": {
+        "componentId": "engine",
+        "portId": "throttle"
+      }
+    }
+  ],
+  "requiredPaths": [
+    {
+      "fromComponentId": "engine",
+      "toComponentId": "clutch",
+      "kind": "rotational"
+    }
+  ]
+}
