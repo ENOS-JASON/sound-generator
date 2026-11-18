@@ -80,7 +80,7 @@ meanPistonSpeed_mPerSecond = 2 * stroke_m * RPM / 60
 ## Schema-driven fields and capability filtering
 
 `ConfiguratorStepDefinition` and `FieldDefinition` should declare:
-- Stable `fieldId` and dotted configuration `path`, user-facing name/description, type, display units/SI storage units, default and whether it is editable/derived.
+- Stable `fieldId` and dotted configuration `path`, user-facing name/description, type, canonical SI unit, quantity kind, permitted display-unit IDs (including compatible per-field overrides), default and whether it is editable/derived.
 - `visibleWhen(context)`, `enabledWhen(context)`, `requiredWhen(context)`, `options(context)`, `constraints(context)` and `derive(context)`, with deterministic functions defined in source code (not arbitrary functions embedded in user JSON).
 - Dependencies by field/port/component capability ID, support status and controller generation; context updates trigger targeted field and option recomputation.
 - Validation severity: error (impossible/incompatible, blocks next step/run), warning (physically unusual or estimated), info (approximate/planned provider).
@@ -108,6 +108,12 @@ meanPistonSpeed_mPerSecond = 2 * stroke_m * RPM / 60
 - Provide **saved partial drafts** (local data only by default); loaded presets and drafts pass the same schema/compatibility migration. A partially configured vehicle cannot start or train without completing required fields.
 - Training step includes memory/time **cost indicators and feasible platform** (browser Worker vs external CLI) and a per-component resolution matrix with actual enabled/unsupported entries.
 
+## Individual unit preferences (mixed metric/imperial)
+
+**Owner requirement:** each statistic has a unit selector independent of others; no compulsory global metric/imperial switch. The Settings page exposes quantity defaults and applicable field/channel overrides; numeric Builder controls may offer inline unit selection (for example bore in inches, displacement in liters, power in mechanical hp, torque in N·m and boost in psi simultaneously). Two pressure fields may override one another independently (boost psi and tire kPa). Quick Metric/US presets are optional convenience defaults, not a locked mode. See [per-stat display-unit decision](decisions/USER-APPROVED-PER-STAT-DISPLAY-UNITS-2026-11-18.md) and [09 contracts](09-data-contracts.md).
+
+Use one dimension-aware unit registry shared by wizard input, Drive gauges and Diagnostics channels; stable field IDs and quantity kinds choose the selected display unit. On unit selection, **preserve the SI value** and redraw the field/derived readout and its unit label; convert edited display numbers back to SI before validation. Dimensional incompatibilities, nonfinite values and ambiguous gauge/absolute pressure are errors, not guesses. Stored `DisplayUnitPreferences` belong to the user workspace, not the vehicle definition, with browser persistence and optional ZIP workspace snapshots.
+
 ## Acceptance tests
 
 - [ ] Users can build a physically valid I4 with bore/stroke, ECU, induction, manual and RWD by following wizard steps; final preset validates and runs.
@@ -121,6 +127,8 @@ meanPistonSpeed_mPerSecond = 2 * stroke_m * RPM / 60
 - [ ] Unsupported or planned technologies never appear as active runnable choices; users can see explanation/planned status.
 - [ ] Training detail controls appear only for supported component solvers and cannot request out-of-bounds zones or memory/time budgets.
 - [ ] Wizard and raw JSON import use the same validation results; invalid hidden fields and capability mismatches cannot bypass the checks.
+- [ ] Mixed imperial/metric selections and per-field overrides work concurrently (e.g., bore in, displacement L, power hp, torque N·m, boost psi, tire pressure kPa); changing one selector does not reset the others or the SI values, and labels/derived values update consistently.
+- [ ] Unit changes roundtrip without accumulated precision drift; invalid dimensions, gauge/absolute pressure confusion and unsupported unit IDs are rejected. Unit preferences persist across reload and optional workspace ZIP restoration without changing engine/trace hashes.
 - [ ] Draft save/resume, tab navigation, keyboard operation, units, import/export and schema migrations have automated browser tests.
 - [ ] Entering/exiting configurator or changing 2D/3D view never mutates a running simulation until an explicitly validated apply/reset boundary.
 

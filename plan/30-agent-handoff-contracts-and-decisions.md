@@ -81,6 +81,7 @@ All **15 O3 choices are approved**, not pending. Consult [binding decisions](dec
 
 ### Units, energy and physical ports
 - SI internally: `rad`, `rad/s`, `N*m`, `W`, `kg`, `m`, `Pa`, `K`, `kg/s`, `J`; UI conversions at boundaries.
+- **Owner-approved independent display units:** quantity-level defaults plus per-stat/channel overrides may mix imperial and metric concurrently, including two pressures with different choices. Validate dimensions and pressure gauge/absolute reference separately. Preferences persist as versioned user workspace state and must not alter SI solver state, commands/events, hashes or trace truth. See [per-stat unit decision](decisions/USER-APPROVED-PER-STAT-DISPLAY-UNITS-2026-11-18.md).
 - Define **rotational power into a component** as `P_in_W = T_on_component_Nm * omega_rad_s`; a generator/engine delivering outward shaft power has negative input at its output port. For ideal connected ports, powers balance; gear ratio and sign convention must be tested for forward/reverse flows, dissipation and storage. The net crank torque equation and positive generated brake torque are derived/clearly labeled values, not conflated with port signs.
 - Generated `P = T*omega` must distinguish indicated, crank/brake, net shaft delivered, wheel shaft and road tractive output; neither a mixer fader nor renderer may change these.
 - Physical graphs connect typed rotational, electrical, air, fuel, exhaust and thermal ports; model convergence and energy/mass residuals are checked per tier. User input cannot create free boost/extra AWD wheel torque.

@@ -42,7 +42,7 @@
 | **Training / Research** | Fidelity profile, expensive simulation jobs, multi-zone inspector, progress and resources |
 | **Experiments / Compare** | Single-part variation sequences, repeated runs, sensitivity metrics, recordings/traces, baseline vs trained comparison |
 | **Presets / Library** | Validated engine/vehicle/controller/mixer/experiment configurations and version history |
-| **Settings / Help** | Audio device, rendering performance, model capabilities, storage, units and debug preferences |
+| **Settings / Help** | Audio device, rendering performance, model capabilities, storage, **independent per-stat unit preferences** (and per-field/channel overrides), and debug preferences |
 
 Page names/routing are provisional; responsibilities and distinct navigation contexts are required. The **core simulation runtime is independent of the current route**: changing pages must not reconstruct the engine, AudioContext, event stream or current scenario. Use clear global run status and a compact always-available simulation/time-scale control in a navigation shell.
 
@@ -59,7 +59,7 @@ Page names/routing are provisional; responsibilities and distinct navigation con
 
 - **Svelte + Vite with hash-based navigation is owner-approved** ([Round 1](decisions/USER-APPROVED-ROUND-01.md), [Round 2](decisions/USER-APPROVED-ROUND-02.md)); strict TypeScript throughout. Published URLs are under `/sound-generator/#/...`; refresh and direct links work without server rewrites. `AG-M0-01` still owns the Svelte major version, specific hash-router library and store conventions; major new architectural selections require owner approval. **Vue and clean-history routes are not authorized alternatives.**
 - Keep a typed app-shell interface `PageRegistry`, `DebugWidgetRegistry`, `UiProjectionStore` and `GlobalRuntimeControls`; UI watches immutable throttled telemetry projections, not mutable solver buffers.
-- Shared time-series graph widgets allow multiple channels, units, legend, zoom/scrub, live vs recorded vs reference/fast overlay and crosshair event anchors. Audio graphs include waveform, frequency spectrum and optional spectrogram.
+- Shared time-series graph widgets allow multiple channels, **per-stat independently selected compatible units** with visible axis/tooltip/legend unit labels and preserved SI source data, zoom/scrub, live vs recorded vs reference/fast overlay and crosshair event anchors. Two channels of the same quantity may use different user-selected display units. Audio graphs include waveform, frequency spectrum and optional spectrogram.
 - Diagram 3D/2D engine can be full-page or embedded panels; switching does not change physical state or audio timing.
 - Inspector can create a floating widget from a selected graph/channel; small widget has lower refresh/data cost than full Diagnostics screen.
 - Capability-aware availability: no ECU maps when none selected; absent transmission sources not shown as usable; zone research widgets only for imported/high-fidelity runs.
@@ -79,5 +79,6 @@ Page names/routing are provisional; responsibilities and distinct navigation con
 - [ ] A movable waveform or RPM widget can be placed over the Drive/Builder screens, hidden and re-opened, with saved layout.
 - [ ] Navigation among pages does not stop/reset a running mock or real simulation and does not disconnect its event or audio worklet.
 - [ ] Floating widget refresh and capture costs are measurable and become minimal when hidden.
+- [ ] Settings supports simultaneous independent power/torque/pressure/etc. units and channel-specific overrides, restores them from the workspace and does not modify live solver outputs; all visible gauges/graphs/wizard fields use consistent labels.
 - [ ] M3 completes Builder, Audio Studio, 2D/3D Drive and session management; M5 adds Scenarios; M6/M7 adds Research/Experiments/Compare.
 - [ ] Import of a recorded session shows its charts on Diagnostics/Compare, and the comparison can be launched without navigating back to the main engine page.

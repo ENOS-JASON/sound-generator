@@ -140,7 +140,7 @@
 
 **Roadmap source:** Define a **step-by-step schema-driven wizard**: capability/field descriptors, step prerequisites, per-field conditional option/range/visibility providers, draft-state/undo policy and shared preset/graph validation; see [22](../22-guided-vehicle-configurator.md).
 
-**This agent delivers:** Wizard step/field descriptors and single validator interface used by UI and import (no full wizard screen).
+**This agent delivers:** Wizard step/field descriptors and single validator interface used by UI and import (no full wizard screen). Define quantity kind, canonical SI unit and permitted display-unit IDs for each numeric field, with stable field IDs usable by a **versioned quantity-default / per-stat override** preference resolver; independent metric/imperial choices must never change the SI source value. Unit preferences/storage themselves belong to AG-M0-18, not VehicleDefinition.
 
 **Prerequisites:** `AG-M0-03`, `AG-M0-04`. If a predecessor is incomplete, use an accepted contract fixture and mark live integration pending.
 
@@ -152,6 +152,7 @@
 - [ ] Given mechanical vs ECU mock, valid fields/choices differ
 - [ ] bad imported hidden field fails
 - [ ] draft status is distinct.
+- [ ] Unit-field metadata and converters resolve independent power/torque/pressure choices; a mixed-unit fixture (e.g., hp, N·m, psi) roundtrips to identical SI values, and an incompatible unit ID or gauge/absolute mismatch is rejected.
 - [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
@@ -269,7 +270,7 @@
 
 **Roadmap source:** Define per-component typed diagnostic/telemetry contracts (units/owner/clock/sampling), and implement `DiagnosticsHub`, `TelemetryRegistry`, bounded `TraceRecorder`, `ReplayController`, `ComparisonEngine` and reusable live graph services.
 
-**This agent delivers:** Typed diagnostic channel schema and immutable projection registry; no direct UI callbacks from solver.
+**This agent delivers:** Typed diagnostic channel schema and immutable projection registry; no direct UI callbacks from solver. Each physical channel exposes stable metric/channel ID, quantity kind, canonical SI unit and pressure basis where relevant, allowing AG-M3-08a to apply separate display-unit overrides without altering telemetry.
 
 **Prerequisites:** `AG-M0-09`, `AG-M0-10`. If a predecessor is incomplete, use an accepted contract fixture and mark live integration pending.
 
@@ -280,6 +281,7 @@
 - [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
 - [ ] Mock channel reports unit, source, tick and bounded sample rate
 - [ ] invalid unit/unknown channel rejected.
+- [ ] Two valid pressure channels declare stable distinct IDs and compatible unit metadata for separate user overrides; invalid dimensional conversion or missing gauge/absolute basis is rejected, while source telemetry stays SI.
 - [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
@@ -550,7 +552,7 @@
 
 **Roadmap source:** Define versioned IndexedDB persistence and resilient local autosave for browser state, preserving ZIP snapshots as optional portable exports.
 
-**Precise deliverable:** Build browser-only `PersistentWorkspaceStore` with versioned IndexedDB schema, stable key/owner namespaces for selected vehicle/controller, wizard draft, audio mix/expert calibration reference, widget layout and small scenario/debug metadata. Autosave is asynchronous/debounced and never called inside AudioWorklet/solver; keep at least one last-known-good state on failed migration/quota. Expose save/recover/error/clear controls for M3 via a typed interface. Generated ZIP snapshots still come from AG-M0-13. Default factory carb loads only when **no valid saved user selection** exists.
+**Precise deliverable:** Build browser-only `PersistentWorkspaceStore` with versioned IndexedDB schema, stable key/owner namespaces for selected vehicle/controller, **independent versioned `DisplayUnitPreferences` (quantity defaults plus optional per-stat/channel overrides)**, wizard draft, audio mix/expert calibration reference, widget layout and small scenario/debug metadata. Autosave is asynchronous/debounced and never called inside AudioWorklet/solver; keep at least one last-known-good state on failed migration/quota. Expose save/recover/error/clear controls for M3 via a typed interface. Generated ZIP snapshots still come from AG-M0-13. Default factory carb loads only when **no valid saved user selection** exists.
 
 **Inputs / prerequisites:** AG-M0-03 schema and AG-M0-13 export format, fixed user preference/control IDs; browser storage capability stub allowed. Coordinate with AG-M0-14a app shell.
 
@@ -564,6 +566,7 @@
 - [ ] Test first-run carb selection, change/save EFI, reload and recover EFI (not reset to carb), corrupted/unknown-version records, migration rollback, quota/denied IndexedDB fallback and portable ZIP export unaffected.
 - [ ] No raw multi-day research dataset autosave.
 - [ ] Persisted expert trim remains separate from user mix.
+- [ ] Versioned mixed metric/imperial quantity defaults and two different pressure-channel overrides survive save/reload and portable ZIP workspace restore without editing VehicleDefinition or its hashes; unknown/invalid unit IDs or corrupt preference records have safe migration/recovery.
 - [ ] Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 - [ ] Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
