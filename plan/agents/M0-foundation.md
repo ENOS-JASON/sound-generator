@@ -72,17 +72,17 @@
 
 **Owned area:** `src/contracts/, tests/fixtures/contracts/`. Avoid editing other task owners' contracts.
 **Required references:** [09](../09-data-contracts.md), [14](../14-modular-typescript-platform.md), [22](../22-guided-vehicle-configurator.md), [30](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance checklist — AG-M0-03** (all unchecked until verified):
+**Acceptance checklist — AG-M0-03** (checked items verified by [PR #4](https://github.com/ENOS-JASON/sound-generator/pull/4) and [CI run 44348788980](https://github.com/ENOS-JASON/sound-generator/actions/runs/44348788980), which passed 12/12 Node tests, typecheck, lint, Prettier, build and HTTPS Chromium smoke):
 
-- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] Valid v2 and invalid/unknown version imports
-- [ ] exact unit conversions
-- [ ] deterministic seeded sequence
-- [ ] v1 migration disposition documented.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [x] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [x] Valid v2 and invalid/unknown version imports
+- [x] exact unit conversions
+- [x] deterministic seeded sequence
+- [x] v1 migration disposition documented.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-04
