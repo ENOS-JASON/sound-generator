@@ -8,9 +8,7 @@
       "componentSchemaVersion": 1,
       "operatingDomain": "mock",
       "modelSupport": "implemented",
-      "requiredCapabilities": [
-        "physical-port"
-      ],
+      "requiredCapabilities": ["physical-port"],
       "ports": [
         {
           "id": "crank",
@@ -47,9 +45,7 @@
       "componentSchemaVersion": 1,
       "operatingDomain": "mock",
       "modelSupport": "implemented",
-      "requiredCapabilities": [
-        "physical-port"
-      ],
+      "requiredCapabilities": ["physical-port"],
       "ports": [
         {
           "id": "input",
@@ -68,9 +64,7 @@
       "componentSchemaVersion": 1,
       "operatingDomain": "mock",
       "modelSupport": "implemented",
-      "requiredCapabilities": [
-        "physical-port"
-      ],
+      "requiredCapabilities": ["physical-port"],
       "ports": [
         {
           "id": "air-out",
@@ -90,9 +84,7 @@
       "componentSchemaVersion": 1,
       "operatingDomain": "mock",
       "modelSupport": "implemented",
-      "requiredCapabilities": [
-        "physical-port"
-      ],
+      "requiredCapabilities": ["physical-port"],
       "ports": [
         {
           "id": "throttle-out",
@@ -112,9 +104,7 @@
       "componentSchemaVersion": 1,
       "operatingDomain": "mock",
       "modelSupport": "implemented",
-      "requiredCapabilities": [
-        "physical-port"
-      ],
+      "requiredCapabilities": ["physical-port"],
       "ports": [
         {
           "id": "power",

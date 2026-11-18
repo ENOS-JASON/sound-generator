@@ -11,7 +11,13 @@ import { CapabilityRegistry } from './registry';
 
 const identifier = /^[a-z][a-z0-9-]{0,63}$/;
 const physicalKinds: readonly PortKind[] = [
-  'rotational', 'electrical', 'air', 'fuel', 'exhaustGas', 'thermal', 'control',
+  'rotational',
+  'electrical',
+  'air',
+  'fuel',
+  'exhaustGas',
+  'thermal',
+  'control',
 ];
 
 export class PortGraphError extends Error {
@@ -29,7 +35,12 @@ function id(value: unknown, path: string): string {
   }
   return value as string;
 }
-function boundedArray(value: unknown, min: number, max: number, path: string): readonly unknown[] {
+function boundedArray(
+  value: unknown,
+  min: number,
+  max: number,
+  path: string,
+): readonly unknown[] {
   if (!Array.isArray(value) || value.length < min || value.length > max) {
     fail(path, `expected ${min}-${max} items`);
   }
@@ -45,11 +56,20 @@ function validatePort(port: PhysicalPort, path: string): void {
   if (!['in', 'out', 'bidirectional'].includes(port.direction)) {
     fail(path, 'invalid port direction');
   }
-  if (typeof port.required !== 'boolean') fail(path, 'required must be boolean');
-  if (port.maxConnections !== undefined &&
-    (!Number.isSafeInteger(port.maxConnections) || port.maxConnections < 1 ||
-      port.maxConnections > 64)) fail(path, 'invalid connection limit');
-  if (port.kind === 'air' || port.kind === 'fuel' || port.kind === 'exhaustGas') {
+  if (typeof port.required !== 'boolean')
+    fail(path, 'required must be boolean');
+  if (
+    port.maxConnections !== undefined &&
+    (!Number.isSafeInteger(port.maxConnections) ||
+      port.maxConnections < 1 ||
+      port.maxConnections > 64)
+  )
+    fail(path, 'invalid connection limit');
+  if (
+    port.kind === 'air' ||
+    port.kind === 'fuel' ||
+    port.kind === 'exhaustGas'
+  ) {
     if (port.pressureBasis !== 'absolute' && port.pressureBasis !== 'gauge') {
       fail(path, 'pressure basis required');
     }
@@ -77,8 +97,18 @@ export function validatePortGraph(
   if (!graph || graph.schemaVersion !== PORT_GRAPH_VERSION) {
     fail('graph.schemaVersion', 'unsupported version');
   }
-  const components = boundedArray(graph.components, 1, 64, 'graph.components') as readonly ComponentNodeV1[];
-  const links = boundedArray(graph.links, 0, 256, 'graph.links') as PortGraphV1['links'];
+  const components = boundedArray(
+    graph.components,
+    1,
+    64,
+    'graph.components',
+  ) as readonly ComponentNodeV1[];
+  const links = boundedArray(
+    graph.links,
+    0,
+    256,
+    'graph.links',
+  ) as PortGraphV1['links'];
   const nodes = new Map<string, ComponentNodeV1>();
   const ports = new Map<string, PhysicalPort>();
   const counts = new Map<string, number>();
@@ -92,7 +122,12 @@ export function validatePortGraph(
     } catch (error) {
       fail(path, error instanceof Error ? error.message : 'invalid provider');
     }
-    for (const [j, raw] of boundedArray(node.ports, 0, 64, `${path}.ports`).entries()) {
+    for (const [j, raw] of boundedArray(
+      node.ports,
+      0,
+      64,
+      `${path}.ports`,
+    ).entries()) {
       const port = raw as PhysicalPort;
       validatePort(port, `${path}.ports[${j}]`);
       const key = endpointKey({ componentId: node.id, portId: port.id });
@@ -136,11 +171,15 @@ export function validatePortGraph(
     if (
       (a.kind === 'air' || a.kind === 'fuel' || a.kind === 'exhaustGas') &&
       a.pressureBasis !== b.pressureBasis
-    ) fail(path, 'pressure basis mismatch');
+    )
+      fail(path, 'pressure basis mismatch');
     if (a.kind === 'control' && a.signalType !== b.signalType) {
       fail(path, 'control signal type mismatch');
     }
-    for (const [key, port] of [[aKey, a], [bKey, b]] as const) {
+    for (const [key, port] of [
+      [aKey, a],
+      [bKey, b],
+    ] as const) {
       const next = (counts.get(key) ?? 0) + 1;
       if (next > (port.maxConnections ?? 1)) {
         fail(path, 'connection limit exceeded');
@@ -152,21 +191,27 @@ export function validatePortGraph(
       byComponent = new Map();
       adjacency.set(a.kind, byComponent);
     }
-    for (const [from, to] of [[aId, bId], [bId, aId]] as const) {
+    for (const [from, to] of [
+      [aId, bId],
+      [bId, aId],
+    ] as const) {
       const neighbours = byComponent.get(from) ?? new Set<string>();
       neighbours.add(to);
       byComponent.set(from, neighbours);
     }
   }
   for (const [key, port] of ports) {
-    if (port.required && counts.get(key) === 0) fail(key, 'required port disconnected');
+    if (port.required && counts.get(key) === 0)
+      fail(key, 'required port disconnected');
   }
   for (const [i, requiredPath] of (graph.requiredPaths ?? []).entries()) {
     const path = `graph.requiredPaths[${i}]`;
     const from = id(requiredPath.fromComponentId, `${path}.fromComponentId`);
     const to = id(requiredPath.toComponentId, `${path}.toComponentId`);
-    if (!nodes.has(from) || !nodes.has(to)) fail(path, 'unknown path component');
-    if (!physicalKinds.includes(requiredPath.kind)) fail(path, 'unknown path kind');
+    if (!nodes.has(from) || !nodes.has(to))
+      fail(path, 'unknown path component');
+    if (!physicalKinds.includes(requiredPath.kind))
+      fail(path, 'unknown path kind');
     const adjacencyForKind = adjacency.get(requiredPath.kind);
     const visited = new Set([from]);
     const queue = [from];
@@ -179,7 +224,8 @@ export function validatePortGraph(
         }
       }
     }
-    if (from === to || !visited.has(to)) fail(path, 'missing required physical path');
+    if (from === to || !visited.has(to))
+      fail(path, 'missing required physical path');
   }
   return graph;
 }

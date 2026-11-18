@@ -78,8 +78,14 @@ export function checkRotationalPowerBalance(
   }
   const dissipated = finite(options.dissipatedPowerW ?? 0, 'dissipatedPowerW');
   const stored = finite(options.storedEnergyRateW ?? 0, 'storedEnergyRateW');
-  const absolute = finite(options.absoluteToleranceW ?? 1e-9, 'absoluteToleranceW');
-  const relative = finite(options.relativeTolerance ?? 1e-9, 'relativeTolerance');
+  const absolute = finite(
+    options.absoluteToleranceW ?? 1e-9,
+    'absoluteToleranceW',
+  );
+  const relative = finite(
+    options.relativeTolerance ?? 1e-9,
+    'relativeTolerance',
+  );
   if (dissipated < 0 || absolute < 0 || relative < 0) {
     throw new RangeError('dissipation/tolerances must be nonnegative');
   }

@@ -1,9 +1,6 @@
 import type { VehicleDefinitionV2 } from '../../contracts/vehicle-definition';
 
-type EngineBanks = Pick<
-  VehicleDefinitionV2['engine'],
-  'banks' | 'firingOrder'
->;
+type EngineBanks = Pick<VehicleDefinitionV2['engine'], 'banks' | 'firingOrder'>;
 
 export interface CylinderPosition {
   readonly cylinderId: number;
