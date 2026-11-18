@@ -20,7 +20,7 @@
 **Required references:** [01](../01-architecture.md), [26](../26-multipage-ui-and-floating-widgets.md), [30](../30-agent-handoff-contracts-and-decisions.md).
 **Acceptance checklist — AG-M0-01** (all unchecked until verified):
 
-- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [x] **Scoped deliverable and dependencies:** foundation implemented within AG-M0-01 owned area; no earlier task prerequisite. Owner accepted ADR-002 on 2026-11-18 (four choices recorded in `plan/decisions/ADR-002.md`); CI evidence: [44308478199](https://github.com/ENOS-JASON/sound-generator/actions/runs/44308478199).
 - [x] Clean install — GitHub Actions run 44308222186: `npm ci --no-audit --no-fund` passed (156 packages from committed lockfile).
 - [x] typecheck, unit test and static build pass — GitHub Actions run 44308222186: typecheck 0 errors/warnings; 3 tests passed; Vite production build succeeded.
 - [x] base path is not hard-coded in components. Hash-only hrefs are defined in `src/app/routing.ts`; the Pages base is configured in `vite.config.ts` and tested with alternate-base fixture.
