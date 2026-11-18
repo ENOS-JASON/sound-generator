@@ -3,8 +3,8 @@ import type {
   ComponentNodeV1,
   ProviderRegistration,
   SupportDomain,
-} from '../../contracts/ports/index';
-import type { ModelSupport } from '../../contracts/vehicle-definition';
+} from '../../contracts/ports/index.ts';
+import type { ModelSupport } from '../../contracts/vehicle-definition.ts';
 
 const identifier = /^[a-z][a-z0-9-]{0,63}$/;
 const supports: readonly ModelSupport[] = [

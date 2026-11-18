@@ -1,4 +1,4 @@
-import type { VehicleDefinitionV2 } from '../../contracts/vehicle-definition';
+import type { VehicleDefinitionV2 } from '../../contracts/vehicle-definition.ts';
 
 type EngineBanks = Pick<VehicleDefinitionV2['engine'], 'banks' | 'firingOrder'>;
 

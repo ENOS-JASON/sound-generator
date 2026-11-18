@@ -6,8 +6,8 @@ import {
   type PortEndpoint,
   type PortGraphV1,
   type PortKind,
-} from '../../contracts/ports/index';
-import { CapabilityRegistry } from './registry';
+} from '../../contracts/ports/index.ts';
+import { CapabilityRegistry } from './registry.ts';
 
 const identifier = /^[a-z][a-z0-9-]{0,63}$/;
 const physicalKinds: readonly PortKind[] = [

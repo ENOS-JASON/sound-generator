@@ -1,4 +1,4 @@
-import type { ModelSupport } from '../vehicle-definition';
+import type { ModelSupport } from '../vehicle-definition.ts';
 
 /** Graph contract is additive to VehicleDefinitionV2 (ADR-003), not a v2 migration. */
 export const PORT_GRAPH_VERSION = 1 as const;
