@@ -1,4 +1,4 @@
-import type { VehicleDefinitionV2 } from '../../contracts/vehicle-definition.ts';
+import type { VehicleDefinitionV2 } from '../../contracts/vehicle-definition';
 
 type EngineBanks = Pick<
   VehicleDefinitionV2['engine'],
