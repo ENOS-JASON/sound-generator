@@ -46,13 +46,13 @@
 **Required references:** [01](../01-architecture.md), [26](../26-multipage-ui-and-floating-widgets.md), [31](../31-integration-gates-and-support-matrix.md).
 **Acceptance checklist — AG-M0-02** (all unchecked until verified):
 
-- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] CI builds deployable artifact
-- [ ] verify nested /sound-generator/ path and hash route on HTTPS preview
-- [ ] no credential required by browser.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **Scoped deliverable and dependencies:** work limited to AG-M0-02 build/Pages workflow, smoke fixture and report; consumes ADR-002 and merged AG-M0-01 code (PR #1, merge SHA `394b5228cbf9dc0c51a0c3a935458f88a9c97085`). AG-M0-01 COMPLETE tracking still unreconciled on `main`.
+- [x] CI builds deployable artifact — [PR CI run 44315805900](https://github.com/ENOS-JASON/sound-generator/actions/runs/44315805900) ran `npm ci`, `npm run check`, Vite build and uploaded `ag-m0-02-static-site` artifact `14431593642`. Actual Pages upload is restricted to `main` and pending merge.
+- [x] verify nested /sound-generator/ path and hash route on HTTPS preview — [run 44315805900](https://github.com/ENOS-JASON/sound-generator/actions/runs/44315805900): headless Chromium over local self-signed HTTPS rendered `#/drive` twice, `#/diagnostics`, `#/settings`; checked production `/sound-generator/assets/` paths.
+- [x] no credential required by browser. CI Chromium fresh anonymous profiles loaded HTTPS preview without token/cookie; public anonymous access remains pending deploy and is separately checked by `tests/pages-smoke.mjs live`.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). See `tests/pages-smoke.mjs`, `plan/agents/reports/AG-M0-02.md` and PR #2.
+- [x] **Positive-path test/fixture:** [PR CI 44315805900](https://github.com/ENOS-JASON/sound-generator/actions/runs/44315805900) `node tests/pages-smoke.mjs static` and `https` passed nested asset loading and positive browser hash routes, including repeat-load.
+- [x] **Negative/invalid-path test/fixture:** [PR CI 44315805900](https://github.com/ENOS-JASON/sound-generator/actions/runs/44315805900) verified `#/missing` renders `Unknown route` and nonhash `/sound-generator/drive` is HTTP 404 (no history rewrite).
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
