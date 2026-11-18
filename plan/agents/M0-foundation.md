@@ -25,8 +25,8 @@
 - [ ] typecheck, unit test and static build pass
 - [ ] base path is not hard-coded in components.
 - [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result. See `tests/routing.test.mjs` and `plan/agents/reports/AG-M0-01.md` (3/3 node tests).
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result. See invalid hash cases in `tests/fixtures/hash-route-cases.json` and executed Node TAP output in handoff.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
