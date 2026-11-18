@@ -22,7 +22,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-01b
 
@@ -43,7 +43,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-01c
 
@@ -63,7 +63,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-01d
 
@@ -83,7 +83,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-01e
 
@@ -103,7 +103,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-02a
 
@@ -123,7 +123,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-02b
 
@@ -144,7 +144,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-02c
 
@@ -164,7 +164,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-02d
 
@@ -184,7 +184,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-02e
 
@@ -204,7 +204,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-03a
 
@@ -224,7 +224,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-03b
 
@@ -244,7 +244,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-03c
 
@@ -265,7 +265,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-03d
 
@@ -285,7 +285,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-04a
 
@@ -305,7 +305,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-04b
 
@@ -326,7 +326,7 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M9P-04c
 
@@ -347,4 +347,4 @@ For each card follow [30 — agent contracts](../30-agent-handoff-contracts-and-
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
+- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
