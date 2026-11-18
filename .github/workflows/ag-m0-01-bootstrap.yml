@@ -1,0 +1,32 @@
+name: AG-M0-01 foundation checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - agent/AG-M0-01-svelte-vite-foundation
+
+permissions:
+  contents: read
+
+jobs:
+  foundation:
+    name: Install, typecheck, lint, test, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify foundation
+        run: npm run check
+      - name: Preserve verified build
+        uses: actions/upload-artifact@v4
+        with:
+          name: ag-m0-01-dist
+          path: dist/
+          if-no-files-found: error

@@ -20,14 +20,14 @@
 **Required references:** [01](../01-architecture.md), [26](../26-multipage-ui-and-floating-widgets.md), [30](../30-agent-handoff-contracts-and-decisions.md).
 **Acceptance checklist — AG-M0-01** (all unchecked until verified):
 
-- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] Clean install
-- [ ] typecheck, unit test and static build pass
-- [ ] base path is not hard-coded in components.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [x] **Scoped deliverable and dependencies:** foundation implemented within AG-M0-01 owned area; no earlier task prerequisite. Owner accepted ADR-002 on 2026-11-18 (four choices recorded in `plan/decisions/ADR-002.md`); CI evidence: [44308478199](https://github.com/ENOS-JASON/sound-generator/actions/runs/44308478199).
+- [x] Clean install — GitHub Actions run 44308222186: `npm ci --no-audit --no-fund` passed (156 packages from committed lockfile).
+- [x] typecheck, unit test and static build pass — GitHub Actions run 44308222186: typecheck 0 errors/warnings; 3 tests passed; Vite production build succeeded.
+- [x] base path is not hard-coded in components. Hash-only hrefs are defined in `src/app/routing.ts`; the Pages base is configured in `vite.config.ts` and tested with alternate-base fixture.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent). See `tests/routing.test.mjs`, `tests/fixtures/hash-route-cases.json`, and `plan/agents/reports/AG-M0-01.md` in PR #1.
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result. See `tests/routing.test.mjs` and `plan/agents/reports/AG-M0-01.md` (3/3 node tests).
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result. See invalid hash cases in `tests/fixtures/hash-route-cases.json` and executed Node TAP output in handoff.
+- [x] **CI + artifacts:** GitHub Actions run [44308222186](https://github.com/ENOS-JASON/sound-generator/actions/runs/44308222186) passed all applicable foundation checks; uploaded `ag-m0-01-dist` artifact 14428269976 and committed fixtures/handoff report. Browser/Pages smoke not claimed (AG-M0-02).
 - [ ] **Independent review and merge:** authorized AI integrator reviewed the exact PR/commit; any major ADR/shared API/ownership change has owner approval; required CI and branch checks passed; merged commit SHA recorded.
 
 ### AG-M0-02
