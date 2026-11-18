@@ -26,19 +26,34 @@ function verifyStaticArtifact() {
   assert.ok(existsSync(indexPath), 'Vite build must produce dist/index.html');
   const html = readFileSync(indexPath, 'utf8');
   assert.match(html, /<title>Sound Generator<\/title>/);
-  assert.doesNotMatch(html, /src=["']\/src\//, 'development scripts cannot ship');
-  const assets = [...html.matchAll(/(?:src|href)="(\/sound-generator\/assets\/[^"]+)"/g)].map(
-    (match) => match[1],
+  assert.doesNotMatch(
+    html,
+    /src=["']\/src\//,
+    'development scripts cannot ship',
   );
+  const assets = [
+    ...html.matchAll(/(?:src|href)="(\/sound-generator\/assets\/[^"]+)"/g),
+  ].map((match) => match[1]);
   assert.ok(assets.length >= 2, 'compiled JS and CSS must use the Pages base');
   for (const asset of assets) {
     const localFile = resolve(outputDirectory, asset.slice(sitePath.length));
-    assert.ok(localFile.startsWith(outputDirectory + sep), 'asset escaped dist/');
+    assert.ok(
+      localFile.startsWith(outputDirectory + sep),
+      'asset escaped dist/',
+    );
     assert.ok(existsSync(localFile), `missing compiled asset: ${asset}`);
   }
-  assert.ok(assets.some((asset) => asset.endsWith('.js')), 'JS asset required');
-  assert.ok(assets.some((asset) => asset.endsWith('.css')), 'CSS asset required');
-  console.log(`PASS: nested base paths and ${assets.length} local assets; no /src/ references`);
+  assert.ok(
+    assets.some((asset) => asset.endsWith('.js')),
+    'JS asset required',
+  );
+  assert.ok(
+    assets.some((asset) => asset.endsWith('.css')),
+    'CSS asset required',
+  );
+  console.log(
+    `PASS: nested base paths and ${assets.length} local assets; no /src/ references`,
+  );
   return assets;
 }
 
@@ -58,7 +73,9 @@ function findChrome() {
       // Try the next installed browser.
     }
   }
-  throw new Error('Chromium/Chrome executable unavailable: HTTPS browser check cannot pass');
+  throw new Error(
+    'Chromium/Chrome executable unavailable: HTTPS browser check cannot pass',
+  );
 }
 
 function serveFile(request, response) {
@@ -87,12 +104,13 @@ function serveFile(request, response) {
     response.end('Not found');
     return;
   }
-  const contentType = {
-    '.html': 'text/html; charset=utf-8',
-    '.js': 'text/javascript; charset=utf-8',
-    '.css': 'text/css; charset=utf-8',
-    '.svg': 'image/svg+xml',
-  }[extname(filePath)] ?? 'application/octet-stream';
+  const contentType =
+    {
+      '.html': 'text/html; charset=utf-8',
+      '.js': 'text/javascript; charset=utf-8',
+      '.css': 'text/css; charset=utf-8',
+      '.svg': 'image/svg+xml',
+    }[extname(filePath)] ?? 'application/octet-stream';
   response.writeHead(200, { 'Content-Type': contentType });
   response.end(readFileSync(filePath));
 }
@@ -178,9 +196,13 @@ async function verifyHttpsPreview() {
         new RegExp(`<h1[^>]*>\\s*${heading}\\s*</h1>`),
         `HTTPS browser route ${fragment} did not render expected heading`,
       );
-      console.log(`PASS: HTTPS headless browser ${fragment} renders ${heading}`);
+      console.log(
+        `PASS: HTTPS headless browser ${fragment} renders ${heading}`,
+      );
     }
-    console.log('PASS: HTTPS nested-path direct links, repeat-load, invalid route, no history fallback');
+    console.log(
+      'PASS: HTTPS nested-path direct links, repeat-load, invalid route, no history fallback',
+    );
   } finally {
     if (server) {
       await new Promise((done) => server.close(done));
@@ -202,16 +224,27 @@ async function verifyPublicSite() {
         const response = await fetch(new URL(fragment, base), {
           cache: 'no-store',
         });
-        assert.equal(response.status, 200, `public route ${fragment} not reachable`);
+        assert.equal(
+          response.status,
+          200,
+          `public route ${fragment} not reachable`,
+        );
         const html = await response.text();
         assert.match(html, /<title>Sound Generator<\/title>/);
-        const match = html.match(/(?:src|href)="(\/sound-generator\/assets\/[^"]+\.js)"/);
+        const match = html.match(
+          /(?:src|href)="(\/sound-generator\/assets\/[^"]+\.js)"/,
+        );
         assert.ok(match, 'Page did not serve versioned Vite assets');
         const assetResponse = await fetch(new URL(match[1], base.origin));
         assert.equal(assetResponse.status, 200, 'public JS asset inaccessible');
-        assert.match(assetResponse.headers.get('content-type') ?? '', /javascript/);
+        assert.match(
+          assetResponse.headers.get('content-type') ?? '',
+          /javascript/,
+        );
       }
-      console.log(`PASS: public unauthenticated HTTPS at ${base.href} with hash routes and JS assets`);
+      console.log(
+        `PASS: public unauthenticated HTTPS at ${base.href} with hash routes and JS assets`,
+      );
       return;
     } catch (error) {
       latestError = error;
