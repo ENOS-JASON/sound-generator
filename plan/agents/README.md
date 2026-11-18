@@ -2,6 +2,8 @@
 
 **For a developer agent receiving one task with no previous chat history:** this folder is the implementation handoff. Read [approved Round 1](../decisions/USER-APPROVED-ROUND-01.md), [Round 2](../decisions/USER-APPROVED-ROUND-02.md), [Round 3](../decisions/USER-APPROVED-ROUND-03.md) and **[approved O3 implementation decisions](../decisions/USER-APPROVED-O3-IMPLEMENTATION-DECISIONS.md)** before older proposals. The [O3 questionnaire](../decisions/OPEN-IMPLEMENTATION-QUESTIONS-AFTER-ROUND-03.md) is historical: **all 15 answered**. [Remaining implementation verification](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md) is open. Do not interpret the [roadmap](../08-implementation-roadmap.md) as enough detail by itself.
 
+**Additional owner requirement:** [per-stat display units](../decisions/USER-APPROVED-PER-STAT-DISPLAY-UNITS-2026-11-18.md) must permit independently mixed metric/imperial power, torque, pressure and other vehicle statistics, including per-channel overrides; the solver and traces remain SI. Relevant M0/M3 card acceptance criteria and the roadmap are updated; this requirement does not complete an AG task.
+
 ## Per-agent checkbox tracking (required)
 
 Every one of the **172 AG cards** has a valid GitHub Markdown `- [ ] **AG-... COMPLETE**` task checkbox directly below its existing `### AG-...` anchor. Its original acceptance/evidence sentence(s) were preserved as **individually checkable criteria**, followed by separate positive-test, negative-test, CI/artifact and approval and verified merge evidence checkboxes.
