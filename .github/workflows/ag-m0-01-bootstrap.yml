@@ -19,14 +19,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Bootstrap dependency installation
-        run: npm install --no-audit --no-fund
-      - name: Export generated lockfile for follow-up commit
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ag-m0-01-package-lock
-          path: package-lock.json
-          if-no-files-found: warn
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
       - name: Verify foundation
         run: npm run check
+      - name: Preserve verified build
+        uses: actions/upload-artifact@v4
+        with:
+          name: ag-m0-01-dist
+          path: dist/
+          if-no-files-found: error
