@@ -56,7 +56,7 @@ Subsystem connections must be bidirectional for load reactions where physically 
 
 ## Power displays and dyno configurations
 
-- **Live crank power and torque**, normalized/corrected dyno curves, wheel torque/hp, engine acceleration/road load, parasitic loss breakdown and per-cylinder indicated torque when available.
+- **Live crank power and torque**, normalized/corrected dyno curves, wheel torque/hp, engine acceleration/road load, parasitic loss breakdown and per-cylinder indicated torque when available. Use **independently selected display units** for power (W/kW/mechanical hp/PS) and torque (N·m/lb-ft/lb-in), not an all-or-nothing metric/imperial mode; charts, tooltips and exported human-readable results must name the active units. Derived physical power remains SI in the solver.
 - Engine dyno: configurable dynamometer resisting torque/speed; steady-state torque curve with stabilization interval and gear detached.
 - Chassis dyno: modeled rollers, tires, drivetrain losses and tire slip; reported wheel measurement, not mislabeled crank hp.
 - Inertial sweep: accounted inertia and sampling protocol, clearly labeled estimated power and limitation; no misleading peak figure from uncorrected angular acceleration.
@@ -72,6 +72,7 @@ Subsystem connections must be bidirectional for load reactions where physically 
 - [ ] A worn starter and weak battery reduce available cranking torque through electrical equations, not an arbitrary RPM clamp.
 - [ ] Forced induction can change mass flow and torque but accounts for compressor drive/electrical use or exhaust energy transfer.
 - [ ] Audio/source gain edits, camera/2D switching and visualization smoothing do not change physical torque, hp or loads.
+- [ ] Switching power from kW to mechanical hp while independently displaying torque in N·m or lb-ft leaves canonical SI torque/power and dyno comparisons identical; verify mechanical hp differs from metric PS and correct precision/labels appear in each readout.
 - [ ] Optional electric motors and regen have a separate battery/energy ledger.
 - [ ] Under controlled operating points, calculated torque/power agree with audited model/measurement data within documented error bounds; no unsupported precision claim.
 

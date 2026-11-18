@@ -115,7 +115,7 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 **Original roadmap task:** Implement **M3-A guided wizard**: template/start-blank, contextual step navigation, Basic/Advanced mode, validated fields, allowed values, unit-aware inputs, derived bore/stroke/displacement and live bank/mixer preview.
 
-**Bounded deliverable:** Wizard template or blank, Back/Next, validity summaries, unit-aware numeric input and derived bore/stroke preview.
+**Bounded deliverable:** Wizard template or blank, Back/Next, validity summaries, unit-aware numeric input and derived bore/stroke preview. Each numeric input/derived display uses AG-M0-06 compatible field-unit metadata and the user's independently selected quantity/field override; changing display units must not change SI geometry.
 
 **Required upstream evidence:** AG-M0-06, AG-M0-07, AG-M3-03. Missing prerequisites block live integration, not isolated fixture tests.
 
@@ -126,6 +126,7 @@ UI agents consume the frozen framework/router choice and immutable state project
 - [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
 - [ ] I4 86-mm geometry created in GUI, invalid rod and unsupported ECU option blocked
 - [ ] draft save/resume.
+- [ ] User can display bore in inches and displacement in liters while power is hp, torque N·m and boost psi; independently switching one field preserves the exact SI geometry and other chosen units, with matching labels and conversion/invalid-unit browser tests.
 - [ ] Include a negative case and runnable test/fixture
 - [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
@@ -246,7 +247,7 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 **Original roadmap task:** Add start/stop, throttle, ignition, load and preset editor UI with SI conversions; applying configuration to an active simulation requires a validated reset/safe boundary.
 
-**Bounded deliverable:** Drive/ignition/throttle/load/preset controls with validated tick-stamped command dispatch and an accessible `physical` / `pitch-preserved` slow-motion audio switch.
+**Bounded deliverable:** Drive/ignition/throttle/load/preset controls with validated tick-stamped command dispatch and an accessible `physical` / `pitch-preserved` slow-motion audio switch. Vehicle readouts/editable loads consume independently selected display units for their respective statistic/metric IDs, convert edits back to SI, and retain the other unit preferences unchanged.
 
 **Required upstream evidence:** AG-M3-03, G1 and AG-M2-05 for the working audio mode selector. Missing prerequisites block live integration, not isolated fixture tests.
 
@@ -259,6 +260,7 @@ UI agents consume the frozen framework/router choice and immutable state project
 - [ ] applying geometry requires safe reset
 - [ ] 0.1x controls and audio mode changes recorded with sim tick
 - [ ] switching audio mode does not change torque or physics events.
+- [ ] Switching only a Drive torque/pressure display unit while the simulation is running updates the label and value but leaves physical state, commands and event ordering identical; invalid dimension and gauge/absolute conversions are refused.
 - [ ] Include a negative case and runnable test/fixture
 - [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
@@ -272,7 +274,7 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 **Original roadmap task:** Add RPM/crank and wheel torque/hp/kW plus component loss meter, read-only event timeline, mixer channel/bus/master editor and 2D/3D/telemetry switch; no renderer may drive physics.
 
-**Bounded deliverable:** RPM/torque/hp/energy/events and diagnostics graphs wired to core projection.
+**Bounded deliverable:** RPM/torque/hp/energy/events and diagnostics graphs wired to core projection. Render each applicable statistic in its independently selected unit (e.g., hp, lb-ft, kPa or psi), with channel-level overrides, axis/tooltip/legend unit labels and unmodified SI telemetry.
 
 **Required upstream evidence:** AG-M3-03, AG-M0-11a, G1. Missing prerequisites block live integration, not isolated fixture tests.
 
@@ -283,6 +285,7 @@ UI agents consume the frozen framework/router choice and immutable state project
 - [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
 - [ ] Crank vs wheel power labels correct and imported telemetry overlays
 - [ ] unsubscribed charts don't alter physics.
+- [ ] Simultaneous mixed hp, N·m and psi widgets/graphs resolve from independent unit preferences; two pressure channels can show different units without changing source values, and incompatible unit/pressure-basis requests fail visibly.
 - [ ] Include a negative case and runnable test/fixture
 - [ ] submit the completion report from [30 §6](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 - [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
@@ -409,11 +412,11 @@ UI agents consume the frozen framework/router choice and immutable state project
 
 **Roadmap source:** Wire versioned IndexedDB autosave and recovery into the Svelte configurator, sessions, audio settings and movable widgets, with optional ZIP snapshots.
 
-**Precise deliverable:** Use the AG-M0-18 store to autosave editable vehicle/preset/control selection, scenario draft, user mix, expert-calibration profile references, perspective selection, widget layout and bounded debug metadata; show saved/unsaved/recovery/quota failure states. Expose explicit export/import of ZIP snapshot via AG-M0-13; never autosave enormous offline research. On first empty storage load **mechanical carb I4**; restoring previously saved EFI must win over factory default. Do not write a second persistence service.
+**Precise deliverable:** Use the AG-M0-18 store to autosave editable vehicle/preset/control selection, scenario draft, user mix, expert-calibration profile references, perspective selection, **versioned independent per-stat display-unit preferences and per-channel overrides**, widget layout and bounded debug metadata; show saved/unsaved/recovery/quota failure states. Expose explicit export/import of ZIP snapshot via AG-M0-13; never autosave enormous offline research. On first empty storage load **mechanical carb I4**; restoring previously saved EFI must win over factory default. Do not write a second persistence service.
 
 **Inputs / prerequisites:** AG-M0-18 store, AG-M0-13 archive codec, AG-M1-12 two editable I4 presets; UI card AG-M3-04/05a/05c/08b; calibration/listener choices available or mock state bound to frozen contracts.
 
-**Owned files/modules:** `src/ui-shell/workspace-persistence/, src/ui-pages/presets/autosave/, tests/browser/workspace-recovery`; other agent contract directories are outside this card without an accepted owner-approved ADR.
+**Owned files/modules:** `src/ui-shell/workspace-persistence/, src/ui-pages/presets/autosave/, tests/browser/workspace-recovery` (including Settings display-unit controls); other agent contract directories are outside this card without an accepted owner-approved ADR.
 
 **Required reading:** [22](../22-guided-vehicle-configurator.md), [25](../25-core-diagnostics-recording-and-comparison.md), [26](../26-multipage-ui-and-floating-widgets.md), [agent handoff contract](../30-agent-handoff-contracts-and-decisions.md), [integration gates](../31-integration-gates-and-support-matrix.md), [approved Round 3](../decisions/USER-APPROVED-ROUND-03.md), [open technical validation](../decisions/OPEN-VERIFICATION-AFTER-O3-APPROVAL.md).
 
@@ -423,6 +426,7 @@ UI agents consume the frozen framework/router choice and immutable state project
 - [ ] New first launch chooses carb, user switches EFI and edits bore/mix, reload restores EFI and edits
 - [ ] corrupted record produces error and safe recovery, private mode/storage unavailable prompts ZIP export, quota error preserves previous good state.
 - [ ] ZIP snapshot roundtrip yields same typed settings
+- [ ] Settings exposes independent unit selectors for power, torque, pressure, temperature, speed and other registered vehicle stats, with per-metric overrides; selections persist through reload and ZIP, invalid/old preference records recover safely, and a Metric/US convenience preset never locks mixed choices.
 - [ ] no audio callback blocking.
 - [ ] Supply at least one positive and one negative fixture, actual test results, a versioned output/trace or UI evidence, and the [completion report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 - [ ] Status is **blocked / fixture-only** rather than complete if required runtime, rights or credentials are unverified.
