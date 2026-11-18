@@ -58,7 +58,7 @@
 
 ### AG-M0-03
 
-- [ ] **AG-M0-03 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-03 COMPLETE** — all scoped acceptance items, tests and integration checks passed; owner-authorized [PR #4](https://github.com/ENOS-JASON/sound-generator/pull/4) merged by `ENOS-JASON` (SHA `7ac235c4f5acf77ecdb701b2cb6011da2b752f72`), [PR CI 44349036872](https://github.com/ENOS-JASON/sound-generator/actions/runs/44349036872) and [main CI 44372268856](https://github.com/ENOS-JASON/sound-generator/actions/runs/44372268856) passed; completion recorded post-merge.
 
 **Approved Round 3 acceptance:** First runnable I4 presets are **two editable vehicle graphs**, carb/mechanical/no-ECU factory selection and EFI/ECU alternative (final published examples delivered by `AG-M1-12`). Do not turn factory default into a hardcoded override of the user-selected IndexedDB workspace. See [owner-approved Round 3](../decisions/USER-APPROVED-ROUND-03.md).
 
@@ -83,7 +83,7 @@
 - [x] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+- [x] **Approval and verified merge:** project owner authorized merge; GitHub confirms [PR #4](https://github.com/ENOS-JASON/sound-generator/pull/4) merged by `ENOS-JASON` at `7ac235c4f5acf77ecdb701b2cb6011da2b752f72`. Required [PR CI 44349036872](https://github.com/ENOS-JASON/sound-generator/actions/runs/44349036872) and merged [main CI 44372268856](https://github.com/ENOS-JASON/sound-generator/actions/runs/44372268856) passed. ADR-003 accepted by owner approval/merge; no separate Markdown edit required of owner.
 
 ### AG-M0-04
 

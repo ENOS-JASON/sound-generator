@@ -32,7 +32,7 @@ See [agent contracts and working proposals](../30-agent-handoff-contracts-and-de
 |---|---|---|
 | ADR-001 | **Benchmark Worklet-owned and Worker-owned physics fairly; owner approves the final single owner** (UD-R1-02; open) | **`AG-M0-10` accountable**, `AG-M0-09` consulted |
 | ADR-002 | **Svelte + Vite with hash routes approved** (UD-R1-03, UD-R2-02); store/versions/component library remain open | `AG-M0-01` |
-| ADR-003 | Canonical VehicleDefinition v2 schema and legacy-v1 migration disposition | **`AG-M0-03` accountable**, `AG-M0-04` consulted |
+| ADR-003 | **ACCEPTED** — canonical VehicleDefinition v2 schema and legacy-v1 migration disposition ([owner-merged PR #4](https://github.com/ENOS-JASON/sound-generator/pull/4), merge `7ac235c4f5acf77ecdb701b2cb6011da2b752f72`) | **`AG-M0-03` accountable**, `AG-M0-04` consulted |
 | ADR-004 | Event/command IDs and control-plane aliasing | `AG-M0-09` |
 | ADR-005 | **Both audio modes; default pitch-lowered physical slowdown** approved (UD-R1-07, UD-R2-03); DSP budget/persistence open | **`AG-M0-10` accountable**, `AG-M0-12` consulted |
 | ADR-006 | **ZIP first** with JSON manifest/chunks; only select optional **Parquet/HDF5 after measured study needs** and owner review (O3-11 C); codec/container details open | `AG-M0-13` |
