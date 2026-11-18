@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 2,
+  "runId": "fixture-run",
+  "sequence": 1,
+  "simulationTick": 10,
+  "simulationTimeSeconds": 0.01,
+  "type": "STARTER_ENGAGED",
+  "sourceComponentId": "starter",
+  "causationId": "cmd-key-on",
+  "correlationId": null,
+  "payload": {
+    "starterTorqueNm": 120
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ENOS-JASON/sound-generator/blob/main/src/contracts/vehicle-definition.v2.schema.json",
+  "title": "VehicleDefinition v2 (structural)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "label",
+    "seed",
+    "engine",
+    "control",
+    "electrical",
+    "driveline",
+    "manifest"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "id": {
+      "$ref": "#/$defs/id"
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "componentId",
+        "family",
+        "banks",
+        "firingOrder",
+        "boreMeters",
+        "strokeMeters",
+        "connectingRodMeters",
+        "compressionRatio"
+      ],
+      "properties": {
+        "componentId": {
+          "$ref": "#/$defs/id"
+        },
+        "family": {
+          "const": "spark-four-stroke"
+        },
+        "banks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/$defs/bank"
+          }
+        },
+        "firingOrder": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          }
+        },
+        "boreMeters": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 0.5
+        },
+        "strokeMeters": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 0.5
+        },
+        "connectingRodMeters": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 1
+        },
+        "compressionRatio": {
+          "type": "number",
+          "minimum": 1.01,
+          "maximum": 30
+        }
+      }
+    },
+    "control": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "carburetorId",
+            "distributorId"
+          ],
+          "properties": {
+            "kind": {
+              "const": "mechanical"
+            },
+            "carburetorId": {
+              "$ref": "#/$defs/id"
+            },
+            "distributorId": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "ecuId",
+            "efiId",
+            "ignitionCoilId",
+            "fuelMapId",
+            "sparkMapId"
+          ],
+          "properties": {
+            "kind": {
+              "const": "ecu"
+            },
+            "ecuId": {
+              "$ref": "#/$defs/id"
+            },
+            "efiId": {
+              "$ref": "#/$defs/id"
+            },
+            "ignitionCoilId": {
+              "$ref": "#/$defs/id"
+            },
+            "fuelMapId": {
+              "$ref": "#/$defs/id"
+            },
+            "sparkMapId": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        }
+      ]
+    },
+    "electrical": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batteryId",
+        "starterId",
+        "starterCranksEngineId",
+        "starterPoweredByBatteryId",
+        "batteryNominalVolts",
+        "starterMaxTorqueNm"
+      ],
+      "properties": {
+        "batteryId": {
+          "$ref": "#/$defs/id"
+        },
+        "starterId": {
+          "$ref": "#/$defs/id"
+        },
+        "starterCranksEngineId": {
+          "$ref": "#/$defs/id"
+        },
+        "starterPoweredByBatteryId": {
+          "$ref": "#/$defs/id"
+        },
+        "batteryNominalVolts": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "starterMaxTorqueNm": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 100000
+        }
+      }
+    },
+    "driveline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "engineId",
+        "clutchId",
+        "gearboxId",
+        "drivenAxleId",
+        "roadLoadId",
+        "forwardGearRatios",
+        "finalDriveRatio",
+        "vehicleMassKg",
+        "wheelRadiusMeters"
+      ],
+      "properties": {
+        "kind": {
+          "const": "manual"
+        },
+        "engineId": {
+          "$ref": "#/$defs/id"
+        },
+        "clutchId": {
+          "$ref": "#/$defs/id"
+        },
+        "gearboxId": {
+          "$ref": "#/$defs/id"
+        },
+        "drivenAxleId": {
+          "$ref": "#/$defs/id"
+        },
+        "roadLoadId": {
+          "$ref": "#/$defs/id"
+        },
+        "forwardGearRatios": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 100
+          }
+        },
+        "finalDriveRatio": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 100
+        },
+        "vehicleMassKg": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 1000000
+        },
+        "wheelRadiusMeters": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 10
+        }
+      }
+    },
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "components"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 2
+        },
+        "components": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/component"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "bank": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "angleRadians",
+        "cylinderIds"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "angleRadians": {
+          "type": "number",
+          "minimum": -3.141592653589793,
+          "maximum": 3.141592653589793
+        },
+        "cylinderIds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          }
+        }
+      }
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "componentSchemaVersion",
+        "modelSupport"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "engine",
+            "carburetor",
+            "distributor",
+            "ecu",
+            "efi",
+            "ignition-coil",
+            "battery",
+            "starter",
+            "clutch",
+            "manual-gearbox",
+            "driven-axle",
+            "road-load"
+          ]
+        },
+        "componentSchemaVersion": {
+          "const": 1
+        },
+        "modelSupport": {
+          "enum": [
+            "implemented",
+            "approximate",
+            "planned",
+            "unsupported"
+          ]
+        }
+      }
+    }
+  }
+}
