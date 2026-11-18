@@ -1,0 +1,26 @@
+name: AG-M0-04 temporary formatting extraction
+on:
+  push:
+    branches:
+      - agent/ag-m0-04-port-graph-contracts
+permissions:
+  contents: read
+jobs:
+  emit-formatted:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Format and report only files modified by task
+        shell: bash
+        run: |
+          npm exec prettier -- --write src/core/physics-ports/cylinders.ts src/core/physics-ports/graph.ts src/core/physics-ports/power.ts tests/port-graph.test.mjs tests/fixtures/contracts/port-graph.v1.json
+          for file in src/core/physics-ports/cylinders.ts src/core/physics-ports/graph.ts src/core/physics-ports/power.ts tests/port-graph.test.mjs tests/fixtures/contracts/port-graph.v1.json; do
+            echo "FORMAT_START:$file"
+            base64 -w 0 "$file"
+            echo ""
+            echo "FORMAT_END:$file"
+          done
