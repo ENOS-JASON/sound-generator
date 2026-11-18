@@ -6,8 +6,8 @@ import {
   type PortEndpoint,
   type PortGraphV1,
   type PortKind,
-} from '../../contracts/ports/index.ts';
-import { CapabilityRegistry } from './registry.ts';
+} from '../../contracts/ports/index';
+import { CapabilityRegistry } from './registry';
 
 const identifier = /^[a-z][a-z0-9-]{0,63}$/;
 const physicalKinds: readonly PortKind[] = [
@@ -77,10 +77,8 @@ export function validatePortGraph(
   if (!graph || graph.schemaVersion !== PORT_GRAPH_VERSION) {
     fail('graph.schemaVersion', 'unsupported version');
   }
-  const components = boundedArray(graph.components, 1, 64, 'graph.components')
-    as readonly ComponentNodeV1[];
-  const links = boundedArray(graph.links, 0, 256, 'graph.links')
-    as PortGraphV1['links'];
+  const components = boundedArray(graph.components, 1, 64, 'graph.components') as readonly ComponentNodeV1[];
+  const links = boundedArray(graph.links, 0, 256, 'graph.links') as PortGraphV1['links'];
   const nodes = new Map<string, ComponentNodeV1>();
   const ports = new Map<string, PhysicalPort>();
   const counts = new Map<string, number>();
@@ -154,7 +152,7 @@ export function validatePortGraph(
       byComponent = new Map();
       adjacency.set(a.kind, byComponent);
     }
-    for (const [from, to] of [[aId, bId], [bId, aId]]) {
+    for (const [from, to] of [[aId, bId], [bId, aId]] as const) {
       const neighbours = byComponent.get(from) ?? new Set<string>();
       neighbours.add(to);
       byComponent.set(from, neighbours);
