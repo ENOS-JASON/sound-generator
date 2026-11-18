@@ -87,7 +87,7 @@
 
 ### AG-M0-04
 
-- [ ] **AG-M0-04 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-04 COMPLETE** — all acceptance and positive/negative tests passed; owner authorized [PR #6](https://github.com/ENOS-JASON/sound-generator/pull/6) merge via connected GitHub account `ENOS-JASON`; verified SHA `c13aa946156c8965870c8653ddae881d90531561`, passing [final PR CI 44380519361](https://github.com/ENOS-JASON/sound-generator/actions/runs/44380519361); completion reconciled after merge.
 
 **Roadmap source:** Define strict TypeScript component/port graph contracts, factories/capability registry, typed power/energy sign conventions, bank/cylinder geometry for 1–12 cylinders and technology fidelity status (see [14–20](../14-modular-typescript-platform.md)).
 
@@ -97,7 +97,7 @@
 
 **Owned area:** `src/contracts/ports, src/core/physics-ports, tests/fixtures/contracts`. Avoid editing other task owners' contracts.
 **Required references:** [14](../14-modular-typescript-platform.md), [17](../17-transmissions-drivetrains-and-wheels.md), [20](../20-torque-power-load-and-energy.md), [30](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance checklist — AG-M0-04** (evidence for checked items: [PR #6](https://github.com/ENOS-JASON/sound-generator/pull/6), [passing CI run 44380214437](https://github.com/ENOS-JASON/sound-generator/actions/runs/44380214437), 18/18 Node tests, strict TS/lint/Prettier/build/HTTPS Chromium smoke):
+**Acceptance checklist — AG-M0-04** (evidence for checked items: [PR #6](https://github.com/ENOS-JASON/sound-generator/pull/6), [final PR CI 44380519361](https://github.com/ENOS-JASON/sound-generator/actions/runs/44380519361), 18/18 Node tests, strict TS/lint/Prettier/build/HTTPS Chromium smoke):
 
 - [x] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
 - [x] Reject mismatched units/directions, orphan port, impossible topology
@@ -106,7 +106,7 @@
 - [x] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+- [x] **Approval and verified merge:** owner expressly authorized merge of [PR #6](https://github.com/ENOS-JASON/sound-generator/pull/6); GitHub reports `merged=true`, `merged_by=ENOS-JASON`, merge SHA `c13aa946156c8965870c8653ddae881d90531561`. Owner-only shared TypeScript public contracts and ADR-008 were included; [final PR CI 44380519361](https://github.com/ENOS-JASON/sound-generator/actions/runs/44380519361) succeeded with 18/18 Node tests, typecheck/lint/format/build and HTTPS Chromium smoke.
 
 ### AG-M0-05
 
