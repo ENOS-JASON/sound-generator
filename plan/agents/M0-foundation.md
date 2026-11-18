@@ -97,15 +97,15 @@
 
 **Owned area:** `src/contracts/ports, src/core/physics-ports, tests/fixtures/contracts`. Avoid editing other task owners' contracts.
 **Required references:** [14](../14-modular-typescript-platform.md), [17](../17-transmissions-drivetrains-and-wheels.md), [20](../20-torque-power-load-and-energy.md), [30](../30-agent-handoff-contracts-and-decisions.md).
-**Acceptance checklist — AG-M0-04** (all unchecked until verified):
+**Acceptance checklist — AG-M0-04** (evidence for checked items: [PR #6](https://github.com/ENOS-JASON/sound-generator/pull/6), [passing CI run 44380214437](https://github.com/ENOS-JASON/sound-generator/actions/runs/44380214437), 18/18 Node tests, strict TS/lint/Prettier/build/HTTPS Chromium smoke):
 
-- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] Reject mismatched units/directions, orphan port, impossible topology
-- [ ] torque sign/energy cancellation unit tests.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [x] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [x] Reject mismatched units/directions, orphan port, impossible topology
+- [x] torque sign/energy cancellation unit tests.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 ### AG-M0-05
