@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 2,
+  "id": "i4-mechanical-fixture",
+  "label": "I4 mechanical structural fixture (not a runnable tuned preset)",
+  "seed": 42,
+  "engine": {
+    "componentId": "engine",
+    "family": "spark-four-stroke",
+    "banks": [
+      {
+        "id": "bank-a",
+        "angleRadians": 0,
+        "cylinderIds": [1, 2, 3, 4]
+      }
+    ],
+    "firingOrder": [1, 3, 4, 2],
+    "boreMeters": 0.085,
+    "strokeMeters": 0.088,
+    "connectingRodMeters": 0.143,
+    "compressionRatio": 9.5
+  },
+  "control": {
+    "kind": "mechanical",
+    "carburetorId": "carb",
+    "distributorId": "distributor"
+  },
+  "electrical": {
+    "batteryId": "battery",
+    "starterId": "starter",
+    "starterCranksEngineId": "engine",
+    "starterPoweredByBatteryId": "battery",
+    "batteryNominalVolts": 12,
+    "starterMaxTorqueNm": 120
+  },
+  "driveline": {
+    "kind": "manual",
+    "engineId": "engine",
+    "clutchId": "clutch",
+    "gearboxId": "gearbox",
+    "drivenAxleId": "axle",
+    "roadLoadId": "road-load",
+    "forwardGearRatios": [3.5, 2, 1.3, 1, 0.8],
+    "finalDriveRatio": 4,
+    "vehicleMassKg": 1250,
+    "wheelRadiusMeters": 0.31
+  },
+  "manifest": {
+    "schemaVersion": 2,
+    "components": [
+      {
+        "id": "engine",
+        "kind": "engine",
+        "componentSchemaVersion": 1,
+        "modelSupport": "planned"
+      },
+      {
+        "id": "carb",
+        "kind": "carburetor",
+        "componentSchemaVersion": 1,
+        "modelSupport": "planned"
+      },
+      {
+        "id": "distributor",
+        "kind": "distributor",
+        "componentSchemaVersion": 1,
+        "modelSupport": "planned"
+      },
+      {
+        "id": "battery",
+        "kind": "battery",
+        "componentSchemaVersion": 1,
+        "modelSupport": "planned"
+      },
+      {
+        "id": "starter",
+        "kind": "starter",
+        "componentSchemaVersion": 1,
+        "modelSupport": "planned"
+      },
+      {
+        "id": "clutch",
+        "kind": "clutch",
+        "componentSchemaVersion": 1,
+        "modelSupport": "planned"
+      },
+      {
+        "id": "gearbox",
+        "kind": "manual-gearbox",
+        "componentSchemaVersion": 1,
+        "modelSupport": "planned"
+      },
+      {
+        "id": "axle",
+        "kind": "driven-axle",
+        "componentSchemaVersion": 1,
+        "modelSupport": "planned"
+      },
+      {
+        "id": "road-load",
+        "kind": "road-load",
+        "componentSchemaVersion": 1,
+        "modelSupport": "planned"
+      }
+    ]
+  }
+}

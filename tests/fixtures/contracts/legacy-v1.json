@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "i4-2l-demo",
+  "engine": {
+    "cycle": "four-stroke",
+    "layout": "inline",
+    "cylinders": 4,
+    "displacementM3": 0.002,
+    "firingOrder": [1, 3, 4, 2]
+  },
+  "starter": {
+    "batteryNominalVolts": 12,
+    "maxTorqueNm": 120
+  }
+}
