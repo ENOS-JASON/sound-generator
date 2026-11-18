@@ -43,18 +43,12 @@
       "$ref": "#/$defs/id"
     },
     "causationId": {
-      "type": [
-        "string",
-        "null"
-      ],
+      "type": ["string", "null"],
       "minLength": 1,
       "maxLength": 128
     },
     "correlationId": {
-      "type": [
-        "string",
-        "null"
-      ],
+      "type": ["string", "null"],
       "minLength": 1,
       "maxLength": 128
     },

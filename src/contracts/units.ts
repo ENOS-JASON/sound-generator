@@ -12,19 +12,23 @@ function finite(value: number): number {
   return value;
 }
 
-export const millimetersToMeters = (mm: number): number => finite(mm) * SI.metersPerMillimeter;
+export const millimetersToMeters = (mm: number): number =>
+  finite(mm) * SI.metersPerMillimeter;
 export const cubicCentimetersToCubicMeters = (cc: number): number =>
   finite(cc) * SI.cubicMetersPerCubicCentimeter;
 export const litersToCubicMeters = (liters: number): number =>
   finite(liters) * SI.cubicMetersPerLiter;
-export const barToPascals = (bar: number): number => finite(bar) * SI.pascalsPerBar;
-export const psiToPascals = (psi: number): number => finite(psi) * SI.pascalsPerPsi;
+export const barToPascals = (bar: number): number =>
+  finite(bar) * SI.pascalsPerBar;
+export const psiToPascals = (psi: number): number =>
+  finite(psi) * SI.pascalsPerPsi;
 export const rpmToRadiansPerSecond = (rpm: number): number =>
   (finite(rpm) / 60) * (2 * Math.PI);
 export const radiansPerSecondToRpm = (omega: number): number =>
   (finite(omega) / (2 * Math.PI)) * 60;
 export const degreesToRadians = (degrees: number): number =>
   (finite(degrees) / 180) * Math.PI;
-export const celsiusToKelvin = (celsius: number): number => finite(celsius) + 273.15;
+export const celsiusToKelvin = (celsius: number): number =>
+  finite(celsius) + 273.15;
 export const mechanicalHorsepowerToWatts = (hp: number): number =>
   finite(hp) * SI.wattsPerMechanicalHorsepower;

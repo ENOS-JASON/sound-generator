@@ -98,11 +98,7 @@
         {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "kind",
-            "carburetorId",
-            "distributorId"
-          ],
+          "required": ["kind", "carburetorId", "distributorId"],
           "properties": {
             "kind": {
               "const": "mechanical"
@@ -249,10 +245,7 @@
     "manifest": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "schemaVersion",
-        "components"
-      ],
+      "required": ["schemaVersion", "components"],
       "properties": {
         "schemaVersion": {
           "const": 2
@@ -278,11 +271,7 @@
     "bank": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "id",
-        "angleRadians",
-        "cylinderIds"
-      ],
+      "required": ["id", "angleRadians", "cylinderIds"],
       "properties": {
         "id": {
           "$ref": "#/$defs/id"
@@ -308,12 +297,7 @@
     "component": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "id",
-        "kind",
-        "componentSchemaVersion",
-        "modelSupport"
-      ],
+      "required": ["id", "kind", "componentSchemaVersion", "modelSupport"],
       "properties": {
         "id": {
           "$ref": "#/$defs/id"
@@ -338,12 +322,7 @@
           "const": 1
         },
         "modelSupport": {
-          "enum": [
-            "implemented",
-            "approximate",
-            "planned",
-            "unsupported"
-          ]
+          "enum": ["implemented", "approximate", "planned", "unsupported"]
         }
       }
     }

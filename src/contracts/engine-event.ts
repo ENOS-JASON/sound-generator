@@ -21,60 +21,100 @@ export interface EngineEventEnvelopeV2 {
   payload: { [key: string]: EventJsonValue };
 }
 
-export function validateEngineEventEnvelopeV2(input: unknown): EngineEventEnvelopeV2 {
+export function validateEngineEventEnvelopeV2(
+  input: unknown,
+): EngineEventEnvelopeV2 {
   if (input === null || typeof input !== 'object' || Array.isArray(input)) {
     throw new Error('event: expected object');
   }
   const event = input as Record<string, unknown>;
   const fields = [
-    'schemaVersion', 'runId', 'sequence', 'simulationTick', 'simulationTimeSeconds',
-    'type', 'sourceComponentId', 'causationId', 'correlationId', 'payload',
+    'schemaVersion',
+    'runId',
+    'sequence',
+    'simulationTick',
+    'simulationTimeSeconds',
+    'type',
+    'sourceComponentId',
+    'causationId',
+    'correlationId',
+    'payload',
   ];
-  if (Object.keys(event).some((key) => !fields.includes(key)) ||
-      fields.some((key) => !Object.hasOwn(event, key))) {
+  if (
+    Object.keys(event).some((key) => !fields.includes(key)) ||
+    fields.some((key) => !Object.hasOwn(event, key))
+  ) {
     throw new Error('event: unexpected or missing field');
   }
-  if (event.schemaVersion !== 2) throw new Error('event.schemaVersion: expected 2');
+  if (event.schemaVersion !== 2)
+    throw new Error('event.schemaVersion: expected 2');
   for (const key of ['runId', 'sourceComponentId']) {
-    if (typeof event[key] !== 'string' || !/^[a-z][a-z0-9-]{0,63}$/.test(event[key])) {
+    if (
+      typeof event[key] !== 'string' ||
+      !/^[a-z][a-z0-9-]{0,63}$/.test(event[key])
+    ) {
       throw new Error(`event.${key}: invalid identifier`);
     }
   }
-  if (typeof event.type !== 'string' || !/^[A-Z][A-Z0-9_]{0,63}$/.test(event.type)) {
+  if (
+    typeof event.type !== 'string' ||
+    !/^[A-Z][A-Z0-9_]{0,63}$/.test(event.type)
+  ) {
     throw new Error('event.type: invalid type identifier');
   }
   for (const key of ['sequence', 'simulationTick']) {
-    if (typeof event[key] !== 'number' || !Number.isSafeInteger(event[key]) ||
-        event[key] < (key === 'sequence' ? 1 : 0)) {
+    if (
+      typeof event[key] !== 'number' ||
+      !Number.isSafeInteger(event[key]) ||
+      event[key] < (key === 'sequence' ? 1 : 0)
+    ) {
       throw new Error(`event.${key}: invalid integer`);
     }
   }
-  if (typeof event.simulationTimeSeconds !== 'number' ||
-      !Number.isFinite(event.simulationTimeSeconds) || event.simulationTimeSeconds < 0) {
+  if (
+    typeof event.simulationTimeSeconds !== 'number' ||
+    !Number.isFinite(event.simulationTimeSeconds) ||
+    event.simulationTimeSeconds < 0
+  ) {
     throw new Error('event.simulationTimeSeconds: invalid time');
   }
   for (const key of ['causationId', 'correlationId']) {
-    if (event[key] !== null && (typeof event[key] !== 'string' ||
-        event[key].length < 1 || event[key].length > 128)) {
+    if (
+      event[key] !== null &&
+      (typeof event[key] !== 'string' ||
+        event[key].length < 1 ||
+        event[key].length > 128)
+    ) {
       throw new Error(`event.${key}: invalid id`);
     }
   }
   const seen = new WeakSet<object>();
   function json(value: unknown, depth = 0): void {
     if (depth > 16) throw new Error('event.payload: excessive nesting');
-    if (value === null || typeof value === 'boolean' || typeof value === 'string') return;
+    if (
+      value === null ||
+      typeof value === 'boolean' ||
+      typeof value === 'string'
+    )
+      return;
     if (typeof value === 'number' && Number.isFinite(value)) return;
-    if (typeof value !== 'object') throw new Error('event.payload: invalid JSON value');
+    if (typeof value !== 'object')
+      throw new Error('event.payload: invalid JSON value');
     if (seen.has(value)) throw new Error('event.payload: circular JSON value');
     seen.add(value);
     if (Array.isArray(value)) {
-      if (value.length > 1024) throw new Error('event.payload: too many elements');
+      if (value.length > 1024)
+        throw new Error('event.payload: too many elements');
       value.forEach((item) => json(item, depth + 1));
     } else {
-      if (Object.getPrototypeOf(value) !== Object.prototype &&
-          Object.getPrototypeOf(value) !== null) throw new Error('event.payload: invalid object');
+      if (
+        Object.getPrototypeOf(value) !== Object.prototype &&
+        Object.getPrototypeOf(value) !== null
+      )
+        throw new Error('event.payload: invalid object');
       const entries = Object.entries(value);
-      if (entries.length > 256) throw new Error('event.payload: too many fields');
+      if (entries.length > 256)
+        throw new Error('event.payload: too many fields');
       for (const [key, item] of entries) {
         if (['__proto__', 'constructor', 'prototype'].includes(key)) {
           throw new Error('event.payload: unsafe property');
@@ -84,8 +124,12 @@ export function validateEngineEventEnvelopeV2(input: unknown): EngineEventEnvelo
     }
     seen.delete(value);
   }
-  if (event.payload === null || typeof event.payload !== 'object' ||
-      Array.isArray(event.payload)) throw new Error('event.payload: expected object');
+  if (
+    event.payload === null ||
+    typeof event.payload !== 'object' ||
+    Array.isArray(event.payload)
+  )
+    throw new Error('event.payload: expected object');
   json(event.payload);
   return event as unknown as EngineEventEnvelopeV2;
 }
