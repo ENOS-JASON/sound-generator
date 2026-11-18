@@ -36,13 +36,15 @@ For this exact AG card, update ONLY its relevant task-specific Markdown checklis
  - Check a requirement/test box solely when its evidence is real and cited in the PR.
  - Include test commands/results, positive+negative fixtures and committed artifacts.
  - Do not check the AG-... COMPLETE box before the PR actually merges.
- - Do not check a parent roadmap box; only the integrator promotes it after all
-   linked AG cards have their COMPLETE boxes checked on main.
+ - Do not check a roadmap parent until every linked AG card is COMPLETE on main.
+   The agent handles tracking; the owner never manually edits task Markdown.
  - An unverified prerequisite, pending ADR, mock-only implementation or skipped
    test stays unchecked and is reported BLOCKED or PARTIAL.
- - After merge, the authorized independent technical integrator records the
-   merged SHA in a tracking-only update, checks AG COMPLETE last, and marks a
-   parent roadmap step checked only after EVERY linked child is complete.
+ - Owner review plus GitHub owner merge is sufficient approval without a separate
+   GitHub review or AI reviewer. The alternate route is verified AI-integrator review+merge.
+ - At next agent execution after merge, record actor, merge SHA, CI and artifacts
+   in an audited tracking-only update; check AG COMPLETE last and then promote
+   the roadmap parent only if every linked card is COMPLETE. No owner Markdown work.
  See plan/08-implementation-roadmap.md "Completion tracking" and
  plan/agents/task-index.md; never duplicate status in the task index.
 
@@ -50,7 +52,7 @@ Implement the card's bounded deliverable, a positive and negative automated test
 and any required fixture, sample trace, audio evidence or screenshot. Run actual tests.
 Do not claim a feature is implemented solely because its interface exists. Do not
 mark other cards or whole milestones complete. One work order = one focused branch/PR;
-CI and a **dedicated AI technical integration agent** must review routine changes; **AI routine merges are allowed only after verified, explicitly authorized checks/branch rules**. Escalate all major architecture/security/credentials/licensing plus **shared public TypeScript contracts/APIs and cross-component ownership changes** to the project owner;
+Required CI must pass; **either owner review + owner merge or authorized AI-integrator review + routine merge** satisfies review; AI merge still requires verified checks/branch rules. Escalate all major architecture/security/credentials/licensing plus **shared public TypeScript contracts/APIs and cross-component ownership changes** to the project owner;
 major architecture ADR changes go back to the project owner for approval.
 Do not merge *solely because CI passes*. The **owner has conditionally approved AI routine merging**; do not presume installed GitHub bot, branch protection or current merge permissions, which require validated setup and exact authorized checks. No merge claim without host-confirmed commit SHA.
 
@@ -64,7 +66,7 @@ Return:
   fixtures/screenshots/traces produced
   physical/audio/event invariants checked
   limitations and follow-up AG IDs
-  PR/commit reference and CI + technical-integrator review disposition
+  PR/commit reference, CI evidence and owner or AI-integrator review/merge disposition
 
 If a requirement conflicts with another document, cite both paths and propose a
 versioned ADR change rather than guessing. Follow plan/29-plan-audit-and-gap-register.md
