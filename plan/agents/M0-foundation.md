@@ -6,7 +6,7 @@
 
 ### AG-M0-01
 
-- [ ] **AG-M0-01 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-01 COMPLETE** — owner-reviewed and merged [PR #1](https://github.com/ENOS-JASON/sound-generator/pull/1) by `ENOS-JASON`, verified merge `394b5228cbf9dc0c51a0c3a935458f88a9c97085`; required CI [44309782838](https://github.com/ENOS-JASON/sound-generator/actions/runs/44309782838) passed; all applicable acceptance checks above are supported. Post-merge tracking reconciled under [owner review policy](../decisions/OWNER-PR-REVIEW-POLICY-2026-11-18.md).
 
 **Approved Round 2 requirement:** Start with **owner-approved Svelte + Vite and hash routing** on GitHub Pages; pin a compatible Svelte/router version and present major state-library choices for owner review. Add `/#/drive` navigation fixture; a history-route-only app cannot pass. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -32,7 +32,7 @@
 
 ### AG-M0-02
 
-- [ ] **AG-M0-02 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-02 COMPLETE** — owner-reviewed and merged [PR #2](https://github.com/ENOS-JASON/sound-generator/pull/2) by `ENOS-JASON`, verified merge `2e72c27361c54866ff14cab260f06228cfb7aa03`; required CI [44317405493](https://github.com/ENOS-JASON/sound-generator/actions/runs/44317405493) passed; all applicable acceptance checks above are supported. Post-merge tracking reconciled under [owner review policy](../decisions/OWNER-PR-REVIEW-POLICY-2026-11-18.md).
 
 **Approved Round 2 requirement:** GitHub Pages must host `/sound-generator/#/...` hash links, including direct-link and refresh smoke tests without `history` rewrites. CI includes browser static-build and hash asset/AudioWorklet path checks. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
