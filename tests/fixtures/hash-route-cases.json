@@ -1,10 +1,28 @@
 {
   "valid": [
     { "url": "https://example.test/sound-generator/", "expected": "dashboard" },
-    { "url": "https://example.test/sound-generator/#/", "expected": "dashboard" },
-    { "url": "https://example.test/sound-generator/#/drive", "expected": "drive" },
-    { "url": "https://example.test/sound-generator/#/diagnostics", "expected": "diagnostics" },
-    { "url": "https://example.test/another-base/#/settings", "expected": "settings" }
+    {
+      "url": "https://example.test/sound-generator/#/",
+      "expected": "dashboard"
+    },
+    {
+      "url": "https://example.test/sound-generator/#/drive",
+      "expected": "drive"
+    },
+    {
+      "url": "https://example.test/sound-generator/#/diagnostics",
+      "expected": "diagnostics"
+    },
+    {
+      "url": "https://example.test/another-base/#/settings",
+      "expected": "settings"
+    }
   ],
-  "invalid": ["#/unknown", "#/drive/../settings", "#https://evil.test/", "/drive", "#/drive?x=1"]
+  "invalid": [
+    "#/unknown",
+    "#/drive/../settings",
+    "#https://evil.test/",
+    "/drive",
+    "#/drive?x=1"
+  ]
 }

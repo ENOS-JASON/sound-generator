@@ -17,7 +17,9 @@ export function resolveHashRoute(hash: string): RouteSelection {
     return 'dashboard';
   }
 
-  return navigation.find((route) => '#' + route.path === hash)?.id ?? 'not-found';
+  return (
+    navigation.find((route) => '#' + route.path === hash)?.id ?? 'not-found'
+  );
 }
 
 export function routeHref(id: RouteId): string {

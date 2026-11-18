@@ -8,7 +8,10 @@
   }
 
   function heading(): string {
-    return navigation.find((route) => route.id === currentRoute)?.title ?? 'Unknown route';
+    return (
+      navigation.find((route) => route.id === currentRoute)?.title ??
+      'Unknown route'
+    );
   }
 </script>
 
@@ -19,7 +22,10 @@
     <a class="wordmark" href="#/">Sound Generator</a>
     <nav aria-label="Main navigation">
       {#each navigation as route (route.id)}
-        <a href={routeHref(route.id)} aria-current={currentRoute === route.id ? 'page' : undefined}>
+        <a
+          href={routeHref(route.id)}
+          aria-current={currentRoute === route.id ? 'page' : undefined}
+        >
           {route.title}
         </a>
       {/each}
@@ -32,7 +38,10 @@
       <p>This route is not available.</p>
       <a href="#/">Return to Dashboard</a>
     {:else}
-      <p>Foundation placeholder. Physics, audio, and diagnostics are not yet implemented.</p>
+      <p>
+        Foundation placeholder. Physics, audio, and diagnostics are not yet
+        implemented.
+      </p>
     {/if}
   </main>
 
