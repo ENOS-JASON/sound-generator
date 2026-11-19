@@ -152,7 +152,9 @@ export interface CylinderVisualState {
 }
 export interface EngineVisualProjection extends ModelIdentity<'renderer'> {
   /** Independent of camera/listening perspective; no solver mutation. */
-  project(observation: Readonly<ModelObservation>): readonly CylinderVisualState[];
+  project(
+    observation: Readonly<ModelObservation>,
+  ): readonly CylinderVisualState[];
 }
 
 export interface ModelInstanceMap {
