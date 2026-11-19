@@ -110,7 +110,7 @@
 
 ### AG-M0-05
 
-- [ ] **AG-M0-05 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-05 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Roadmap source:** Define independent controller, intake/induction, engine-family, transmission/differential, electrical and audio/renderer model interfaces before concrete implementations.
 
@@ -130,7 +130,9 @@
 - [x] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+- [x] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+
+**Verified merge and evidence (2026-11-19):** Project owner explicitly authorized merging; [PR #7](https://github.com/ENOS-JASON/sound-generator/pull/7) merged on `main` by GitHub account `ENOS-JASON` (merge commit `22258d8ba14686db50e1c8d55b30e96a2a7b378c`). [Final PR CI run 44528904531](https://github.com/ENOS-JASON/sound-generator/actions/runs/44528904531) passed full typecheck, lint, formatting, 22/22 tests, build and Chromium HTTPS/hash-route checks. Only mock-facing model interfaces were completed; physical solver integration remains later work.
 
 ### AG-M0-06
 
