@@ -1,14 +1,88 @@
 {
   "schemaVersion": 1,
   "providers": [
-    { "family": "controller", "providerId": "mock-mechanical", "kind": "carburetor", "componentId": "carb-1", "capabilities": ["mechanical-fuel", "mechanical-spark"] },
-    { "family": "controller", "providerId": "mock-ecu", "kind": "ecu", "componentId": "ecu-1", "capabilities": ["electronic-fuel", "electronic-spark"] },
-    { "family": "induction", "providerId": "mock-induction", "kind": "intake", "componentId": "intake-1", "capabilities": ["airflow"] },
-    { "family": "engine", "providerId": "mock-engine", "kind": "engine", "componentId": "engine-1", "capabilities": ["spark-four-stroke"] },
-    { "family": "transmission", "providerId": "mock-gearbox", "kind": "manual-gearbox", "componentId": "gearbox-1", "capabilities": ["manual-ratios"] },
-    { "family": "differential", "providerId": "mock-differential", "kind": "differential", "componentId": "differential-1", "capabilities": ["open-differential"] },
-    { "family": "electrical", "providerId": "mock-battery", "kind": "battery", "componentId": "battery-1", "capabilities": ["electrical-storage"] },
-    { "family": "audio", "providerId": "mock-audio", "kind": "audio-source", "componentId": "audio-1", "capabilities": ["procedural-output"] },
-    { "family": "renderer", "providerId": "mock-renderer", "kind": "engine-projection", "componentId": "renderer-1", "capabilities": ["read-only-projection"] }
+    {
+      "family": "controller",
+      "providerId": "mock-mechanical",
+      "kind": "carburetor",
+      "componentId": "carb-1",
+      "capabilities": [
+        "mechanical-fuel",
+        "mechanical-spark"
+      ]
+    },
+    {
+      "family": "controller",
+      "providerId": "mock-ecu",
+      "kind": "ecu",
+      "componentId": "ecu-1",
+      "capabilities": [
+        "electronic-fuel",
+        "electronic-spark"
+      ]
+    },
+    {
+      "family": "induction",
+      "providerId": "mock-induction",
+      "kind": "intake",
+      "componentId": "intake-1",
+      "capabilities": [
+        "airflow"
+      ]
+    },
+    {
+      "family": "engine",
+      "providerId": "mock-engine",
+      "kind": "engine",
+      "componentId": "engine-1",
+      "capabilities": [
+        "spark-four-stroke"
+      ]
+    },
+    {
+      "family": "transmission",
+      "providerId": "mock-gearbox",
+      "kind": "manual-gearbox",
+      "componentId": "gearbox-1",
+      "capabilities": [
+        "manual-ratios"
+      ]
+    },
+    {
+      "family": "differential",
+      "providerId": "mock-differential",
+      "kind": "differential",
+      "componentId": "differential-1",
+      "capabilities": [
+        "open-differential"
+      ]
+    },
+    {
+      "family": "electrical",
+      "providerId": "mock-battery",
+      "kind": "battery",
+      "componentId": "battery-1",
+      "capabilities": [
+        "electrical-storage"
+      ]
+    },
+    {
+      "family": "audio",
+      "providerId": "mock-audio",
+      "kind": "audio-source",
+      "componentId": "audio-1",
+      "capabilities": [
+        "procedural-output"
+      ]
+    },
+    {
+      "family": "renderer",
+      "providerId": "mock-renderer",
+      "kind": "engine-projection",
+      "componentId": "renderer-1",
+      "capabilities": [
+        "read-only-projection"
+      ]
+    }
   ]
 }
