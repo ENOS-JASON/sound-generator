@@ -129,14 +129,23 @@ test('register and instantiate every independent model family explicitly', () =>
     assert.equal(instance.interfaceVersion, 1);
     assert.deepEqual(instance.ports, []);
   }
-  const mechanical = registry.instantiate('controller', node(fixture.providers[0]));
-  const electronic = registry.instantiate('controller', node(fixture.providers[1]));
+  const mechanical = registry.instantiate(
+    'controller',
+    node(fixture.providers[0]),
+  );
+  const electronic = registry.instantiate(
+    'controller',
+    node(fixture.providers[1]),
+  );
   assert.equal(mechanical.controlKind, 'mechanical');
   assert.equal(electronic.controlKind, 'ecu');
   assert.notEqual(mechanical, electronic);
   const audio = registry.instantiate('audio', node(fixture.providers[7]));
   const samples = new Float32Array(4);
-  audio.render({ firstSampleFrame: 0, sampleCount: 4, sampleRateHz: 48_000 }, samples);
+  audio.render(
+    { firstSampleFrame: 0, sampleCount: 4, sampleRateHz: 48_000 },
+    samples,
+  );
   assert.deepEqual(Array.from(samples), [0.125, 0.125, 0.125, 0.125]);
 });
 
@@ -145,16 +154,31 @@ test('registration rejects missing declared capability, wrong family/version/dom
   const registry = new ModelProviderRegistry();
   registerMock(registry, provider);
   assert.throws(
-    () => registry.instantiate('controller', node(provider, { requiredCapabilities: ['ecu-only'] })),
+    () =>
+      registry.instantiate(
+        'controller',
+        node(provider, { requiredCapabilities: ['ecu-only'] }),
+      ),
     /missing capability/,
   );
-  assert.throws(() => registry.instantiate('engine', node(provider)), /family mismatch/);
   assert.throws(
-    () => registry.instantiate('controller', node(provider, { componentSchemaVersion: 2 })),
+    () => registry.instantiate('engine', node(provider)),
+    /family mismatch/,
+  );
+  assert.throws(
+    () =>
+      registry.instantiate(
+        'controller',
+        node(provider, { componentSchemaVersion: 2 }),
+      ),
     /version mismatch/,
   );
   assert.throws(
-    () => registry.instantiate('controller', node(provider, { operatingDomain: 'diesel' })),
+    () =>
+      registry.instantiate(
+        'controller',
+        node(provider, { operatingDomain: 'diesel' }),
+      ),
     /operating domain\/support mismatch/,
   );
   assert.throws(() => registerMock(registry, provider), /duplicate/);
@@ -186,9 +210,26 @@ test('planned models cannot instantiate, and false factory identity/ports fail c
     /technology unavailable/,
   );
   registerMock(registry, provider);
-  assert.throws(() => registry.instantiate('controller', node(provider, { ports: [
-    { id: 'air', kind: 'air', effortUnit: 'Pa', flowUnit: 'kg/s', pressureBasis: 'absolute', direction: 'in', required: false },
-  ] })), /identity\/ports mismatch/);
+  assert.throws(
+    () =>
+      registry.instantiate(
+        'controller',
+        node(provider, {
+          ports: [
+            {
+              id: 'air',
+              kind: 'air',
+              effortUnit: 'Pa',
+              flowUnit: 'kg/s',
+              pressureBasis: 'absolute',
+              direction: 'in',
+              required: false,
+            },
+          ],
+        }),
+      ),
+    /identity\/ports mismatch/,
+  );
   const bad = new ModelProviderRegistry();
   bad.register({
     family: 'controller',
@@ -202,7 +243,14 @@ test('planned models cannot instantiate, and false factory identity/ports fail c
     create: () => model('engine', 'wrong-component', 'broken-controller'),
   });
   assert.throws(
-    () => bad.instantiate('controller', { ...node(provider), id: 'test-1', providerId: 'broken-controller', kind: 'ecu', requiredCapabilities: [] }),
+    () =>
+      bad.instantiate('controller', {
+        ...node(provider),
+        id: 'test-1',
+        providerId: 'broken-controller',
+        kind: 'ecu',
+        requiredCapabilities: [],
+      }),
     /identity\/ports mismatch/,
   );
 });
@@ -212,9 +260,16 @@ test('registry state remains per instance with no singleton or fallback', () => 
   const first = new ModelProviderRegistry();
   const second = new ModelProviderRegistry();
   registerMock(first, provider);
-  assert.throws(() => second.instantiate('controller', node(provider)), /family mismatch/);
   assert.throws(
-    () => first.instantiate('controller', { ...node(provider), providerId: 'missing' }),
+    () => second.instantiate('controller', node(provider)),
+    /family mismatch/,
+  );
+  assert.throws(
+    () =>
+      first.instantiate('controller', {
+        ...node(provider),
+        providerId: 'missing',
+      }),
     /family mismatch/,
   );
 });
