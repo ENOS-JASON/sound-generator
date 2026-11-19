@@ -119,7 +119,7 @@ function registerMock(registry, provider) {
   });
 }
 
-test('register and instantiate every independent model family explicitly', () => {
+test('register every model family', () => {
   const registry = new ModelProviderRegistry();
   for (const provider of fixture.providers) {
     registerMock(registry, provider);
@@ -149,7 +149,7 @@ test('register and instantiate every independent model family explicitly', () =>
   assert.deepEqual(Array.from(samples), [0.125, 0.125, 0.125, 0.125]);
 });
 
-test('registration rejects missing declared capability, wrong family/version/domain', () => {
+test('reject incompatible capability, family, version and domain', () => {
   const provider = fixture.providers[0];
   const registry = new ModelProviderRegistry();
   registerMock(registry, provider);
@@ -184,7 +184,7 @@ test('registration rejects missing declared capability, wrong family/version/dom
   assert.throws(() => registerMock(registry, provider), /duplicate/);
 });
 
-test('planned models cannot instantiate, and false factory identity/ports fail closed', () => {
+test('reject planned and invalid model providers', () => {
   const provider = fixture.providers[0];
   const registry = new ModelProviderRegistry();
   registry.register({
@@ -255,7 +255,7 @@ test('planned models cannot instantiate, and false factory identity/ports fail c
   );
 });
 
-test('registry state remains per instance with no singleton or fallback', () => {
+test('isolate registries without fallback', () => {
   const provider = fixture.providers[0];
   const first = new ModelProviderRegistry();
   const second = new ModelProviderRegistry();
