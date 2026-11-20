@@ -110,11 +110,7 @@ const UNITS: readonly UnitDefinition[] = [
   make('fuel-economy', 'm3/m', scale(1)),
   make('fuel-economy', 'L/100km', scale(1e-8)),
   make('fuel-economy', 'us-mpg', inverse(US_GALLON_M3 / MILE_METERS)),
-  make(
-    'fuel-economy',
-    'imp-mpg',
-    inverse(IMPERIAL_GALLON_M3 / MILE_METERS),
-  ),
+  make('fuel-economy', 'imp-mpg', inverse(IMPERIAL_GALLON_M3 / MILE_METERS)),
   make('voltage', 'V', scale(1)),
   make('ratio', '1', scale(1)),
 ];
@@ -157,7 +153,11 @@ function unit(field: QuantityField, unitId: string): UnitDefinition {
     throw new RangeError(`${field.fieldId}: invalid quantity metadata`);
   }
   for (const id of field.allowedDisplayUnitIds) {
-    if (!UNITS.some((entry) => entry.kind === field.quantityKind && entry.id === id)) {
+    if (
+      !UNITS.some(
+        (entry) => entry.kind === field.quantityKind && entry.id === id,
+      )
+    ) {
       throw new RangeError(`${field.fieldId}: incompatible allowed unit ${id}`);
     }
   }

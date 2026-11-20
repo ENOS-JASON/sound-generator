@@ -49,7 +49,8 @@ const no = () => false;
 const none = () => [] as readonly string[];
 const empty = () => ({});
 const controller = (context: WizardContext) => context.vehicle.control?.kind;
-const mechanical = (context: WizardContext) => controller(context) === 'mechanical';
+const mechanical = (context: WizardContext) =>
+  controller(context) === 'mechanical';
 const ecu = (context: WizardContext) => controller(context) === 'ecu';
 
 interface FieldOptions {

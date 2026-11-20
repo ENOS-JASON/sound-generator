@@ -36,12 +36,11 @@ export function validateConfigurator(
   candidate: unknown,
   capabilities: ReadonlySet<string> = new Set(),
 ): ConfiguratorValidation {
-  if (
-    !candidate ||
-    typeof candidate !== 'object' ||
-    Array.isArray(candidate)
-  ) {
-    return { status: 'draft', issues: [issue('vehicle', 'expected vehicle object')] };
+  if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) {
+    return {
+      status: 'draft',
+      issues: [issue('vehicle', 'expected vehicle object')],
+    };
   }
   const vehicle = candidate as Partial<VehicleDefinitionV2>;
   const context: WizardContext = { vehicle, capabilities };
@@ -53,7 +52,9 @@ export function validateConfigurator(
       const visible = field.visibleWhen(context);
       if (!visible) {
         if (value !== undefined) {
-          issues.push(issue(field.fieldId, 'hidden/incompatible field supplied'));
+          issues.push(
+            issue(field.fieldId, 'hidden/incompatible field supplied'),
+          );
         }
         continue;
       }
@@ -149,7 +150,10 @@ export function validateConfiguratorImport(
   try {
     candidate = JSON.parse(source) as unknown;
   } catch {
-    return { status: 'draft', issues: [issue('vehicle', 'invalid JSON syntax')] };
+    return {
+      status: 'draft',
+      issues: [issue('vehicle', 'invalid JSON syntax')],
+    };
   }
   return validateConfigurator(candidate, capabilities);
 }
