@@ -128,8 +128,5 @@ test('invalid geometry and rod/crank collisions fail closed', () => {
     () => meanPistonSpeedMetersPerSecond(-0.1, 3000),
     /strokeMeters/,
   );
-  assert.throws(
-    () => meanPistonSpeedMetersPerSecond(0.086, -10),
-    /rpm/,
-  );
+  assert.throws(() => meanPistonSpeedMetersPerSecond(0.086, -10), /rpm/);
 });
