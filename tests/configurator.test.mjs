@@ -91,7 +91,7 @@ test('independent mixed hp / Nm / psi and per-channel pressure overrides preserv
   assert.equal(resolveDisplayUnit(boost, prefs), 'psi');
   assert.equal(resolveDisplayUnit(oil, prefs), 'bar');
   assert.equal(displayUnitLabel(boost, 'psi'), 'psi (g)');
-  for (const [field, selected, si] of [[power, 'hp', 74569.98715822702], [torque, 'Nm', 221], [boost, 'psi', 101325]]) {
+  for (const [field, selected, si] of [[power, 'hp', 100 * 745.6998715822702], [torque, 'Nm', 221], [boost, 'psi', 101325]]) {
     const displayed = toDisplayValue(si, field, selected);
     assert.ok(Math.abs(fromDisplayValue(displayed, field, selected) - si) < 1e-7);
   }
