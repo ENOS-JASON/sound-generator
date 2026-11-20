@@ -150,16 +150,19 @@
 **Required references:** [09](../09-data-contracts.md), [22](../22-guided-vehicle-configurator.md), [30](../30-agent-handoff-contracts-and-decisions.md).
 **Acceptance checklist — AG-M0-06** (all unchecked until verified):
 
-- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] Given mechanical vs ECU mock, valid fields/choices differ
-- [ ] bad imported hidden field fails
-- [ ] draft status is distinct.
-- [ ] Unit-field metadata and converters resolve independent power/torque/pressure choices; a mixed-unit fixture (e.g., hp, N·m, psi) roundtrips to identical SI values, and an incompatible unit ID or gauge/absolute mismatch is rejected.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [x] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [x] Given mechanical vs ECU mock, valid fields/choices differ
+- [x] bad imported hidden field fails
+- [x] draft status is distinct.
+- [x] Unit-field metadata and converters resolve independent power/torque/pressure choices; a mixed-unit fixture (e.g., hp, N·m, psi) roundtrips to identical SI values, and an incompatible unit ID or gauge/absolute mismatch is rejected.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+
+
+**AG-M0-06 handoff evidence (PR [#8](https://github.com/ENOS-JASON/sound-generator/pull/8), CI [44757018423](https://github.com/ENOS-JASON/sound-generator/actions/runs/44757018423)):** Added schema-driven steps/conditional fields, shared v2 import/UI validation, reversible 32-entry draft undo, independent SI/display-unit boundary and explicit pressure basis. Focused tests `tests/configurator.test.mjs` (6 passing positive/negative), full `npm run check` (28/28 passing, typecheck/lint/Prettier/build) and HTTPS Chromium Pages smoke pass. Fixture components remain planned; structural validity is not physical runnability. No Builder UI or IndexedDB persistence (future cards). **Approval + merged-PR verification pending; COMPLETE unchecked.**
 
 ### AG-M0-07
 
