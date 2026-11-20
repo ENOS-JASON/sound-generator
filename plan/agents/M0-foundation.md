@@ -136,7 +136,7 @@
 
 ### AG-M0-06
 
-- [ ] **AG-M0-06 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-06 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Approved Round 2 requirement:** The same field registry/validator must expose **both first-I4 controller alternatives** while hiding the other strategy's invalid fields. Test UI-derived and import-derived validity equality; no simultaneous carb+EFI controller without explicit supported component model. See [Round 2 decision record](../decisions/USER-APPROVED-ROUND-02.md).
 
@@ -159,10 +159,10 @@
 - [x] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+- [x] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
 
-**AG-M0-06 handoff evidence (PR [#8](https://github.com/ENOS-JASON/sound-generator/pull/8), CI [44757018423](https://github.com/ENOS-JASON/sound-generator/actions/runs/44757018423)):** Added schema-driven steps/conditional fields, shared v2 import/UI validation, reversible 32-entry draft undo, independent SI/display-unit boundary and explicit pressure basis. Focused tests `tests/configurator.test.mjs` (6 passing positive/negative), full `npm run check` (28/28 passing, typecheck/lint/Prettier/build) and HTTPS Chromium Pages smoke pass. Fixture components remain planned; structural validity is not physical runnability. No Builder UI or IndexedDB persistence (future cards). **Approval + merged-PR verification pending; COMPLETE unchecked.**
+**AG-M0-06 handoff evidence (PR [#8](https://github.com/ENOS-JASON/sound-generator/pull/8), CI [44757018423](https://github.com/ENOS-JASON/sound-generator/actions/runs/44757018423)):** Added schema-driven steps/conditional fields, shared v2 import/UI validation, reversible 32-entry draft undo, independent SI/display-unit boundary and explicit pressure basis. Focused tests `tests/configurator.test.mjs` (6 passing positive/negative), full `npm run check` (28/28 passing, typecheck/lint/Prettier/build) and HTTPS Chromium Pages smoke pass. Fixture components remain planned; structural validity is not physical runnability. No Builder UI or IndexedDB persistence (future cards). **Owner merger verified:** [PR #8](https://github.com/ENOS-JASON/sound-generator/pull/8) merged by `ENOS-JASON` on 2026-11-20, merge commit `70db81a732fd1183ba1b9e9f70c6076422bd564c`; [final passing PR CI #44757239452](https://github.com/ENOS-JASON/sound-generator/actions/runs/44757239452).**
 
 ### AG-M0-07
 
