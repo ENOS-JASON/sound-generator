@@ -1,0 +1,25 @@
+name: Temporary AG-M0-08 formatter
+on:
+  push:
+    branches:
+      - agent/ag-m0-08-reference-fidelity-contracts
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Print formatted source for connector application
+        shell: bash
+        run: |
+          npx prettier --write src/contracts/reference/index.ts src/reference/contracts/index.ts tests/reference-fidelity.test.mjs
+          for path in src/contracts/reference/index.ts src/reference/contracts/index.ts tests/reference-fidelity.test.mjs; do
+            echo "FORMATTED_BEGIN:$path"
+            base64 -w 0 "$path"
+            echo
+            echo "FORMATTED_END:$path"
+          done
