@@ -1,0 +1,9 @@
+# AG-M0-08 — Reference fidelity contract handoff
+
+- Contract version: `REFERENCE_PROFILE_VERSION = 1`. No changes to v2 vehicle schema, graph, clock, runtime audio or existing model contracts.
+- `makeReferenceProfile` yields four illustrative numerical presets. **No solver is included.** An explicit per-component solver ID plus a registered executable-readiness predicate is required; `planned`, `unsupported`, absent, wrong-kind, wrong-tier or unavailable solvers fail preflight.
+- A reference topology lists individual cylinder/runner/wall component IDs. Override entries must match one listed ID and kind. Counts refine discretization **without altering geometry**; runner `lengthMeters` is a physical dimension, never inferred from cell count.
+- `preflightReferenceRun` returns errors, warnings, optional CFL-driven adaptive timestep reduction, gas/metal cell totals, state scalars, declared memory/trace bytes, steps and **relative work units only**. No wall-clock estimate, numerical convergence, actual provider availability or measured peak RSS is claimed.
+- Non-adaptive 1D models must meet `dt <= cflTarget * (lengthMeters / axialCellsPerRunner) / maxCharacteristicSpeedMetersPerSecond`; required geometry and conservative wave-speed bounds must be supplied by the eventual M6 provider. Step selection also respects maximum crank-angle at the declared upper RPM. Residual tolerances are stored for future enforcement, not checked against physics in M0.
+- Later work: M6 owns numerical kernels, measured resource coefficients, convergence, runtime stability/positivity/energy validation and actual job launch. M0-16 owns backend execution; M3-06 owns UI selection.
+- Focused fixture tests: `node --experimental-strip-types --test tests/reference-fidelity.test.mjs`. Mock readiness is explicitly **synthetic**; passing contract tests do not certify numerical solvers exist.
