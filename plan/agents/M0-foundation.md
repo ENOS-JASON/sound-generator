@@ -178,15 +178,17 @@
 **Required references:** [02](../02-physics-model.md), [15](../15-engine-families-and-presets.md), [20](../20-torque-power-load-and-energy.md), [22](../22-guided-vehicle-configurator.md).
 **Acceptance checklist — AG-M0-07** (all unchecked until verified):
 
-- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] 86 mm bore/stroke I4 displacement computed by pi/4 formula
-- [ ] mm/in roundtrip
-- [ ] negative/rod conflicts rejected.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [x] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [x] 86 mm bore/stroke I4 displacement computed by pi/4 formula
+- [x] mm/in roundtrip
+- [x] negative/rod conflicts rejected.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+
+**AG-M0-07 handoff evidence ([PR #9](https://github.com/ENOS-JASON/sound-generator/pull/9), [passing CI #44777634501](https://github.com/ENOS-JASON/sound-generator/actions/runs/44777634501)):** Added v2-compatible SI cylinder geometry types, pure area/swept/clearance/TDC/BDC and uniform-I1..I12 displacement derivation, slider-crank crank-angle volume and mean piston speed. Synthetic 86 mm I4 fixture, mm/in shared configurator conversion roundtrip and positive/negative physical constraints: `tests/geometry.test.mjs` (4/4 passing local test cases with equivalent test-only conversion stub; no stub committed). GitHub `npm run check` succeeded (typecheck, ESLint, Prettier, all unit tests and build); static Pages and Chromium HTTPS route smoke succeeded. No live physics, per-cylinder heterogeneity, deck/piston/valve clearance or production preset implied. **Owner review/merge pending**; COMPLETE and parent roadmap M0-07 must remain unchecked until verified merge.
 
 ### AG-M0-08
 
