@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "tiers": [
+    {
+      "tier": "quick",
+      "gasZones": 1,
+      "linerAxialBands": 1,
+      "exhaustAxialCells": 1
+    },
+    {
+      "tier": "balanced",
+      "gasZones": 2,
+      "linerAxialBands": 3,
+      "exhaustAxialCells": 1
+    },
+    {
+      "tier": "detailed",
+      "gasZones": 16,
+      "linerAxialBands": 8,
+      "exhaustAxialCells": 64
+    },
+    {
+      "tier": "research",
+      "gasZones": 48,
+      "linerAxialBands": 20,
+      "exhaustAxialCells": 256
+    }
+  ],
+  "fixtureCapabilityNote": "synthetic readiness for M0 contract tests; does not represent implemented numerical solvers"
+}
