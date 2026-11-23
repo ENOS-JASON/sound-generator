@@ -166,7 +166,7 @@
 
 ### AG-M0-07
 
-- [ ] **AG-M0-07 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-07 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Roadmap source:** Specify bore/stroke/rod/compression geometry input contracts and derived cylinder/total displacement with SI conversion, plus verified equation/constraint tests.
 
@@ -186,9 +186,9 @@
 - [x] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+- [x] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
-**AG-M0-07 handoff evidence ([PR #9](https://github.com/ENOS-JASON/sound-generator/pull/9), [passing CI #44777634501](https://github.com/ENOS-JASON/sound-generator/actions/runs/44777634501)):** Added v2-compatible SI cylinder geometry types, pure area/swept/clearance/TDC/BDC and uniform-I1..I12 displacement derivation, slider-crank crank-angle volume and mean piston speed. Synthetic 86 mm I4 fixture, mm/in shared configurator conversion roundtrip and positive/negative physical constraints: `tests/geometry.test.mjs` (4/4 passing local test cases with equivalent test-only conversion stub; no stub committed). GitHub `npm run check` succeeded (typecheck, ESLint, Prettier, all unit tests and build); static Pages and Chromium HTTPS route smoke succeeded. No live physics, per-cylinder heterogeneity, deck/piston/valve clearance or production preset implied. **Owner review/merge pending**; COMPLETE and parent roadmap M0-07 must remain unchecked until verified merge.
+**AG-M0-07 handoff evidence ([PR #9](https://github.com/ENOS-JASON/sound-generator/pull/9), [passing CI #44777634501](https://github.com/ENOS-JASON/sound-generator/actions/runs/44777634501)):** Added v2-compatible SI cylinder geometry types, pure area/swept/clearance/TDC/BDC and uniform-I1..I12 displacement derivation, slider-crank crank-angle volume and mean piston speed. Synthetic 86 mm I4 fixture, mm/in shared configurator conversion roundtrip and positive/negative physical constraints: `tests/geometry.test.mjs` (4/4 passing local test cases with equivalent test-only conversion stub; no stub committed). GitHub `npm run check` succeeded (typecheck, ESLint, Prettier, all unit tests and build); static Pages and Chromium HTTPS route smoke succeeded. No live physics, per-cylinder heterogeneity, deck/piston/valve clearance or production preset implied. **Owner-reviewed and merged:** [PR #9](https://github.com/ENOS-JASON/sound-generator/pull/9), merged by `ENOS-JASON` on 2026-11-23 at commit `509fbd299b31bf8f48512af9857c815310d3d41c`; final PR [CI #44777751167](https://github.com/ENOS-JASON/sound-generator/actions/runs/44777751167) passed (typecheck, ESLint, formatting, tests, build and Pages smoke). The merged code is verified in `main`; card COMPLETE is now checked.
 
 ### AG-M0-08
 
