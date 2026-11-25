@@ -369,13 +369,15 @@
 **Acceptance checklist — AG-M0-11d** (all unchecked until verified):
 
 - [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] Mock RPM and synthetic level channel overlays
-- [ ] hidden/unsubscribed graph stops work and does not mutate physics.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [x] Mock RPM and synthetic level channel overlays
+- [x] hidden/unsubscribed graph stops work and does not mutate physics.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+
+**Verified fixture evidence:** [PR #16](https://github.com/ENOS-JASON/sound-generator/pull/16) merged by `ENOS-JASON` under explicit owner authorization at `d28954107916e6ccfdd36ad2529c1da88843ca82`; [CI 45688061550](https://github.com/ENOS-JASON/sound-generator/actions/runs/45688061550) passed on `429741b47292f77706f25efb1fdb34f9c3048681`: 72/72 tests (four graph tests), typecheck, lint, formatting, build and Chromium HTTPS smoke; artifact 15057277408. See [handoff](reports/AG-M0-11d.md). Mock RPM is derived-state only; gap A26 and upstream/live integration remain pending. Scope, combined approval and COMPLETE remain unchecked; no independent AI approval or roadmap promotion.
 
 ### AG-M0-12
 

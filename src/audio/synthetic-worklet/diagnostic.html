@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Synthetic audio diagnostics</title>
+  </head>
+  <body>
+    <main>
+      <h1>AG-M0-12 synthetic audio diagnostics</h1>
+      <p>Quiet procedural test signal, not calibrated engine sound.</p>
+      <label>
+        Sample rate
+        <select id="rate">
+          <option value="48000">48 kHz</option>
+          <option value="44100">44.1 kHz</option>
+        </select>
+      </label>
+      <label>
+        Playback scale
+        <select id="scale">
+          <option value="1">1x</option>
+          <option value="0.1">0.1x</option>
+        </select>
+      </label>
+      <button id="run" type="button">Unlock audio and run</button>
+      <p id="status" data-state="idle" role="status">Ready</p>
+      <h2>Waveform</h2>
+      <canvas id="waveform" width="640" height="140"></canvas>
+      <h2>Spectrum</h2>
+      <canvas id="spectrum" width="640" height="140"></canvas>
+      <h2>Meter and timing report</h2>
+      <pre id="report"></pre>
+    </main>
+    <script type="module" src="./diagnostic-main.ts"></script>
+  </body>
+</html>
