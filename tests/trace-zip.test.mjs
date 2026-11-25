@@ -31,7 +31,10 @@ const fixture = JSON.parse(
 );
 const channels = JSON.parse(
   readFileSync(
-    new URL('./fixtures/diagnostics/pressure-channels.v1.json', import.meta.url),
+    new URL(
+      './fixtures/diagnostics/pressure-channels.v1.json',
+      import.meta.url,
+    ),
     'utf8',
   ),
 ).channels;
@@ -156,10 +159,7 @@ test('ZIP preserves seeded replay, SI channels and generated audio', async () =>
     .map((entry) => entry.value);
   assert.ok(events.length > 0);
   assert.deepEqual(compareEvents(events, result.domain, true), []);
-  const comparison = new ComparisonEngine().compare(
-    original,
-    imported.replay,
-  );
+  const comparison = new ComparisonEngine().compare(original, imported.replay);
   assert.equal(comparison.status, 'comparable');
   assert.equal(comparison.channels[0].unitId, 'Pa');
   assert.equal(comparison.channels[0].matched, fixture.observations);
@@ -168,7 +168,9 @@ test('ZIP preserves seeded replay, SI channels and generated audio', async () =>
   assert.deepEqual(
     new Uint8Array(await zip.arrayBuffer()),
     new Uint8Array(
-      await (await exportTraceZip(source.trace, audio, source.end)).arrayBuffer(),
+      await (
+        await exportTraceZip(source.trace, audio, source.end)
+      ).arrayBuffer(),
     ),
   );
 });
@@ -233,7 +235,10 @@ test('reject oversize, path traversal, unsupported compression and trailing data
     /size budget/,
   );
   assert.throws(
-    () => packStore(new Map([['manifest.json', new Uint8Array(MAX_ENTRY_BYTES + 1)]])),
+    () =>
+      packStore(
+        new Map([['manifest.json', new Uint8Array(MAX_ENTRY_BYTES + 1)]]),
+      ),
     /entry size/,
   );
   assert.throws(

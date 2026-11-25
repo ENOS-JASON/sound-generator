@@ -145,7 +145,9 @@ function decodeChunk(bytes: Bytes, manifest: Manifest): CaptureRecord[] {
           sourceComponentId: channel.componentId,
           simulationTick: d.getFloat64(offset + 8, true),
           simulationTimeSeconds: d.getFloat64(offset + 16, true),
-          ...(flags & 1 ? { sampleFrame: d.getFloat64(offset + 24, true) } : {}),
+          ...(flags & 1
+            ? { sampleFrame: d.getFloat64(offset + 24, true) }
+            : {}),
           ...(flags & 2
             ? { crankAngleRadians: d.getFloat64(offset + 32, true) }
             : {}),
@@ -308,7 +310,8 @@ export async function importTraceZip(blob: Blob): Promise<ImportedTrace> {
   const expectedIntegrity = parse(requireEntry(entries, 'integrity.json'));
   entries.delete('integrity.json');
   if (
-    JSON.stringify(expectedIntegrity) !== JSON.stringify(await integrity(entries))
+    JSON.stringify(expectedIntegrity) !==
+    JSON.stringify(await integrity(entries))
   ) {
     throw new Error('ZIP SHA-256 checksum or inventory mismatch');
   }

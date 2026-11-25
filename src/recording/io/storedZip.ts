@@ -1,6 +1,6 @@
 // Narrow ZIP32 STORE profile: no extraction, compression or external files.
 export const MAX_ARCHIVE_BYTES = 16 * 1024 * 1024;
-const MAX_ENTRY_BYTES = 2 * 1024 * 1024;
+export const MAX_ENTRY_BYTES = 2 * 1024 * 1024;
 const MAX_ENTRIES = 520;
 const encoder = new TextEncoder();
 const decoder = new TextDecoder('utf-8', { fatal: true });
@@ -37,7 +37,12 @@ function equal(a: Bytes, b: Bytes): boolean {
   return a.length === b.length && a.every((byte, i) => byte === b[i]);
 }
 
-function header(name: Bytes, size: number, crc: number, offset?: number): Bytes {
+function header(
+  name: Bytes,
+  size: number,
+  crc: number,
+  offset?: number,
+): Bytes {
   const central = offset !== undefined;
   const length = central ? 46 : 30;
   const bytes = new Uint8Array(length + name.length);
