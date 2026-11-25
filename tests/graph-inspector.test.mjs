@@ -205,10 +205,7 @@ test('invalid graph settings or units fail rather than coercing', () => {
       ),
     /capacity/,
   );
-  assert.throws(
-    () => graph.refresh({ fromTick: 10, toTick: 9 }),
-    /window/,
-  );
+  assert.throws(() => graph.refresh({ fromTick: 10, toTick: 9 }), /window/);
   graph.setUnitChoices({
     perStatUnitIds: { 'synthetic-audio.level': 'Pa' },
   });
