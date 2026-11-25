@@ -60,3 +60,7 @@
 ## Audit conclusion / task-handoff changes
 
 The existing plan covers most **feature categories**. The gap is **execution specificity**: ambiguous ownership, contract versioning, integration sequence, acceptance fixtures, and independently reviewable assignments. The next agents should operate from the task cards, not interpret each roadmap bullet as an implementation specification. Every discovered contradiction is recorded here and must be resolved by a named contract owner or a testable boundary before parallel development.
+
+## A26 — Angular-velocity telemetry quantity missing (OPEN)
+
+AG-M0-11d requires mock RPM and synthetic level overlays; [25](25-core-diagnostics-recording-and-comparison.md) and [26](26-multipage-ui-and-floating-widgets.md) require SI, dimension-aware graph units. The accepted `src/contracts/configurator/units.ts` quantity catalog does not include angular velocity; `src/contracts/units.ts` already provides `radiansPerSecondToRpm` and its inverse. The graph task may project RPM from the accepted read-only mock state with that helper, labeled derived-state, but cannot register a fake ratio/speed channel or claim recorded RPM. **Contract owner action:** AG-M0-06/11a owners should propose additive versioned angular-velocity quantity metadata (SI rad/s; display RPM and rad/s), with registry, import, conversion and compatibility fixtures; owner reviews shared change before activation. Affects AG-M0-11a/b/c/d, AG-M0-13 and AG-M3-08a. No unit catalog change is approved by this note.

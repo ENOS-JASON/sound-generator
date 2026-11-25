@@ -1,0 +1,10 @@
+# AG-M0-11d — Graph inspector handoff
+
+**Status: PARTIAL — read-only graph adapter; live integration pending.**
+
+- Uses merged telemetry registry/hub, recorder and replay fixtures. Owned file `src/diagnostics/GraphInspector.ts`; no shared API, clock, unit registry or solver changes.
+- Caller-driven live graph sessions and validated recorded trace sessions expose SI-preserving channel overlays, independent unit choices, time windows, cursor from the original samples, bounded live history and deterministic extrema/endpoint-preserving downsampling. Defaults: 512 retained observations per channel, 128 displayed points; proposed caps 4,096 retained, 1,024 displayed, 16 selected telemetry channels. Recorded scans are bounded by the recorder's 65,536-record limit, not an unbounded data subscription. Hidden/closed sessions return before any source read, conversion or graph work. Polling gaps and evicted history are explicit. No solver writes or framework/UI rendering.
+- The approved quantity catalog lacks angular velocity. A **derived-state mock RPM view** uses the existing `radiansPerSecondToRpm` contract helper and read-only `StateSnapshot` angular velocity; this is explicitly not a registered telemetry channel or a second unit registry. The normalized synthetic audio level uses an actual ratio channel. Gap A26 records the contract-owner dependency for recorded RPM and per-stat angular velocity units; no silent unit substitution.
+- `tests/graph-inspector.test.mjs` covers real mock crank state + synthetic level overlays, bounded history, cursor/extrema, immutable source, hidden/closed source-read counts, recorded pressure channels with separate display units, and invalid options/units. CI pending at initial submission.
+
+Known limits: live production source wiring, recording canonical angular velocity, graph rendering/widgets, event anchors and additional alignment modes are future work. Derived RPM sampling gaps are relative to simulation ticks; the graph does not assert lost solver data. No actual audio meter, measured engine fidelity or G0-B claim. ADR-001 desktop benchmark and predecessor integration remain pending.
