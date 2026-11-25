@@ -18,9 +18,7 @@ const fixture = JSON.parse(
 
 function setup() {
   const registry = new TelemetryRegistry();
-  const definitions = fixture.channels.map((channel) =>
-    registry.register(channel),
-  );
+  const definitions = fixture.channels.map((c) => registry.register(c));
   const { clock, state } = createMockRun(48000);
   const hub = new DiagnosticsHub(registry, clock.snapshot().runId);
   return { registry, definitions, clock, state, hub };
@@ -178,8 +176,7 @@ test('audio-clock sampling proceeds with frozen physics tick and reports missing
     sampleClock: 'sampleFrame',
     sampleInterval: 128,
   });
-  const frame = (sampleFrame) =>
-    sample(audio, clock, 0.5, { sampleFrame });
+  const frame = (sampleFrame) => sample(audio, clock, 0.5, { sampleFrame });
   assert.throws(() => hub.publish(frame(undefined)), /sample frame/);
   assert.equal(hub.publish(frame(128)), 'accepted');
   assert.equal(hub.publish(frame(192)), 'rate-limited');
