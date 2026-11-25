@@ -15,7 +15,11 @@
 
 `tests/fixtures/diagnostics/pressure-channels.v1.json` contains two synthetic pressure definitions/values. Values are fabricated only as explicit test inputs, not claimed to be measured or calculated by the mock I4. The tests use the merged mock I4 clock, independent psi(g)/bar(a) display preferences and unchanged SI/clock/solver state. Also exercises audio-frame sampling with a fixed simulated tick, missing intervals, throttling, immutability, unknown channels, incompatible dimensions, missing gauge/absolute basis, unavailable sources and malformed/regressing data.
 
-Required commands: `npm test` (including `tests/diagnostics.test.mjs`), `npm run check`, existing Chromium HTTPS smoke. Actual pass/fail evidence must be recorded after execution.
+**Verified CI:** [PR #13, run 45653762016](https://github.com/ENOS-JASON/sound-generator/actions/runs/45653762016) passed on `3c2aa568acedb3964cde061ef7501cafea42f979` (2026-11-25). The two earlier runs failed only Prettier; test formatting was corrected before this successful run.
+
+- `npm run check` passed: typecheck (0 errors/warnings), ESLint, Prettier, `npm test` (60 passed, 0 failed/skipped; all six diagnostics tests passed), and production build.
+- `node tests/pages-smoke.mjs static` and `node tests/pages-smoke.mjs https` passed, including existing Chromium Worker/AudioWorklet functional comparisons at 48 kHz/1x and 44.1 kHz/0.1x with matching simulation/PCM hashes and zero reported queue underrun frames or frame gaps.
+- PR build artifact `ag-m0-02-static-site` (ID 15042455474) uploaded successfully. These results validate the fixture scope only, not live telemetry wiring or the primary desktop benchmark.
 
 ## Limitations and follow-up
 
