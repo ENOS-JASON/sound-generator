@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "runId": "fixture-run",
+  "events": [
+    {
+      "schemaVersion": 3,
+      "category": "domain",
+      "runId": "fixture-run",
+      "sequence": 1,
+      "simulationTick": 10,
+      "simulationTimeSeconds": 0.01,
+      "sampleFrame": 480,
+      "crankAngleRadians": 1.2,
+      "type": "STARTER_ENGAGED",
+      "sourceComponentId": "starter",
+      "causationId": "cmd-key-on",
+      "correlationId": "start-1",
+      "payload": {
+        "starterTorqueNm": 120
+      }
+    },
+    {
+      "schemaVersion": 3,
+      "category": "domain",
+      "runId": "fixture-run",
+      "sequence": 2,
+      "simulationTick": 10,
+      "simulationTimeSeconds": 0.01,
+      "sampleFrame": 480,
+      "crankAngleRadians": 1.2,
+      "type": "COMBUSTION",
+      "sourceComponentId": "cylinder-1",
+      "causationId": "cmd-key-on",
+      "correlationId": "start-1",
+      "payload": {
+        "cylinderId": 1
+      }
+    }
+  ]
+}
