@@ -13,7 +13,7 @@
 
 `tests/recording.test.mjs` exercises a seeded mock run and accepted pressure fixture, command/event/clock alignment, source mutation resistance, frozen chunks, stop/restart, 1,000 over-capacity samples, continuing solver state, explicit sequence and sampling gaps, invalid/foreign inputs and capacity checks.
 
-CI evidence pending at initial submission. Acceptance boxes remain unchecked until results are verified.
+**Verified CI:** [run 45676378178](https://github.com/ENOS-JASON/sound-generator/actions/runs/45676378178) passed 64/64 tests (four recorder tests), typecheck, lint, formatting, build, static and Chromium HTTPS smoke; uploaded artifact 15052776274. Head `f96eaa2f4c30b4ee1fd73d52fef99914a4ed768c`. First run failed Prettier only; corrected. [PR #14](https://github.com/ENOS-JASON/sound-generator/pull/14) merged by `ENOS-JASON` under explicit owner authorization at `18b14d0e49bf0244bcda0c67080fe44178792b78`. Seven fixture criteria verified; full scope/approval and COMPLETE remain unchecked due to pending upstream/live integration. No independent AI approval claimed.
 
 ## Limitations
 
