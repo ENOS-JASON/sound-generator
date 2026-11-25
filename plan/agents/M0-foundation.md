@@ -217,7 +217,7 @@
 
 ### AG-M0-09
 
-- [ ] **AG-M0-09 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-09 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Roadmap source:** Specify shared typed EventMap/CommandMap, event ownership, causation IDs, simulation tick/sample-frame clocks, subscriber API and bounded cross-thread transport contracts (see [11](../11-event-bus-and-messaging.md)).
 
@@ -229,7 +229,7 @@
 **Required references:** [09](../09-data-contracts.md), [11](../11-event-bus-and-messaging.md), [24](../24-simulation-clock-and-time-scaling.md), [30](../30-agent-handoff-contracts-and-decisions.md).
 **Acceptance checklist — AG-M0-09** (all unchecked until verified):
 
-- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [x] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
 - [x] Two same-tick events retain stable sequence
 - [x] aliases mapped explicitly
 - [x] stale run discarded
@@ -238,9 +238,9 @@
 - [x] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+- [x] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
-**Verified implementation evidence:** [PR #11](https://github.com/ENOS-JASON/sound-generator/pull/11), tested head `cc9ec5b9015bc23538f4ff119e493b4da72c89b7`, [passing PR CI #45633975802](https://github.com/ENOS-JASON/sound-generator/actions/runs/45633975802): `npm run check` passed (46/46 tests, including all seven event-contract tests, zero failures or skips; typecheck, lint, formatting and build). Static Pages asset validation and Chromium HTTPS hash-route/refresh smoke passed; PR build artifact uploaded. See [AG-M0-09 handoff](reports/AG-M0-09.md). ADR-004 and shared public contract approval remain pending; scoped acceptance, approval/merge and COMPLETE remain unchecked. No real transport or solver placement is claimed.
+**Verified implementation evidence:** [PR #11](https://github.com/ENOS-JASON/sound-generator/pull/11), tested head `cc9ec5b9015bc23538f4ff119e493b4da72c89b7`, [passing PR CI #45633975802](https://github.com/ENOS-JASON/sound-generator/actions/runs/45633975802): `npm run check` passed (46/46 tests, including all seven event-contract tests, zero failures or skips; typecheck, lint, formatting and build). Static Pages asset validation and Chromium HTTPS hash-route/refresh smoke passed; PR build artifact uploaded. See [AG-M0-09 handoff](reports/AG-M0-09.md). ADR-004 and shared public contracts are accepted. Owner authorized approval and merge in chat; GitHub verifies merger `ENOS-JASON`, [PR #11](https://github.com/ENOS-JASON/sound-generator/pull/11), merge `5eaba74d7d1a257920e03a98a9e03bd9e268c2e5`, final [PR CI #45634586560](https://github.com/ENOS-JASON/sound-generator/actions/runs/45634586560) passed 46/46 tests, zero skipped or failed, typecheck, lint, format, build and Chromium HTTPS smoke. No real transport or solver placement is claimed.
 
 ### AG-M0-10
 
