@@ -172,9 +172,7 @@ test('invalid, stale and excessive clock commands do not change state', () => {
   assert.throws(() =>
     control(clock, 'RESUME', {}, { targetSimulationTick: 1 }),
   );
-  assert.throws(() =>
-    control(clock, 'RESUME', {}, { targetSampleFrame: 1 }),
-  );
+  assert.throws(() => control(clock, 'RESUME', {}, { targetSampleFrame: 1 }));
   assert.throws(() => clock.advanceFrames(4097));
   assert.throws(() => clock.advanceFrames(-1));
   assert.deepEqual(clock.snapshot(), before);
