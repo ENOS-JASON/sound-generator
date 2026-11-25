@@ -109,9 +109,7 @@ class BenchmarkProcessor extends scope.AudioWorkletProcessor {
           throw new Error('invalid or overflowing worker block');
         }
         const now = nowMs();
-        this.#roundTrip.add(
-          sent === null || now === null ? null : now - sent,
-        );
+        this.#roundTrip.add(sent === null || now === null ? null : now - sent);
         this.#requests.delete(data.index);
         this.#queue.set(data.index, data);
         if (this.#queue.size === Math.min(this.#count, LOOKAHEAD_BLOCKS)) {

@@ -1,8 +1,5 @@
 import workletUrl from './benchmark-worklet.ts?worker&url';
-import {
-  BENCHMARK_QUANTUM,
-  LOOKAHEAD_BLOCKS,
-} from './benchmark-core.ts';
+import { BENCHMARK_QUANTUM, LOOKAHEAD_BLOCKS } from './benchmark-core.ts';
 import { TimingSeries, totalBlocks } from './benchmark-protocol.ts';
 import type {
   BenchmarkOptions,
@@ -90,7 +87,10 @@ async function runLocation(
             (worker ?? node.port).postMessage({ type: 'ping', id });
           }, 250);
         } else if (message.type === 'progress') {
-          setStatus('running', options.owner + ': ' + message.blocks + '/' + count);
+          setStatus(
+            'running',
+            options.owner + ': ' + message.blocks + '/' + count,
+          );
         } else if (message.type === 'result') {
           resolve(message.report);
         } else if (message.type === 'failure') {

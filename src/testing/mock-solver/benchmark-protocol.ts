@@ -1,7 +1,4 @@
-import {
-  BENCHMARK_QUANTUM,
-  createBenchmarkRun,
-} from './benchmark-core.ts';
+import { BENCHMARK_QUANTUM, createBenchmarkRun } from './benchmark-core.ts';
 import type { BenchmarkRun } from './benchmark-core.ts';
 
 export type SolverLocation = 'worklet' | 'worker';
@@ -61,9 +58,7 @@ export type WorkerControl =
   | { type: 'ping'; id: number };
 
 export type BlockRequest = { type: 'produce'; index: number };
-export type WorkerReply =
-  | BlockMessage
-  | { type: 'failure'; message: string };
+export type WorkerReply = BlockMessage | { type: 'failure'; message: string };
 
 export function nowMs(): number | null {
   return globalThis.performance?.now() ?? null;

@@ -6,6 +6,10 @@ import {
 } from '../src/core/clock/SimulationClock.ts';
 import { createMockRun } from '../src/testing/mock-solver/i4.ts';
 import {
+  createBlockProducer,
+  appendPcmHash,
+} from '../src/testing/mock-solver/benchmark-protocol.ts';
+import {
   appendEventHash,
   createBenchmarkRun,
 } from '../src/testing/mock-solver/benchmark-core.ts';
@@ -186,9 +190,7 @@ test('benchmark runners share identical samples and physical hashes', () => {
   assert.ok(a.summary().eventCount > 2);
 });
 
-test('benchmark producer is sequential and trims the final padded quantum', async () => {
-  const { createBlockProducer, appendPcmHash } =
-    await import('../src/testing/mock-solver/benchmark-protocol.ts');
+test('benchmark producer is sequential and trims the final padded quantum', () => {
   const options = {
     owner: 'worker',
     sampleRate: 44100,

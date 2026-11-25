@@ -1,7 +1,10 @@
 import { validateDomainEvent } from '../../contracts/events/index.ts';
 import type { DomainEvent, EventType } from '../../contracts/events/index.ts';
 import { createSeededRandom } from '../../contracts/prng.ts';
-import { SimulationClock, TICK_RATE } from '../../core/clock/SimulationClock.ts';
+import {
+  SimulationClock,
+  TICK_RATE,
+} from '../../core/clock/SimulationClock.ts';
 import type {
   TickContext,
   TickOutput,
