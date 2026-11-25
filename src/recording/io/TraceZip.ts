@@ -1,6 +1,7 @@
 import { ReplayController } from '../../comparison/ReplayController.ts';
+import type { ReplayBoundary } from '../../comparison/ReplayController.ts';
 import type { CaptureRecord, RecordedTrace } from '../TraceRecorder.ts';
-import { packStore, unpackStore } from './storedZip.ts';
+import { MAX_ARCHIVE_BYTES, packStore, unpackStore } from './storedZip.ts';
 
 const VERSION = 1;
 const MAX_RECORDS = 65536;
@@ -29,6 +30,7 @@ interface Manifest {
   readonly version: 1;
   readonly trace: Omit<RecordedTrace, 'chunks'>;
   readonly chunks: number;
+  readonly end: ReplayBoundary | null;
   readonly audio: AudioMetadata | null;
 }
 
@@ -128,6 +130,12 @@ function decodeChunk(bytes: Bytes, manifest: Manifest): CaptureRecord[] {
       const channel = manifest.trace.channels[d.getUint32(offset, true)];
       const flags = d.getUint32(offset + 4, true);
       if (!channel || flags > 3) throw new Error('invalid telemetry index');
+      if (
+        (!(flags & 1) && d.getFloat64(offset + 24, true) !== 0) ||
+        (!(flags & 2) && d.getFloat64(offset + 32, true) !== 0)
+      ) {
+        throw new Error('noncanonical optional telemetry fields');
+      }
       records.push({
         kind: 'telemetry',
         value: {
@@ -166,6 +174,45 @@ function decodeChunk(bytes: Bytes, manifest: Manifest): CaptureRecord[] {
   return records;
 }
 
+/** v1 replay bounds; a sparse capture never invents its terminal clock. */
+function validateEnd(
+  end: ReplayBoundary | null,
+  trace: RecordedTrace,
+): ReplayBoundary | null {
+  if (end === null) return null;
+  if (
+    !end ||
+    !index(end.sampleFrame) ||
+    !index(end.simulationTick) ||
+    end.sampleFrame < trace.start.initialClock.sampleFrame ||
+    end.simulationTick < trace.start.initialClock.simulationTick
+  ) {
+    throw new Error('invalid trace endpoint');
+  }
+  for (const chunk of trace.chunks) {
+    for (const entry of chunk) {
+      const tick =
+        entry.kind === 'command'
+          ? entry.value.targetSimulationTick
+          : entry.value.simulationTick;
+      const frame =
+        entry.kind === 'command'
+          ? entry.value.targetSampleFrame
+          : entry.value.sampleFrame;
+      if (
+        tick > end.simulationTick ||
+        (frame !== undefined && frame > end.sampleFrame)
+      ) {
+        throw new Error('trace endpoint precedes recorded observation');
+      }
+    }
+  }
+  return Object.freeze({
+    sampleFrame: end.sampleFrame,
+    simulationTick: end.simulationTick,
+  });
+}
+
 function validAudio(meta: AudioMetadata): boolean {
   return (
     meta.provenance === 'synthesized-output' &&
@@ -197,10 +244,15 @@ async function integrity(entries: ReadonlyMap<string, Bytes>) {
 export async function exportTraceZip(
   input: RecordedTrace,
   audio?: GeneratedMasterCapture,
+  end: ReplayBoundary | null = null,
 ): Promise<Blob> {
-  const { chunks, ...trace } = new ReplayController(input).trace;
+  const validated = new ReplayController(input).trace;
+  const { chunks, ...trace } = validated;
   const entries = new Map<string, Bytes>();
   const catalog = new Map(trace.channels.map((c, i) => [c.fieldId, i]));
+  if (audio && !(audio.samples instanceof Float32Array)) {
+    throw new Error('generated audio must be Float32Array');
+  }
   const meta = audio
     ? {
         provenance: audio.provenance,
@@ -213,6 +265,7 @@ export async function exportTraceZip(
     version: VERSION,
     trace,
     chunks: chunks.length,
+    end: validateEnd(end, validated),
     audio: meta,
   };
   entries.set('manifest.json', json(manifest));
@@ -220,7 +273,7 @@ export async function exportTraceZip(
   chunks.forEach((chunk, i) => {
     const data = encodeChunk(chunk, catalog);
     total += data.length;
-    if (total > 16 * 1024 * 1024) {
+    if (total > MAX_ARCHIVE_BYTES) {
       throw new RangeError('trace exceeds byte budget');
     }
     entries.set(chunkName(i), data);
@@ -245,6 +298,7 @@ export async function exportTraceZip(
 
 export interface ImportedTrace {
   readonly replay: ReplayController;
+  readonly end: ReplayBoundary | null;
   readonly audio: GeneratedMasterCapture | null;
 }
 
@@ -303,5 +357,5 @@ export async function importTraceZip(blob: Blob): Promise<ImportedTrace> {
       samples,
     };
   }
-  return { replay, audio };
+  return { replay, end: validateEnd(manifest.end, replay.trace), audio };
 }

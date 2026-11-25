@@ -37,12 +37,7 @@ function equal(a: Bytes, b: Bytes): boolean {
   return a.length === b.length && a.every((byte, i) => byte === b[i]);
 }
 
-function header(
-  name: Bytes,
-  size: number,
-  crc: number,
-  offset?: number,
-): Bytes {
+function header(name: Bytes, size: number, crc: number, offset?: number): Bytes {
   const central = offset !== undefined;
   const length = central ? 46 : 30;
   const bytes = new Uint8Array(length + name.length);
