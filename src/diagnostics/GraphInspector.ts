@@ -217,7 +217,9 @@ export class GraphInspector {
         d.fieldId,
         latest,
         (v) =>
-          d.sampleClock === 'simulationTick' ? v.simulationTick : v.sampleFrame!,
+          d.sampleClock === 'simulationTick'
+            ? v.simulationTick
+            : v.sampleFrame!,
         d.sampleInterval,
       );
     }
@@ -258,7 +260,8 @@ export class GraphInspector {
   ): GraphSeries {
     const visible = samples.filter(
       (s) =>
-        s.simulationTick >= window.fromTick && s.simulationTick <= window.toTick,
+        s.simulationTick >= window.fromTick &&
+        s.simulationTick <= window.toTick,
     );
     const points = visible.map((s) => point(s, convert(s.valueSI)));
     let cursor: GraphPoint | null = null;
@@ -379,7 +382,8 @@ export class GraphInspector {
     return Object.freeze({
       source: source.kind,
       incompleteCapture:
-        source.kind === 'recorded' && source.replay.trace.status === 'incomplete',
+        source.kind === 'recorded' &&
+        source.replay.trace.status === 'incomplete',
       series: Object.freeze(series),
     });
   }

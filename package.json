@@ -13,7 +13,7 @@
     "typecheck": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier src/diagnostics/GraphInspector.ts > /tmp/graph-inspector.formatted.ts && diff -u src/diagnostics/GraphInspector.ts /tmp/graph-inspector.formatted.ts && prettier --check .",
+    "format:check": "prettier --check .",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run test && npm run build"
   },
