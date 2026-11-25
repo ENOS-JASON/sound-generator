@@ -9,12 +9,9 @@ import { DiagnosticsHub } from '../src/diagnostics/DiagnosticsHub.ts';
 import { TelemetryRegistry } from '../src/diagnostics/TelemetryRegistry.ts';
 import { createMockRun } from '../src/testing/mock-solver/i4.ts';
 
-const fixture = JSON.parse(
-  readFileSync(
-    new URL('./fixtures/diagnostics/pressure-channels.v1.json', import.meta.url),
-    'utf8',
-  ),
-);
+const fixturePath = './fixtures/diagnostics/pressure-channels.v1.json';
+const url = new URL(fixturePath, import.meta.url);
+const fixture = JSON.parse(readFileSync(url, 'utf8'));
 
 function setup() {
   const registry = new TelemetryRegistry();
@@ -35,7 +32,7 @@ function sample(definition, clock, valueSI, changes = {}) {
   };
 }
 
-test('mock clock projection retains source, SI metadata and bounded sample rate', () => {
+test('mock clock retains source, SI units and bounded sampling', () => {
   const { definitions, clock, hub } = setup();
   const [boost] = definitions;
   const read = hub.subscribe({ fieldIds: [boost.fieldId] });
@@ -61,16 +58,18 @@ test('mock clock projection retains source, SI metadata and bounded sample rate'
   assert.equal(projection.missedIntervals, 2);
   assert.equal(hub.read().length, 2);
   assert.equal(hub.read({ componentId: 'oil' })[0].latest, null);
-  assert.throws(() => (projection.latest.valueSI = 0), TypeError);
-  assert.throws(() => (projection.definition.bounds.maxSI = 1), TypeError);
-  assert.throws(
-    () => projection.definition.allowedDisplayUnitIds.push('W'),
-    TypeError,
-  );
+  const { latest, definition } = projection;
+  assert.throws(() => {
+    latest.valueSI = 0;
+  }, TypeError);
+  assert.throws(() => {
+    definition.bounds.maxSI = 1;
+  }, TypeError);
+  assert.throws(() => definition.allowedDisplayUnitIds.push('W'), TypeError);
   assert.throws(() => read().push(projection), TypeError);
 });
 
-test('independent pressure display preferences never change SI or solver state', () => {
+test('mixed pressure display units preserve SI and solver state', () => {
   const { definitions, clock, state, hub } = setup();
   const [boost, oil] = definitions;
   clock.advanceFrames(480);
@@ -87,27 +86,23 @@ test('independent pressure display preferences never change SI or solver state',
     quantityDefaults: { pressure: 'kPa' },
     perStatUnitIds: { [boost.fieldId]: 'psi', [oil.fieldId]: 'bar' },
   };
-  const values = before.map(({ definition, latest }) =>
-    toDisplayValue(
-      latest.valueSI,
-      definition,
-      resolveDisplayUnit(definition, choices),
-    ),
-  );
+  const values = before.map(({ definition, latest }) => {
+    const unit = resolveDisplayUnit(definition, choices);
+    return toDisplayValue(latest.valueSI, definition, unit);
+  });
   for (const [i, value] of values.entries()) {
     assert.ok(Math.abs(value - fixture.expectedDisplay[i]) < 1e-10);
   }
   assert.throws(() => toDisplayValue(1, boost, 'W'), /incompatible unit/);
-  assert.throws(
-    () => toDisplayValue(1, boost, 'Pa', { displayBasis: 'absolute' }),
-    /ambient reference/,
-  );
+  const absolute = { displayBasis: 'absolute' };
+  const convert = () => toDisplayValue(1, boost, 'Pa', absolute);
+  assert.throws(convert, /ambient reference/);
   assert.deepEqual(hub.read(), before);
   assert.deepEqual(state(), solverBefore);
   assert.deepEqual(clock.snapshot(), clockBefore);
 });
 
-test('invalid registration rejects incompatible units, pressure basis and capacity', () => {
+test('registration rejects invalid units, basis and capacity', () => {
   const registry = new TelemetryRegistry(1);
   const channel = fixture.channels[0];
   for (const invalid of [
@@ -132,7 +127,7 @@ test('invalid registration rejects incompatible units, pressure basis and capaci
   assert.equal(registry.list().length, 1);
 });
 
-test('invalid publications cannot mutate the projection or consume sampling quota', () => {
+test('invalid publications preserve projection and sampling quota', () => {
   const { definitions, clock, hub } = setup();
   const [boost, oil] = definitions;
   clock.advanceFrames(480);
@@ -162,7 +157,7 @@ test('invalid publications cannot mutate the projection or consume sampling quot
   assert.equal(hub.read()[0].rateLimited, 0);
 });
 
-test('audio-clock sampling proceeds with frozen physics tick and reports missing frames', () => {
+test('audio sampling works at a fixed tick and reports gaps', () => {
   const { registry, clock, hub } = setup();
   const audio = registry.register({
     ...fixture.channels[0],
@@ -196,10 +191,8 @@ test('unavailable channels stay explicit and pull filters are copied', () => {
     channelId: 'planned',
     availability: 'unavailable',
   });
-  assert.throws(
-    () => hub.publish(sample(missing, clock, 10000)),
-    /availability/,
-  );
+  const publish = () => hub.publish(sample(missing, clock, 10000));
+  assert.throws(publish, /availability/);
   const ids = [definitions[0].fieldId];
   const read = hub.subscribe({ fieldIds: ids });
   ids.push(missing.fieldId);
