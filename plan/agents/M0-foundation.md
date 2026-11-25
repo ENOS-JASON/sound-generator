@@ -396,14 +396,16 @@
 **Acceptance checklist — AG-M0-12** (all unchecked until verified):
 
 - [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] Browser audio unlock and 0.1x/1x continuity
-- [ ] seeded sine/impulse FFT peak where expected
+- [x] Browser audio unlock and 0.1x/1x continuity
+- [x] seeded sine/impulse FFT peak where expected
 - [ ] no NaN/clip and deadline report.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+
+**Verified fixture evidence (2026-11-25):** [PR #17](https://github.com/ENOS-JASON/sound-generator/pull/17), authorized in the owner's sequential-merge instruction, merged by `ENOS-JASON` at `c6ccc340351f975c47b5f9add0b88bc125a445c1`. [PR CI 45688780503](https://github.com/ENOS-JASON/sound-generator/actions/runs/45688780503) passed strict typecheck, lint, formatting, 76/76 tests, build and actual Chromium HTTPS AudioWorklet smoke; artifact `15057178121`. Actual 48 kHz/1x and 44.1 kHz/0.1x runs reported 19,200/176,400 frames, expected FFT bins 20/2, one combustion impulse each, zero nonfinite/clipped samples, zero gaps and zero dropped features. Worklet timing API was unavailable (timedBlocks=0; timing/overruns null), so the combined deadline criterion remains unchecked. Production streaming/physics ownership, owner benchmark/ADR-001, and independent integration-review evidence remain pending; no COMPLETE or roadmap promotion. See [handoff](reports/AG-M0-12.md).
 
 ### AG-M0-13
 
