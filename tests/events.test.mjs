@@ -93,7 +93,8 @@ test('stale runs are discarded; current run authority is enforced', () => {
   const wrong = batch();
   wrong.events[0].sourceComponentId = 'engine';
   assert.throws(
-    () => assertDomainAuthority(validateDomainEvent(wrong.events[0]), authority),
+    () =>
+      assertDomainAuthority(validateDomainEvent(wrong.events[0]), authority),
     /unauthorized/,
   );
   assert.equal(inspect(wrong).status, 'invalid');

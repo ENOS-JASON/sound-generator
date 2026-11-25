@@ -267,7 +267,10 @@ function validateEvent(
     if (!Object.hasOwn(diagnosticCatalog, base.type)) {
       throw new Error('unknown diagnostic event');
     }
-    validateFields(base.payload, diagnosticCatalog[base.type as DiagnosticType]);
+    validateFields(
+      base.payload,
+      diagnosticCatalog[base.type as DiagnosticType],
+    );
   }
   return Object.freeze({
     ...base,
