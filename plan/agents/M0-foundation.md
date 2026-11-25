@@ -265,15 +265,17 @@
 **Acceptance checklist — AG-M0-10** (all unchecked until verified):
 
 - [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] 0.1x/1x produce identical mock physics event trace keyed by sim tick
-- [ ] step bounded
-- [ ] no duplicate firing on scale change.
+- [x] 0.1x/1x produce identical mock physics event trace keyed by sim tick
+- [x] step bounded
+- [x] no duplicate firing on scale change.
 - [ ] Publish comparable jitter/CPU/latency/transport/browser measurements for both solver locations and obtain owner approval before claiming ADR-001 accepted.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+
+**Post-merge reconciliation (partial):** [PR #12](https://github.com/ENOS-JASON/sound-generator/pull/12) verified merged by `ENOS-JASON` at `f6e2bcfd00334bba0a3812d02530ef8fe2d4b611`. [CI 45651561290](https://github.com/ENOS-JASON/sound-generator/actions/runs/45651561290) passed 54 tests, typecheck, lint, formatting, build and Chromium Worker/AudioWorklet functional smoke. The deterministic trace, bounded step, scale change, positive/negative tests and committed [handoff](reports/AG-M0-10.md) are verified. Scope, complete CI/artifact and approval criteria remain unchecked because the required primary desktop comparison and ADR-001 are missing. No COMPLETE or roadmap promotion. A direct tracking write was rejected by repository rules; this reconciliation is proposed through the next authorized PR.
 
 ### AG-M0-11a
 

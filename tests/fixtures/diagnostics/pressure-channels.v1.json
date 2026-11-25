@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "description": "Synthetic pressure observations for the merged mock-I4 clock; not measured or physical solver pressure.",
+  "channels": [
+    {
+      "componentId": "intake",
+      "channelId": "boost-pressure",
+      "label": "Synthetic boost",
+      "quantityKind": "pressure",
+      "canonicalUnitId": "Pa",
+      "pressureBasis": "gauge",
+      "numericType": "float64",
+      "availability": "available",
+      "sampleClock": "simulationTick",
+      "sampleInterval": 10,
+      "bounds": { "minSI": -100000, "maxSI": 300000 },
+      "precisionDigits": 2,
+      "instrumentVersion": 1,
+      "performanceClass": "normal",
+      "recorderRouting": "standard"
+    },
+    {
+      "componentId": "oil",
+      "channelId": "pressure",
+      "label": "Synthetic oil pressure",
+      "quantityKind": "pressure",
+      "canonicalUnitId": "Pa",
+      "pressureBasis": "absolute",
+      "numericType": "float64",
+      "availability": "available",
+      "sampleClock": "simulationTick",
+      "sampleInterval": 10,
+      "bounds": { "minSI": 0, "maxSI": 1000000 },
+      "precisionDigits": 2,
+      "instrumentVersion": 1,
+      "performanceClass": "normal",
+      "recorderRouting": "standard"
+    }
+  ],
+  "valuesSI": [68947.57293168, 350000],
+  "expectedDisplay": [10, 3.5]
+}
