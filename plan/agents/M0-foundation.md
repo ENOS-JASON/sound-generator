@@ -428,13 +428,15 @@
 **Acceptance checklist — AG-M0-13** (all unchecked until verified):
 
 - [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] Export a synthetic session, import and compare it
-- [ ] tampered checksum, oversize and unknown version must be rejected.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [x] Export a synthetic session, import and compare it
+- [x] tampered checksum, oversize and unknown version must be rejected.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+
+**Verified fixture evidence (2026-11-25):** [PR #19](https://github.com/ENOS-JASON/sound-generator/pull/19), [passing CI 45708070698](https://github.com/ENOS-JASON/sound-generator/actions/runs/45708070698) at `7656072a047dcbf7e4f544d63a8099ab06616412`: `npm run check` passed 83/83 tests (seven ZIP tests), typecheck, lint, formatting and build; existing Chromium HTTPS preview passed; build artifact `15066466219` uploaded. The Node 24 fixture verified the roundtrip, zero SI/event deltas, deterministic re-simulation, generated PCM, 1x/0.1x equivalence, incomplete status and CRC/SHA/version/size/security rejection. The browser preview did not exercise the ZIP codec itself. See [handoff](reports/AG-M0-13.md) and [proposed ADR-006](../decisions/ADR-006-trace-zip-v1.md). Scope, approval and COMPLETE remain unchecked: owner approval of ADR-006, live upstream integration, workspace schema and direct browser codec validation remain pending; no roadmap promotion.
 
 ### AG-M0-14a
 
