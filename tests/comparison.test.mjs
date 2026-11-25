@@ -122,11 +122,7 @@ test('replay seeded commands and paused stepping exactly', () => {
       [],
     );
     assert.deepEqual(
-      compareEvents(
-        category(replay, 'diagnostic'),
-        result.diagnostics,
-        true,
-      ),
+      compareEvents(category(replay, 'diagnostic'), result.diagnostics, true),
       [],
     );
     const before = replay.telemetryAt(100);

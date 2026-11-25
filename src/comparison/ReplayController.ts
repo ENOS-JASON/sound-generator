@@ -8,10 +8,7 @@ import type {
 } from '../core/clock/SimulationClock.ts';
 import type { TelemetrySample } from '../diagnostics/DiagnosticsHub.ts';
 import { TelemetryRegistry } from '../diagnostics/TelemetryRegistry.ts';
-import {
-  RECORDER_VERSION,
-  TraceRecorder,
-} from '../recording/TraceRecorder.ts';
+import { RECORDER_VERSION, TraceRecorder } from '../recording/TraceRecorder.ts';
 import type {
   CaptureStats,
   RecordedTrace,
@@ -156,10 +153,7 @@ export class ReplayController {
     const latest = new Map<string, TelemetrySample>();
     for (const chunk of this.trace.chunks) {
       for (const entry of chunk) {
-        if (
-          entry.kind === 'telemetry' &&
-          entry.value.simulationTick <= tick
-        ) {
+        if (entry.kind === 'telemetry' && entry.value.simulationTick <= tick) {
           latest.set(entry.value.fieldId, entry.value);
         }
       }
