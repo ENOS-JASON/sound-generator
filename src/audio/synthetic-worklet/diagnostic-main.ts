@@ -23,7 +23,11 @@ const report = document.querySelector<HTMLElement>('#report')!;
 const waveform = document.querySelector<HTMLCanvasElement>('#waveform')!;
 const spectrum = document.querySelector<HTMLCanvasElement>('#spectrum')!;
 
-function draw(canvas: HTMLCanvasElement, values: ArrayLike<number>, bipolar: boolean) {
+function draw(
+  canvas: HTMLCanvasElement,
+  values: ArrayLike<number>,
+  bipolar: boolean,
+) {
   const c = canvas.getContext('2d');
   if (!c) return;
   c.clearRect(0, 0, canvas.width, canvas.height);
@@ -90,7 +94,8 @@ button.onclick = async () => {
     const registry = new TelemetryRegistry();
     registerAudioMeters(registry);
     const hub = new DiagnosticsHub(registry, options.runId);
-    const features: { peakBin: number; peakHz: number; sequence: number }[] = [];
+    const features: { peakBin: number; peakHz: number; sequence: number }[] =
+      [];
     node = new AudioWorkletNode(context, 'synthetic-diagnostics', {
       numberOfInputs: 0,
       numberOfOutputs: 1,
@@ -99,7 +104,10 @@ button.onclick = async () => {
     });
     const active = node;
     await new Promise<void>((resolve, reject) => {
-      timer = window.setTimeout(() => reject(new Error('audio fixture timeout')), 15000);
+      timer = window.setTimeout(
+        () => reject(new Error('audio fixture timeout')),
+        15000,
+      );
       active.onprocessorerror = () => reject(new Error('worklet error'));
       active.port.onmessage = ({ data }) => {
         try {
@@ -120,18 +128,24 @@ button.onclick = async () => {
             active.port.postMessage({ type: 'ack' });
           } else if (data.type === 'result') {
             const { rawMaster, ...summary } = data.report;
-            report.textContent = JSON.stringify({
-              ...summary,
-              audioUnlocked: true,
-              rawCapturedFrames: rawMaster.length,
-              captureFinite: Array.from(rawMaster as Float32Array).every(Number.isFinite),
-              features,
-              meters: hub.read().map((p) => ({
-                fieldId: p.definition.fieldId,
-                valueSI: p.latest?.valueSI ?? null,
-                sampleFrame: p.latest?.sampleFrame ?? null,
-              })),
-            }, null, 2);
+            report.textContent = JSON.stringify(
+              {
+                ...summary,
+                audioUnlocked: true,
+                rawCapturedFrames: rawMaster.length,
+                captureFinite: Array.from(rawMaster as Float32Array).every(
+                  Number.isFinite,
+                ),
+                features,
+                meters: hub.read().map((p) => ({
+                  fieldId: p.definition.fieldId,
+                  valueSI: p.latest?.valueSI ?? null,
+                  sampleFrame: p.latest?.sampleFrame ?? null,
+                })),
+              },
+              null,
+              2,
+            );
             resolve();
           }
         } catch (error) {

@@ -123,7 +123,8 @@ export async function verifyBenchmarkBrowser(chrome, origin, temporary) {
       );
     }
     await call('Page.navigate', {
-      url: origin + '/sound-generator/src/audio/synthetic-worklet/diagnostic.html',
+      url:
+        origin + '/sound-generator/src/audio/synthetic-worklet/diagnostic.html',
     });
     await waitFor(() => evaluate("!!document.querySelector('#run')?.onclick"));
     for (const [rate, scale, bin] of [

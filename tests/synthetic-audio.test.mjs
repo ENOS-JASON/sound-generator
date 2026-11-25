@@ -79,7 +79,10 @@ test('scale change retains phase and gives the physical slow tone', () => {
   const events = control(clock, 'SET_TIME_SCALE', { playbackScale: 0.1 });
   const slow = render(options(events));
   const normal = render(options());
-  assert.deepEqual(slow.report.rawMaster.slice(0, 4096), normal.report.rawMaster.slice(0, 4096));
+  assert.deepEqual(
+    slow.report.rawMaster.slice(0, 4096),
+    normal.report.rawMaster.slice(0, 4096),
+  );
   assert.equal(slow.report.rawMaster[4096], normal.report.rawMaster[4096]);
   assert.equal(analyzeFeature(slow.features[1]).peakBin, 2);
   assert.equal(slow.features[1].playbackScale, 0.1);
@@ -95,7 +98,11 @@ test('unsupported pitch-preserved mode is explicit and silent', () => {
   assert.equal(result.report.supported, false);
   assert.equal(result.report.unsupportedFrames, 8192);
   assert.ok(result.report.rawMaster.every((v) => v === 0));
-  assert.ok(result.report.timeline.some((e) => e.type === 'SLOW_MOTION_AUDIO_MODE_CHANGED'));
+  assert.ok(
+    result.report.timeline.some(
+      (e) => e.type === 'SLOW_MOTION_AUDIO_MODE_CHANGED',
+    ),
+  );
 });
 
 test('meter bridge preserves authoritative frame and rejects bad data', () => {
@@ -108,8 +115,15 @@ test('meter bridge preserves authoritative frame and rejects bad data', () => {
   publishAudioMeters(hub, frame, clock.snapshot());
   assert.equal(hub.read().length, 4);
   assert.ok(hub.read().every((p) => p.latest.sampleFrame === 4096));
-  assert.throws(() => publishAudioMeters(hub, frame, { ...clock.snapshot(), sampleFrame: 0 }), /clock/);
-  assert.throws(() => new SyntheticStimulus({ ...options(), captureFrames: 65537 }), /options/);
+  assert.throws(
+    () =>
+      publishAudioMeters(hub, frame, { ...clock.snapshot(), sampleFrame: 0 }),
+    /clock/,
+  );
+  assert.throws(
+    () => new SyntheticStimulus({ ...options(), captureFrames: 65537 }),
+    /options/,
+  );
   assert.throws(() => fftMagnitude(new Float32Array(2)), /FFT/);
   const bad = { ...frame, window: new Float32Array(FFT_SIZE).fill(NaN) };
   assert.throws(() => analyzeFeature(bad), /nonfinite/);

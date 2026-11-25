@@ -7,9 +7,9 @@ const scope = globalThis as unknown as {
   }) => { port: MessagePort };
   registerProcessor(
     name: string,
-    processor: new (options: {
-      processorOptions: SyntheticOptions;
-    }) => { port: MessagePort },
+    processor: new (options: { processorOptions: SyntheticOptions }) => {
+      port: MessagePort;
+    },
   ): void;
   readonly currentFrame: number;
   readonly sampleRate: number;
@@ -35,7 +35,8 @@ class SyntheticProcessor extends scope.AudioWorkletProcessor {
     this.#stimulus = new SyntheticStimulus(options.processorOptions);
     this.port.onmessage = ({ data }: MessageEvent<{ type: string }>) => {
       if (data.type === 'start') this.#started = true;
-      if (data.type === 'ack') this.#outstanding = Math.max(0, this.#outstanding - 1);
+      if (data.type === 'ack')
+        this.#outstanding = Math.max(0, this.#outstanding - 1);
     };
   }
 

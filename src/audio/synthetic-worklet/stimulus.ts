@@ -131,8 +131,9 @@ export class SyntheticStimulus {
   }
 
   get featureReady(): boolean {
-    return this.#interval === FEATURE_FRAMES ||
-      (this.complete && this.#interval > 0);
+    return (
+      this.#interval === FEATURE_FRAMES || (this.complete && this.#interval > 0)
+    );
   }
 
   /** Render into the caller's buffer; no per-sample allocations or waits. */

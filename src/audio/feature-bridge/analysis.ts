@@ -2,6 +2,7 @@ import type { ClockReference } from '../../contracts/events/index.ts';
 import type { DiagnosticsHub } from '../../diagnostics/DiagnosticsHub.ts';
 import type { TelemetryRegistry } from '../../diagnostics/TelemetryRegistry.ts';
 import {
+  FEATURE_FRAMES,
   FFT_SIZE,
   MASTER_ID,
   SOURCE_ID,
@@ -72,7 +73,7 @@ export function analyzeFeature(frame: FeatureFrame) {
     frame.startSampleFrame < 0 ||
     !Number.isSafeInteger(frame.endSampleFrame) ||
     frame.endSampleFrame <= frame.startSampleFrame ||
-    frame.endSampleFrame - frame.startSampleFrame > 4096 ||
+    frame.endSampleFrame - frame.startSampleFrame > FEATURE_FRAMES ||
     ![44100, 48000, 96000].includes(frame.sampleRate) ||
     !validMeter(frame.source) ||
     !validMeter(frame.master) ||
@@ -109,7 +110,7 @@ export function registerAudioMeters(registry: TelemetryRegistry): void {
         numericType: 'float64',
         availability: 'available',
         sampleClock: 'sampleFrame',
-        sampleInterval: 1,
+        sampleInterval: FEATURE_FRAMES,
         bounds: { minSI: 0, maxSI: 1 },
         instrumentVersion: 1,
         performanceClass: 'normal',
@@ -133,6 +134,8 @@ export function publishAudioMeters(
   ) {
     throw new Error('audio feature clock or meter mismatch');
   }
+  // A final partial interval remains display-only, not fixed-rate telemetry.
+  if (frame.endSampleFrame - frame.startSampleFrame !== FEATURE_FRAMES) return;
   for (const [componentId, meter] of [
     [SOURCE_ID, frame.source],
     [MASTER_ID, frame.master],
