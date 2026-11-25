@@ -145,8 +145,7 @@ class BenchmarkProcessor extends scope.AudioWorkletProcessor {
       }
       const frame = scope.currentFrame;
       const time = nowMs();
-      const expectedMs =
-        (BENCHMARK_QUANTUM / this.#options.sampleRate) * 1000;
+      const expectedMs = (BENCHMARK_QUANTUM / this.#options.sampleRate) * 1000;
       if (this.#firstFrame === undefined) this.#firstFrame = frame;
       if (
         this.#lastFrame !== undefined &&
