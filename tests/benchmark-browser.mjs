@@ -122,6 +122,55 @@ export async function verifyBenchmarkBrowser(chrome, origin, temporary) {
         `PASS: browser benchmark ${rate} Hz ${scale}x ${JSON.stringify(report)}`,
       );
     }
+    await call('Page.navigate', {
+      url: origin + '/sound-generator/src/audio/synthetic-worklet/diagnostic.html',
+    });
+    await waitFor(() => evaluate("!!document.querySelector('#run')?.onclick"));
+    for (const [rate, scale, bin] of [
+      [48000, 1, 20],
+      [44100, 0.1, 2],
+    ]) {
+      await evaluate(`document.querySelector('#rate').value = '${rate}';
+        document.querySelector('#scale').value = '${scale}';
+        document.querySelector('#run').click(); true`);
+      const state = await waitFor(() =>
+        evaluate(`(() => {
+          const status = document.querySelector('#status');
+          return ['complete', 'error'].includes(status.dataset.state) &&
+            !document.querySelector('#run').disabled
+            ? {state: status.dataset.state, text: status.textContent,
+               report: document.querySelector('#report').textContent} : null;
+        })()`),
+      );
+      assert.equal(state.state, 'complete', state.text);
+      const result = JSON.parse(state.report);
+      assert.equal(result.audioUnlocked, true);
+      assert.equal(result.sampleRate, rate);
+      assert.equal(result.playbackScale, scale);
+      assert.equal(result.renderedFrames, Math.round((rate * 0.4) / scale));
+      assert.equal(result.mode, 'physical');
+      assert.equal(result.nonfiniteSamples, 0);
+      assert.equal(result.clippedSamples, 0);
+      assert.equal(result.frameGaps, 0);
+      assert.ok(result.maxOutput < 1);
+      assert.ok(result.impulseCount > 0);
+      assert.equal(result.rawCapturedFrames, 4096);
+      assert.equal(result.captureFinite, true);
+      assert.equal(result.features[0].peakBin, bin);
+      assert.equal(result.meters.length, 4);
+      assert.ok(result.deadline.budgetMs > 0);
+      console.log(
+        `PASS: synthetic audio ${rate} Hz ${scale}x ${JSON.stringify({
+          frames: result.renderedFrames,
+          firstPeakBin: result.features[0].peakBin,
+          impulseCount: result.impulseCount,
+          frameGaps: result.frameGaps,
+          droppedFeatures: result.droppedFeatures,
+          deadline: result.deadline,
+          meters: result.meters,
+        })}`,
+      );
+    }
   } finally {
     socket?.close();
     browser.kill();

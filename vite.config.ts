@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: resolve('index.html'),
         benchmark: resolve('src/testing/mock-solver/benchmark.html'),
+        audioDiagnostics: resolve('src/audio/synthetic-worklet/diagnostic.html'),
       },
     },
   },
