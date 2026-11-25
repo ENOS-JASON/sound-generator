@@ -292,14 +292,16 @@
 **Acceptance checklist — AG-M0-11a** (all unchecked until verified):
 
 - [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] Mock channel reports unit, source, tick and bounded sample rate
-- [ ] invalid unit/unknown channel rejected.
-- [ ] Two valid pressure channels declare stable distinct IDs and compatible unit metadata for separate user overrides; invalid dimensional conversion or missing gauge/absolute basis is rejected, while source telemetry stays SI.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [x] Mock channel reports unit, source, tick and bounded sample rate
+- [x] invalid unit/unknown channel rejected.
+- [x] Two valid pressure channels declare stable distinct IDs and compatible unit metadata for separate user overrides; invalid dimensional conversion or missing gauge/absolute basis is rejected, while source telemetry stays SI.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+
+**Verified fixture evidence:** [PR #13](https://github.com/ENOS-JASON/sound-generator/pull/13), [passing CI 45653762016](https://github.com/ENOS-JASON/sound-generator/actions/runs/45653762016), tested commit `3c2aa568acedb3964cde061ef7501cafea42f979`: `npm run check` passed 60/60 tests (six diagnostics tests), typecheck, lint, format and build; static and Chromium HTTPS smoke passed; build artifact 15042455474 uploaded. See [handoff](reports/AG-M0-11a.md). Scope remains partial because AG-M0-10 and live integration remain pending. Approval/merge and COMPLETE remain unchecked. No roadmap promotion.
 
 ### AG-M0-11b
 
