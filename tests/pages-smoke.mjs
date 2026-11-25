@@ -4,6 +4,7 @@
  */
 import assert from 'node:assert/strict';
 import { execFile, execFileSync } from 'node:child_process';
+import { verifyBenchmarkBrowser } from './benchmark-browser.mjs';
 import { once } from 'node:events';
 import {
   existsSync,
@@ -203,6 +204,7 @@ async function verifyHttpsPreview() {
     console.log(
       'PASS: HTTPS nested-path direct links, repeat-load, invalid route, no history fallback',
     );
+    await verifyBenchmarkBrowser(chrome, origin, temporaryDirectory);
   } finally {
     if (server) {
       await new Promise((done) => server.close(done));
