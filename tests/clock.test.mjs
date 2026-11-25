@@ -49,7 +49,7 @@ function physical(events) {
   });
 }
 
-test('identical seeded I4 physical event trace and state at 1x and 0.1x', () => {
+test('I4 physical event trace and state agree at 1x and 0.1x', () => {
   for (const rate of [44100, 48000]) {
     const fast = createMockRun(rate);
     const slow = createMockRun(rate);
@@ -84,7 +84,7 @@ test('exact integer phase at all approved scales and sample rates', () => {
   }
 });
 
-test('fractional phase, pause, resume and scale switches preserve firing', () => {
+test('pause, resume and scale switches preserve firing and phase', () => {
   const reference = createMockRun(48000);
   const changed = createMockRun(48000);
   const { clock } = changed;
@@ -124,7 +124,7 @@ test('both audio-mode selections preserve the physics and domain hash', () => {
   );
 });
 
-test('manual stepping is paused, bounded and reports unreachable targets', () => {
+test('paused stepping is bounded and reports unreachable targets', () => {
   const { clock } = createMockRun(48000);
   assert.throws(() => control(clock, 'STEP_TICKS', { count: 1 }), /pause/);
   control(clock, 'PAUSE');
@@ -190,7 +190,7 @@ test('benchmark runners share identical samples and physical hashes', () => {
   assert.ok(a.summary().eventCount > 2);
 });
 
-test('benchmark producer is sequential and trims the final padded quantum', () => {
+test('sequential producer trims the last padded quantum', () => {
   const options = {
     owner: 'worker',
     sampleRate: 44100,
