@@ -192,7 +192,7 @@
 
 ### AG-M0-08
 
-- [ ] **AG-M0-08 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-08 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
 **Roadmap source:** Define configurable **reference-fidelity profile contracts** (Quick/Balanced/Detailed/Research), component solver capabilities, gas/metal/wall zone axes, step/CFL/stability tolerances and resource preflight; see [21](../21-adjustable-fidelity-multizone-reference-simulation.md).
 
@@ -211,9 +211,9 @@
 - [x] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+- [x] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
-### AG-M0-09
+**Merge verification:** [PR #10](https://github.com/ENOS-JASON/sound-generator/pull/10) merged on 2026-11-25 by GitHub actor `ENOS-JASON`, commit `c644395228255b6b92f3609136499d642973d849`; owner expressly authorized this merge in chat; final [PR CI 45186882880](https://github.com/ENOS-JASON/sound-generator/actions/runs/45186882880) passed; report [AG-M0-08](reports/AG-M0-08.md). No actual reference solver is claimed.\n\n### AG-M0-09
 
 - [ ] **AG-M0-09 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
 
