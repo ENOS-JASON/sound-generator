@@ -34,9 +34,16 @@ export function createBenchmarkRun(sampleRate: number, scale: number) {
   let eventCount = 0;
   let pendingImpulse = 0;
   return {
-    block() {
+    block(frames = BENCHMARK_QUANTUM) {
+      if (
+        !Number.isInteger(frames) ||
+        frames < 1 ||
+        frames > BENCHMARK_QUANTUM
+      ) {
+        throw new RangeError('invalid benchmark block length');
+      }
       const before = run.clock.snapshot().sampleFrame;
-      const result = run.clock.advanceFrames(BENCHMARK_QUANTUM);
+      const result = run.clock.advanceFrames(frames);
       const samples = new Float32Array(BENCHMARK_QUANTUM);
       samples[0] = pendingImpulse;
       pendingImpulse = 0;
@@ -45,7 +52,7 @@ export function createBenchmarkRun(sampleRate: number, scale: number) {
         eventCount++;
         if (event.type !== 'COMBUSTION') continue;
         const index = (event.sampleFrame ?? before) - before;
-        if (index === BENCHMARK_QUANTUM) pendingImpulse += 0.05;
+        if (index === frames) pendingImpulse += 0.05;
         else samples[index] = (samples[index] ?? 0) + 0.05;
       }
       return samples;

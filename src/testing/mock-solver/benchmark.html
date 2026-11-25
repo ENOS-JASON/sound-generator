@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solver location benchmark</title>
+  </head>
+  <body>
+    <main>
+      <h1>AG-M0-10 solver location benchmark</h1>
+      <p>
+        Synthetic I4 workload, not calibrated engine audio. Keep this tab
+        visible. The test produces quiet synthetic impulses.
+      </p>
+      <label>
+        Sample rate
+        <select id="rate">
+          <option value="48000">48 kHz</option>
+          <option value="44100">44.1 kHz</option>
+        </select>
+      </label>
+      <label>
+        Playback scale
+        <select id="scale">
+          <option value="1">1x</option>
+          <option value="0.1">0.1x</option>
+        </select>
+      </label>
+      <label>
+        <input type="checkbox" id="reverse" />
+        Worker first
+      </label>
+      <p>
+        <label>
+          Hardware, browser version and driver notes
+          <input id="hardware" type="text" size="60" />
+        </label>
+      </p>
+      <button id="run" type="button">Run both locations</button>
+      <button id="cancel" type="button" disabled>Cancel</button>
+      <button id="save" type="button" disabled>Download JSON</button>
+      <p id="status" data-state="idle" role="status">Ready</p>
+      <pre id="report"></pre>
+    </main>
+    <script type="module" src="./benchmark-main.ts"></script>
+  </body>
+</html>

@@ -39,7 +39,10 @@ function advance(clock, frames, block = 128) {
 }
 
 function physical(events) {
-  return events.map(({ sampleFrame, ...event }) => event);
+  return events.map(({ sampleFrame, ...event }) => {
+    void sampleFrame;
+    return event;
+  });
 }
 
 test('identical seeded I4 physical event trace and state at 1x and 0.1x', () => {
@@ -181,4 +184,35 @@ test('benchmark runners share identical samples and physical hashes', () => {
   }
   assert.deepEqual(a.summary(), b.summary());
   assert.ok(a.summary().eventCount > 2);
+});
+
+test('benchmark producer is sequential and trims the final padded quantum', async () => {
+  const { createBlockProducer, appendPcmHash } =
+    await import('../src/testing/mock-solver/benchmark-protocol.ts');
+  const options = {
+    owner: 'worker',
+    sampleRate: 44100,
+    scale: 1,
+    totalFrames: 132300,
+  };
+  const produce = createBlockProducer(options);
+  const worklet = createBlockProducer({ ...options, owner: 'worklet' });
+  assert.throws(() => produce(1), /nonsequential/);
+  let hash = 2166136261;
+  let otherHash = hash;
+  const blocks = Math.ceil(options.totalFrames / 128);
+  for (let i = 0; i < blocks; i++) {
+    const a = produce(i);
+    const b = worklet(i);
+    hash = appendPcmHash(hash, a.samples);
+    otherHash = appendPcmHash(otherHash, b.samples);
+    assert.deepEqual(a.samples, b.samples);
+    assert.deepEqual(a.summary, b.summary);
+    if (i === blocks - 1) {
+      assert.equal(a.summary.clock.simulationTick, 3000);
+      assert.equal(a.summary.clock.sampleFrame, options.totalFrames);
+    }
+  }
+  assert.equal(hash, otherHash);
+  assert.throws(() => produce(blocks), /nonsequential/);
 });
