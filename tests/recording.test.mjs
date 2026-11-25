@@ -6,11 +6,9 @@ import { TelemetryRegistry } from '../src/diagnostics/TelemetryRegistry.ts';
 import { TraceRecorder } from '../src/recording/TraceRecorder.ts';
 import { createMockRun } from '../src/testing/mock-solver/i4.ts';
 
+const fixturePath = './fixtures/diagnostics/pressure-channels.v1.json';
 const fixture = JSON.parse(
-  readFileSync(
-    new URL('./fixtures/diagnostics/pressure-channels.v1.json', import.meta.url),
-    'utf8',
-  ),
+  readFileSync(new URL(fixturePath, import.meta.url), 'utf8'),
 );
 
 function setup(maxRecords = 64, chunkSize = 3) {
@@ -62,7 +60,7 @@ function setup(maxRecords = 64, chunkSize = 3) {
   return { registry, clock, state, hub, recorder, start, sample, control };
 }
 
-test('record a mock run with ordered events, scale changes and SI chunks', () => {
+test('record ordered mock events, scale changes and SI chunks', () => {
   const { clock, state, hub, recorder, start, sample, control } = setup();
   assert.equal(recorder.active, false);
   recorder.start(start);
@@ -125,7 +123,7 @@ test('record a mock run with ordered events, scale changes and SI chunks', () =>
   assert.throws(() => recorder.stop(), /not active/);
 });
 
-test('overflow drops new records, remains bounded and does not stop the mock', () => {
+test('overflow stays bounded without stopping the mock', () => {
   const { clock, state, recorder, start, sample } = setup(2, 1);
   recorder.start(start);
   for (const event of clock.advanceFrames(480).events) {
@@ -151,7 +149,7 @@ test('overflow drops new records, remains bounded and does not stop the mock', (
   assert.equal(trace.stats.dropped, 1000);
 });
 
-test('detect gaps and invalid entries rather than claiming complete capture', () => {
+test('detect gaps and invalid entries', () => {
   const { clock, recorder, start, sample, control } = setup();
   recorder.start(start);
   const { command, diagnostics } = control('SET_TIME_SCALE', {
@@ -184,7 +182,7 @@ test('detect gaps and invalid entries rather than claiming complete capture', ()
   assert.equal(trace.stats.invalid, 4);
 });
 
-test('reject unsafe capacity, invalid start and foreign or unrouted channels', () => {
+test('reject invalid start, capacity and channels', () => {
   const { registry, clock, recorder, start, sample } = setup();
   assert.throws(() => new TraceRecorder(registry, 65537), RangeError);
   assert.throws(() => new TraceRecorder(registry, 3, 4), RangeError);
@@ -200,7 +198,10 @@ test('reject unsafe capacity, invalid start and foreign or unrouted channels', (
     { fieldId: 'oil.pressure', sourceComponentId: 'oil' },
     { runId: 'stale-run' },
   ]) {
-    assert.equal(recorder.recordTelemetry({ ...observation, ...patch }), 'invalid');
+    assert.equal(
+      recorder.recordTelemetry({ ...observation, ...patch }),
+      'invalid',
+    );
   }
   const trace = recorder.stop();
   assert.equal(trace.status, 'incomplete');
