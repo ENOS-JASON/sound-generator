@@ -461,14 +461,14 @@
 - [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
 - [x] Navigate routes with mock running
 - [x] simulationTick continues with no reset
-- [ ] GitHub Pages refresh/hash route works.
+- [x] GitHub Pages refresh/hash route works.
 - [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
 - [x] **Positive-path test/fixture:** passes with recorded command and actual result.
 - [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
 - [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
 - [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
 
-**Verified fixture evidence (2026-11-26):** [PR #20](https://github.com/ENOS-JASON/sound-generator/pull/20) merged by `ENOS-JASON` under explicit owner authorization at `bf253a77ca91e84525c823929ae32a57c0441727`; final [CI 45833453408](https://github.com/ENOS-JASON/sound-generator/actions/runs/45833453408) passed 85/85 tests, typecheck, lint, formatting, build and Chromium HTTPS preview including actual reload. Mock tick continuity observed 125 → 225 → 325 → 350 → 450 → 475; pause and single-step passed; reload returned a paused fresh fixture at tick zero. Artifact `15124580396`. Public deployment, AG-M0-18 restore, ADR-001 and live integration remain pending; scope, combined approval and COMPLETE remain unchecked, and parent roadmap is not promoted. See [handoff](reports/AG-M0-14a.md).
+**Verified fixture evidence (2026-11-26):** [PR #20](https://github.com/ENOS-JASON/sound-generator/pull/20) merged by `ENOS-JASON` under explicit owner authorization at `bf253a77ca91e84525c823929ae32a57c0441727`; final [CI 45833453408](https://github.com/ENOS-JASON/sound-generator/actions/runs/45833453408) passed 85/85 tests, typecheck, lint, formatting, build and Chromium HTTPS preview including actual reload. Mock tick continuity observed 125 → 225 → 325 → 350 → 450 → 475; pause and single-step passed; reload returned a paused fresh fixture at tick zero. Artifact `15124580396`. Post-merge [Pages run 45833598488](https://github.com/ENOS-JASON/sound-generator/actions/runs/45833598488) passed the build, deployment and anonymous HTTPS asset/route smoke. AG-M0-18 restore, ADR-001 and live integration remain pending; scope, combined approval and COMPLETE remain unchecked, and parent roadmap is not promoted. See [handoff](reports/AG-M0-14a.md).
 
 
 ### AG-M0-14b

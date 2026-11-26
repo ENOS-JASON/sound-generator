@@ -6,17 +6,26 @@
   import { createWidgetSampler } from './widgetSampler';
   import type { ShellSnapshot } from './widgetSampler';
 
-  let { snapshot, diagnostics }: {
+  interface Props {
     snapshot: ShellSnapshot;
     diagnostics: boolean;
-  } = $props();
+  }
+
+  interface DragState {
+    id: WidgetId;
+    x: number;
+    y: number;
+    dx: number;
+    dy: number;
+  }
+
+  let { snapshot, diagnostics }: Props = $props();
 
   const registry = new WidgetRegistry();
   const sampler = createWidgetSampler(() => snapshot);
   let layout = $state(registry.snapshot());
   let samples = $state(sampler.snapshot());
-  let drag: { id: WidgetId; x: number; y: number; dx: number; dy: number } | null =
-    null;
+  let drag: DragState | null = null;
 
   const labels = { rpm: 'Mock RPM', waveform: 'Fixture waveform' };
 
@@ -165,9 +174,7 @@
       {#if id === 'rpm'}
         <p>{snapshot.rpm.toFixed(1)} rpm</p>
         <svg viewBox="0 0 220 64" aria-label="Mock RPM history" role="img">
-          <polyline
-            points={points(samples.rpm, Math.max(1, ...samples.rpm))}
-          />
+          <polyline points={points(samples.rpm, Math.max(1, ...samples.rpm))} />
         </svg>
       {:else}
         <p>Synthetic test tone, not live audio</p>
