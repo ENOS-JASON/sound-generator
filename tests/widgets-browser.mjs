@@ -2,6 +2,12 @@ import assert from 'node:assert/strict';
 import { setTimeout as sleep } from 'node:timers/promises';
 
 export async function verifyWidgetsBrowser(call, evaluate, waitFor) {
+  await call('Emulation.setDeviceMetricsOverride', {
+    width: 1000,
+    height: 800,
+    deviceScaleFactor: 1,
+    mobile: false,
+  });
   await evaluate("document.querySelector('#widget-toggle-rpm').click()");
   await evaluate("document.querySelector('#widget-toggle-waveform').click()");
 
@@ -25,11 +31,21 @@ export async function verifyWidgetsBrowser(call, evaluate, waitFor) {
     const handle = await evaluate(`(() => {
       const r = document.querySelector('[data-widget=${id}] .drag-handle')
         .getBoundingClientRect();
-      return { x: r.x + 10, y: r.y + 10 };
+      return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
     })()`);
+    const hit = await evaluate(`(() => {
+      const node = document.elementFromPoint(${handle.x}, ${handle.y});
+      return node?.closest('[data-widget]')?.dataset.widget;
+    })()`);
+    assert.equal(hit, id);
+    await call('Input.dispatchMouseEvent', {
+      type: 'mouseMoved',
+      ...handle,
+    });
     await call('Input.dispatchMouseEvent', {
       type: 'mousePressed',
       button: 'left',
+      buttons: 1,
       clickCount: 1,
       ...handle,
     });
@@ -45,9 +61,10 @@ export async function verifyWidgetsBrowser(call, evaluate, waitFor) {
       clickCount: 1,
       ...target,
     });
-    const moved = await placement(id);
-    assert.ok(moved.x > before.x);
-    assert.ok(moved.y > before.y);
+    const moved = await waitFor(async () => {
+      const current = await placement(id);
+      return current.x > before.x && current.y > before.y ? current : null;
+    });
     return moved;
   }
 

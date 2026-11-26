@@ -13,6 +13,7 @@
 
   interface DragState {
     id: WidgetId;
+    pointerId: number;
     x: number;
     y: number;
     dx: number;
@@ -54,14 +55,24 @@
   }
 
   function startDrag(event: PointerEvent, id: WidgetId): void {
-    if (event.button !== 0) return;
+    if (event.button !== 0 || drag) return;
     const { x, y } = layout.placements[id];
-    drag = { id, x, y, dx: event.clientX, dy: event.clientY };
-    (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+    drag = {
+      id,
+      pointerId: event.pointerId,
+      x,
+      y,
+      dx: event.clientX,
+      dy: event.clientY,
+    };
+    const handle = event.currentTarget as HTMLElement;
+    handle.focus();
+    handle.setPointerCapture(event.pointerId);
+    event.preventDefault();
   }
 
   function moveDrag(event: PointerEvent): void {
-    if (!drag) return;
+    if (!drag || drag.pointerId !== event.pointerId) return;
     registry.move(
       drag.id,
       drag.x + event.clientX - drag.dx,
@@ -70,8 +81,8 @@
     sync();
   }
 
-  function endDrag(): void {
-    drag = null;
+  function endDrag(event: PointerEvent): void {
+    if (drag?.pointerId === event.pointerId) drag = null;
   }
 
   function keyboard(event: KeyboardEvent, id: WidgetId): void {
@@ -119,7 +130,12 @@
   });
 </script>
 
-<svelte:window onresize={resize} />
+<svelte:window
+  onresize={resize}
+  onpointermove={moveDrag}
+  onpointerup={endDrag}
+  onpointercancel={endDrag}
+/>
 
 <section class="widget-toolbar" aria-label="Diagnostic widgets">
   {#each widgetIds as id (id)}
@@ -160,9 +176,6 @@
           class="drag-handle"
           aria-label={'Move ' + labels[id]}
           onpointerdown={(event) => startDrag(event, id)}
-          onpointermove={moveDrag}
-          onpointerup={endDrag}
-          onpointercancel={endDrag}
           onlostpointercapture={endDrag}
           onkeydown={(event) => keyboard(event, id)}
         >
