@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import WidgetBoard from './ui-shell/widgets/WidgetBoard.svelte';
   import { navigation, resolveHashRoute, routeHref } from './app/routing';
   import {
     createShellRuntime,
@@ -144,7 +145,9 @@
     {/if}
   </main>
 
+  <WidgetBoard {snapshot} diagnostics={currentRoute === 'diagnostics'} />
+
   <footer>
-    AG-M0-14a · route-independent mock runtime · no production audio or physics
+    AG-M0-14b · mock runtime and widgets · no production audio or physics
   </footer>
 </div>
