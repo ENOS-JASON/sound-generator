@@ -1,6 +1,6 @@
 /**
- * Initial static hash-route fixture. This is deliberately not a frozen
- * app-wide router API; ADR-002 still requires owner approval.
+ * Lightweight static hash resolver approved in ADR-002.
+ * Routes select presentation only; the root shell owns the runtime.
  */
 export const navigation = [
   { id: 'dashboard', path: '/', title: 'Dashboard' },

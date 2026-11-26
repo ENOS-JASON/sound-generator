@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { verifyShellBrowser } from './shell-browser.mjs';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { existsSync, readFileSync } from 'node:fs';
@@ -78,6 +79,7 @@ export async function verifyBenchmarkBrowser(chrome, origin, temporary) {
       }
       return response.result.value;
     }
+    await verifyShellBrowser(call, evaluate, waitFor, origin);
     const path = '/sound-generator/src/testing/mock-solver/benchmark.html';
     await call('Page.navigate', { url: origin + path + '?smoke' });
     await waitFor(() => evaluate("!!document.querySelector('#run')?.onclick"));
