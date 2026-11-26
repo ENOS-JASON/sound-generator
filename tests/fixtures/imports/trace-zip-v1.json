@@ -1,0 +1,6 @@
+{
+  "seed": 42,
+  "sampleRate": 48000,
+  "observations": 40,
+  "expectedTick": 400
+}
