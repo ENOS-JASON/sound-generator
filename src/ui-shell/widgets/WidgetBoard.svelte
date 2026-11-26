@@ -128,7 +128,8 @@
       aria-pressed={layout.placements[id].shown}
       onclick={() => toggle(id)}
     >
-      {layout.placements[id].shown ? 'Hide' : 'Show'} {labels[id]}
+      {layout.placements[id].shown ? 'Hide' : 'Show'}
+      {labels[id]}
     </button>
   {/each}
   <button id="widget-hide-all" onclick={hideAll}>
