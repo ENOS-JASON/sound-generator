@@ -43,12 +43,16 @@ export async function verifyShellBrowser(call, evaluate, waitFor, origin) {
     const state = await read();
     return state?.status === 'Paused' ? state : null;
   });
-  await evaluate("document.querySelector('nav a[href=\"#/diagnostics\"]').click(); true");
+  await evaluate(
+    "document.querySelector('nav a[href=\"#/diagnostics\"]').click(); true",
+  );
   await waitFor(async () => (await read())?.heading === 'Diagnostics');
   await sleep(125);
   assert.equal((await read()).tick, paused.tick);
   assert.ok(
-    (await evaluate("Number(document.querySelector('#domain-event-count').textContent)")) > 0,
+    (await evaluate(
+      "Number(document.querySelector('#domain-event-count').textContent)",
+    )) > 0,
   );
   await evaluate("document.querySelector('#step-mock').click(); true");
   assert.equal((await read()).tick, paused.tick + 1);

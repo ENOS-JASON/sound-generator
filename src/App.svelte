@@ -62,35 +62,42 @@
         {error ? 'Error' : snapshot.paused ? 'Paused' : 'Running'}
       </strong>
       <span>Mock I4 · synthetic fixture</span>
-      <span>Tick <output id="simulation-tick">{snapshot.simulationTick}</output></span>
       <span>
-        Simulated time {snapshot.simulationTimeSeconds.toFixed(3)} s
+        Tick <output id="simulation-tick">{snapshot.simulationTick}</output>
       </span>
+      <span>Simulated time {snapshot.simulationTimeSeconds.toFixed(3)} s</span>
     </div>
     <div class="runtime-controls">
       <button
         id="resume-mock"
         disabled={!snapshot.paused || !!error}
-        onclick={() => update(runtime.resume)}>Resume</button
+        onclick={() => update(runtime.resume)}
       >
+        Resume
+      </button>
       <button
         id="pause-mock"
         disabled={snapshot.paused || !!error}
-        onclick={() => update(runtime.pause)}>Pause</button
+        onclick={() => update(runtime.pause)}
       >
+        Pause
+      </button>
       <button
         id="step-mock"
         disabled={!snapshot.paused || !!error}
-        onclick={() => update(runtime.step)}>Step 1 tick</button
+        onclick={() => update(runtime.step)}
       >
+        Step 1 tick
+      </button>
       <div class="scale-controls" role="group" aria-label="Playback scale">
         {#each mockScales as scale (scale)}
           <button
             aria-pressed={snapshot.playbackScale === scale}
             disabled={!!error}
             onclick={() => update(() => runtime.setScale(scale))}
-            >{scale}x</button
           >
+            {scale}x
+          </button>
         {/each}
       </div>
     </div>
@@ -127,9 +134,9 @@
       </dl>
     {:else if currentRoute === 'settings'}
       <p>
-        The fixture uses a fixed 48 kHz synthetic frame rate. Production
-        audio, browser workspace restoration and user preferences are not
-        connected to this shell yet.
+        The fixture uses a fixed 48 kHz synthetic frame rate. Production audio,
+        browser workspace restoration and user preferences are not connected to
+        this shell yet.
       </p>
     {:else}
       <p>This route is not available.</p>
