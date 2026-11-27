@@ -500,7 +500,7 @@
 
 ### AG-M0-15
 
-- [ ] **AG-M0-15 COMPLETE** — check LAST, only after every criterion below passes, CI/integration review is accepted, and a real merged PR/commit is linked.
+- [x] **AG-M0-15 COMPLETE** — Owner-authorized [PR #23](https://github.com/ENOS-JASON/sound-generator/pull/23) merged by `ENOS-JASON` at `adc59bb99b7691fac9bf086ab4db2aa3a62dbda2`; final [PR CI 46009069933](https://github.com/ENOS-JASON/sound-generator/actions/runs/46009069933) passed 93/93 tests, strict typecheck, lint, formatting, build and Chromium HTTPS smoke; build artifact `15202474252`.
 
 **Roadmap source:** Define `FastComponentModel` / `ApproximationRegistry` contracts: generic analytic baseline, optional trained coefficient/lookup slot, version/unit/validity/fallback, component IDs and reference projection; training must be possible later without rewriting M1 solver.
 
@@ -512,15 +512,18 @@
 **Required references:** [14](../14-modular-typescript-platform.md), [28](../28-shared-realtime-surrogates-and-calibration.md), [30](../30-agent-handoff-contracts-and-decisions.md).
 **Acceptance checklist — AG-M0-15** (all unchecked until verified):
 
-- [ ] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
-- [ ] Two compatible mock components share one math kernel
-- [ ] out-of-domain returns safe baseline diagnostic
-- [ ] incompatible unit bindings rejected.
-- [ ] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
-- [ ] **Positive-path test/fixture:** passes with recorded command and actual result.
-- [ ] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
-- [ ] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
-- [ ] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+- [x] **Scoped deliverable and dependencies:** implemented within owned files, using accepted versioned contracts and actual prerequisite evidence.
+- [x] Two compatible mock components share one math kernel
+- [x] out-of-domain returns safe baseline diagnostic
+- [x] incompatible unit bindings rejected.
+- [x] Commit tests/fixtures and an [agent handoff report](../30-agent-handoff-contracts-and-decisions.md#6-required-completion-report-from-each-agent).
+- [x] **Positive-path test/fixture:** passes with recorded command and actual result.
+- [x] **Negative/invalid-path test/fixture:** passes with recorded command and actual result.
+- [x] **CI + artifacts:** applicable tests/checks actually executed and passed; trace/screenshots/fixtures and completion report recorded (or status remains BLOCKED).
+- [x] **Approval and verified merge:** project owner personally reviewed and merged **OR** verified authorized AI integrator reviewed and merged; required CI/branch checks, owner-only ADR/API/security decisions and a real merge are verified. Record PR, merge actor/SHA and evidence; owner needs no separate GitHub review or Markdown edit.
+
+**Verified evidence:** Owner-authorized [PR #23](https://github.com/ENOS-JASON/sound-generator/pull/23) merged by `ENOS-JASON` at `adc59bb99b7691fac9bf086ab4db2aa3a62dbda2`; final [PR CI 46009069933](https://github.com/ENOS-JASON/sound-generator/actions/runs/46009069933) passed 93/93 tests, strict typecheck, lint, formatting, build and Chromium HTTPS smoke; build artifact `15202474252`. `npm run check` exercised the six targeted tests in `tests/approximation.test.mjs`, including shared kernel/independent parameters, coefficient and lookup validation, out-of-domain fallback, invalid output, incompatible unit/basis rejection and reference projection. The owner explicitly authorized the public API merge. See [handoff](reports/AG-M0-15.md). Actual physical calibration and solver integration remain later work; this completes only the M0 contract card.
+
 
 ### AG-M0-16
 
