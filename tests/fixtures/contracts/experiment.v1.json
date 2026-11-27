@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "studyId": "mock-reference-study",
+  "presetId": "mock-graph",
+  "presetVersion": "1",
+  "scenarioId": "mock-start",
+  "scenarioVersion": "1",
+  "orderedSteps": [
+    {
+      "command": "start",
+      "simulationSeconds": 0
+    }
+  ],
+  "environment": {
+    "temperatureK": 293.15,
+    "pressurePa": 101325
+  },
+  "initialState": {
+    "speedRadiansPerSecond": 0
+  },
+  "seeds": [
+    42,
+    43
+  ],
+  "capture": {
+    "metrics": [
+      "torque",
+      "mass-flow"
+    ],
+    "clock": "simulation-tick"
+  },
+  "gates": {
+    "massResidualFraction": 0.001
+  },
+  "resources": {
+    "threads": 4,
+    "ramBytes": 1073741824,
+    "vramBytes": 536870912,
+    "diskBytes": 1073741824,
+    "concurrentJobs": 1
+  },
+  "retryLimit": 0,
+  "checkpointIntervalSteps": 100
+}
