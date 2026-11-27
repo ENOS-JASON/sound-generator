@@ -15,7 +15,10 @@ const model = {
   outputs: { flow: { ...flow, bounds: [0, 20] } },
   observedState: ['pressure', 'flow'],
   estimatedCost: 'constant-time analytic kernel',
-  baseline: ({ pressure }, { area }) => ({ flow: pressure * area / 10 }),
+  baseline: ({ pressure }, { area }) => {
+    const scaled = pressure * area;
+    return { flow: scaled / 10 };
+  },
   coefficients: { gain: { unit: '1', bounds: [0, 4] } },
   calibrated: (_inputs, _parameters, { gain }, { flow }) => ({
     flow: flow * gain,
@@ -62,7 +65,7 @@ function registry() {
   return registry;
 }
 
-test('two component instances reuse a baseline with independent parameters', () => {
+test('two components reuse a baseline with independent parameters', () => {
   const models = registry();
   const a = models.evaluate(binding(), { pressure: 40 });
   const b = models.evaluate(binding('mock-throttle', 2), { pressure: 40 });
@@ -74,7 +77,7 @@ test('two component instances reuse a baseline with independent parameters', () 
   assert.throws(() => models.register(model), /duplicate/);
 });
 
-test('coefficient overlays are versioned, bounded and component-specific', () => {
+test('coefficients are versioned, bounded and component-specific', () => {
   const models = registry();
   const component = binding();
   const trained = { ...component, profile: profile(component) };
@@ -140,7 +143,7 @@ test('invalid trained output falls back; invalid baseline is rejected', () => {
   assert.throws(() => models.evaluate(component, { pressure: 101 }));
 });
 
-test('binding rejects different dimensions, non-SI units and pressure basis', () => {
+test('binding rejects incompatible units and pressure basis', () => {
   const models = registry();
   const component = binding();
   for (const unit of [
@@ -159,7 +162,7 @@ test('binding rejects different dimensions, non-SI units and pressure basis', ()
   }
 });
 
-test('reference projection preserves identity and rejects incompatible units', () => {
+test('reference projection rejects incompatible identity and units', () => {
   const models = registry();
   const component = binding();
   const sample = {
@@ -177,10 +180,10 @@ test('reference projection preserves identity and rejects incompatible units', (
   const projection = models.projectReference(component, sample);
   assert.deepEqual(projection, { flow: 4.2 });
   assert.ok(Object.isFrozen(projection));
-  assert.throws(() =>
-    models.projectReference(component, { ...sample, componentId: 'other' }),
-  );
-  assert.throws(() =>
-    models.projectReference(component, { ...sample, units: { flow: pressure } }),
-  );
+  assert.throws(() => {
+    models.projectReference(component, { ...sample, componentId: 'other' });
+  });
+  assert.throws(() => {
+    models.projectReference(component, { ...sample, units: { flow: pressure } });
+  });
 });

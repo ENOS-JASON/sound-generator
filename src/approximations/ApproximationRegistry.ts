@@ -199,7 +199,8 @@ function interpolate(
     else low = mid;
   }
   const fraction = (x - knots[low]!) / (knots[high]! - knots[low]!);
-  return corrections[low]! + fraction * (corrections[high]! - corrections[low]!);
+  const delta = corrections[high]! - corrections[low]!;
+  return corrections[low]! + fraction * delta;
 }
 
 function evaluateOutputs(
@@ -275,7 +276,10 @@ export class ApproximationRegistry {
     return model;
   }
 
-  evaluate(binding: ComponentModelBinding, inputs: Values): ApproximationResult {
+  evaluate(
+    binding: ComponentModelBinding,
+    inputs: Values,
+  ): ApproximationResult {
     const model = this.#resolve(binding);
     validateValues(model.inputs, inputs);
     const inputSnapshot = Object.freeze({ ...inputs });
