@@ -151,12 +151,9 @@ test('binding rejects incompatible units and pressure basis', () => {
     { unit: 'psi', pressureBasis: 'absolute' },
     { unit: 'Pa', pressureBasis: 'gauge' },
   ]) {
+    const invalid = { ...component, inputs: { pressure: unit } };
     assert.throws(
-      () =>
-        models.evaluate(
-          { ...component, inputs: { pressure: unit } },
-          { pressure: 40 },
-        ),
+      () => models.evaluate(invalid, { pressure: 40 }),
       /incompatible SI unit/,
     );
   }
@@ -183,7 +180,6 @@ test('reference projection rejects incompatible identity and units', () => {
   assert.throws(() => {
     models.projectReference(component, { ...sample, componentId: 'other' });
   });
-  assert.throws(() => {
-    models.projectReference(component, { ...sample, units: { flow: pressure } });
-  });
+  const invalidUnits = { ...sample, units: { flow: pressure } };
+  assert.throws(() => models.projectReference(component, invalidUnits));
 });
